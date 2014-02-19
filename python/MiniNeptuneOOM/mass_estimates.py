@@ -428,7 +428,7 @@ def Ratm(Mc, rhoc, f, T, kappa):
     Rc = (3 * Mc / (4 * np.pi * rhoc))**(1./3)
 
     def func(Ratm):
-        return 4 * np.pi * G * (f + 1) * Ratm**3 / (Rfn(0.3) * T * kappa * (Rc + Ratm)**2) - f
+        return 4 * np.pi * G * Ratm**3 / (Rfn(0.3) * T * kappa * (Rc + Ratm)**2) - f
 
     return brentq(func, 1e-10, 1e20)
     
