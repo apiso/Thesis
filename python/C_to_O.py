@@ -38,7 +38,7 @@ def n_C_O(species):
 #in the following we calculate T_freeze for various species
 T_freeze_H20 = T_freeze(18., 5800, 1e6)
 T_freeze_CO2 = T_freeze(44., 2000, 3e5)
-T_freeze_CO = T_freeze(18., 850, 1e6)
+T_freeze_CO = T_freeze(28., 850, 1e6)
 
 
 def n(T, elem):

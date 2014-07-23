@@ -1,5 +1,7 @@
 from utils.constants import G, kb, mp, Msun, cmperau
 import numpy as np
+from T_freeze import T_freeze, Rdes, tevap
+from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
 
 def Tdisk(r, T0 = 120, betaT = 3./7):
      """Disk temperature in K with r in AU"""
@@ -62,9 +64,9 @@ def tr(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
     Mstar = Msun, sigma = 2 * 10**(-15)):
     """Radial drift time in seconds with r in AU and s in cm"""
     return (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
-        Mstar, sigma)**2/ \
+        Mstar, sigma)**2)/ \
             taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
-                Mstar, sigma)) * np.sqrt(G * Mstar * r * cmperau) / \
+                Mstar, sigma) * np.sqrt(G * Mstar * r * cmperau) / \
                     cdisk(r, T0, betaT, mu)**2
         
         

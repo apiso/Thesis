@@ -20,6 +20,13 @@ def vib_freq(Ex, mx):
     
     return 1.6 * 1e11 * np.sqrt(Ex / mx)
 
+def Rdes(mx, Ex, Tx):
+    
+    return vib_freq(Ex, mx) * np.exp(- Ex / Tx) 
+    
+def tevap(mx, Ex, Tx):
+    
+    return 1 / Rdes(mx, Ex, Tx)
     
 def v_thermal(T, mu):
     
