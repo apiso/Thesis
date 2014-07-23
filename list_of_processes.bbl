@@ -1,0 +1,77 @@
+\begin{thebibliography}{16}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Bisschop} {et~al.}(2006){Bisschop}, {Fraser}, {{\"O}berg}, {van
+  Dishoeck}, \& {Schlemmer}}]{bisschop06}
+{Bisschop}, S.~E., {Fraser}, H.~J., {{\"O}berg}, K.~I., {van Dishoeck}, E.~F.,
+  \& {Schlemmer}, S. 2006, \aap, 449, 1297
+
+\bibitem[{{Boogert} {et~al.}(2008){Boogert}, {Pontoppidan}, {Knez}, {Lahuis},
+  {Kessler-Silacci}, {van Dishoeck}, {Blake}, {Augereau}, {Bisschop},
+  {Bottinelli}, {Brooke}, {Brown}, {Crapsi}, {Evans}, {Fraser}, {Geers},
+  {Huard}, {J{\o}rgensen}, {{\"O}berg}, {Allen}, {Harvey}, {Koerner}, {Mundy},
+  {Padgett}, {Sargent}, \& {Stapelfeldt}}]{boogert08}
+{Boogert}, A.~C.~A., {Pontoppidan}, K.~M., {Knez}, C., {Lahuis}, F.,
+  {Kessler-Silacci}, J., {van Dishoeck}, E.~F., {Blake}, G.~A., {Augereau},
+  J.-C., {Bisschop}, S.~E., {Bottinelli}, S., {Brooke}, T.~Y., {Brown}, J.,
+  {Crapsi}, A., {Evans}, II, N.~J., {Fraser}, H.~J., {Geers}, V., {Huard},
+  T.~L., {J{\o}rgensen}, J.~K., {{\"O}berg}, K.~I., {Allen}, L.~E., {Harvey},
+  P.~M., {Koerner}, D.~W., {Mundy}, L.~G., {Padgett}, D.~L., {Sargent}, A.~I.,
+  \& {Stapelfeldt}, K.~R. 2008, \apj, 678, 985
+
+\bibitem[{{Chiang} \& {Youdin}(2010)}]{chiang10}
+{Chiang}, E. \& {Youdin}, A.~N. 2010, Annual Review of Earth and Planetary
+  Sciences, 38, 493
+
+\bibitem[{{Ciesla} \& {Cuzzi}(2006)}]{ciesla06}
+{Ciesla}, F.~J. \& {Cuzzi}, J.~N. 2006, \icarus, 181, 178
+
+\bibitem[{{Cuzzi} \& {Zahnle}(2004)}]{cuzzi04}
+{Cuzzi}, J.~N. \& {Zahnle}, K.~J. 2004, \apj, 614, 490
+
+\bibitem[{{Dodson-Robinson} {et~al.}(2009){Dodson-Robinson}, {Willacy},
+  {Bodenheimer}, {Turner}, \& {Beichman}}]{dodson09}
+{Dodson-Robinson}, S.~E., {Willacy}, K., {Bodenheimer}, P., {Turner}, N.~J., \&
+  {Beichman}, C.~A. 2009, \icarus, 200, 672
+
+\bibitem[{{Garaud} \& {Lin}(2007)}]{garaud07}
+{Garaud}, P. \& {Lin}, D.~N.~C. 2007, \apj, 654, 606
+
+\bibitem[{{Guillot} {et~al.}(2004){Guillot}, {Stevenson}, {Hubbard}, \&
+  {Saumon}}]{guillot04}
+{Guillot}, T., {Stevenson}, D.~J., {Hubbard}, W.~B., \& {Saumon}, D. {The
+  interior of Jupiter}, ed. F.~{Bagenal}, T.~E. {Dowling}, \& W.~B. {McKinnon},
+  35--57
+
+\bibitem[{{Lahuis} \& {van Dishoeck}(2000)}]{lahuis00}
+{Lahuis}, F. \& {van Dishoeck}, E.~F. 2000, \aap, 355, 699
+
+\bibitem[{{Lodders}(2009)}]{lodders09}
+{Lodders}, K. 2009, ArXiv e-prints
+
+\bibitem[{{{\"O}berg} {et~al.}(2011){{\"O}berg}, {Murray-Clay}, \&
+  {Bergin}}]{oberg11}
+{{\"O}berg}, K.~I., {Murray-Clay}, R., \& {Bergin}, E.~A. 2011, \apjl, 743, L16
+
+\bibitem[{{{\"O}berg} {et~al.}(2005){{\"O}berg}, {van Broekhuizen}, {Fraser},
+  {Bisschop}, {van Dishoeck}, \& {Schlemmer}}]{oberg05}
+{{\"O}berg}, K.~I., {van Broekhuizen}, F., {Fraser}, H.~J., {Bisschop}, S.~E.,
+  {van Dishoeck}, E.~F., \& {Schlemmer}, S. 2005, \apjl, 621, L33
+
+\bibitem[{{Pontoppidan} {et~al.}(2003){Pontoppidan}, {Fraser}, {Dartois},
+  {Thi}, {van Dishoeck}, {Boogert}, {d'Hendecourt}, {Tielens}, \&
+  {Bisschop}}]{pontoppidan03}
+{Pontoppidan}, K.~M., {Fraser}, H.~J., {Dartois}, E., {Thi}, W.-F., {van
+  Dishoeck}, E.~F., {Boogert}, A.~C.~A., {d'Hendecourt}, L., {Tielens},
+  A.~G.~G.~M., \& {Bisschop}, S.~E. 2003, \aap, 408, 981
+
+\bibitem[{{Stevenson}(1985)}]{stevenson85}
+{Stevenson}, D.~J. 1985, \icarus, 62, 4
+
+\bibitem[{{Stevenson} \& {Lunine}(1988)}]{stevenson88}
+{Stevenson}, D.~J. \& {Lunine}, J.~I. 1988, \icarus, 75, 146
+
+\bibitem[{{Weidenschilling}(1977)}]{weidenschilling77}
+{Weidenschilling}, S.~J. 1977, \mnras, 180, 57
+
+\end{thebibliography}

@@ -1,0 +1,77 @@
+
+! complete list at /local/stars/mesa_4605/star/defaults/history_columns.list
+
+! the following lines of the log file contain info about 1 model per row
+   
+   ! some general info about the model
+   
+      model_number ! counting from the start of the run
+      star_age ! elapsed simulated time in years since the start of the run
+      star_mass ! in Msun units
+      log_dt ! log10 time_step
+      num_zones ! number of zones in the model
+
+   ! conditions at top of largest convection zone (by mass)
+      cz_top_logT
+      cz_top_logP
+      cz_top_radius ! Rsun
+      cz_top_log_radial_depth
+      cz_top_luminosity ! Lsun
+      cz_top_log_tau
+      cz_top_csound
+      cz_top_scale_height
+      cz_top_grav
+
+   ! info about locations where optical depth is 10 or 100
+
+      tau10_lgP ! estimate for log10(P) at tau = 10
+      tau10_lgT ! estimate for log10(T) at tau = 10
+      tau10_lgRho ! estimate for log10(density) at tau = 10
+      tau10_L ! estimate for L/Lsun at tau = 10
+      tau100_lgP ! estimates for values at tau = 100
+      tau100_lgT
+      tau100_lgRho
+      tau100_L ! ! estimate for L/Lsun at tau = 10
+
+   ! integrated power
+   
+      extra_L ! integral of extra_heat in Lsun units
+      eps_grav_integral ! (\int dm eps_grav in Lsun units)
+
+   ! conditions at the photosphere
+      effective_T
+      photosphere_L ! Lsun units
+      photosphere_r ! Rsun units
+
+   ! conditions at or near the surface of the model (outer edge of outer cell)
+
+      luminosity ! luminosity in Lsun units
+      radius ! Rsun
+      radius_cm
+      gravity
+      log_surf_opacity
+      log_surf_pressure
+      log_surf_density
+      log_surf_temperature
+      surface_optical_depth
+
+   
+   ! conditions near center
+
+      log_center_T ! temperature
+      log_center_Rho ! density
+      log_center_P ! pressure
+      center_degeneracy ! the electron chemical potential in units of k*T
+      center_gamma ! plasma interaction parameter
+      center_mu
+      center_eps_grav
+      center_entropy ! in units of kerg per baryon
+
+   ! misc
+   
+      e_thermal ! sum over all zones of Cp*T*dm
+      max_conv_vel_div_csound
+      num_retries ! total during the run
+      num_backups ! total during the run
+      version_number ! mesa version from file mesa/data/version_number
+

@@ -1,0 +1,204 @@
+%\documentstyle[aas2pp4,epsf]{article}
+%%%\documentstyle[aaspp4,epsf]{article}
+%\documentstyle[12pt,aasms]{article}    % this is for a preprint
+%(single-spaced)
+%\documentstyle[aaspp4,epsf]{article} % this is for small print
+%\documentstyle[12pt, aaspp4]{article}
+
+%\documentstyle[11pt,aaspp]{article}
+\documentclass[12pt, preprint]{aastex} 
+
+%\documentclass[manuscript]{aastex}
+%\documentclass[apj]{emulateapj}
+
+%\documentclass[12pt, preprint,numberedappendix]{emulateapj}
+%\documentstyle[12pt,aasms]{article}    % this is for submittal
+                                       % (double-spaced)
+
+%\documentstyle[12pt,aasms]{article}   \usepackage{emulateapj5} 
+
+\usepackage{graphicx} 
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{subeqnarray}
+\usepackage{ulem}
+%\bibliographystyle{apj}
+
+\newcommand{\delad}{\nabla_{\rm ad}}
+\newcommand{\delrad}{\nabla_{\rm rad}}
+\newcommand{\emgr}[1]{\emph{ \color{gray} #1}}
+
+\newcommand{\ie}{i.e.\ }
+\newcommand{\eg}{e.g.\ }
+\newcommand{\p}{\partial}
+\newcommand{\xv}{\vc{x}}
+\newcommand{\kv}{\vc{k}}
+\newcommand{\brak}[1]{\langle #1\rangle}
+
+
+\newcommand{\gcc}{\;\mathrm{g\; cm^{-3}}}
+\newcommand{\gsc}{\;\mathrm{g\; cm^{-2}}}
+\newcommand{\cm}{\; {\rm cm}}
+\newcommand{\mm}{\; {\rm mm}}
+%\newcommand{\ps}{\; {\rm s^{-1}}}
+\newcommand{\km}{\; {\rm km}}
+%\newcommand{\au}{\; \varpi_{\rm AU}}
+
+\newcommand{\AU}{\; {\rm AU}}
+\newcommand{\yr}{\; {\rm yr}}
+\def\K{\; {\rm K}}
+
+\newcommand{\vcs}[1]{\mbox{\boldmath{$\scriptstyle{#1}$}}}
+\newcommand{\vc}[1]{\mbox{\boldmath{$#1$}}}
+\newcommand{\nab}{\vc{\nabla}}
+\DeclareMathSymbol{\varOmega}{\mathord}{letters}{"0A}
+\DeclareMathSymbol{\varSigma}{\mathord}{letters}{"06}
+\DeclareMathSymbol{\varPsi}{\mathord}{letters}{"09}
+
+\newcommand{\Eq}[1]{Equation\,(\ref{#1})}
+\newcommand{\Eqs}[2]{Equations (\ref{#1}) and~(\ref{#2})}
+\newcommand{\Eqss}[2]{Equations (\ref{#1})--(\ref{#2})}
+\newcommand{\Eqsss}[3]{Equations (\ref{#1}), (\ref{#2}) and~(\ref{#3})}
+\newcommand{\App}[1]{Appendix~\ref{#1}}
+\newcommand{\Sec}[1]{Sect.~\ref{#1}}
+\newcommand{\Chap}[1]{Chapter~\ref{#1}}
+\newcommand{\Fig}[1]{Fig.~\ref{#1}}
+\newcommand{\Figs}[2]{Figs.~\ref{#1} and \ref{#2}}
+\newcommand{\Figss}[2]{Figs.~\ref{#1}--\ref{#2}} 
+\newcommand{\Tab}[1]{Table \ref{#1}}
+
+\newenvironment{packed_item}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+%\newcommand{\delad}{\nabla_{\rm ad}}
+%\newcommand{\delrad}{\nabla_{\rm rad}}
+\newcommand{\Rg}{\mathcal{R}}
+\newcommand{\RB}{R_{\rm B}}
+\newcommand{\co}{_{\rm c}}
+\newcommand{\di}{_{\rm d}}
+\newcommand{\cb}{_{\rm RCB}}
+\newcommand{\surf}{_M}
+\newcommand{\mc}{m_{\rm c \oplus}}
+\newcommand{\mcn}[1] { m_{ \rm c #1 \oplus} }
+\newcommand{\MC}{M_{\rm crit}}
+\newcommand{\au}{a_\oplus}
+\newcommand{\aun}[1]{ a_{#1\oplus} }
+
+\begin{document}
+\bibliographystyle{apj}
+
+\title{Giant Planet Atmospheres Do Not Have Stellar Composition}
+
+\section{Processes that matter}
+
+\begin{enumerate}
+\addtocounter{enumi}{-1}
+\item Main carriers of CNOH as a function of time
+\item Which snow lines and where are they
+\begin{itemize}
+\item Assume nitrogen is mainly in $\rm N_2$ and $\rm NH_3$; assume hydrocarbons are primarily $\rm CH_4$ $\rightarrow$ three cases:
+\begin{enumerate}
+\item all nitrogen is $\rm N_2$ and no $\rm CH_4$
+\item 10\% of nitrogen is $\rm NH_3$ and no $\rm CH_4$
+\item all nitrogen is $\rm N_2$ and 5\% of carbon is in $\rm CH_4$
+\end{enumerate}
+%\item should also include HCN? If yes, start with Najita et al. (2013) on the HCN/$H_2O$ ratio
+\item binding energy for $N_2$ = 790 $\pm$ 25 K \citep{oberg05}
+\item $\rm N_2$ abundance: look in \citet{pontoppidan03}, papers cited in \citet{bisschop06}
+\item $\rm NH_3$ abundance: \citet{lahuis00}, \citet{boogert08}, \citet{dodson09}
+\item make C/O and N/O ratio plots similar to Figure 1 in \citet{oberg11}
+\end{itemize}
+\item Snow line evolution with time
+\begin{itemize}
+\item consider evolution both in terms of disk temperature and chemical composition
+\item \citet{garaud07}, also papers by Scott Kenyon
+\end{itemize}
+\item Shape of snow line 
+\begin{itemize}
+\item include ``cold finger effect'', e.g. \citet{stevenson88}, \citet{cuzzi04}, \citet{ciesla06}
+\item \citet{stevenson88} derive an approximate cold finger solution for the size of the area where the surface density of water ice is enhanced near the orbit of Jupiter
+\end{itemize}
+\item{Planetesimal build-up including drift}
+\begin{itemize}
+\item calculate drift rate as a function of the size of the planetesimal and compare to the evaporation rate; follow \citet{weidenschilling77}, \citet{chiang10} (which has all the correct coefficients) for the drift calculation
+\item also calculate desorption timescale and the distance traveled by the planetesimal as a function of radius (e.g., for the $\rm H_2$O and CO snowlines)
+\end{itemize}
+\item Core accretion including migration
+\begin{itemize}
+\item can derive analytic formula similar to equation (2) from \citet{oberg11} that takes into account different C/O ratio between different snow lines
+\item discuss both Type I and Type II migration
+\end{itemize}
+\item Runaway atmospheric accretion
+\item{Late stage accretion}
+\item{Core dredging}
+\begin{itemize}
+\item refs in \citet{lodders09}; also \citet{stevenson85}, \citet{guillot04}
+\end{itemize}
+\end{enumerate}
+
+Other things to consider:
+
+\begin{itemize}
+\item Potential planet formation locations
+\item Monte Carlo simulation including the processes that we find are relevant
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+%\begin{enumerate}
+%\item Core migrates during accretion of planetesimals in the late stages of planet formation
+%\begin{itemize}
+%\item can derive analytic formula similar to equation (2) from Oberg et al. (2011) that takes into account different C/O ration between different snow lines
+%\end{itemize}
+%\item Include other molecules in simple analytic atmospheric model, i.e. nitrogen and hydrocarbons
+%\begin{itemize}
+%\item Assume nitrogen is mainly in $N_2$ and $NH_3$; assume hydrocarbons are primarily $CH_4$ $\rightarrow$ three cases:
+%\begin{enumerate}
+%\item all nitrogen is $N_2$ and no $CH_4$
+%\item 10 \% of nitrogen is $NH_3$ and no $CH_4$
+%\item all nitrogen is $N_2$ and 5\%(?) of carbon is in $CH_4$
+%\end{enumerate}
+%\item should also include HCN? If yes, start with Najita et al. (2013) on the HCN/$H_2O$ ratio
+%\item binding energy for $N_2$ = 790 $\pm$ 25 K \citep{oberg05}
+%\item $N_2$ abundance: look in Pontoppidan et al. (2003), papers cited in Bisschop et al. (2006)
+%\item $NH_3$ abundance: Boogert et al. (2008), Dodson-Robinson et al. (2009, Icarus)
+%\item $NH_3$ and HCN abundance: Lahuis \& van Dischoeck (2000)
+%\item C/O ratio will only change if $CH_4$ (and potentially $HCN$) is included $\rightarrow$ make different plot from the Figure 1 from Oberg et al. (2011)?
+%\end{itemize}
+%\item Drift of solids across snow lines
+%\begin{itemize}
+%\item look at original derivation in Weidenschilling (1977) and try to derive an analytic estimate for length scale on which planetesimals evaporate after crossing a snow line?
+%\end{itemize}
+%\item Core dredging
+%\begin{itemize}
+%\item refs in Lodders et al. (2009); also Stevenson (1985), Guillot et al. (2004)
+%\end{itemize}
+%\item ``Cold finger effect''
+%\begin{itemize}
+%\item Stevenson \& Lunine (1988); also Cuzzi \& Zahnle (2004), Ciesla \& Cuzzi (2006)
+%\item Stevenson \& Lunine (1988) derive an approximate cold finger solution for the size of the area where the surface density of water ice is enhanced near the orbit of Jupiter
+%\end{itemize}
+%\end{enumerate}
+
+
+\bibliographystyle{apj}
+\bibliography{refs}
+
+\end{document}

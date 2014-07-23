@@ -1,0 +1,71 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: list_of_processes.aux
+The style file: apj.bst
+Illegal, another \bibstyle command---line 40 of file list_of_processes.aux
+ : \bibstyle
+ :          {apj}
+I'm skipping whatever remains of this command
+Database file #1: refs.bib
+You're missing a field name---line 544 of file refs.bib
+ :    
+ :    %adsurl = {http://adsabs.harvard.edu/abs/1960ApJS....4..281V},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 555 of file refs.bib
+ :       
+ :       %doi = {10.1086/190051},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 1148 of file refs.bib
+ : @article{chiang10
+ :                  ,
+I'm skipping whatever remains of this entry
+Warning--can't use both author and editor fields in guillot04
+Warning--empty publisher in guillot04
+ptr=1, stack=
+2004
+---the literal stack isn't empty for entry guillot04
+while executing---line 1597 of file apj.bst
+You've used 16 entries,
+            2947 wiz_defined-function locations,
+            744 strings with 7809 characters,
+and the built_in function-call counts, 8311 in all, are:
+= -- 669
+> -- 652
+< -- 9
++ -- 238
+- -- 222
+* -- 740
+:= -- 1588
+add.period$ -- 16
+call.type$ -- 16
+change.case$ -- 137
+chr.to.int$ -- 16
+cite$ -- 18
+duplicate$ -- 302
+empty$ -- 441
+format.name$ -- 277
+if$ -- 1580
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 16
+newline$ -- 52
+num.names$ -- 65
+pop$ -- 151
+preamble$ -- 1
+purify$ -- 137
+quote$ -- 0
+skip$ -- 260
+stack$ -- 0
+substring$ -- 330
+swap$ -- 7
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 141
+warning$ -- 2
+while$ -- 65
+width$ -- 0
+write$ -- 161
+(There were 5 error messages)
