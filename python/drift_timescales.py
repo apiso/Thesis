@@ -1,7 +1,8 @@
 from utils.constants import G, kb, mp, Msun, cmperau
 import numpy as np
-from T_freeze import T_freeze, Rdes, tevap
+from T_freeze import T_freeze, Rdes, tevap, vib_freq
 from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
+from scipy.integrate import odeint
 
 def Tdisk(r, T0 = 120, betaT = 3./7):
      """Disk temperature in K with r in AU"""
@@ -68,5 +69,78 @@ def tr(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
             taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
                 Mstar, sigma) * np.sqrt(G * Mstar * r * cmperau) / \
                     cdisk(r, T0, betaT, mu)**2
+
+def rdot(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15)):
+
+     return - (r * cmperau) / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
+
+
+##def rf(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+##    Mstar = Msun, sigma = 2 * 10**(-15)):
+##
+##     #rdot = r * cmperau / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
+##
+##     def f(x, t):
+##          
+##          return - x * cmperau / tr(x, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
+##
+##     y = odeint(f, r * cmperau, [0, 3e6 * 365 * 24 * 3600])
+##
+##     return y / cmperau
+
+################################################################################
+
+def tdes(mx, Ex, Tx, s, Nx = 1e15, rhos = 3.0):
+
+#     return rhos * (4 * np.pi * s**3 / 3) / (mx * mp) * \
+#            1. / (Rdes(mx, Ex, Tx) * Nx * 4 * np.pi * s**2)
+
+     return rhos / (3 * mx * mp) * s / (Nx * Rdes(mx, Ex, Tx)) 
+
+##def rf(r, s, mx, Ex, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+##    Mstar = Msun, sigma = 2 * 10**(-15)):
+##
+##     rdot = r * cmperau / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
+##
+##     rfin = r - rdot * 3e6 * 365 * 24 * 3600 / cmperau
+##
+##     Txf = Tdisk(rfin, T0, betaT)
+##
+##     
+##
+##     return Txf
+
+
+def rf(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, tin = 0):
+
+     #rdot = r * cmperau / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
+
+     def f(x, t):
+          
+          return np.array([ \
+               rdot(x[0] / cmperau, x[1], rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma), \
+               - 3 * mx * mp  / rhos * \
+                    Nx * Rdes(mx, Ex, Tdisk(x[0] / cmperau, T0, betaT))])
+     sf = sin
+     
+     #while(sf / sin > tol):
+          
+     tv = np.linspace(tin, (3e6 * 365 * 24 * 3600), npts)
+     y = odeint(f, [rin * cmperau, sin], tv)
+
+     for i in range(len(y[:,0]) - 1):
+          if y[:,0][i] <= y[:,0][i + 1]:
+               break
+          #sf = y[:,1][i - 1]
+          #npts = 10 * npts
+
+     #Re = s * vrel / (lambdamfp(rH2O) * cdisk(rH2O))
+     return y[:,0][i - 1] / cmperau, y[:,1][i - 1] 
+
+
+
+
         
         
