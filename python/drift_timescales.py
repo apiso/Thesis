@@ -3,6 +3,7 @@ import numpy as np
 from T_freeze import T_freeze, Rdes, tevap, vib_freq
 from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
 from scipy.integrate import odeint
+from scipy.optimize import brentq
 
 def Tdisk(r, T0 = 120, betaT = 3./7):
      """Disk temperature in K with r in AU"""
@@ -76,19 +77,6 @@ def rdot(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, bet
      return - (r * cmperau) / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
 
 
-##def rf(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-##    Mstar = Msun, sigma = 2 * 10**(-15)):
-##
-##     #rdot = r * cmperau / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
-##
-##     def f(x, t):
-##          
-##          return - x * cmperau / tr(x, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
-##
-##     y = odeint(f, r * cmperau, [0, 3e6 * 365 * 24 * 3600])
-##
-##     return y / cmperau
-
 ################################################################################
 
 def tdes(mx, Ex, Tx, s, Nx = 1e15, rhos = 3.0):
@@ -98,18 +86,7 @@ def tdes(mx, Ex, Tx, s, Nx = 1e15, rhos = 3.0):
 
      return rhos / (3 * mx * mp) * s / (Nx * Rdes(mx, Ex, Tx)) 
 
-##def rf(r, s, mx, Ex, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-##    Mstar = Msun, sigma = 2 * 10**(-15)):
-##
-##     rdot = r * cmperau / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma)
-##
-##     rfin = r - rdot * 3e6 * 365 * 24 * 3600 / cmperau
-##
-##     Txf = Tdisk(rfin, T0, betaT)
-##
-##     
-##
-##     return Txf
+
 
 
 def rf(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
@@ -137,7 +114,27 @@ def rf(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.3
           #npts = 10 * npts
 
      #Re = s * vrel / (lambdamfp(rH2O) * cdisk(rH2O))
-     return y[:,0][i - 1] / cmperau, y[:,1][i - 1] 
+     return y[:,0][i - 1] / cmperau, y[:,1][i - 1]
+
+
+def r_stop(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15)):
+
+     def f(r):
+          return tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma) - \
+                 tdes(mx, Ex, Tdisk(r, T0, betaT), s, Nx, rhos)
+
+     return brentq(f, 1e-3, 1e2)
+
+
+
+
+
+
+
+
+
+     
 
 
 
