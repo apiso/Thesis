@@ -127,6 +127,14 @@ def r_stop(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, 
      return brentq(f, 1e-3, 1e2)
 
 
+def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
+
+     def f(x):
+          return Tdisk(x, T0, betaT) - T_freeze(mx, Ex, nx)
+
+     return brentq(f, 0.1, 100)
+
+
 
 
 
