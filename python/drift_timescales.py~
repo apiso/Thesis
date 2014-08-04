@@ -17,10 +17,6 @@ def Sigmadisk(r, Sigma0 = 2200, betaS = 3./2):
 def cdisk(r, T0 = 120, betaT = 3./7, mu = 2.35):
     """Sound speed in cm s^-1 with r in AU"""
     return np.sqrt(kb * Tdisk(r, T0, betaT) / (mu * mp))
-
-def vth(r, T0 = 120, betaT = 3./7, mu = 2.35):
-    """Mean thermal velocity for a Maxwellian distribution in cm s^-1 with r in AU"""
-    return np.sqrt(8 / np.pi) * cdisk(r, T0, betaT, mu)
     
 def Omegak(r, Mstar = Msun):
     """Keplerian angular frequency in s^-1 with r in AU"""
@@ -40,16 +36,6 @@ def lambdamfp(r, Sigma0 = 2200, betaS = 3./2, T0 = 120, betaT = 3./7, mu = 2.35,
     """Mean free path in cm with r in AU"""
     return 1 / (np.sqrt(2) * sigma * \
         (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) / (mu * mp)))
-
-##def vrel(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-##    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0):
-##
-##     vroverr = -2 * eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
-##                  taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps) / \
-##                  (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2)
-##     vphioverr = - eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
-##                    (1. / (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2) - 1)
-##     return np.sqrt(vroverr**2 + vphioverr**2)
     
 def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
     Mstar = Msun, sigma = 2 * 10**(-15), eps = 0):
@@ -70,38 +56,6 @@ def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
     elif eps == -1:
          return 4 * rhos * s**2 / (9 * rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
                  cdisk(r, T0, betaT, mu) * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma))
-
-##def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-##    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0):
-##    """Stopping time in seconds with r in AU and s in cm"""
-##
-##    if eps == 0:
-##         if s <= 9 * lambdamfp(r, Sigma0, betaS, T0, betaT, mu) / 4:
-##
-##            return rhos * s / (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
-##                 cdisk(r, T0, betaT, mu))
-##                 
-##         else:
-##             vroverr = -2 * eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
-##                  taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps) / \
-##                  (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2)
-##             vphioverr = - eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
-##                    (1. / (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2) - 1)
-##             vrel = np.sqrt(vroverr**2 + vphioverr**2)
-##
-##             Re = 4 * vrel * s / \
-##                   (lambdamfp(r, Sigma0, betaS, T0, betaT, mu) * vth(r, T0, betaT, mu))
-##
-##             CD = 24.0/Re * (1.0+0.27*Re)**0.43 + 0.47 * (1.0 - np.exp(-0.04 * Re**0.38))
-##              
-##             return 8 * rhos * s / (3 * rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
-##                 vrel(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps) * CD)
-##    elif eps == 1:
-##         return rhos * s / (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
-##                 cdisk(r, T0, betaT, mu))
-##    elif eps == -1:
-##         return 4 * rhos * s**2 / (9 * rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
-##                 cdisk(r, T0, betaT, mu) * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma))
         
 def taus(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
     Mstar = Msun, sigma = 2 * 10**(-15), eps = 0):
@@ -126,20 +80,16 @@ def tr(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
                 taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
                     Mstar, sigma, eps) / (2 * eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar))
     else:
-        vroverr = -2 * eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
-                  taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps) / \
-                  (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2)
-        vphioverr = - eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
-                    (1. / (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2) - 1)
-        return 1. / np.sqrt(vroverr**2 + vphioverr**2)
+        return (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
+            Mstar, sigma, eps)**2) \
+                / (eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
+			np.sqrt(4 * taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
+                    Mstar, sigma, eps)**2 + 1 ))
 
 def rdot(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
     Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0):
 
      return - (r * cmperau) / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi)
-
-def t_gas_acc(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2):
-     return 1. / (2 * alpha * Omegak(r, Mstar) * eta(r, T0, betaT, mu, Mstar, betaS))
 
 
 ################################################################################
@@ -172,22 +122,6 @@ def rf(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.3
      tv = np.linspace(tin, (3e6 * 365 * 24 * 3600), npts)
      y = odeint(f, [rin * cmperau, sin], tv)
 
-##     vroverr, vphioverr, Re = [], [], []
-##
-##     for i in range(len(y[:,0])):
-##     
-##          vroverr = np.append(vroverr, -2 * eta(y[:,0][i], T0, betaT, mu, Mstar, betaS) * Omegak(y[:,0][i], Mstar) * \
-##               taus(y[:,0][i], y[:,1][i], rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps) / \
-##                  (1 + taus(y[:,0][i], y[:,1][i], rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2))
-##          vphioverr = np.append(vphioverr, - eta(y[:,0][i], T0, betaT, mu, Mstar, betaS) * Omegak(y[:,0][i], Mstar) * \
-##               (1. / (1 + taus(y[:,0][i], y[:,1][i], rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2) - 1))
-##     vrel = np.sqrt(vroverr**2 + vphioverr**2)
-##
-##     for i in range(len(y[:,0])):
-##     
-##          Re = np.append(Re, y[:,1][i] * vrel[i] / (cdisk(y[:,0][i] / cmperau, T0, betaT, mu) * \
-##                           lambdamfp(y[:,0][i] / cmperau, Sigma0, betaS, T0, betaT, mu, Mstar, sigma)))
-
      for i in range(len(y[:,0]) - 1):
           if y[:,1][i] >=0 and y[:,1][i + 1] < 0:
                break
@@ -216,10 +150,7 @@ def r_stop(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, 
           return tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma) - \
                  tdes(mx, Ex, Tdisk(r, T0, betaT), s, Nx, rhos)
 
-     try:
-          return brentq(f, 1e-3, 1e2)
-     except ValueError:
-          return 1e-10
+     return brentq(f, 1e-3, 1e2)
 
 
 def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
@@ -230,38 +161,8 @@ def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
      return brentq(f, 0.1, 100)
 
 
-###################################################################################################
 
-def read_drag_file(filename, folder):
 
-     f = open('../dat/'+folder+'/'+filename, 'r')
-     a, s = [], []
-
-     for line in f:
-    #line = f.readline()
-         a = np.append(a, float(line.split()[0]))
-         s = np.append(s, float(line.split()[1]))
-     f.close()
-
-     return a, s
-
-def read_drag_file_many(filename, folder, ns, na):
-     f = open('../dat/'+folder+'/'+filename, 'r')
-
-     array = 0 * np.ndarray(shape = (ns, na), dtype = float)
-     s = []
-     a = []
-     
-     for i in range(ns):
-          line = f.readline()
-          s = np.append(s, float(line.split()[0]))
-          for j in range(na):
-               line = f.readline()
-               a, array[i, j] = np.append(a, float(line.split()[0])), float(line.split()[1])
-     a = a[:na]
-               
-     return s, a, array
-     
 
 
 
