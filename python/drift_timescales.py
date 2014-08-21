@@ -331,6 +331,14 @@ def rf(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.3
                #return y[:,0][-1] / cmperau
 
 
+def Mdot_solids(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01):
+
+     Sigmap = dusttogas * Sigmadisk(rin, Sigma0, betaS)
+     v = - rdot(rin, sin, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi)
+
+     return v * Sigmap * 2 * np.pi * (rin * cmperau) / (Msun / (365 * 24 * 3600))
+
 
 ###################################################################################################
 
