@@ -430,7 +430,7 @@ def n_with_acc(rin, sin, mx, Ex, Mdotgas, Nx = 1e15, rhos = 3.0, T0 = 120, betaT
      #Mdotsol = Mdot_solids(a, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, \
      #    Mstar, sigma, npts, nptsin, tin, eps, vphi)
 
-     ngas = 1 - nsol_noacc *  Mdotsol / Mdotgas
+     ngas = 1 - Mdotsol / Mdotgas
      
 
      return ngas, a, Mdotsol
