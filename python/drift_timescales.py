@@ -153,6 +153,18 @@ def rdot(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, bet
 def t_gas_acc(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2):
      return 1. / (2 * alpha * Omegak(r, Mstar) * eta(r, T0, betaT, mu, Mstar, betaS))
 
+def rdot_gas(r, s, Mdotgas, Sigma0 = 2200, betaS = 3./2):
+
+     return - Mdotgas * Msun / (365 * 24 * 3600) / (Sigmadisk(r, Sigma0, betaS) * 2 * np.pi * (r * cmperau))
+
+def rdot_with_acc(r, s, Mdotgas, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0):
+
+     return rdot(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
+         Mstar, sigma, eps, vphi) + rdot_gas(r, s, Mdotgas, Sigma0, betaS) / \
+              (1 + taus(r, s, rhos , T0, betaT, mu, Sigma0, betaS, \
+                   Mstar, sigma, eps)**2)
+
 
 ################################################################################
 
@@ -331,6 +343,53 @@ def rf(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.3
                #return y[:,0][-1] / cmperau
 
 
+
+def rf2(rin, sin, mx, Ex, Mdotgas, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0):
+
+     def f(x, t):
+          
+          return np.array([ \
+               rdot_with_acc(x[0] / cmperau, x[1], Mdotgas, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi), \
+               - 3 * mx * mp  / rhos * \
+                    Nx * Rdes(mx, Ex, Tdisk(x[0] / cmperau, T0, betaT))])
+          
+
+     tv = np.logspace(np.log10(tin), np.log10(3e6 * 365 * 24 * 3600), npts)
+     y = odeint(f, [rin * cmperau, sin], tv)
+
+
+     for i in range(len(y[:,0]) - 1):
+          if y[:,1][i] >=0 and y[:,1][i + 1] < 0:
+               break
+          #sf = y[:,1][i - 1]
+          #npts = 10 * npts
+     if i == len(y[:,0] - 1):
+          return tv, y[:,0] / cmperau, y[:,1]
+     
+          #return y[:,0][-1] / cmperau
+     else:
+	  tint = np.logspace(np.log10(tv[i]), np.log10(tv[i + 1]), nptsin)
+	  yint = odeint(f, [y[:,0][i], y[:,1][i]], tint)
+
+     	  finta = interp1d(yint[:,1][::-1], yint[:,0][::-1])
+     	  fintt = interp1d(yint[:,1][::-1], tint)
+
+     	  try:
+              af = float(finta(0))
+              tf = float(fintt(0))
+
+              afv = np.append(y[:,0][:i], af)
+              sfv = np.append(y[:,1][:i], 0)
+              tfv = np.append(tv[:i], tf)
+              
+              return tfv, afv / cmperau, sfv
+     	      #return float(fint(0)) / cmperau
+          except ValueError:
+               return tv, y[:,0] / cmperau, y[:,1]
+               #return y[:,0][-1] / cmperau
+
+
 def Mdot_solids(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
     Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01):
 
@@ -338,6 +397,43 @@ def Mdot_solids(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7,
      v = - rdot(rin, sin, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi)
 
      return v * Sigmap * 2 * np.pi * (rin * cmperau) / (Msun / (365 * 24 * 3600))
+
+
+def n_no_acc(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0):
+
+     rfin = rf(rin, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, \
+         Mstar, sigma, npts, nptsin, tin, eps, vphi)
+
+     t, a, s = rfin
+
+     ngas = 1 - s**3 / sin**3
+
+     return ngas, a
+
+
+def n_with_acc(rin, sin, mx, Ex, Mdotgas, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01):
+
+     rfin = rf(rin, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, \
+         Mstar, sigma, npts, nptsin, tin, eps, vphi)
+
+     t, a, s = rfin
+
+     nsol_noacc = s**3 / sin**3
+
+     Mdotsol = []
+     for i in range(len(a)):
+          Mdotsol = np.append(Mdotsol, Mdot_solids(a[i], s[i], mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, \
+              Mstar, sigma, npts, nptsin, tin, eps, vphi))
+
+     #Mdotsol = Mdot_solids(a, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, \
+     #    Mstar, sigma, npts, nptsin, tin, eps, vphi)
+
+     ngas = 1 - nsol_noacc *  Mdotsol / Mdotgas
+     
+
+     return ngas, a, Mdotsol
 
 
 ###################################################################################################
