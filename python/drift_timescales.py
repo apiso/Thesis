@@ -421,6 +421,7 @@ def n_with_acc(rin, sin, mx, Ex, Mdotgas, Nx = 1e15, rhos = 3.0, T0 = 120, betaT
      t, a, s = rfin
 
      nsol_noacc = s**3 / sin**3
+     ngas = 1 - s**3 / sin**3
 
      Mdotsol = []
      for i in range(len(a)):
