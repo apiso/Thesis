@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: CO_drift.aux
+The style file: apj.bst
+Illegal, another \bibstyle command---line 27 of file CO_drift.aux
+ : \bibstyle
+ :          {apj}
+I'm skipping whatever remains of this command
+Database file #1: refs.bib
+You're missing a field name---line 544 of file refs.bib
+ :    
+ :    %adsurl = {http://adsabs.harvard.edu/abs/1960ApJS....4..281V},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 555 of file refs.bib
+ :       
+ :       %doi = {10.1086/190051},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 1148 of file refs.bib
+ : @article{chiang10
+ :                  ,
+I'm skipping whatever remains of this entry
+You've used 5 entries,
+            2947 wiz_defined-function locations,
+            678 strings with 5610 characters,
+and the built_in function-call counts, 3005 in all, are:
+= -- 229
+> -- 276
+< -- 1
++ -- 101
+- -- 96
+* -- 292
+:= -- 581
+add.period$ -- 5
+call.type$ -- 5
+change.case$ -- 52
+chr.to.int$ -- 5
+cite$ -- 5
+duplicate$ -- 95
+empty$ -- 136
+format.name$ -- 113
+if$ -- 556
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 5
+newline$ -- 19
+num.names$ -- 20
+pop$ -- 56
+preamble$ -- 1
+purify$ -- 52
+quote$ -- 0
+skip$ -- 79
+stack$ -- 0
+substring$ -- 105
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 45
+warning$ -- 0
+while$ -- 20
+width$ -- 0
+write$ -- 53
+(There were 4 error messages)
