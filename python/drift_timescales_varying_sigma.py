@@ -458,7 +458,8 @@ def dMdot(r1, r2, s, mx, Ex, t0, tmax, n, alpha, Nx = 1e15, rhos = 3.0, T0 = 120
      Sigmap1 = Sigmadisk(r1, Sigma0, betaS) * dusttogas
      Sigmap2 = Sigmadisk(r2, Sigma0, betaS) * dusttogas
 
-     t = np.logspace(np.log10(t0), np.log10(tmax), n)
+     t = np.linspace(t0, tmax, n)
+     #t = np.logspace(np.log10(t0), np.log10(tmax), n)
      dM_gas, dM_sol = [], []
 
      for i in range(len(t) - 1):
