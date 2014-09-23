@@ -13,7 +13,7 @@ def Tdisk(r, T0 = 120, betaT = 3./7):
      
 def Sigmadisk(r, Sigma0 = 2200, betaS = 3./2):
     """Disk gas surface density in g cm^-2 with r in AU"""
-    return Sigma0 * r**(-betaS)
+         return Sigma0 * r**(-betaS)
     
 def cdisk(r, T0 = 120, betaT = 3./7, mu = 2.35):
     """Sound speed in cm s^-1 with r in AU"""
@@ -33,14 +33,14 @@ def Hdisk(r, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun):
     
 def rhodisk(r, Sigma0 = 2200, betaS = 3./2, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun):
     """Disk gas density in g cm^-3 with r in AU"""
-    return Sigmadisk(r, Sigma0, betaS) / \
+    return Sigmadisk(r, Sigma0, betaS, dt) / \
         (np.sqrt(2 * np.pi) * Hdisk(r, T0, betaT, mu, Mstar))
         
 def lambdamfp(r, Sigma0 = 2200, betaS = 3./2, T0 = 120, betaT = 3./7, mu = 2.35, \
-    Mstar = Msun, sigma = 2 * 10**(-15)):
+    Mstar = Msun, sigma = 2 * 10**(-15), dt = 0):
     """Mean free path in cm with r in AU"""
     return 1 / (np.sqrt(2) * sigma * \
-        (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) / (mu * mp)))
+        (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar, dt) / (mu * mp)))
 
 ##def vrel(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
 ##    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0):
@@ -73,23 +73,23 @@ def lambdamfp(r, Sigma0 = 2200, betaS = 3./2, T0 = 120, betaT = 3./7, mu = 2.35,
 ####                 cdisk(r, T0, betaT, mu) * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma))
 
 
-def n(betaS = 3./2, betaT = 3./7):
+def n(betaS = 3./2, betaT = 3./7, dt = 0):
     """Power law coefficient in P \propto r^(-n)"""
     return 1 #betaS + betaT / 2. + (3./2)    
             
-def eta(r, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2):
+def eta(r, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2, dt = 0):
      """Dimensionless correction coefficient eta = vk - vgas"""
-     return n(betaS, betaT) * cdisk(r, T0, betaT, mu)**2 / \
+     return n(betaS, betaT, dt) * cdisk(r, T0, betaT, mu)**2 / \
         (2 * (Omegak(r, Mstar) * r * cmperau)**2)  
 
 def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0):
+    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, dt = 0):
     """Stopping time in seconds with r in AU and s in cm"""
 
     if eps == 0:
-         if s <= 9 * lambdamfp(r, Sigma0, betaS, T0, betaT, mu) / 4:
+         if s <= 9 * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, dt) / 4:
 
-            return rhos * s / (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
+            return rhos * s / (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar, dt) * \
                  vth(r, T0, betaT, mu))
                  
          else:
@@ -97,19 +97,19 @@ def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
              def f(t):
                   
              
-                  vroverr = -2 * eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
+                  vroverr = -2 * eta(r, T0, betaT, mu, Mstar, betaS, dt) * Omegak(r, Mstar) * \
                             (t* Omegak(r, Mstar)) / (1 + t * Omegak(r, Mstar))
-                  vphioverr = - eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
+                  vphioverr = - eta(r, T0, betaT, mu, Mstar, betaS, dt) * Omegak(r, Mstar) * \
                          (1. / (1 + (t * Omegak(r, Mstar))**2) - 1)
                   vrel = np.sqrt(vroverr**2 + vphioverr**2)
 
                   Re = 4 * vrel * s / \
-                        (lambdamfp(r, Sigma0, betaS, T0, betaT, mu) * vth(r, T0, betaT, mu))
+                        (lambdamfp(r, Sigma0, betaS, T0, betaT, mu, dt) * vth(r, T0, betaT, mu))
 
                   CD = 24.0/Re * (1.0+0.27*Re)**0.43 + 0.47 * (1.0 - np.exp(-0.04 * Re**0.38))
              
 
-                  return 8 * rhos * s / (3 * rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
+                  return 8 * rhos * s / (3 * rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar, dt) * \
                            vrel * CD) - t
 
              time = brentq(f, 1e-20, 1e30)
@@ -117,57 +117,57 @@ def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
              return time
           
     elif eps == 1:
-         return rhos * s / (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
+         return rhos * s / (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar, dt) * \
                  cdisk(r, T0, betaT, mu))
     elif eps == -1:
-         return 4 * rhos * s**2 / (9 * rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
-                 cdisk(r, T0, betaT, mu) * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma))
+         return 4 * rhos * s**2 / (9 * rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar, dt) * \
+                 cdisk(r, T0, betaT, mu) * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma, dt))
         
 def taus(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0):
+    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, dt = 0):
     """Dimensionless stopping time with r in AU and s in cm"""
-    return ts(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps) * Omegak(r, Mstar) 
+    return ts(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, dt) * Omegak(r, Mstar) 
 
         
 def tr(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0):
+    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0, dt = 0):
     """Radial drift time in seconds with r in AU and s in cm"""
     if vphi == 0:
         return (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
-            Mstar, sigma, eps)**2)/ \
+            Mstar, sigma, eps, dt)**2)/ \
                 taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
-                    Mstar, sigma, eps) / (2 * eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar))
+                    Mstar, sigma, eps, dt) / (2 * eta(r, T0, betaT, mu, Mstar, betaS, dt) * Omegak(r, Mstar))
     else:
-        vroverr = -2 * eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
-                  taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps) / \
-                  (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2)
-        vphioverr = - eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * \
-                    (1. / (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps)**2) - 1)
+        vroverr = -2 * eta(r, T0, betaT, mu, Mstar, betaS, dt) * Omegak(r, Mstar) * \
+                  taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, dt) / \
+                  (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, dt)**2)
+        vphioverr = - eta(r, T0, betaT, mu, Mstar, betaS, dt) * Omegak(r, Mstar) * \
+                    (1. / (1 + taus(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, dt)**2) - 1)
         return 1. / np.sqrt(vroverr**2 + vphioverr**2)
 
 def rdot(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0):
+    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0, dt = 0):
 
-     return - (r * cmperau) / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi)
+     return - (r * cmperau) / tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi, dt)
 
-def t_gas_acc(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2):
-     return 1. / (2 * alpha * Omegak(r, Mstar) * eta(r, T0, betaT, mu, Mstar, betaS))
+def t_gas_acc(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2, dt = 0):
+     return 1. / (2 * alpha * Omegak(r, Mstar) * eta(r, T0, betaT, mu, Mstar, betaS, dt))
 
 #def rdot_gas(r, s, Mdotgas, Sigma0 = 2200, betaS = 3./2):
 #
 #     return - Mdotgas * Msun / (365 * 24 * 3600) / (Sigmadisk(r, Sigma0, betaS) * 2 * np.pi * (r * cmperau))
 
-def rdot_gas(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2):
+def rdot_gas(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2, dt = 0):
 
-      return - 2 * alpha * eta(r, T0, betaT, mu, Mstar, betaS) * Omegak(r, Mstar) * (r * cmperau)
+      return - 2 * alpha * eta(r, T0, betaT, mu, Mstar, betaS, dt) * Omegak(r, Mstar) * (r * cmperau)
 
 def rdot_with_acc(r, s, Mdotgas, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0):
+    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0, dt = 0):
 
      return rdot(r, s, rhos, T0, betaT, mu, Sigma0, betaS, \
-         Mstar, sigma, eps, vphi) + rdot_gas(r, s, Mdotgas, Sigma0, betaS) / \
+         Mstar, sigma, eps, vphi, dt) + rdot_gas(r, s, Mdotgas, Sigma0, betaS, dt) / \
               (1 + taus(r, s, rhos , T0, betaT, mu, Sigma0, betaS, \
-                   Mstar, sigma, eps)**2)
+                   Mstar, sigma, eps, dt)**2)
 
 
 ################################################################################
@@ -395,54 +395,63 @@ def rf2(rin, sin, mx, Ex, Mdotgas, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7
 
 
 def Mdot_solids(rin, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01):
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01, dt = 0):
 
-     Sigmap = dusttogas * Sigmadisk(rin, Sigma0, betaS)
-     v = - rdot(rin, sin, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi)
+     Sigmap = dusttogas * Sigmadisk(rin, Sigma0, betaS, dt)
+     v = - rdot(rin, sin, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi, dt)
 
      return v * Sigmap * 2 * np.pi * (rin * cmperau) #/ (Msun / (365 * 24 * 3600))
 
-def Mdot_gas(r, alpha, T0 = 120., Sigma0 = 2200., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2):
+def Mdot_gas(r, alpha, T0 = 120., Sigma0 = 2200., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2, dt = 0):
 
-     v = -rdot_gas(r, alpha, T0, betaT, mu, Mstar, betaS)
-     return 2 * np.pi * Sigmadisk(r, Sigma0, betaS) * (r * cmperau) * v
+     v = -rdot_gas(r, alpha, T0, betaT, mu, Mstar, betaS, dt)
+     return 2 * np.pi * Sigmadisk(r, Sigma0, betaS, dt) * (r * cmperau) * v
 
 
-def dMgas_dt(r1, r2, alpha, T0 = 120., Sigma0 = 2200., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2):
+def dMgas_dt(r1, r2, alpha, T0 = 120., Sigma01 = 2200., Sigma02 = 2200., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2, dt = 0):
      
-     return Mdot_gas(r2, alpha, T0, Sigma0, betaT, mu, Mstar, betaS) - \
-            Mdot_gas(r1, alpha, T0, Sigma0, betaT, mu, Mstar, betaS)
+     return Mdot_gas(r2, alpha, T0, Sigma02, betaT, mu, Mstar, betaS, dt) - \
+            Mdot_gas(r1, alpha, T0, Sigma01, betaT, mu, Mstar, betaS, dt)
 
-def dMsol_dt(r1, r2, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01):
+def dMsol_dt(r1, r2, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma01 = 2200, Sigma02 = 2200., betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01, dt = 0):
 
-     return Mdot_solids(r2, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, \
-              Mstar, sigma, npts, nptsin, tin, eps, vphi, dusttogas) - \
-             Mdot_solids(r1, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, \
-              Mstar, sigma, npts, nptsin, tin, eps, vphi, dusttogas)
+     return Mdot_solids(r2, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma02, betaS, \
+              Mstar, sigma, npts, nptsin, tin, eps, vphi, dusttogas, dt) - \
+             Mdot_solids(r1, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma01, betaS, \
+              Mstar, sigma, npts, nptsin, tin, eps, vphi, dusttogas, dt)
 
 
 
-def dMdot(r1, r2, s, mx, Ex, t0, tmax, n, alpha, T0 = 120., Sigma0 = 2200., betaT = 3./7, mu = 2.35, \
+def dMdot(r1, r2, s, mx, Ex, t0, tmax, n, alpha, Nx = 1e15, rhos = 2.0, T0 = 120., Sigma01 = 2200., Sigma02 = 2200., betaT = 3./7, mu = 2.35, \
           Mstar = Msun, betaS = 3./2, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, \
-          eps = 0, vphi = 0, dusttogas = 0.01):
+          eps = 0, vphi = 0, dusttogas = 0.01, dt = 0, f = 1e-4):
 
-     Sigmag = Sigmadisk(r, Sigma0, betaS)
-     Sigmap = Sigmag * dusttogas
+     #Sigmag1 = Sigmadisk(r, Sigma01, betaS, dt = 0)
+     #Sigmag2 = Sigmadisk(r, Sigma02, betaS, dt = 0)
+     
+     Sigmap1 = Sigmadisk(r1, Sigma01, betaS, dt) * dusttogas
+     Sigmap2 = Sigmadisk(r2, Sigma02, betaS, dt) * dusttogas
 
      t = np.logspace(t0, tmax, n)
      dM_gas, dM_sol = [], []
 
-     for i in range(len(t)):
+     for i in range(len(t) - 1):
 
-          dMgas = dMgas_dt(r1, r2, alpha, T0, Sigma0, betaT, mu, Mstar, betaS) * (t[i + 1] - t[i])
-          dMsol = dMsol_dt(r1, r2, s, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, \
-                           sigma, npts, nptsin, tin, eps, vphi, dusttogas)
+          dMgas = dMgas_dt(r1, r2, alpha, T0, Sigma01, Sigma02, betaT, mu, Mstar, betaS, dt) * (t[i + 1] - t[i]) * f
+          dMsol = dMsol_dt(r1, r2, s, mx, Ex, Nx, rhos, T0, betaT, mu, Sigmap1, Sigmap2, betaS, Mstar, \
+                           sigma, npts, nptsin, tin, eps, vphi, dusttogas) * (t[i + 1] - t[i])
 
           dM_gas = np.append(dM_gas, dMgas)
           dM_sol = np.append(dM_sol, dMsol)
 
-          Sigma01 = 
+          Sigma01 = Sigma01 + dMgas / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau**2)) * (r1)**(-betaS))
+          Sigma02 = Sigma02 + dMgas / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau**2)) * (r2)**(-betaS))
+
+          Sigmap1 = Sigmap1 + dMsol / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau**2)) * (r1)**(-betaS))
+          Sigmap2 = Sigmap2 + dMsol / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau**2)) * (r2)**(-betaS))
+
+     return dM_gas, dM_sol
 
      
 
