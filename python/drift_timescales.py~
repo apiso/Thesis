@@ -407,7 +407,6 @@ def Mdot_gas(r, alpha, T0 = 120., Sigma0 = 2200., betaT = 3./7, mu = 2.35, Mstar
      v = -rdot_gas(r, alpha, T0, betaT, mu, Mstar, betaS)
      return 2 * np.pi * Sigmadisk(r, Sigma0, betaS) * (r * cmperau) * v
 
-
 def dMgas_dt(r1, r2, alpha, T0 = 120., Sigma0 = 2200., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2):
      
      return Mdot_gas(r2, alpha, T0, Sigma0, betaT, mu, Mstar, betaS) - \
@@ -420,29 +419,6 @@ def dMsol_dt(r1, r2, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7,
               Mstar, sigma, npts, nptsin, tin, eps, vphi, dusttogas) - \
              Mdot_solids(r1, sin, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, \
               Mstar, sigma, npts, nptsin, tin, eps, vphi, dusttogas)
-
-
-
-def dMdot(r1, r2, s, mx, Ex, t0, tmax, n, alpha, T0 = 120., Sigma0 = 2200., betaT = 3./7, mu = 2.35, \
-          Mstar = Msun, betaS = 3./2, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, \
-          eps = 0, vphi = 0, dusttogas = 0.01):
-
-     Sigmag = Sigmadisk(r, Sigma0, betaS)
-     Sigmap = Sigmag * dusttogas
-
-     t = np.logspace(t0, tmax, n)
-     dM_gas, dM_sol = [], []
-
-     for i in range(len(t)):
-
-          dMgas = dMgas_dt(r1, r2, alpha, T0, Sigma0, betaT, mu, Mstar, betaS) * (t[i + 1] - t[i])
-          dMsol = dMsol_dt(r1, r2, s, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, \
-                           sigma, npts, nptsin, tin, eps, vphi, dusttogas)
-
-          dM_gas = np.append(dM_gas, dMgas)
-          dM_sol = np.append(dM_sol, dMsol)
-
-          Sigma01 = 
 
      
 

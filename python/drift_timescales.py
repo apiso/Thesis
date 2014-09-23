@@ -87,7 +87,7 @@ def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
     """Stopping time in seconds with r in AU and s in cm"""
 
     if eps == 0:
-         if s <= 9 * lambdamfp(r, Sigma0, betaS, T0, betaT, mu) / 4:
+         if s <= 9 * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma) / 4:
 
             return rhos * s / (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar) * \
                  vth(r, T0, betaT, mu))
@@ -104,7 +104,7 @@ def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
                   vrel = np.sqrt(vroverr**2 + vphioverr**2)
 
                   Re = 4 * vrel * s / \
-                        (lambdamfp(r, Sigma0, betaS, T0, betaT, mu) * vth(r, T0, betaT, mu))
+                        (lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma) * vth(r, T0, betaT, mu))
 
                   CD = 24.0/Re * (1.0+0.27*Re)**0.43 + 0.47 * (1.0 - np.exp(-0.04 * Re**0.38))
              

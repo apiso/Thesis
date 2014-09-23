@@ -92,7 +92,7 @@ def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
     """Stopping time in seconds with r in AU and s in cm"""
 
     if eps == 0:
-         if s <= 9 * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Sigmad) / 4:
+         if s <= 9 * lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma, Sigmad) / 4:
 
             return rhos * s / (rhodisk(r, Sigma0, betaS, T0, betaT, mu, Mstar, Sigmad) * \
                  vth(r, T0, betaT, mu))
@@ -109,7 +109,7 @@ def ts(r, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS
                   vrel = np.sqrt(vroverr**2 + vphioverr**2)
 
                   Re = 4 * vrel * s / \
-                        (lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Sigmad) * vth(r, T0, betaT, mu))
+                        (lambdamfp(r, Sigma0, betaS, T0, betaT, mu, Mstar, sigma, Sigmad) * vth(r, T0, betaT, mu))
 
                   CD = 24.0/Re * (1.0+0.27*Re)**0.43 + 0.47 * (1.0 - np.exp(-0.04 * Re**0.38))
              
@@ -465,7 +465,7 @@ def dMdot(r1, r2, s, mx, Ex, t0, tmax, n, alpha, Nx = 1e15, rhos = 3.0, T0 = 120
 
           dMgas = dMgas_dt(r1, r2, alpha, T0, Sigma0, betaT, mu, Mstar, betaS, Sigmad, Sigmad1, Sigmad2) * (t[i + 1] - t[i]) * f
           dMsol = dMsol_dt(r1, r2, s, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, \
-                           sigma, npts, nptsin, tin, eps, vphi, dusttogas, Sigmad, Sigmap, Sigmap1, Sigmap2) * (t[i + 1] - t[i])
+                           sigma, npts, nptsin, tin, eps, vphi, dusttogas, Sigmad =0 , Sigmap = Sigmap, Sigmap1 = Sigmap1, Sigmap2 = Sigmap2) * (t[i + 1] - t[i])
 
           dM_gas = np.append(dM_gas, dMgas)
           dM_sol = np.append(dM_sol, dMsol)
