@@ -471,11 +471,11 @@ def dMdot(r1, r2, s, mx, Ex, t0, tmax, n, alpha, Nx = 1e15, rhos = 3.0, T0 = 120
           dM_gas = np.append(dM_gas, dMgas)
           dM_sol = np.append(dM_sol, dMsol)
 
-          Sigmad1 = Sigmad1 + dMgas / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau**2)))
-          Sigmad2 = Sigmad2 + dMgas / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau**2)))
+          Sigmad1 = Sigmad1 + dMgas / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau)**2))
+          Sigmad2 = Sigmad2 + dMgas / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau)**2))
 
-          Sigmap1 = Sigmap1 + dMsol / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau**2)))
-          Sigmap2 = Sigmap2 + dMsol / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau**2)))
+          Sigmap1 = Sigmap1 + dMsol / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau)**2))
+          Sigmap2 = Sigmap2 + dMsol / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau)**2))
 
      return dM_gas, dM_sol
 
