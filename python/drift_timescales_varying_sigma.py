@@ -460,13 +460,14 @@ def dMdot(r1, r2, s, mx, Ex, t0, tmax, n, alpha, Nx = 1e15, rhos = 3.0, T0 = 120
 
      t = np.linspace(t0, tmax, n)
      #t = np.logspace(np.log10(t0), np.log10(tmax), n)
-     dM_gas, dM_sol = [], []
+     dM_gas, dM_sol, Sigmadv1, Sigmadv2, Sigmapv1, Sigmapv2 = [], [], [Sigmad1], [Sigmad2], [Sigmap1], [Sigmap2]
 
      for i in range(len(t) - 1):
 
-          dMgas = dMgas_dt(r1, r2, alpha, T0, Sigma0, betaT, mu, Mstar, betaS, Sigmad, Sigmad1, Sigmad2) * (t[i + 1] - t[i]) * f
+          dMgas = dMgas_dt(r1, r2, alpha, T0, Sigma0, betaT, mu, Mstar, betaS, Sigmad, Sigmad1, Sigmad2) * (t[i + 1] - t[i])
           dMsol = dMsol_dt(r1, r2, s, mx, Ex, Nx, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, \
-                           sigma, npts, nptsin, tin, eps, vphi, dusttogas, Sigmad =0 , Sigmap = Sigmap, Sigmap1 = Sigmap1, Sigmap2 = Sigmap2) * (t[i + 1] - t[i])
+                           sigma, npts, nptsin, tin, eps, vphi, dusttogas, Sigmad =0 , \
+                           Sigmap = Sigmap, Sigmap1 = Sigmap1, Sigmap2 = Sigmap2) * (t[i + 1] - t[i])
 
           dM_gas = np.append(dM_gas, dMgas)
           dM_sol = np.append(dM_sol, dMsol)
@@ -477,9 +478,35 @@ def dMdot(r1, r2, s, mx, Ex, t0, tmax, n, alpha, Nx = 1e15, rhos = 3.0, T0 = 120
           Sigmap1 = Sigmap1 + dMsol / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau)**2))
           Sigmap2 = Sigmap2 + dMsol / (np.pi * ((r2 * cmperau)**2 - (r1 * cmperau)**2))
 
-     return dM_gas, dM_sol
+          Sigmadv1 = np.append(Sigmadv1, Sigmad1)
+          Sigmadv2 = np.append(Sigmadv2, Sigmad2)
+          Sigmapv1 = np.append(Sigmapv1, Sigmap1)
+          Sigmapv2 = np.append(Sigmapv2, Sigmap2)
 
-     
+     return dM_gas * f, dM_sol, Sigmadv1, Sigmadv2, Sigmapv1, Sigmapv2
+
+
+
+def Msol_dt(r1, r2, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01, \
+             Sigmad = 0, Sigmap = 0, Sigmap1 = 0, Sigmap2 = 0):
+     if Sigmap == 0:
+         return np.pi * (r2 * cmperau)**2 * dusttogas * Sigmadisk(r2, Sigma0, betaS) - \
+                np.pi * (r1 * cmperau)**2 * dusttogas * Sigmadisk(r1, Sigma0, betaS)
+     else:
+         return np.pi * (r2 * cmperau)**2 * dusttogas * Sigmap2 - \
+                np.pi * (r1 * cmperau)**2 * dusttogas * Sigmap1
+
+
+def Mgas_dt(r1, r2, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01, \
+             Sigmad = 0, Sigmad1 = 0, Sigmad2 = 0):
+     if Sigmad == 0:
+         return np.pi * (r2 * cmperau)**2 * Sigmadisk(r2, Sigma0, betaS) - \
+                np.pi * (r1 * cmperau)**2 * Sigmadisk(r1, Sigma0, betaS)
+     else:
+         return np.pi * (r2 * cmperau)**2 * Sigmad2 - \
+                np.pi * (r1 * cmperau)**2 * Sigmad1
 
 
 
