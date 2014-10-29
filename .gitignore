@@ -1,0 +1,9 @@
+*.pyc
+*~
+*.aux
+*.blg
+*.log
+*.out
+*.pdfsync
+*.synctex.gz
+
