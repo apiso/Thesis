@@ -186,13 +186,15 @@ def nu(r, alpha, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun):
 
      return alpha * cdisk(r, T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar)
 
-def Sigmadisk_act(r, t, alpha, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun, r1 = 100 * cmperau, C = 1):
+def Sigmadisk_act(r, t, alpha, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun, r1 = 100 * cmperau, C = 4.45e18):
 
      gammad = gamma(betaT)
      nu1 = nu(r1 / cmperau, alpha, T0, betaT, mu, Mstar)
      ts = 1. / (3 * (2 - gamma(betaT))**2) * r1**2 / nu1
      T = t / ts + 1
      rtild = r * cmperau / r1
+
+     C = 
 
      return C / (3 * np.pi * nu1 * rtild**gammad) * T**(- (2.5 - gammad) / (2 - gammad)) \
             * np.exp(- rtild**(2 - gammad) / T)
