@@ -202,10 +202,14 @@ def dMdot(rin, rout, s, alpha, t0, tmax, n, rhos = 3.0, T0 = 120, betaT = 3./7, 
      
      Sigmap_in = Sigmadisk_act(rin, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
      Sigmap_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
+     
+     Sigmag_in = Sigmadisk_act(rin, t0, alpha, T0, betaT, mu, Mstar, r1, C)
+     Sigmag_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C)
 
      t = np.linspace(t0, tmax, n)
      #t = np.logspace(np.log10(t0), np.log10(tmax), n)
-     dM_gas, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out = [], [], [], [], [Sigmap_in], [Sigmap_out]
+     dM_gas, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out, Sigmagv_in, Sigmagv_out = \
+                [], [], [], [], [Sigmap_in], [Sigmap_out], [Sigmag_in], [Sigmag_out]
 
      for i in range(len(t) - 1):
 
@@ -218,6 +222,12 @@ def dMdot(rin, rout, s, alpha, t0, tmax, n, rhos = 3.0, T0 = 120, betaT = 3./7, 
           #if constdtg == 0:
           Sigmap_in = Sigmap_in + dMsol / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
           Sigmap_out = Sigmap_out + dMsol / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
+          
+          Sigmag_in = Sigmag_in + dMgas / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
+          Sigmag_out = Sigmag_out + dMgas / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
+          
+          Sigmagv_in = np.append(Sigmagv_in, Sigmag_in)
+          Sigmagv_out = np.append(Sigmagv_out, Sigmag_out)
               
           #else:
           #    Sigmap_in = Sigmadisk_act(rin, t[i], alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
@@ -229,7 +239,7 @@ def dMdot(rin, rout, s, alpha, t0, tmax, n, rhos = 3.0, T0 = 120, betaT = 3./7, 
           Sigmapv_in = np.append(Sigmapv_in, Sigmap_in)
           Sigmapv_out = np.append(Sigmapv_out, Sigmap_out)
 
-     return dM_gas * f, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out
+     return dM_gas * f, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out, Sigmagv_in, Sigmagv_out
 
 
 
