@@ -1,9 +1,36 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{17}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{Armitage}(2010)}]{armitage10}
+{Armitage}, P.~J. 2010, {Astrophysics of Planet Formation}
+
+\bibitem[{{Bergin}(2009)}]{bergin09}
+{Bergin}, E.~A. 2009, ArXiv e-prints
+
+\bibitem[{{Birnstiel} {et~al.}(2012){Birnstiel}, {Klahr}, \&
+  {Ercolano}}]{birnstiel12}
+{Birnstiel}, T., {Klahr}, H., \& {Ercolano}, B. 2012, \aap, 539, A148
 
 \bibitem[{{Chiang} \& {Youdin}(2010)}]{chiang10}
 {Chiang}, E. \& {Youdin}, A.~N. 2010, Annual Review of Earth and Planetary
   Sciences, 38, 493
+
+\bibitem[{{Ciesla} \& {Cuzzi}(2006)}]{ciesla06}
+{Ciesla}, F.~J. \& {Cuzzi}, J.~N. 2006, \icarus, 181, 178
+
+\bibitem[{{Fogel} {et~al.}(2011){Fogel}, {Bethell}, {Bergin}, {Calvet}, \&
+  {Semenov}}]{fogel11}
+{Fogel}, J.~K.~J., {Bethell}, T.~J., {Bergin}, E.~A., {Calvet}, N., \&
+  {Semenov}, D. 2011, \apj, 726, 29
+
+\bibitem[{{Garaud} \& {Lin}(2007)}]{garaud07}
+{Garaud}, P. \& {Lin}, D.~N.~C. 2007, \apj, 654, 606
+
+\bibitem[{{Guillot} {et~al.}(2004){Guillot}, {Stevenson}, {Hubbard}, \&
+  {Saumon}}]{guillot04}
+{Guillot}, T., {Stevenson}, D.~J., {Hubbard}, W.~B., \& {Saumon}, D. {The
+  interior of Jupiter}, ed. F.~{Bagenal}, T.~E. {Dowling}, \& W.~B. {McKinnon},
+  35--57
 
 \bibitem[{{Hartmann} {et~al.}(2006){Hartmann}, {D'Alessio}, {Calvet}, \&
   {Muzerolle}}]{hartmann06}
@@ -14,6 +41,12 @@
   {Melnick}}]{hollenbach09}
 {Hollenbach}, D., {Kaufman}, M.~J., {Bergin}, E.~A., \& {Melnick}, G.~J. 2009,
   \apj, 690, 1497
+
+\bibitem[{{Lahuis} \& {van Dishoeck}(2000)}]{lahuis00}
+{Lahuis}, F. \& {van Dishoeck}, E.~F. 2000, \aap, 355, 699
+
+\bibitem[{{Lodders}(2009)}]{lodders09}
+{Lodders}, K. 2009, ArXiv e-prints
 
 \bibitem[{{Madhusudhan} {et~al.}(2011){Madhusudhan}, {Harrington}, {Stevenson},
   {Nymeyer}, {Campo}, {Wheatley}, {Deming}, {Blecic}, {Hardy}, {Lust},
@@ -28,5 +61,16 @@
 \bibitem[{{{\"O}berg} {et~al.}(2011){{\"O}berg}, {Murray-Clay}, \&
   {Bergin}}]{oberg11}
 {{\"O}berg}, K.~I., {Murray-Clay}, R., \& {Bergin}, E.~A. 2011, \apjl, 743, L16
+
+\bibitem[{{Stevenson}(1985)}]{stevenson85}
+{Stevenson}, D.~J. 1985, \icarus, 62, 4
+
+\bibitem[{{Stevenson} \& {Lunine}(1988)}]{stevenson88}
+{Stevenson}, D.~J. \& {Lunine}, J.~I. 1988, \icarus, 75, 146
+
+\bibitem[{{Visser} {et~al.}(2009){Visser}, {van Dishoeck}, {Doty}, \&
+  {Dullemond}}]{visser09}
+{Visser}, R., {van Dishoeck}, E.~F., {Doty}, S.~D., \& {Dullemond}, C.~P. 2009,
+  \aap, 495, 881
 
 \end{thebibliography}

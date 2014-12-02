@@ -6,4 +6,5 @@
 *.out
 *.pdfsync
 *.synctex.gz
+*.bbl
 
