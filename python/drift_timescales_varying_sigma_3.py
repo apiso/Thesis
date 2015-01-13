@@ -1,11 +1,131 @@
-from utils.constants import G, kb, mp, Msun, cmperau
+from utils.constants import G, kb, mp, Msun, cmperau, AU
 import numpy as np
+from numpy import ones, zeros, shape,arange,Inf,maximum,minimum,exp,array,sqrt,invert
 from T_freeze import T_freeze, Rdes, tevap, vib_freq
 from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
 from scipy.integrate import odeint
 from scipy.optimize import brentq
 from scipy.interpolate import interp1d
 from utils.zbrac import zbrac
+from utils.utilities import tridag
+#from advection_from_Til.two-pop-py.src
+
+###################################################################
+
+def impl_donorcell_adv_diff_delta(n_x,x,Diff,v,g,h,K,L,flim,u_in,dt,pl,pr,ql,qr,rl,rr,coagulation_method,A,B,C,D):
+    """
+    Implicit donor cell advection-diffusion scheme with piecewise constant values
+    
+        Perform one time step for the following PDE:
+    
+           du    d  /    \    d  /              d  /       u   \ \
+           -- + -- | u v | - -- | h(x) Diff(x) -- | g(x) ----  | | = K + L u
+           dt   dx \    /    dx \              dx \      h(x) / /
+    
+        with boundary conditions
+    
+            dgu/h |            |
+          p ----- |      + q u |       = r
+             dx   |x=xbc       |x=xbc
+    Arguments:
+          n_x   = # of grid points
+          x     = the grid
+          Diff  = value of Diff @ cell center
+          v     = the values for v @ interface (array[i] = value @ i-1/2)
+          g     = the values for g(x)
+          h     = the values for h(x)
+          K     = the values for K(x)
+          L     = the values for L(x)
+          flim  = diffusion flux limiting factor at interfaces
+          u     = the current values of u(x)
+          dt    = the time step
+    
+    OUTPUT:
+          u     = the updated values of u(x) after timestep dt
+    
+    """
+    D05=zeros(n_x)
+    h05=zeros(n_x)
+    rhs=zeros(n_x)
+    #
+    # calculate the arrays at the interfaces
+    #
+    for i in arange(1,n_x):
+        D05[i] = flim[i] * 0.5 * (Diff[i-1] + Diff[i])
+        h05[i] = 0.5 * (h[i-1] + h[i])
+    #
+    # calculate the entries of the tridiagonal matrix
+    #
+    for i in arange(1,n_x-1):
+        vol = 0.5*(x[i+1]-x[i-1])
+        A[i] = -dt/vol *  \
+            ( \
+            + max(0.,v[i])  \
+            + D05[i] * h05[i] * g[i-1] / (  (x[i]-x[i-1]) * h[i-1]  ) \
+            )
+        B[i] = 1. - dt*L[i] + dt/vol * \
+            ( \
+            + max(0.,v[i+1])   \
+            - min(0.,v[i])  \
+            + D05[i+1] * h05[i+1] * g[i]   / (  (x[i+1]-x[i]) * h[i]    ) \
+            + D05[i]   * h05[i]   * g[i]   / (  (x[i]-x[i-1]) * h[i]    ) \
+            )
+        C[i] = dt/vol *  \
+            ( \
+            + min(0.,v[i+1])  \
+            - D05[i+1] * h05[i+1]  * g[i+1] / (  (x[i+1]-x[i]) * h[i+1]  ) \
+            )
+        D[i] = -dt * K[i]
+    #
+    # boundary Conditions
+    #
+    A[0]   = 0.
+    B[0]   = ql - pl*g[0] / (h[0]*(x[1]-x[0]))
+    C[0]   =      pl*g[1] / (h[1]*(x[1]-x[0]))
+    D[0]   = u_in[0]-rl
+    
+    A[-1] =    - pr*g[-2] / (h[-2]*(x[-1]-x[-2]))
+    B[-1] = qr + pr*g[-1]  / (h[-1]*(x[-1]-x[-2]))
+    C[-1] = 0.
+    D[-1] = u_in[-1]-rr
+    #
+    # if coagulation_method==2,
+    #  then we change the arrays and
+    #  give them back to the calling routine
+    # otherwise, we solve the equation
+    #
+    if  coagulation_method==2:  
+        A = A/dt           ##ok<NASGU>
+        B = (B - 1.)/dt   ##ok<NASGU>
+        C = C/dt           ##ok<NASGU>
+        D = D/dt           ##ok<NASGU>
+    else:
+        #
+        # the old way
+        #
+        #rhs = u - D
+    
+        #
+        # the delta-way
+        #
+        for i in arange(1,n_x-1):
+            rhs[i] = u_in[i] - D[i] - (A[i]*u_in[i-1]+B[i]*u_in[i]+C[i]*u_in[i+1])
+        rhs[0]   = rl - (               B[0] *u_in[0]  + C[0]*u_in[1])
+        rhs[-1]  = rr - (A[-1]*u_in[-2]+B[-1]*u_in[-1]               )
+        #
+        # solve for u2
+        #
+        u2=tridag(A,B,C,rhs,n_x);
+        #
+        # update u
+        #u = u2   # old way
+        #
+        u_out = u_in+u2 # delta way
+    
+    return u_out
+
+###########################
+
 
 def Tdisk(r, T0 = 120, betaT = 3./7):
      """Disk temperature in K with r in AU"""
@@ -46,6 +166,49 @@ def Sigmadisk_act(r, t, alpha, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun, 
 
      return C / (3 * np.pi * nu1 * rtild**gammad) * T**(- (2.5 - gammad) / (2 - gammad)) \
             * np.exp(- rtild**(2 - gammad) / T)
+            
+def Sigmadisk_act_array_write(nr, nt, rmin, rmax, tmin, tmax, alpha, filename, \
+            T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun, r1 = 100 * cmperau, C = 4.45e18):
+    
+    r = np.logspace(np.log10(rmin), np.log10(rmax), nr)
+    t = np.linspace(tmin, tmax, nt)
+    
+    sigarray = np.ndarray(shape = (len(r), len(t)), dtype = float)
+
+    for i in range(len(r)):
+        for j in range(len(t)):
+            sigarray[i, j] = Sigmadisk_act(r[i], t[j], alpha, T0, betaT, mu, Mstar, r1, C)      
+    
+    f = open('../dat/'+ filename, 'wb')
+    
+    for j in range(len(t)):
+        f.write('%s \n' % str(t[j]))
+        for i in range(len(r)):
+            f.write(' %s ' % str(r[i]))
+            f.write(' %s \n' % str(sigarray[i,j]))
+            
+    f.close()
+
+    
+def Sigmadisk_act_read(filename, nt, nr):
+    
+        f = open('../dat/' + filename, 'r')
+        array = np.ndarray(shape = (nr, nt), dtype = float)
+        t, r = [], []
+        
+        for j in range(nt):
+            line = f.readline().split()
+            t = np.append(t, float(line[0]))
+            
+            for i in range(nr):
+                line = f.readline().split()
+                r = np.append(r, float(line[0]))
+                array[i, j] = float(line[1])
+        
+        r = r[:nr]
+                
+        return t, r, array
+                
 
 def vacc_act(r, t, alpha, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun, r1 = 100 * cmperau, C = 4.45e18):
     
@@ -194,6 +357,39 @@ def dMsol_dt(rin, rout, t, s, alpha, Sigmap_in, Sigmap_out, rhos = 3.0, T0 = 120
     
     return Mdot_solids(rout, t, s, alpha, Sigmap_out, rhos, T0, betaT, mu, r1, C, Mstar, sigma, vrw) - \
             Mdot_solids(rin, t, s, alpha, Sigmap_in, rhos, T0, betaT, mu, r1, C, Mstar, sigma, vrw)
+
+
+def Sigmap_act(rin, rout, nr, t, dt, s, alpha, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, r1 = 100 * cmperau, C = 4.45e18, \
+    Mstar = Msun, sigma = 2 * 10**(-15), D = 0, dusttogas = 0.01):
+    
+    r = np.logspace(np.log10(rin), np.log10(rout), nr)
+    
+    v, Sigmad = [], []
+    
+    for i in range(nr):
+        v = np.append(v, rdot_with_acc(r[i], t, s, alpha, rhos, T0, betaT, mu, r1, C, Mstar, sigma))
+        Sigmad = np.append(Sigmad, Sigmadisk_act(r[i], t, alpha, T0, betaT, mu, Mstar, r1, C))
+        
+    h = Sigmad * r
+    uin = r * Sigmad * dusttogas
+    
+    g = ones(nr)
+    K = zeros(nr)
+    L = zeros(nr)
+    flim = ones(nr)
+    
+    A = zeros(nr)
+    B = zeros(nr)
+    C = zeros(nr)
+    D = zeros(nr)
+    
+    
+    uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0, 0, 1, A, B, C, D)
+    
+    return uout / r
+    
+ 
+
 
 
 
