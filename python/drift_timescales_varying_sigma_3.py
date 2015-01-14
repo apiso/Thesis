@@ -360,15 +360,16 @@ def dMsol_dt(rin, rout, t, s, alpha, Sigmap_in, Sigmap_out, rhos = 3.0, T0 = 120
 
 
 def Sigmap_act(rin, rout, nr, t, dt, s, alpha, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, r1 = 100 * cmperau, C = 4.45e18, \
-    Mstar = Msun, sigma = 2 * 10**(-15), D = 0, dusttogas = 0.01):
+    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01):
     
     r = np.logspace(np.log10(rin), np.log10(rout), nr)
     
-    v, Sigmad = [], []
+    v, Sigmad, D = [], [], []
     
     for i in range(nr):
         v = np.append(v, rdot_with_acc(r[i], t, s, alpha, rhos, T0, betaT, mu, r1, C, Mstar, sigma))
         Sigmad = np.append(Sigmad, Sigmadisk_act(r[i], t, alpha, T0, betaT, mu, Mstar, r1, C))
+        D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r[i], T0, betaT, mu, Mstar))
         
     h = Sigmad * r
     uin = r * Sigmad * dusttogas
@@ -378,13 +379,13 @@ def Sigmap_act(rin, rout, nr, t, dt, s, alpha, rhos = 3.0, T0 = 120, betaT = 3./
     L = zeros(nr)
     flim = ones(nr)
     
-    A = zeros(nr)
-    B = zeros(nr)
-    C = zeros(nr)
-    D = zeros(nr)
+    A0 = zeros(nr)
+    B0 = zeros(nr)
+    C0 = zeros(nr)
+    D0 = zeros(nr)
     
     
-    uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0, 0, 1, A, B, C, D)
+    uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0, 0, 1, A0, B0, C0, D0)
     
     return uout / r
     
