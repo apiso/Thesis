@@ -508,7 +508,7 @@ def two_pop_velocity_nointerp(t,sigma_d_t,x,sigma_g,v_gas,T,alpha,m_star,a_0,V_F
     #
     # set the mass distribution ratios
     #
-    f_m = 0 #0.75*invert(mask)+0.97*mask
+    f_m = 0.75*invert(mask)+0.97*mask
     #
     # calculate the mass weighted transport velocity
     #

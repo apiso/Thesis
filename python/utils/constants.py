@@ -30,6 +30,7 @@ barP = 1e6 #dyne/cm*2 to bar (not that `bar` in matplotlib is problem in pylab)
 Me = 5.9742e27
 Re = 6.371e8
 Msun = 1.9891e33
+Rsun = 6.9551e10
 
 def RHill(mp, a, Ms = Msun):
     """
