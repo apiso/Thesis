@@ -27,7 +27,7 @@ m_star        = M_star*ones(n_t)
 T_COAG_START  = 0.0
 RHO_S         = 1.6
 V_FRAG        = 0 #1000
-a_0           = 100.0
+a_0           = 0.1
 E_drift       = 1.0
 #
 # set the initial surface density & velocity
