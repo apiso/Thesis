@@ -168,8 +168,10 @@ def vacc_act(r, alpha, Tstar, Rstar, Mstar, mu = 2.35):
     
 def rhodisk(r, Mdisk, Rstar, Tstar, rc, mu = 2.35, Mstar = Msun):
     """Disk gas density in g cm^-3 with r in AU"""
-    return Sigmadisk(r, Mdisk, rc) / \
-             (np.sqrt(2 * np.pi) * Hdisk(r, Tstar, Rstar, mu, Mstar))
+    return Sigmadisk(r, Mdisk, rc) / Hdisk(r, Tstar, Rstar, mu, Mstar)
+    
+def Pdisk(r, Mdisk, Rstar, Tstar, rc, mu = 2.35, Mstar = Msun):
+    return rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) * cdisk(r, Tstar, Rstar, mu)**2
 
         
 def lambdamfp(r, Mdisk, Rstar, Tstar, rc, mu = 2.35, Mstar = Msun, sigma = 2e-15):
@@ -178,71 +180,69 @@ def lambdamfp(r, Mdisk, Rstar, Tstar, rc, mu = 2.35, Mstar = Msun, sigma = 2e-15
     return 1 / (np.sqrt(2) * sigma * \
           (rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) / (mu * mp)))
 
-
-
-
-def n(betaS = 3./2, betaT = 3./7, Sigmad = 0):
+def eta(r, Mdisk, Rstar, Tstar, rc, dr, mu = 2.35, Mstar = Msun):
     """Power law coefficient in P \propto r^(-n)"""
-    return 1 #betaS + betaT / 2. + (3./2)    
+    return - (r * AU) / (2 * rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) * (r * AU * Omegak(r, Mstar))**2) \
+            * (Pdisk(r + dr, Mdisk, Rstar, Tstar, rc, mu, Mstar) - Pdisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar)) / (dr * AU)
+       
             
-def eta(r, Tstar, Rstar, mu = 2.35, Mstar = Msun):
-     """Dimensionless correction coefficient eta = vk - vgas"""
-     return cdisk(r, Tstar, Rstar, mu)**2 / \
-        (2 * (Omegak(r, Mstar) * r * cmperau)**2)  
+#def eta(r, Mdisk, Tstar, Rstar, dr, rc, mu = 2.35, Mstar = Msun):
+#     """Dimensionless correction coefficient eta = vk - vgas"""
+#     return n(r, Mdisk, Rstar, Tstar, rc, mu, Mstar, dr) * cdisk(r, Tstar, Rstar, mu)**2 / \
+#        (2 * (Omegak(r, Mstar) * r * cmperau)**2)  
 
-def ts(r, s, Mdisk, Rstar, Tstar, rc, rhos = 3.0, mu = 2.35, \
+def ts(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15)):
     """Stopping time in seconds with r in AU and s in cm"""
 
 
-    if s <= 9 * lambdamfp(r, Mdisk, Rstar, Tstar, rc, mu, Mstar, sigma) / 4:
+    #if s <= 9 * lambdamfp(r, Mdisk, Rstar, Tstar, rc, mu, Mstar, sigma) / 4:
 
-       return rhos * s / (rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) * \
-            vth(r, Tstar, Rstar, mu))
+    return rhos * s / Sigmadisk(r, Mdisk, rc) * np.pi / 2 / Omegak(r, Mstar)
             
-    else:
-
-        def f(t):
-             
-        
-             vroverr = -2 * eta(r, Tstar, Rstar, mu, Mstar) * Omegak(r, Mstar) * \
-                       (t* Omegak(r, Mstar)) / (1 + t * Omegak(r, Mstar))
-             vphioverr = - eta(r, Tstar, Rstar, mu, Mstar) * Omegak(r, Mstar) * \
-                    (1. / (1 + (t * Omegak(r, Mstar))**2) - 1)
-             vrel = np.sqrt(vroverr**2 + vphioverr**2)
-
-             Re = 4 * vrel * s / \
-                   (lambdamfp(r, Mdisk, Rstar, Tstar, rc, mu, Mstar, sigma) * vth(r, Tstar, Rstar, mu))
-
-             CD = 24.0/Re * (1.0+0.27*Re)**0.43 + 0.47 * (1.0 - np.exp(-0.04 * Re**0.38))
-        
-
-             return 8 * rhos * s / (3 * rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) * \
-                      vrel * CD) - t
-
-        time = brentq(f, 1e-20, 1e30)
-
-        return time
+#    else:
+#
+#        def f(t):
+#             
+#        
+#             vroverr = -2 * eta(r, Mdisk, Rstar, Tstar, rc, dr, mu, Mstar) * Omegak(r, Mstar) * \
+#                       (t* Omegak(r, Mstar)) / (1 + t * Omegak(r, Mstar))
+#             vphioverr = - eta(r, Mdisk, Rstar, Tstar, rc, dr, mu, Mstar) * Omegak(r, Mstar) * \
+#                    (1. / (1 + (t * Omegak(r, Mstar))**2) - 1)
+#             vrel = np.sqrt(vroverr**2 + vphioverr**2)
+#     
+#             Re = 4 * vrel * s / \
+#                  (lambdamfp(r, Mdisk, Rstar, Tstar, rc, mu, Mstar, sigma) * vth(r, Tstar, Rstar, mu))
+#     
+#             CD = 24.0/Re * (1.0+0.27*Re)**0.43 + 0.47 * (1.0 - np.exp(-0.04 * Re**0.38))
+#        
+#
+#             return 8 * rhos * s / (3 * rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) * \
+#                      vrel * CD) - t
+#
+#        time = brentq(f, 1e-20, 1e30)
+#
+#        return time
           
         
-def taus(r, s, Mdisk, Rstar, Tstar, rc, rhos = 3.0, mu = 2.35, \
+def taus(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15)):
     """Dimensionless stopping time with r in AU and s in cm"""
-    return ts(r, s, Mdisk, Rstar, Tstar, rc, rhos, mu, Mstar, sigma) * Omegak(r, Mstar) 
+    return ts(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma) * Omegak(r, Mstar) 
 
         
-def tr(r, s, Mdisk, Rstar, Tstar, rc, rhos = 3.0, mu = 2.35, \
+def tr(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15)):
     """Radial drift time in seconds with r in AU and s in cm"""
-    return (1 + taus(r, s, Mdisk, Rstar, Tstar, rc, rhos, mu, Mstar, sigma)**2)/ \
-           taus(r, s, Mdisk, Rstar, Tstar, rc, rhos, mu, Mstar, sigma) / \
-           (2 * eta(r, Tstar, Rstar, mu, Mstar) * Omegak(r, Mstar))
+    return (1 + taus(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma)**2)/ \
+           taus(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma) / \
+           (2 * eta(r, Mdisk, Rstar, Tstar, rc, dr, mu, Mstar) * Omegak(r, Mstar))
 
 
-def rdot(r, s, Mdisk, Rstar, Tstar, rc, rhos = 3.0, mu = 2.35, \
+def rdot(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15)):
 
-     return - (r * cmperau) / tr(r, s, Mdisk, Rstar, Tstar, rc, rhos, mu, Mstar, sigma)
+     return - (r * cmperau) / tr(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma)
 
 def t_gas_acc(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2, Sigmad = 0):
      return 1. / (2 * alpha * Omegak(r, Mstar) * eta(r, T0, betaT, mu, Mstar, betaS, Sigmad))
@@ -251,12 +251,12 @@ def t_gas_acc(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS 
 #
 #     return - Mdotgas * Msun / (365 * 24 * 3600) / (Sigmadisk(r, Sigma0, betaS) * 2 * np.pi * (r * cmperau))
 
-def rdot_with_acc(r, s, alpha, Mdisk, Rstar, Tstar, rc, rhos = 3.0, mu = 2.35, \
+def rdot_with_acc(r, s, alpha, Mdisk, Rstar, Tstar, rc, dr, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15)):
 
-     return rdot(r, s, Mdisk, Rstar, Tstar, rc, rhos, mu, Mstar, sigma) + \
+     return rdot(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma) + \
         vacc_act(r, alpha, Tstar, Rstar, Mstar, mu) / \
-              (1 + taus(r, s, Mdisk, Rstar, Tstar, rc, rhos, mu, Mstar, sigma)**2)
+              (1 + taus(r, s, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma)**2)
 
 #######################################################################################
 
@@ -268,13 +268,14 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
     r = np.logspace(np.log10(rin), np.log10(rout), nr)
     t = np.linspace(ti, tf, nt)
     dt = t[1] - t[0]
+    dr = r[1] - r[0]
     
     v, Sigmad, D = [], [], []
     
     sigarray = np.ndarray(shape = (nr, nt + 1), dtype = float)
     
     for i in range(nr):
-        v = np.append(v, rdot_with_acc(r[i], s, alpha, Mdisk, Rstar, Tstar, rc, rhos, mu, Mstar, sigma))
+        v = np.append(v, rdot_with_acc(r[i], s, alpha, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma))
         Sigmad = np.append(Sigmad, Sigmadisk(r[i], Mdisk, rc))
         D = np.append(D, alpha * cdisk(r[i], Tstar, Rstar, mu) * Hdisk(r, Tstar, Rstar, mu, Mstar))
         
