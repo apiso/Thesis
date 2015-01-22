@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[      9841,        314]
-NotebookOptionsPosition[      9080,        284]
-NotebookOutlinePosition[      9456,        301]
-CellTagsIndexPosition[      9413,        298]
+NotebookDataLength[     15849,        501]
+NotebookOptionsPosition[     14891,        465]
+NotebookOutlinePosition[     15269,        482]
+CellTagsIndexPosition[     15226,        479]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -280,10 +280,191 @@ Cell[BoxData[
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.623533788262321*^9, 3.623533790078718*^9}}]
+ CellChangeTimes->{{3.623533788262321*^9, 3.623533790078718*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"gammad", " ", "=", " ", "1"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"rtild", "[", "r_", "]"}], ":=", 
+   RowBox[{"r", " ", "*", " ", 
+    RowBox[{"cmperau", " ", "/", " ", "r1"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"Sigmad", "[", "r_", "]"}], ":=", 
+    RowBox[{
+     RowBox[{"Md", " ", "/", " ", 
+      RowBox[{"(", 
+       RowBox[{"2", " ", "Pi", " ", 
+        RowBox[{"r1", "^", "2"}], " ", 
+        RowBox[{
+         RowBox[{"rtild", "[", "r", "]"}], "^", "gammad"}]}], ")"}]}], " ", 
+     RowBox[{"T", "^", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"(", 
+          RowBox[{"2.5", "-", "gammad"}], ")"}]}], " ", "/", " ", 
+        RowBox[{"(", 
+         RowBox[{"2", "-", "gammad"}], ")"}]}], ")"}]}], " ", 
+     RowBox[{"Exp", "[", 
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{
+         RowBox[{"rtild", "[", "r", "]"}], "^", 
+         RowBox[{"(", 
+          RowBox[{"2", "-", "gammad"}], ")"}]}]}], "/", "T"}], "]"}]}]}], 
+   ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Tdisk", "[", "r_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"0.05", "^", "0.25"}], "*", "Tstar", "*", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"r", "*", "cmperau"}], ")"}], "/", "Rstar"}], ")"}], "^", 
+          RowBox[{"-", "0.5"}]}]}], ")"}], "^", "4"}], "+", 
+      RowBox[{"10", "^", "4"}]}], ")"}], "^", "0.25"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"cdisk", "[", "r_", "]"}], ":=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"kb", " ", 
+     RowBox[{
+      RowBox[{"Tdisk", "[", "r", "]"}], " ", "/", " ", 
+      RowBox[{"(", 
+       RowBox[{"mu", " ", "mp"}], ")"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Omegak", "[", "r_", "]"}], ":=", 
+   RowBox[{"Sqrt", "[", 
+    RowBox[{"G", " ", 
+     RowBox[{"Mstar", " ", "/", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"r", " ", "cmperau"}], ")"}], "^", "3"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Hdisk", "[", "r_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"cdisk", "[", "r", "]"}], " ", "/", " ", 
+    RowBox[{"Omegak", "[", "r", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"nu", "[", "r_", "]"}], ":=", " ", 
+   RowBox[{"alpha", " ", 
+    RowBox[{"cdisk", "[", "r", "]"}], " ", 
+    RowBox[{"Hdisk", "[", "r", "]"}]}]}], 
+  ";"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.623533792104104*^9, 3.6235339517088213`*^9}, {
+  3.6235340547885637`*^9, 3.6235341929257812`*^9}, {3.6235344363824863`*^9, 
+  3.623534436485691*^9}, {3.6309586565514393`*^9, 3.6309586935013523`*^9}, {
+  3.6309588491971693`*^9, 3.630958878787805*^9}, {3.630959013349675*^9, 
+  3.630959016126132*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"vr", "[", "r_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "3"}], "/", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"Sigmad", "[", "r", "]"}], " ", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{"r", " ", "cmperau"}], "]"}]}], ")"}]}], " ", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"nu", "[", "r", "]"}], " ", 
+       RowBox[{"Sigmad", "[", "r", "]"}], " ", 
+       RowBox[{"Sqrt", "[", 
+        RowBox[{"r", " ", "cmperau"}], "]"}]}], ",", " ", "r"}], "]"}], " ", 
+    "/", " ", "cmperau"}]}]}]], "Input",
+ CellChangeTimes->{{3.62353397066292*^9, 3.623533999591799*^9}, {
+  3.623534202295381*^9, 3.623534224549212*^9}, {3.623534290819446*^9, 
+  3.62353429103528*^9}, {3.6235349628290567`*^9, 3.6235349653806677`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{"vr", "[", "r", "]"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{"alpha", " ", "kb", " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"0.07500000000000001`", " ", "cmperau", " ", "r", " ", "r1", " ", 
+      SuperscriptBox["T", "2.5`"], " ", 
+      SuperscriptBox["Tstar", "4"]}], "+", 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"cmperau", " ", "r"}], "Rstar"], ")"}], "3.`"], " ", "Rstar",
+       " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"3.`", " ", "cmperau", " ", "r", " ", 
+         SuperscriptBox["T", "1.5`"]}], "-", 
+        RowBox[{"3.`", " ", "r1", " ", 
+         SuperscriptBox["T", "2.5`"]}]}], ")"}], " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"10000", "+", 
+         FractionBox[
+          RowBox[{"0.05000000000000001`", " ", 
+           SuperscriptBox["Tstar", "4"]}], 
+          SuperscriptBox[
+           RowBox[{"(", 
+            FractionBox[
+             RowBox[{"cmperau", " ", "r"}], "Rstar"], ")"}], "2.`"]]}], ")"}],
+        "1.`"]}]}], ")"}]}], 
+  RowBox[{"mp", " ", "mu", " ", 
+   SqrtBox[
+    FractionBox[
+     RowBox[{"G", " ", "Mstar"}], 
+     RowBox[{
+      SuperscriptBox["cmperau", "3"], " ", 
+      SuperscriptBox["r", "3"]}]]], " ", "r1", " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     FractionBox[
+      RowBox[{"cmperau", " ", "r"}], "Rstar"], ")"}], "4.`"], " ", 
+   SuperscriptBox["Rstar", "2"], " ", 
+   SuperscriptBox["T", "2.5`"], " ", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"10000", "+", 
+      FractionBox[
+       RowBox[{"0.05000000000000001`", " ", 
+        SuperscriptBox["Tstar", "4"]}], 
+       SuperscriptBox[
+        RowBox[{"(", 
+         FractionBox[
+          RowBox[{"cmperau", " ", "r"}], "Rstar"], ")"}], "2.`"]]}], ")"}], 
+    "0.75`"]}]]], "Output",
+ CellChangeTimes->{3.630958917283332*^9, 3.63095902082659*^9}]
+}, Open  ]]
 },
-WindowSize->{995, 266},
-WindowMargins->{{24, Automatic}, {Automatic, 0}},
+WindowSize->{1116, 618},
+WindowMargins->{{-3, Automatic}, {Automatic, 30}},
 ShowSelection->True,
 FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
 2013)",
@@ -315,10 +496,15 @@ Cell[CellGroupData[{
 Cell[7474, 233, 208, 4, 28, "Input"],
 Cell[7685, 239, 1284, 39, 85, "Output"]
 }, Open  ]],
-Cell[8984, 281, 92, 1, 28, "Input"]
+Cell[8984, 281, 92, 1, 28, "Input"],
+Cell[9079, 284, 3023, 91, 182, "Input"],
+Cell[12105, 377, 802, 22, 28, "Input"],
+Cell[CellGroupData[{
+Cell[12932, 403, 94, 2, 28, "Input"],
+Cell[13029, 407, 1846, 55, 134, "Output"]
+}, Open  ]]
 }
 ]
 *)
 
 (* End of internal cache information *)
-

@@ -1,0 +1,96 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      2555,         87]
+NotebookOptionsPosition[      2157,         68]
+NotebookOutlinePosition[      2513,         84]
+CellTagsIndexPosition[      2470,         81]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.630952545654767*^9, 3.630952548746028*^9}, 
+   3.6309526011942043`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Sigmad", "[", "r_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"c", " ", "/", " ", 
+     RowBox[{"(", 
+      RowBox[{"3", "*", "Pi", "*", "nu1"}], ")"}]}], " ", "*", 
+    RowBox[{"(", 
+     RowBox[{"rc", "/", "r"}], " ", ")"}], " ", "*", 
+    RowBox[{"Exp", "[", 
+     RowBox[{
+      RowBox[{"-", "r"}], "/", "rc"}], "]"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.630952095376845*^9, 3.630952157237574*^9}, {
+   3.630952191691668*^9, 3.63095220525068*^9}, {3.6309526606202602`*^9, 
+   3.630952661252005*^9}, {3.6309526928954983`*^9, 3.630952692982812*^9}, 
+   3.6309547973087053`*^9, {3.63095518528148*^9, 3.630955189233211*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Mdisk", "=", 
+  RowBox[{
+   SubsuperscriptBox["\[Integral]", "0", "Infinity"], 
+   RowBox[{"2", " ", "Pi", " ", "r", " ", 
+    RowBox[{"Sigmad", "[", "r", "]"}], 
+    RowBox[{"\[DifferentialD]", "r"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.630954899868409*^9, 3.630954951819079*^9}, {
+  3.630955093555212*^9, 3.630955121690185*^9}}],
+
+Cell[BoxData[
+ RowBox[{"ConditionalExpression", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{"2", " ", "c", " ", 
+     SuperscriptBox["rc", "2"]}], 
+    RowBox[{"3", " ", "nu1"}]], ",", 
+   RowBox[{
+    RowBox[{"Re", "[", 
+     FractionBox["1", "rc"], "]"}], ">", "0"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.630955123388605*^9, 3.6309551966218348`*^9}]
+}, Open  ]]
+},
+WindowSize->{740, 608},
+WindowMargins->{{259, Automatic}, {4, Automatic}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 167, 3, 28, "Input"],
+Cell[727, 25, 674, 16, 28, "Input"],
+Cell[CellGroupData[{
+Cell[1426, 45, 356, 8, 48, "Input"],
+Cell[1785, 55, 356, 10, 50, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
