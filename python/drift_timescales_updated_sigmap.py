@@ -172,7 +172,7 @@ def Sigmadisk(r, t, alpha, Mdisk, rc, T0 = 120, betaT = 3./7, mu = 2.35, Mstar =
          gammad = 1
          
      nu1 = nu(rc / cmperau, alpha, T0, betaT, mu, Mstar)
-     ts = 1. / (3 * (2 - gamma(betaT))**2) * rc**2 / nu1
+     ts = 1. / (3 * (2 - gammad)**2) * rc**2 / nu1
      T = t / ts + 1
      rtild = r * cmperau / rc
 
@@ -182,13 +182,21 @@ def Sigmadisk(r, t, alpha, Mdisk, rc, T0 = 120, betaT = 3./7, mu = 2.35, Mstar =
 
 def vacc_act(r, t, alpha, Tstar, Rstar, Mstar, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, gammadflag = 0):
     
-    gammad = gamma(betaT)
+    if gammadflag == 0:
+        gammad = gamma(betaT)
+    else:
+        gammad = 1
     nu1 = nu(rc / cmperau, alpha, T0, betaT, mu, Mstar)
-    ts = 1. / (3 * (2 - gamma(betaT))**2) * rc**2 / nu1
+    ts = 1. / (3 * (2 - gammad)**2) * rc**2 / nu1
     T = t / ts + 1
     rtild = r * cmperau / rc
 
-
+    return alpha * kb * (0.075 * AU * r * rc * T**2.5 * Tstar**4 + (r * AU/Rstar)**3*Rstar*\
+            (3*AU*r*T**1.5-3*rc*T**2.5) * (1e4 + 0.05*Tstar**4/(r*AU/Rstar)**2)) / \
+                (mp*mu*np.sqrt(G*Mstar/(r*AU)**3) * rc * (r*AU/Rstar)**4*Rstar**2*T**2.5 * \
+                    (1e4 + 0.05*Tstar**4/(r*AU/Rstar)**2)**0.75)
+    
+    
     #return -3.0*alpha*kb*Tdisk(r, Tstar, Rstar)/mu/mp/2./sqrt(G*Mstar/(r*AU))*(1.+7./4.)
     
 
