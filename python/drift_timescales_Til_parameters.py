@@ -268,19 +268,24 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
     r = np.logspace(np.log10(rin), np.log10(rout), nr)
     t = np.linspace(ti, tf, nt)
     dt = t[1] - t[0]
-    dr = r[1] - r[0]
+    #dr = r[1] - r[0]
     
     v, Sigmad, D = [], [], []
     
     sigarray = np.ndarray(shape = (nr, nt + 1), dtype = float)
     
+        
     for i in range(nr):
+        if i != nr - 1:
+            dr = r[i + 1] - r[i]
+        else:
+            dr = r[-1] - r[-2]
         v = np.append(v, rdot_with_acc(r[i], s, alpha, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma))
         Sigmad = np.append(Sigmad, Sigmadisk(r[i], Mdisk, rc))
         D = np.append(D, alpha * cdisk(r[i], Tstar, Rstar, mu) * Hdisk(r, Tstar, Rstar, mu, Mstar))
         
-    h = Sigmad * r
-    uin = r * Sigmad * dusttogas
+    h = Sigmad * r * AU
+    uin = r * Sigmad * dusttogas * AU
     
     g = ones(nr)
     K = zeros(nr)
@@ -299,7 +304,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
         uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0, 0, 1, A0, B0, C0, D0)
         
         for i in range(nr):
-            sigarray[i, j + 1] = uout[i] / r[i]
+            sigarray[i, j + 1] = uout[i] / (r[i] * AU)
         
         uin = uout
         

@@ -291,19 +291,19 @@ def two_pop_model_run(x_1,a_0,timesteps_1,sigma_g_1,sigma_d_1,v_gas_1,T_1,alpha_
     #
     # the loop
     #
-    dt = Inf
+    ##dt = Inf
     while t<timesteps_1[-1]:
         #
         # set the time step
         #
-        dt = min(dt*10,timesteps_1[it_old]-t)
-        if t != 0.0: dt = min(dt,t/200)
-        if dt==0:
-            print('ERROR:')
-            print('t      = %g years'%(t/year))
-            print('it_old = %g'%it_old)
-            print('dt = 0')
-            sys.exit(1)
+        dt = timesteps_1[it_old]-t ##min(dt*10,timesteps_1[it_old]-t)
+        ##if t != 0.0: dt = min(dt,t/200)
+        ##if dt==0:
+        ##    print('ERROR:')
+        ##    print('t      = %g years'%(t/year))
+        ##    print('it_old = %g'%it_old)
+        ##    print('dt = 0')
+        ##    sys.exit(1)
         #
         # calculate the velocity
         #
@@ -328,18 +328,18 @@ def two_pop_model_run(x_1,a_0,timesteps_1,sigma_g_1,sigma_d_1,v_gas_1,T_1,alpha_
         #
         #u_out = impl_donorcell_adv_diff_delta(n_r,x_1,D,v,g,h,K,L,flim,u_in,dt,0,0,1,1,1e-100*x_1(1),1e-100*x_1(end),1,A,B,C,D);
         u_out = impl_donorcell_adv_diff_delta(n_r,x_1,D,v,g,h,K,L,flim,u_in,dt,1,1,0,0,0,0,1,A0,B0,C0,D0)
-        mask = abs(u_out[2:-1]/u_in[2:-1]-1)>0.05
+        #mask = abs(u_out[2:-1]/u_in[2:-1]-1)>0.05
         #
         # try variable time step
         #
-        while any(u_out[2:-1][mask]/x_1[2:-1][mask]>=1e-30):
-            dt = dt/10.
-            if dt<1.0:
-                print('ERROR: time step got too short')
-                sys.exit(1)
-            u_out = impl_donorcell_adv_diff_delta(n_r,x_1,D,v,g,h,K,L,flim,u_in,dt,1,1,0,0,0,0,1,A0,B0,C0,D0)
-            mask = abs(u_out[2:-1]/u_in[2:-1]-1)>0.3
-        #
+        ##while any(u_out[2:-1][mask]/x_1[2:-1][mask]>=1e-30):
+        ##    dt = dt/10.
+        ##    if dt<1.0:
+        ##        print('ERROR: time step got too short')
+        ##        sys.exit(1)
+        ##    u_out = impl_donorcell_adv_diff_delta(n_r,x_1,D,v,g,h,K,L,flim,u_in,dt,1,1,0,0,0,0,1,A0,B0,C0,D0)
+        ##    mask = abs(u_out[2:-1]/u_in[2:-1]-1)>0.3
+        ##
         # update
         #
         u_in  = u_out[:]
