@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     15849,        501]
-NotebookOptionsPosition[     14891,        465]
-NotebookOutlinePosition[     15269,        482]
-CellTagsIndexPosition[     15226,        479]
+NotebookDataLength[     15875,        502]
+NotebookOptionsPosition[     14918,        466]
+NotebookOutlinePosition[     15295,        483]
+CellTagsIndexPosition[     15252,        480]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -460,11 +460,12 @@ Cell[BoxData[
          FractionBox[
           RowBox[{"cmperau", " ", "r"}], "Rstar"], ")"}], "2.`"]]}], ")"}], 
     "0.75`"]}]]], "Output",
- CellChangeTimes->{3.630958917283332*^9, 3.63095902082659*^9}]
+ CellChangeTimes->{3.630958917283332*^9, 3.63095902082659*^9, 
+  3.6309594768270493`*^9}]
 }, Open  ]]
 },
 WindowSize->{1116, 618},
-WindowMargins->{{-3, Automatic}, {Automatic, 30}},
+WindowMargins->{{51, Automatic}, {2, Automatic}},
 ShowSelection->True,
 FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
 2013)",
@@ -501,7 +502,7 @@ Cell[9079, 284, 3023, 91, 182, "Input"],
 Cell[12105, 377, 802, 22, 28, "Input"],
 Cell[CellGroupData[{
 Cell[12932, 403, 94, 2, 28, "Input"],
-Cell[13029, 407, 1846, 55, 134, "Output"]
+Cell[13029, 407, 1873, 56, 134, "Output"]
 }, Open  ]]
 }
 ]
