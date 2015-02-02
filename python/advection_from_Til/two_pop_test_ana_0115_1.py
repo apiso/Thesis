@@ -18,7 +18,7 @@ T_star        = 4300.
 R_star        = 2.5*R_sun
 R_c           = 60*AU
 M_disk        = 0.1*M_star
-timesteps     = logspace(4,log10(3e6),n_t)*year
+timesteps     = linspace(1e4,3e6,n_t)*year
 alpha         = alpha0*ones([n_t,n_r])
 T             = ( (0.05**0.25*T_star * (x/R_star)**-0.5)**4 + 1e4)**0.25
 T             = tile(T,[n_t,1])
@@ -27,7 +27,7 @@ m_star        = M_star*ones(n_t)
 T_COAG_START  = 0.0
 RHO_S         = 1.6
 V_FRAG        = 0 #1000
-a_0           = 1e5
+a_0           = 1e-4
 E_drift       = 1.0
 #
 # set the initial surface density & velocity
