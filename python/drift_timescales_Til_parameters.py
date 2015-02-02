@@ -1,5 +1,6 @@
 from utils.constants import G, kb, mp, Msun, cmperau, AU
 import numpy as np
+import sys
 from numpy import ones, zeros, shape,arange,Inf,maximum,minimum,exp,array,sqrt,invert
 from T_freeze import T_freeze, Rdes, tevap, vib_freq
 from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO

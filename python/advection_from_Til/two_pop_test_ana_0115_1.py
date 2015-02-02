@@ -7,7 +7,7 @@ from matplotlib.pylab import * #@UnusedWildImport
 #
 # create the model
 #
-n_r       = 100
+n_r       = 50
 n_t       = 20
 n_m       = 1
 x         = logspace(log10(0.05),log10(4e3),n_r)*AU
@@ -27,7 +27,7 @@ m_star        = M_star*ones(n_t)
 T_COAG_START  = 0.0
 RHO_S         = 1.6
 V_FRAG        = 0 #1000
-a_0           = 1e-4
+a_0           = 1e5
 E_drift       = 1.0
 #
 # set the initial surface density & velocity
