@@ -127,37 +127,34 @@ def impl_donorcell_adv_diff_delta(n_x,x,Diff,v,g,h,K,L,flim,u_in,dt,pl,pr,ql,qr,
 ###########################
 
 
-def Tdisk(r, Tstar, Rstar, const = 1):
+def Tdisk(r, T0 = 120, betaT = 3./7):
      """Disk temperature in K with r in AU"""
-     if const == 1:
-         return ( (0.05**0.25*Tstar * ((r*AU)/Rstar)**-0.5)**4 + 1e4)**0.25
-     else:
-         return ( (0.05**0.25*Tstar * ((r*AU)/Rstar)**-0.5)**4)**0.25
+     return ((T0 * r**(-betaT))**4 + 10000.)**0.25
      
 def gamma(betaT = 3./7):
      
      return -betaT + 3./2
 
-def cdisk(r, Tstar, Rstar, mu = 2.35):
+def cdisk(r, T0 = 120, betaT = 3./7, mu = 2.35):
     """Sound speed in cm s^-1 with r in AU"""
-    return np.sqrt(kb * Tdisk(r, Tstar, Rstar) / (mu * mp))
+    return np.sqrt(kb * Tdisk(r, T0, betaT) / (mu * mp))
 
-def vth(r, Tstar, Rstar, mu = 2.35):
+def vth(r, T0 = 120, betaT = 3./7, mu = 2.35):
     """Mean thermal velocity for a Maxwellian distribution in cm s^-1 with r in AU"""
-    return np.sqrt(8 / np.pi) * cdisk(r, Tstar, Rstar, mu)
+    return np.sqrt(8 / np.pi) * cdisk(r, T0, betaT, mu)
     
 def Omegak(r, Mstar = Msun):
     """Keplerian angular frequency in s^-1 with r in AU"""
     return np.sqrt(G * Mstar / (r * cmperau)**3)
 
-def Hdisk(r, Tstar, Rstar, mu = 2.35, Mstar = Msun):
+def Hdisk(r, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun):
     """Disk scale height in cm with r in AU"""
-    return cdisk(r, Tstar, Rstar, mu) / Omegak(r, Mstar)
+    return cdisk(r, T0, betaT, mu) / Omegak(r, Mstar)
 
 
-def nu(r, alpha, Tstar, Rstar, mu = 2.35, Mstar = Msun):
+def nu(r, alpha, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun):
 
-     return alpha * cdisk(r, Tstar, Rstar, mu) * Hdisk(r, Tstar, Rstar, mu, Mstar)
+     return alpha * cdisk(r, T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar)
      
 #def Sigmadisk(r, Mdisk, rc):
 #    
@@ -180,7 +177,7 @@ def Sigmadisk(r, t, alpha, Mdisk, rc, T0 = 120, betaT = 3./7, mu = 2.35, Mstar =
             * np.exp(- rtild**(2 - gammad) / T)
                 
 
-def vacc_act(r, t, alpha, Tstar, Rstar, Mstar, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, gammadflag = 0):
+def vacc_act(r, t, alpha, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, Mstar = Msun, gammadflag = 0):
     
     if gammadflag == 0:
         gammad = gamma(betaT)
@@ -303,19 +300,24 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
     r = np.logspace(np.log10(rin), np.log10(rout), nr)
     t = np.linspace(ti, tf, nt)
     dt = t[1] - t[0]
-    dr = r[1] - r[0]
+    #dr = r[1] - r[0]
     
     v, Sigmad, D = [], [], []
     
     sigarray = np.ndarray(shape = (nr, nt + 1), dtype = float)
     
+        
     for i in range(nr):
+        if i != nr - 1:
+            dr = r[i + 1] - r[i]
+        else:
+            dr = r[-1] - r[-2]
         v = np.append(v, rdot_with_acc(r[i], s, alpha, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma))
         Sigmad = np.append(Sigmad, Sigmadisk(r[i], Mdisk, rc))
         D = np.append(D, alpha * cdisk(r[i], Tstar, Rstar, mu) * Hdisk(r, Tstar, Rstar, mu, Mstar))
         
-    h = Sigmad * r
-    uin = r * Sigmad * dusttogas
+    h = Sigmad * r * AU
+    uin = r * Sigmad * dusttogas * AU
     
     g = ones(nr)
     K = zeros(nr)
@@ -334,13 +336,12 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
         uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0, 0, 1, A0, B0, C0, D0)
         
         for i in range(nr):
-            sigarray[i, j + 1] = uout[i] / r[i]
+            sigarray[i, j + 1] = uout[i] / (r[i] * AU)
         
         uin = uout
         
     
     return sigarray
-
 
 
 #def Sigmap_act(rin, rout, nr, t, dt, s, alpha, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, r1 = 100 * cmperau, C = 4.45e18, \
