@@ -342,7 +342,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
     time = t[0]
     
     for j in range(nt):
-        uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0, 0, 1, A0, B0, C0, D0)
+        uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,0, 0, 1, 0, r[-1]*1e-100, 1, A0, B0, C0, D0)
         
         for i in range(nr):
             sigarray[i, j + 1] = uout[i] / (r[i] * AU)
