@@ -27,7 +27,7 @@ m_star        = M_star*ones(n_t)
 T_COAG_START  = 0.0
 RHO_S         = 1.6
 V_FRAG        = 0 #1000
-a_0           = 1e15
+a_0           = 1e1
 E_drift       = 1.0
 #
 # set the initial surface density & velocity
@@ -61,7 +61,7 @@ plotter(x=x/AU,data=A_FR,data2=A_DR,times=TI/year,xlog=1,ylog=1,xlim=[0.5,500],y
 #
 # evolution of the surface density
 #
-plotter(x=x/AU,data=SOL,times=TI/year,xlog=1,ylog=1,xlim=[0.05,4e3],  xlabel='r [AU]',i_start=0,ylabel='$\Sigma_d$ [g cm $^{-2}$]')	
+plotter(x=x/AU,data=SOL,times=TI/year,xlog=1,ylog=1,xlim=[0.01,5e3], ylim=[2e-5,2e5], xlabel='r [AU]',i_start=0,ylabel='$\Sigma_d$ [g cm $^{-2}$]')	
 #
 # export the data
 #

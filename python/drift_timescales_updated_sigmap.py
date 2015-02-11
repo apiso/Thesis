@@ -297,7 +297,7 @@ def rdot_with_acc(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rh
 
 
 def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
-    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0):
+    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
     
     r = np.logspace(np.log10(rin), np.log10(rout), nr)
     t = np.linspace(ti, tf, nt)
@@ -321,7 +321,9 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
         v = np.append(v, rdot_with_acc(r[i], t[0], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
                 Mstar, gammadflag, sigma))
         Sigmad = np.append(Sigmad, Sigmadisk(r[i], t[0], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
-        D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar))
+        D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
+                (1 + taus(r[i], t[0], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
+        
         
     h = Sigmad * r * AU
     uin = r * Sigmad * dusttogas * AU
@@ -342,7 +344,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
     time = t[0]
     
     for j in range(nt):
-        uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,0, 0, 1, 0, r[-1]*1e-100, 1, A0, B0, C0, D0)
+        uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0,0, 1, A0, B0, C0, D0)
         
         for i in range(nr):
             sigarray[i, j + 1] = uout[i] / (r[i] * AU)
@@ -350,17 +352,20 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
         uin = uout
         time = time + dt
         
+        if sigmad_dt !=0:
+            v, Sigmad, D = [], [], []
         
-        v, Sigmad, D = [], [], []
         
-        for i in range(nr):
+            for i in range(nr):
             
-            v = np.append(v, rdot_with_acc(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
-                Mstar, gammadflag, sigma))
-            Sigmad = np.append(Sigmad, Sigmadisk(r[i], time, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
-            D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar))
+                v = np.append(v, rdot_with_acc(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+                    Mstar, gammadflag, sigma))
+                Sigmad = np.append(Sigmad, Sigmadisk(r[i], time, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
+                D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
+                        (1 + taus(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
         
-        h = Sigmad * r * AU
+            h = Sigmad * r * AU
+        
     
     return sigarray
 
