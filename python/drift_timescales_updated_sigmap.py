@@ -294,6 +294,84 @@ def rdot_with_acc(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rh
 
 #######################################################################################
 
+def tdes(mx, Ex, Tx, s, Nx = 1e15, rhos = 3.0):
+
+     return rhos / (3 * mx * mp) * s / (Nx * Rdes(mx, Ex, Tx)) 
+     
+def r_stop(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15)):
+
+     def f(r):
+          return tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma) - \
+                 tdes(mx, Ex, Tdisk(r, T0, betaT), s, Nx, rhos)
+
+     try:
+          return brentq(f, 1e-3, 1e2)
+     except ValueError:
+          return 1e-10
+
+
+def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
+
+     def f(x):
+          return Tdisk(x, T0, betaT) - T_freeze(mx, Ex, nx)
+
+     return brentq(f, 0.1, 100)
+
+
+def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.0, T0 = 120, betaT = 3./7, mu = 2.3, Sigma0 = 2000, betaS = 1., \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, gammadflag = 0, returnall = False):
+
+     def f(x, t):
+          
+          return np.array([ \
+               rdot_with_acc(x[0] / cmperau, t, x[1], alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma), \
+               - 3 * mx * mp  / rhos * \
+                    Nx * Rdes(mx, Ex, Tdisk(x[0] / cmperau, T0, betaT))])
+          
+
+     tv = np.logspace(np.log10(tin), np.log10(tf), npts)
+     y = odeint(f, [rin * cmperau, sin], tv)
+
+
+     for i in range(len(y[:,0]) - 1):
+          if y[:,1][i] >=0 and y[:,1][i + 1] < 0:
+               break
+          #sf = y[:,1][i - 1]
+          #npts = 10 * npts
+     if i == len(y[:,0] - 1):
+        if returnall == True:
+          return tv, y[:,0] / cmperau, y[:,1]
+        else:
+          return y[:,0][-1] / cmperau
+     else:
+	  tint = np.logspace(np.log10(tv[i]), np.log10(tv[i + 1]), nptsin)
+	  yint = odeint(f, [y[:,0][i], y[:,1][i]], tint)
+
+     	  finta = interp1d(yint[:,1][::-1], yint[:,0][::-1])
+     	  fintt = interp1d(yint[:,1][::-1], tint)
+
+     	  try:
+              af = float(finta(0))
+              tf = float(fintt(0))
+
+              afv = np.append(y[:,0][:i], af)
+              sfv = np.append(y[:,1][:i], 0)
+              tfv = np.append(tv[:i], tf)
+              
+              if returnall == True:
+                  return tfv, afv / cmperau, sfv
+              else:
+     	          return float(finta(0)) / cmperau
+          except ValueError:
+              if returnall == True:
+                  return tv, y[:,0] / cmperau, y[:,1]
+              else:
+                  return y[:,0][-1] / cmperau
+
+
+#######################################################################################
+
 
 
 def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
