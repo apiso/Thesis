@@ -1,3 +1,7 @@
+"""This script is used to calculate the vibrational frequency, desorption rate, 
+desorption time, and freezing temperature of a given volatile"""
+
+
 import numpy as np
 from utils.constants import mp, kb
 from scipy.optimize import brentq

@@ -1,3 +1,7 @@
+"""This script is used to calculate the C/O ratio in gas and in dust
+as a function of temperature, i.e. the location in the disk relative 
+to the H2O, CO2 and CO snowlines"""
+
 import numpy as np
 from T_freeze import T_freeze
 

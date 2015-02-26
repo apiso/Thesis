@@ -128,40 +128,196 @@ def impl_donorcell_adv_diff_delta(n_x,x,Diff,v,g,h,K,L,flim,u_in,dt,pl,pr,ql,qr,
 
 
 def Tdisk(r, T0 = 120, betaT = 3./7):
-     """Disk temperature in K with r in AU"""
-     return ((T0 * r**(-betaT))**4 + 10000.)**0.25
+    
+    """
+    
+    Calculates the disk temperature as a function of semimajor axis for a passive disk.
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    T0:
+        temperature at 1 AU in K
+    betaT:
+        powerlaw coefficient in T = T0 * r**(-betaT)
+        
+    Output
+    ------
+    disk temperature in K
+    
+    """
+    
+    return ((T0 * r**(-betaT))**4 + 10000.)**0.25
      
 def gamma(betaT = 3./7):
+    
+    """
+    Powerlaw coefficient in the viscosity dependendce,
+    nu \propto r^gamma
+    
+    Input
+    -----
+    betaT:
+        powerlaw coefficient in the temperature dependence
+        
+    Output
+    ------
+    gamma (dimensionless)
+    
+    """
      
-     return -betaT + 3./2
+    return -betaT + 3./2
 
 def cdisk(r, T0 = 120, betaT = 3./7, mu = 2.35):
-    """Sound speed in cm s^-1 with r in AU"""
+    
+    """
+    Sound speed as a function of semimajor axis
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    T0, betaT:
+        normalization temperature and powerlaw in the disk temperature dependence
+    mu:
+        mean molecular weight of the nebular gas
+        
+    Output
+    ------
+    sound speed in cm s^-1
+           
+    """
+    
     return np.sqrt(kb * Tdisk(r, T0, betaT) / (mu * mp))
 
 def vth(r, T0 = 120, betaT = 3./7, mu = 2.35):
-    """Mean thermal velocity for a Maxwellian distribution in cm s^-1 with r in AU"""
+    
+    """
+    Mean thermal velocity for a Maxwellian distribution
+    
+        Input
+    -----
+    r:
+        semimajor axis in AU
+    T0, betaT:
+        normalization temperature and powerlaw in the disk temperature dependence
+    mu:
+        mean molecular weight of the nebular gas (dimensionless)
+        
+    Output
+    ------
+    thermal velocity in cm s^-1
+    
+    """
     return np.sqrt(8 / np.pi) * cdisk(r, T0, betaT, mu)
     
 def Omegak(r, Mstar = Msun):
-    """Keplerian angular frequency in s^-1 with r in AU"""
+    
+    """
+    
+    Keplerian angular frequency
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    Mstar:
+        host star mass in g
+        
+    Output
+    ------
+    Omegak in s^-1
+    
+    """
     return np.sqrt(G * Mstar / (r * cmperau)**3)
 
 def Hdisk(r, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun):
-    """Disk scale height in cm with r in AU"""
+    
+    """
+    
+    Disk scale height
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    T0, betaT:
+        normalization temperature and powerlaw in the disk temperature dependence
+    mu:
+        mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+        
+    Output
+    ------
+    disk scale height in cm
+    
+    """
     return cdisk(r, T0, betaT, mu) / Omegak(r, Mstar)
 
 
 def nu(r, alpha, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun):
-
-     return alpha * cdisk(r, T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar)
-     
-#def Sigmadisk(r, Mdisk, rc):
-#    
-#   return maximum(Mdisk/(2*np.pi*rc**2)*(rc/(r*AU))*exp(-(r*AU)/rc),1e-100)
     
+    """
+    
+    Kinematic viscosity
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    T0, betaT:
+        normalization temperature and powerlaw in the disk temperature dependence
+    mu:
+        mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g       
+    
+    Output
+    ------
+    viscosity in cm^2 s^-1
+    
+    """
+
+    return alpha * cdisk(r, T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar)
+        
 
 def Sigmadisk(r, t, alpha, Mdisk, rc, T0 = 120, betaT = 3./7, mu = 2.35, Mstar = Msun, gammadflag = 0):
+    
+     """
+     
+     Gas surface density
+     
+     Input
+     -----
+     r:
+         semimajor axis in AU
+     t:
+         time at which sigma is calculated in s
+     alpha:
+         coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+     Mdisk:
+         total disk mass in g
+     rc:
+         characteristic disk radius at which the surface density starts decreasing exponentially in cm
+     T0, betaT:
+         normalization temperature and powerlaw in the disk temperature dependence
+     mu:
+         mean molecular weight of the gas (dimensionless)
+     Mstar:
+         host star mass in g
+     gammadflag:
+         flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+         if set to 1, gamma = 1, as is the case in "textbook" examples
+         
+     Output
+     ------
+     gas surface density in g cm^-2
+           
+     """    
 
      if gammadflag == 0:
          gammad = gamma(betaT)
@@ -179,6 +335,36 @@ def Sigmadisk(r, t, alpha, Mdisk, rc, T0 = 120, betaT = 3./7, mu = 2.35, Mstar =
 
 def vacc_act(r, t, alpha, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, Mstar = Msun, gammadflag = 0):
     
+    """
+    
+    Accretion velocity of the disk gas for an active disk
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time at which the accretion velocity is calculated in s
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    mu:
+        mean molecular weight of the gas (dimensionless)
+    T0, betaT:
+        temperature normalization and powerlaw coefficient in the disk temperature profile
+    rc:
+        characteristic disk radius in cm
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    
+    Output
+    ------
+    gas accretion velocity in cm s^-1  
+                           
+    """
+    
     if gammadflag == 0:
         gammad = gamma(betaT)
     else:
@@ -190,51 +376,213 @@ def vacc_act(r, t, alpha, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, Msta
 
     return (3*alpha*kb*r**(-4*betaT)*rtild**(-gammad-1) * (rc**2*T*(1e4*(gammad-2)*r**(4*betaT)+T0**4*(betaT+gammad-2))*\
             rtild**gammad-cmperau**2*(gammad-2)*r**2*(1e4*r**(4*betaT)+T0**4))) / \
-                (mp*mu*rc**3*T*(T0**4*r**(-4*betaT)+1e4)**(3./4)*np.sqrt(G*Mstar/(r**3*cmperau**3)))
-    
-    
-    #return -3.0*alpha*kb*Tdisk(r, Tstar, Rstar)/mu/mp/2./sqrt(G*Mstar/(r*AU))*(1.+7./4.)
-    
+                (mp*mu*rc**3*T*(T0**4*r**(-4*betaT)+1e4)**(3./4)*np.sqrt(G*Mstar/(r**3*cmperau**3)))    
 
     
 def rhodisk(r, t, alpha, Mdisk, rc = 100*AU, T0=120, betaT=3./7, mu = 2.35, Mstar = Msun, gammadflag=0):
-    """Disk gas density in g cm^-3 with r in AU"""
+    
+    """
+    
+    Disk gas density
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time at which density is calculated in s
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    Mdisk:
+        disk mass in g
+    rc:
+        characteristic disk radius in cm
+    T0, betaT:
+        temperature normalization and powerlaw coefficient in disk temperature dependence
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+        
+    Output
+    ------
+    disk density in g cm^-3
+        
+    """
+    
     return Sigmadisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) / \
             (np.sqrt(2 * np.pi) * Hdisk(r, T0, betaT, mu, Mstar))
     
 def Pdisk(r, t, alpha, Mdisk, rc = 100*AU, T0=120, betaT=3./7, mu = 2.35, Mstar = Msun, gammadflag=0):
+    
+    """
+    
+    Disk pressure
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time at which density is calculated in s
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    Mdisk:
+        disk mass in g
+    rc:
+        characteristic disk radius in cm
+    T0, betaT:
+        temperature normalization and powerlaw coefficient in disk temperature dependence
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+        
+    Output
+    ------
+    disk pressure in dyne
+        
+    """
+    
     return rhodisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * cdisk(r, T0, betaT, mu)**2
 
         
 def lambdamfp(r, t, alpha, Mdisk, rc = 100*AU, T0=120, betaT=3./7, mu = 2.35, Mstar = Msun, gammadflag=0, sigma = 2e-15):
-    """Mean free path in cm with r in AU"""
+    
+    """
+    
+    Gas mean free path
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time in s
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    Mdisk:
+        disk mass in g
+    rc:
+        disk characteristic radius in cm
+    T0, betaT:
+        normalization temperature and powerlaw coefficient in the disk temperature dependence
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma:
+        cross section for collisions in cm^2
+        
+    Output
+    ------
+    mfp in cm
+    
+    """
 
     return 1 / (np.sqrt(2) * sigma * \
           (rhodisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) / (mu * mp)))
 
 def eta(r, t, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, mu = 2.35, Mstar = Msun, gammadflag=0, sigma = 2e-15):
-    """Power law coefficient in P \propto r^(-n)"""
+    
+    """
+    
+    (dP/dr) * 1 / (2 * rhodisk * vk**2)
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time in s
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    dr:
+        differential dr in AU
+    Mdisk:
+        disk mass in g
+    rc:
+        disk characteristic radius in cm
+    T0, betaT:
+        normalization temperature and powerlaw coefficient in the disk temperature dependence
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma:
+        cross section for collisions in cm^2 
+        
+    Output
+    ------
+    eta (dimensionless)
+       
+    """
+    
     return - (r * AU) / (2 * rhodisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * (r * AU * Omegak(r, Mstar))**2) \
             * (Pdisk(r+dr, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) - \
                     Pdisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)) / (dr * AU)
        
-            
-#def eta(r, Mdisk, Tstar, Rstar, dr, rc, mu = 2.35, Mstar = Msun):
-#     """Dimensionless correction coefficient eta = vk - vgas"""
-#     return n(r, Mdisk, Rstar, Tstar, rc, mu, Mstar, dr) * cdisk(r, Tstar, Rstar, mu)**2 / \
-#        (2 * (Omegak(r, Mstar) * r * cmperau)**2)  
 
 def ts(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, gammadflag = 0, sigma = 2 * 10**(-15)):
-    """Stopping time in seconds with r in AU and s in cm"""
-
+    
+    """
+    Stopping time due to laminar gas drag for a particle of size s
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time in s
+    s:
+        particle size in cm
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    dr:
+        differential dr in AU
+    Mdisk:
+        disk mass in g
+    rc:
+        disk characteristic radius in cm
+    T0, betaT:
+        normalization temperature and powerlaw coefficient in the disk temperature dependence
+    rhos:
+        density of the solid particle of size s in g cm^-3
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma:
+        cross section for collisions in cm^2 
+        
+    Output
+    ------
+    stopping time in s    
+    
+    """
 
     if s <= 9 * lambdamfp(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag, sigma) / 4:
 
         return rhos * s / (rhodisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * \
-            vth(r, T0, betaT, mu))
+            vth(r, T0, betaT, mu)) #Epstein drag regime
             
-    else:
+    else: #Stokes drag regime with a prescription dependent on the Reynolds number
 
         def f(t):
              
@@ -261,13 +609,91 @@ def ts(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, m
         
 def taus(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, gammadflag = 0, sigma = 2 * 10**(-15)):
-    """Dimensionless stopping time with r in AU and s in cm"""
+    
+    """
+    Stokes number (or dimensionless stopping time) = ts * Omegak
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time in s
+    s:
+        particle size in cm
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    dr:
+        differential dr in AU
+    Mdisk:
+        disk mass in g
+    rc:
+        disk characteristic radius in cm
+    T0, betaT:
+        normalization temperature and powerlaw coefficient in the disk temperature dependence
+    rhos:
+        density of the solid particle of size s in g cm^-3
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma:
+        cross section for collisions in cm^2 
+        
+    Output
+    ------
+    Stokes number (dimensionless)    
+    
+    """
+    
     return ts(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma) * Omegak(r, Mstar) 
 
         
 def tr(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, gammadflag = 0, sigma = 2 * 10**(-15)):
-    """Radial drift time in seconds with r in AU and s in cm"""
+
+    """
+    Radial drift timescale due to laminar gas drag for a particle of size s
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time in s
+    s:
+        particle size in cm
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    dr:
+        differential dr in AU
+    Mdisk:
+        disk mass in g
+    rc:
+        disk characteristic radius in cm
+    T0, betaT:
+        normalization temperature and powerlaw coefficient in the disk temperature dependence
+    rhos:
+        density of the solid particle of size s in g cm^-3
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma:
+        cross section for collisions in cm^2 
+        
+    Output
+    ------
+    radial drift time in s    
+    
+    """
+
     return (1 + taus(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2)/ \
            taus(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma) / \
            (2 * eta(r, t, alpha, dr, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag, sigma) * Omegak(r, Mstar))
@@ -275,43 +701,153 @@ def tr(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, m
 
 def rdot(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, gammadflag = 0, sigma = 2 * 10**(-15)):
+    
+    """
+    Radial drift velocity due to laminar gas drag for a particle of size s
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time in s
+    s:
+        particle size in cm
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    dr:
+        differential dr in AU
+    Mdisk:
+        disk mass in g
+    rc:
+        disk characteristic radius in cm
+    T0, betaT:
+        normalization temperature and powerlaw coefficient in the disk temperature dependence
+    rhos:
+        density of the solid particle of size s in g cm^-3
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma:
+        cross section for collisions in cm^2 
+        
+    Output
+    ------
+    drift velocity in cm s^-1    
+    
+    """
 
-     return - (r * cmperau) / tr(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)
+    return - (r * cmperau) / tr(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)
+    
 
-def t_gas_acc(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2, Sigmad = 0):
-     return 1. / (2 * alpha * Omegak(r, Mstar) * eta(r, T0, betaT, mu, Mstar, betaS, Sigmad))
-
-#def rdot_gas(r, s, Mdotgas, Sigma0 = 2200, betaS = 3./2):
-#
-#     return - Mdotgas * Msun / (365 * 24 * 3600) / (Sigmadisk(r, Sigma0, betaS) * 2 * np.pi * (r * cmperau))
+#def t_gas_acc(r, alpha, T0 = 120., betaT = 3./7, mu = 2.35, Mstar = Msun, betaS = 3./2, Sigmad = 0):
+#     return 1. / (2 * alpha * Omegak(r, Mstar) * eta(r, T0, betaT, mu, Mstar, betaS, Sigmad))
 
 def rdot_with_acc(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, gammadflag = 0, sigma = 2 * 10**(-15)):
+    
+    """
+    Radial drift velocity when the gas accretion velocity is taken into account
+    (which is the case for an active disk)
+    
+    Input
+    -----
+    r:
+        semimajor axis in AU
+    t:
+        time in s
+    s:
+        particle size in cm
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    dr:
+        differential dr in AU
+    Mdisk:
+        disk mass in g
+    rc:
+        disk characteristic radius in cm
+    T0, betaT:
+        normalization temperature and powerlaw coefficient in the disk temperature dependence
+    rhos:
+        density of the solid particle of size s in g cm^-3
+    mu:
+        gas mean molecular weight (dimensionless)
+    Mstar:
+        host star mass in g
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma:
+        cross section for collisions in cm^2 
+        
+    Output
+    ------
+    radial drift velocity with gas accretion in cm s^-1    
+    
+    """
 
-     return rdot(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma) + \
+    return rdot(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma) + \
         vacc_act(r, t, alpha, mu, T0, betaT, rc, Mstar, gammadflag) / \
               (1 + taus(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2)
 
 #######################################################################################
 
 def tdes(mx, Ex, Tx, s, Nx = 1e15, rhos = 3.0):
-
-     return rhos / (3 * mx * mp) * s / (Nx * Rdes(mx, Ex, Tx)) 
+    
+     """
+     Desorption time for a volatile particle of size s and composed of single molecular
+     species (e.g., H2O, CO2, CO)
      
-def r_stop(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15)):
-
-     def f(r):
-          return tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma) - \
-                 tdes(mx, Ex, Tdisk(r, T0, betaT), s, Nx, rhos)
-
-     try:
-          return brentq(f, 1e-3, 1e2)
-     except ValueError:
-          return 1e-10
+     Input
+     -----
+     mx:
+         molecular weight of the volatile (dimensionless)
+     Ex:
+         binding energy in K
+     Tx:
+         freezing temperature of the volatile in K
+         
+     s:
+         size of the solid particle in cm
+     Nx:
+         number of adsorption sites per cm^2
+     rhos:
+         density of solid particle in g cm^-3
+         
+     Output
+     ------
+     desorption time in s 
+     
+     """
+     
+     return rhos / (3 * mx * mp) * s / (Nx * Rdes(mx, Ex, Tx)) 
 
 
 def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
+    
+     """
+     Snowline location for a given species and disk temperature profile
+     
+     Input
+     -----
+     mx:
+         mean molecular weight of the volatile (dimensionless)
+     Ex:
+         binding energy in K
+     nx:
+         number density of the volatile in the disk midplane
+     T0, betaT:
+         normalization temperature and powerlaw coefficient in the disk temperature profile
+         
+     Output
+     ------
+     snowline radius in AU
+     
+     """
 
      def f(x):
           return Tdisk(x, T0, betaT) - T_freeze(mx, Ex, nx)
@@ -319,8 +855,8 @@ def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
      return brentq(f, 0.1, 100)
 
 
-def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.0, T0 = 120, betaT = 3./7, mu = 2.3, Sigma0 = 2000, betaS = 1., \
-    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, gammadflag = 0, returnall = False):
+def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.0, T0 = 120, betaT = 3./7, mu = 2.3, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, gammadflag = 0, returnall = False):
 
      def f(x, t):
           
@@ -377,32 +913,78 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.
 def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
     
-    r = np.logspace(np.log10(rin), np.log10(rout), nr)
-    t = np.linspace(ti, tf, nt)
-    dt = t[1] - t[0]
-    #dr = r[1] - r[0]
+    """
+    Surface density of solids evolved in time using the advection-diffusion equation
     
-    v, Sigmad, D = [], [], []
-    #v = np.ndarray(shape = (nr, nt + 1), dtype = float)
-    #Sigmad = np.ndarray(shape = (nr, nt + 1), dtype = float)
-    #D = np.ndarray(shape = (nr, nt + 1), dtype = float)
+    Input
+    -----
+    rin:
+        starting point of the radial grid size in AU
+    rout:
+        ending point of the radial grid size in AU
+    nr:
+        number of radial grid points
+    ti:
+        time at which we begin the evolution in s
+    tf:
+        time at which we end the evolution in s
+    nt:
+        number of time steps
+    s:
+        particle size in cm
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    Mdisk:
+        disk mass in g
+    rc:
+        characteristic disk radius in cm
+    rhos:
+        density of the solid particle in g cm^-3
+    T0, betaT:
+        temperature normalization and powerlaw coefficient in the disk temperature profile
+    mu:
+        mean molecular weight of the disk gas (dimensionless)
+    Mstar:
+        host star mass in g
+    sigma:
+        cross section for collisions in cm^2
+    dusttogas:
+        dust-to-gas ratio in the disk (dimensionless)
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma_dt:
+        flag; if sigma_dt = 1, we allow the gas surface density to evolve in time;
+        otherwise, the gas surface density does not change in time
     
-    sigarray = np.ndarray(shape = (nr, nt + 1), dtype = float)
+    """
     
-        
+    r = np.logspace(np.log10(rin), np.log10(rout), nr) #radial grid
+    t = np.linspace(ti, tf, nt) #temporal grid
+    dt = t[1] - t[0] #time step in the advection-diffusion equation solver; set to be constant for now
+    
+    v, Sigmad, D = [], [], [] #initializing arrays for radial drift velocity, gas surface density and diffusivity
+    
+    sigarray = np.ndarray(shape = (nr, nt + 1), dtype = float) #initializing array for the dust surface density at each time step
+    
+       
     for i in range(nr):
+        
+        #ensuring that we don't run into an index error when setting up dr 
         if i != nr - 1:
             dr = r[i + 1] - r[i]
         else:
             dr = r[-1] - r[-2]
-            
+        
+        #setting up v, Sigmad and D at time zero        
         v = np.append(v, rdot_with_acc(r[i], t[0], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
                 Mstar, gammadflag, sigma))
         Sigmad = np.append(Sigmad, Sigmadisk(r[i], t[0], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
         D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
                 (1 + taus(r[i], t[0], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
         
-        
+    
+    #setting up the solver        
     h = Sigmad * r * AU
     uin = r * Sigmad * dusttogas * AU
     
@@ -427,21 +1009,23 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
         for i in range(nr):
             sigarray[i, j + 1] = uout[i] / (r[i] * AU)
         
-        uin = uout
-        time = time + dt
+        uin = uout #updating the new dust surface density to be used in the next time step
+        time = time + dt #moving on to the next time step
         
-        if sigmad_dt !=0:
-            v, Sigmad, D = [], [], []
+        if sigmad_dt !=0: #if sigmad_dt = 0, we skip updating v, Sigmad, D
+            
+            v, Sigmad, D = [], [], [] #initializing new arrays
         
         
             for i in range(nr):
-            
+                
+                #updating v, Sigmad, D with their values at the new time step
                 v = np.append(v, rdot_with_acc(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
                     Mstar, gammadflag, sigma))
                 Sigmad = np.append(Sigmad, Sigmadisk(r[i], time, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
                 D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
                         (1 + taus(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
-        
+                        #D is the dust diffusivity, i.e. Dgas / (1+St^2), with Dgas the viscosity and St the Stokes number
             h = Sigmad * r * AU
         
     
@@ -652,6 +1236,27 @@ def n_with_acc(rin, sin, mx, Ex, Mdotgas, Nx = 1e15, rhos = 3.0, T0 = 120, betaT
          Mstar, sigma, npts, nptsin, tin, eps, vphi)
 
      t, a, s = rfin
+     
+     
+     
+#def r_stop(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+#    Mstar = Msun, sigma = 2 * 10**(-15)):
+#    
+#     """
+#     
+#     Desorption distance estimated analytically by equating the desorption and 
+#     drift timescales
+#     
+#     """
+#     
+#     def f(r):
+#          return tr(r, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma) - \
+#                 tdes(mx, Ex, Tdisk(r, T0, betaT), s, Nx, rhos)
+#
+#     try:
+#          return brentq(f, 1e-3, 1e2)
+#     except ValueError:
+#          return 1e-10
 
      nsol_noacc = s**3 / sin**3
      ngas = 1 - s**3 / sin**3
