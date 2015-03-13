@@ -1062,18 +1062,25 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
 #    
 #    return uout / r
     
- 
+def Mdot_solids(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
+    
+    return -2 * np.pi * (rin * AU) * Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+    
+    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1)
+    
+      
 
 
 
 
-def dMdot(rin, rout, s, alpha, t0, tmax, n, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, r1 = 100 * cmperau, C = 4.45e18, \
-    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, f = 1e-4, vrw = 0):
+def dMdot(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
      
-     Sigmap_in = Sigmadisk_act(rin, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
+     Sigmap_in = Sigmadisk(rin, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
      Sigmap_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
      
-     Sigmag_in = Sigmadisk_act(rin, t0, alpha, T0, betaT, mu, Mstar, r1, C)
+     Sigmag_in = Sigmadisk(rin, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
      Sigmag_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C)
 
      t = np.linspace(t0, tmax, n)
