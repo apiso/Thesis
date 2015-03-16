@@ -288,9 +288,12 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
         
     h = Sigmad * r * AU
     
+    
+    #uin = r * Sigmad * dusttogas * AU
+    
     uin = []
     for i in range(nr):
-        if r[i] >= 50 and r[i] <= 60:
+        if r[i] >= 20 and r[i] <= 22:
             uin = np.append(uin, r[i] * Sigmad[i] * dusttogas * AU)
         else:
             uin = np.append(uin, 1e-100)
@@ -306,10 +309,12 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
     D0 = zeros(nr)
     
     for i in range(nr):
-        sigarray[i, 0] = uin[i] / (r[i] * AU * dusttogas) #Sigmad[i] * dusttogas
+        sigarray[i, 0] = uin[i] / (r[i] * AU) 
+        #sigarray[i, 0] = Sigmad[i] * dusttogas
     
     for j in range(nt):
-        uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 0, 0, 1, 1, 1e-100*r[0]*AU, 1e-100*r[-1]*AU, 1, A0, B0, C0, D0)
+        #uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 0, 0, 1, 1, 1e-100*r[0]*AU, 1e-100*r[-1]*AU, 1, A0, B0, C0, D0)
+        uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1, 1, 0, 0, 0, 0, 1, A0, B0, C0, D0)
         
         for i in range(nr):
             sigarray[i, j + 1] = uout[i] / (r[i] * AU)
