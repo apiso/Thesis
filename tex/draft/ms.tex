@@ -1,0 +1,128 @@
+%\documentclass[12pt, preprint,numberedappendix]{emulateapj}
+%\documentclass[12pt, preprint]{aastex}
+\documentclass[apj]{emulateapj}
+
+\newcommand\submitms{n}		% set to y to follow AAS ``ms'' names, etc.
+\newcommand\bibinc{n}		% set to y if bib pasted in .tex, set to n to use bibtex
+
+
+%\usepackage{pdfsync}
+\usepackage{subeqnarray}
+\usepackage{natbib}
+\usepackage{color}
+
+
+\bibliographystyle{apj}
+
+\newcommand{\ie}{i.e.\ }
+\newcommand{\eg}{e.g.\ }
+\newcommand{\p}{\partial}
+\newcommand{\brak}[1]{\langle #1\rangle}
+
+
+\newcommand{\gcc}{\;\mathrm{g\; cm^{-3}}}
+\newcommand{\gsc}{\;\mathrm{g\; cm^{-2}}}
+\newcommand{\cm}{\; {\rm cm}}
+\newcommand{\mm}{\; {\rm mm}}
+%\newcommand{\ps}{\; {\rm s^{-1}}}
+\newcommand{\km}{\; {\rm km}}
+\newcommand{\au}{\; \varpi_{\rm AU}}
+\newcommand{\AU}{\; {\rm AU}}
+\def\K{\; {\rm K}}
+
+\newcommand{\vcs}[1]{\mbox{\boldmath{$\scriptstyle{#1}$}}}
+\newcommand{\vc}[1]{\mbox{\boldmath{$#1$}}}
+\newcommand{\nab}{\vc{\nabla}}
+\DeclareMathSymbol{\varOmega}{\mathord}{letters}{"0A}
+\DeclareMathSymbol{\varSigma}{\mathord}{letters}{"06}
+\DeclareMathSymbol{\varPsi}{\mathord}{letters}{"09}
+
+\newcommand{\Eq}[1]{Equation\,(\ref{#1})}
+\newcommand{\Eqs}[2]{Equations (\ref{#1}) and~(\ref{#2})}
+\newcommand{\Eqss}[2]{Equations (\ref{#1})--(\ref{#2})}
+\newcommand{\App}[1]{Appendix~\ref{#1}}
+\newcommand{\Sec}[1]{Sect.~\ref{#1}}
+\newcommand{\Chap}[1]{Chapter~\ref{#1}}
+\newcommand{\Fig}[1]{Fig.~\ref{#1}}
+\newcommand{\Figs}[2]{Figs.~\ref{#1} and \ref{#2}}
+\newcommand{\Figss}[2]{Figs.~\ref{#1}--\ref{#2}} 
+\newcommand{\Tab}[1]{Table \ref{#1}}
+
+\definecolor{gray}{gray}{0.5}
+\newcommand{\emgr}[1]{\emph{ \color{gray} #1}}
+
+
+%\newenvironment{packed_item}{
+%\begin{itemize}
+%  \setlength{\itemsep}{1pt}
+%  \setlength{\parskip}{0pt}
+%  \setlength{\parsep}{0pt}
+%}{\end{itemize}}
+
+\begin{document}
+
+%\slugcomment{Draft Modified \today}
+
+
+%\shorttitle{Critical Core Mass at Wide Separations}
+\shortauthors{Piso et al.}
+
+\title{The Influence of Radial Drift and Gas Accretion on the C/O Ratio in Protoplanetary Disks}
+%\title{Lower Limits on the Core Mass for Giant Planets}
+%\title{The Critical Core Mass of Wide-Separation Giant Planets:  Lower Limits from Kelvin-Helmholtz Cooling}
+\author{Ana-Maria A. Piso\altaffilmark{1}, Karin I. \"Oberg\altaffilmark{1}, Ruth A. Murray-Clay\altaffilmark{2}, Tilman Birnstiel\altaffilmark{1}}
+\altaffiltext{1}{Harvard-Smithsonian Center for Astrophysics, 60 Garden Street, Cambridge, MA 02138}
+\altaffiltext{2}{Department of Physics, University of California, Santa Barbara, CA 93106}
+
+
+%\begin{abstract}
+%\end{abstract}
+
+\section{Introduction}
+
+\emgr{Background topics: importance of atmospheric chemistry in providing constraints on the formation of giant planets; C/O ratio as important signature of atmospheric chemistry; C/O ratios observationally determined are different from interstellar --- one explanation is the different abundance in gas and dust form of the main C and O carriers, H$_2$O, CO$_2$ and CO, between their respective snowlines (cite \"Oberg et al. 2011).}
+
+\emgr{Describe goals and approach of this paper, i.e.: study the importance of radial drift on the location of snowlines in protoplanetary disks and how radial drift affects the C/O ratio. Mention that disks are viscously accreting in the early stages of planet formation, hence gas accretion has to be taken into account. The goal of this paper is two-fold: (1) estimate using both numerical models and analytic arguments the range of particle sizes for which radial drift changes snowline location; (2) calculate the C/O ratio for various particle sizes (and possibly a size distribution) and at different times throughout the evolution of the gas disk.}
+
+This paper is organized as follows: \emgr{(section summaries)}.
+
+\section{Radial Drift Model}
+\subsection{Disk and Desorption Model}
+
+\emgr{Describe disk model --- both passive MMSN and active self-similar solution with $\alpha$ prescription for viscosity. Describe the model for evolving the surface density profile of planetesimals following Birnstiel et al. (2012). Describe temperature profile --- currently power-law, but may change. Describe desorption model and parameters following Hollenbach et al. (2009). Mention that the solids are perfect spheres composed of a single volatile. Perhaps this subsection needs to be split into subsubsections.}
+
+\subsection{Relevant timescales}
+
+\emgr{Calculate timescale for radial drift following Chiang \& Youdin (2010). Calculate desorption timescale following Hollenbach et al. (2009). Estimate gas accretion timescale for a given $\alpha$. Important: mention that, for simplicity and illustrative purposes, these calculations are performed for a passive disk. Show plot with the timescales as a function of particle size at different snowlines to show the regime in which drift matters}.
+
+\section{Snowline Locations}
+
+\emgr{Present the equation set that you are solving, $dr/dt=\dot{r}$, $ds/dt=...$. I don't think it is necessary to describe in detail the numerical method of solving the equations since it's pretty straightforward. Present the pretty rainbow plots side by side for passive and active disks, and highlight the differences. Insert the plots that shows that for the intermediate size particles, the desorption distance can be estimated analytically with good accuracy. Maybe also include the plot showing the desorption distance as a function of particle size, both for passive and active disk. Split into subsections?}
+
+\section{Results for the C/O Ratio}
+\emgr{Present the flux equations used to keep track of the amount of C and O in gas and dust throughout the disk. Motivate the simplification of using a fixed particle sized, fixed timescale, and fixed desorption distance in the calculations by referring to the rainbow plot in the previous section and by inserting the plot that shows that particle desorb almost instantly at a fixed distance. Based on these assumptions, finally show the equivalent of Fig. 1 in \"Oberg et al. (2011) for different particle sizes, and at different times in the gas disk evolution (i.e., not just at 3 Myr) --- a multi-panel plot could be a good idea. Discuss the result, trends, etc. Ideally, have a final plot showing the results for a particle size distribution rather than for individual particles.}
+
+\section{Discussion and Model Limitations}
+
+\emgr{Include: non-inclusion of turbulence, assumption of perfect spheres when in fact they may have cracks, particles composed of a single volatile when in reality they are likely to be mixed, etc. Discuss uncertainty of initial conditions and estimate how much they matter. ....}
+
+\section{Summary and Future Work}
+
+\emgr{Summarize results. Mention inclusion of $N_2$ as a first expansion. Mention the implementation of time-dependent chemical models in the drift calculation.}
+
+\appendix
+\section{...}
+
+\emgr{Right now it's unclear to me what could go in an appendix, if anything. Maybe discuss a bit the algorithm to evolve $\Sigma_{\rm p}$ (although it is already explained in detail in the appendix of Birnstiel et al. 2010). Maybe show some example profiles of $\Sigma_{\rm p}$ at different times and for different particle sizes.}
+
+\if\bibinc n
+\bibliography{refs}
+\fi
+
+\if\bibinc y
+\begin{thebibliography}
+\end{thebibliography}
+\fi
+
+
+\end{document}

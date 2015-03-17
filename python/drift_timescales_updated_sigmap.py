@@ -856,7 +856,7 @@ def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
      return brentq(f, 0.1, 100)
 
 
-def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.0, T0 = 120, betaT = 3./7, mu = 2.3, \
+def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.3, \
     Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, gammadflag = 0, returnall = False):
 
      def f(x, t):
@@ -1109,11 +1109,19 @@ def dMdot(rin, rout, t, dt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc = 100
     tf, af, sf = rf(rstart, t, s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
         Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)  
     
-    if sf[-1] != 0:
+    if sf[-1] != 0.0:
+        print "Not desorbing"
         return f * dMdotgas, f * dMdotsolids
         
-    elif af[-1] < rin or af[-1] > rout:
+        
+    elif af[-1] < rin:
+        print "Hasn't reached desorption distance"
         return f * dMdotgas, f * dMdotsolids
+    
+    elif af[-1] > rout:
+        print "Already desorbed"
+        return f * dMdotgas, 0
+        
         
     else:
         
@@ -1129,11 +1137,11 @@ def dMdot(rin, rout, t, dt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc = 100
         Des = 3 * sigmapdes * (af[-1]*AU) * (0.001*af[-1])*AU * 12*np.pi / (2 * rhos * s) * \
             mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
         
-        dMdotgas_new = dMdotgas + Des
-        dMdotsolids_new = dMdotsolids - Des
+        dMdotgas_new = dMdotgas + f * Des
+        dMdotsolids_new = dMdotsolids - f * Des
         sigmap_after_des = sigmapdes - f * Des * dt / (2 * np.pi * (af[-1] * AU) * (1e-3 * af[-1] * AU))
         
-        return f * dMdotgas, f * dMdotgas_new, f * dMdotsolids, f * dMdotsolids_new, sigmapdes, sigmap_after_des, f * Des 
+        return f * dMdotgas_new, f * dMdotsolids_new, sigmapdes, sigmap_after_des
     
 
     
