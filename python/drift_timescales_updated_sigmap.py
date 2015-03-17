@@ -3,6 +3,7 @@ import numpy as np
 from numpy import ones, zeros, shape,arange,Inf,maximum,minimum,exp,array,sqrt,invert
 from T_freeze import T_freeze, Rdes, tevap, vib_freq
 from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
+import scipy
 from scipy.integrate import odeint
 from scipy.optimize import brentq
 from scipy.interpolate import interp1d
@@ -876,6 +877,7 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.
           #sf = y[:,1][i - 1]
           #npts = 10 * npts
      if i == len(y[:,0] - 1):
+        print "No desorption." 
         if returnall == True:
           return tv, y[:,0] / cmperau, y[:,1]
         else:
@@ -888,6 +890,8 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.
      	  fintt = interp1d(yint[:,1][::-1], tint)
 
      	  try:
+     	      print "It's desorbing."
+     	      print i
               af = float(finta(0))
               tf = float(fintt(0))
 
@@ -900,6 +904,8 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.
               else:
      	          return float(finta(0)) / cmperau
           except ValueError:
+              print "It's desorbing but there's an issue."
+              print i
               if returnall == True:
                   return tv, y[:,0] / cmperau, y[:,1]
               else:
@@ -911,7 +917,7 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 2.
 
 
 def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
-    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
+    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1, dif = 1):
     
     """
     Surface density of solids evolved in time using the advection-diffusion equation
@@ -965,7 +971,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
     
     v, Sigmad, D = [], [], [] #initializing arrays for radial drift velocity, gas surface density and diffusivity
     
-    sigarray = np.ndarray(shape = (nr, nt + 1), dtype = float) #initializing array for the dust surface density at each time step
+    sigarray = np.ndarray(shape = (nr, nt), dtype = float) #initializing array for the dust surface density at each time step
     
        
     for i in range(nr):
@@ -980,13 +986,26 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
         v = np.append(v, rdot_with_acc(r[i], t[0], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
                 Mstar, gammadflag, sigma))
         Sigmad = np.append(Sigmad, Sigmadisk(r[i], t[0], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
-        D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
+        
+        if dif == 1:
+            D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
                 (1 + taus(r[i], t[0], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
+        else:
+            D = zeros(nr)
         
     
     #setting up the solver        
     h = Sigmad * r * AU
     uin = r * Sigmad * dusttogas * AU
+    
+    #uin = r * maximum(Sigmad[280] / 100 * np.exp(-(r-r[280])**2/(2*(0.1)**2)), 1e-100) * AU
+    
+    #uin = []
+    #for i in range(nr):
+    #    if r[i] >= 27 and r[i] <= 29:
+    #        uin = np.append(uin, r[i] * Sigmad[i] * dusttogas * AU)
+    #    else:
+    #        uin = np.append(uin, 1e-100)
     
     g = ones(nr)
     K = zeros(nr)
@@ -999,15 +1018,16 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
     D0 = zeros(nr)
     
     for i in range(nr):
-        sigarray[i, 0] = Sigmad[i] * dusttogas
-    
+        #sigarray[i, 0] = Sigmad[i] * dusttogas
+        sigarray[i, 0] = uin[i] / (r[i] * AU)
+        
     time = t[0]
     
-    for j in range(nt):
+    for j in range(1, nt):
         uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0,0, 1, A0, B0, C0, D0)
         
         for i in range(nr):
-            sigarray[i, j + 1] = uout[i] / (r[i] * AU)
+            sigarray[i, j] = uout[i] / (r[i] * AU)
         
         uin = uout #updating the new dust surface density to be used in the next time step
         time = time + dt #moving on to the next time step
@@ -1023,8 +1043,12 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
                 v = np.append(v, rdot_with_acc(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
                     Mstar, gammadflag, sigma))
                 Sigmad = np.append(Sigmad, Sigmadisk(r[i], time, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
-                D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
+                
+                if dif == 1:
+                    D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
                         (1 + taus(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
+                else:
+                    D = zeros(nr)
                         #D is the dust diffusivity, i.e. Dgas / (1+St^2), with Dgas the viscosity and St the Stokes number
             h = Sigmad * r * AU
         
@@ -1032,114 +1056,146 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
     return sigarray
 
 
-#def Sigmap_act(rin, rout, nr, t, dt, s, alpha, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, r1 = 100 * cmperau, C = 4.45e18, \
-#    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01):
-#    
-#    r = np.logspace(np.log10(rin), np.log10(rout), nr)
-#    
-#    v, Sigmad, D = [], [], []
-#    
-#    for i in range(nr):
-#        v = np.append(v, rdot_with_acc(r[i], t, s, alpha, rhos, T0, betaT, mu, r1, C, Mstar, sigma))
-#        Sigmad = np.append(Sigmad, Sigmadisk_act(r[i], t, alpha, T0, betaT, mu, Mstar, r1, C))
-#        D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r[i], T0, betaT, mu, Mstar))
-#        
-#    h = Sigmad * r
-#    uin = r * Sigmad * dusttogas
-#    
-#    g = ones(nr)
-#    K = zeros(nr)
-#    L = zeros(nr)
-#    flim = ones(nr)
-#    
-#    A0 = zeros(nr)
-#    B0 = zeros(nr)
-#    C0 = zeros(nr)
-#    D0 = zeros(nr)
-#    
-#    
-#    uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0, 0, 1, A0, B0, C0, D0)
-#    
-#    return uout / r
     
-def Mdot_solids(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+def Mdot_solids(r, t, s, alpha, Mdisk = 0.1*Msun, rc = 100*AU, dr = 1e-3, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
     
-    return -2 * np.pi * (rin * AU) * Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+    nt = 50
+    nr = 50
     
-    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1)
+    rgrid = np.logspace(np.log10(0.05),np.log10(4e3),nr)
+    tgrid = np.linspace(1e2,3e6,nt)*365*24*3600
     
-      
+    sig = Sigmap_act(rgrid[0], rgrid[-1], nr, tgrid[0], tgrid[-1], nt, s, alpha, Mdisk, rc, rhos, T0, betaT, mu, \
+        Mstar, sigma, dusttogas, gammadflag, sigmad_dt)
+    
+    func = scipy.interpolate.interp2d(tgrid, rgrid, sig)
+    sigmap = func(t, r)    
+       
+    return -2 * np.pi * (r * AU) * rdot_with_acc(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+        Mstar, gammadflag, sigma) * sigmap, sigmap, sig
+    
 
-
-
-
-def dMdot(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+def dMdot_solids(rin, rout, t, s, alpha, Mdisk = 0.1*Msun, rc = 100*AU, dr = 1e-3, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
-     
-     Sigmap_in = Sigmadisk(rin, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
-     Sigmap_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
-     
-     Sigmag_in = Sigmadisk(rin, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
-     Sigmag_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C)
+    
+         Mdotout, sigout, sig = Mdot_solids(rout, t, s, alpha, Mdisk, rc, dr, rhos, T0, betaT, mu, \
+            Mstar, sigma, dusttogas, gammadflag, sigmad_dt)
+         Mdotin, sigin, sig =   Mdot_solids(rin, t, s, alpha, Mdisk, rc, dr, rhos, T0, betaT, mu, \
+                    Mstar, sigma, dusttogas, gammadflag, sigmad_dt)
+         return Mdotout - Mdotin, sigin, sigout, sig  
+                    
+                       
+def Mdot_gas(r, t, alpha, Mdisk = 0.1*Msun, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, Mstar = Msun, gammadflag = 0):
+    
+       return - 2 * np.pi * (r * AU) * vacc_act(r, t, alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
+            Sigmadisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
 
-     t = np.linspace(t0, tmax, n)
-     #t = np.logspace(np.log10(t0), np.log10(tmax), n)
-     dM_gas, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out, Sigmagv_in, Sigmagv_out = \
-                [], [], [], [], [Sigmap_in], [Sigmap_out], [Sigmag_in], [Sigmag_out]
+def dMdot_gas(rin, rout, t, alpha, Mdisk = 0.1*Msun, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, Mstar = Msun, gammadflag = 0):
+    
+    return Mdot_gas(rout, t, alpha, Mdisk, mu, T0, betaT, rc, Mstar, gammadflag) - \
+        Mdot_gas(rin, t, alpha, Mdisk, mu, T0, betaT, rc, Mstar, gammadflag)
+        
+        
+        
+def dMdot(rin, rout, t, dt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc = 100*AU, dr = 1e-3, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1, f = 0.9*1e-4, Nx = 1e15, returnall = True, \
+    npts = 1e6, nptsin = 1e4, tin = 1e-10):
+    
+    dMdotsolids, sigin, sigout, sig = dMdot_solids(rin, rout, t, s, alpha, Mdisk, rc, dr, rhos, T0, betaT, mu, \
+        Mstar, sigma, dusttogas, gammadflag, sigmad_dt) 
+    dMdotgas = dMdot_gas(rin, rout, t, alpha, Mdisk, mu, T0, betaT, rc, Mstar, gammadflag)
+        
+    tf, af, sf = rf(rstart, t, s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
+        Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)  
+    
+    if sf[-1] != 0:
+        return f * dMdotgas, f * dMdotsolids
+        
+    elif af[-1] < rin or af[-1] > rout:
+        return f * dMdotgas, f * dMdotsolids
+        
+    else:
+        
+        nt = 50
+        nr = 50
+    
+        rgrid = np.logspace(np.log10(0.05),np.log10(4e3),nr)
+        tgrid = np.linspace(1e2,3e6,nt)*365*24*3600
+    
+        func = scipy.interpolate.interp2d(tgrid, rgrid, sig)
+        sigmapdes = func(tf[-1], af[-1])
+                
+        Des = 3 * sigmapdes * (af[-1]*AU) * (0.001*af[-1])*AU * 12*np.pi / (2 * rhos * s) * \
+            mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
+        
+        dMdotgas_new = dMdotgas + Des
+        dMdotsolids_new = dMdotsolids - Des
+        sigmap_after_des = sigmapdes - f * Des * dt / (2 * np.pi * (af[-1] * AU) * (1e-3 * af[-1] * AU))
+        
+        return f * dMdotgas, f * dMdotgas_new, f * dMdotsolids, f * dMdotsolids_new, sigmapdes, sigmap_after_des, f * Des 
+    
 
-     for i in range(len(t) - 1):
-
-          dMgas = dMgas_dt(rin, rout, t[i], s, alpha, rhos, T0, betaT, mu, r1, C, Mstar, sigma) * (t[i + 1] - t[i])
-          dMsol = dMsol_dt(rin, rout, t[i], s, alpha, Sigmap_in, Sigmap_out, rhos, T0, betaT, mu, r1, C, Mstar, sigma, vrw) * (t[i + 1] - t[i])
-
-          dM_gas = np.append(dM_gas, dMgas)
-          dM_sol = np.append(dM_sol, dMsol)
-
-          #if constdtg == 0:
-          Sigmap_in = Sigmap_in + dMsol / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
-          Sigmap_out = Sigmap_out + dMsol / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
-          
-          Sigmag_in = Sigmag_in + dMgas / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
-          Sigmag_out = Sigmag_out + dMgas / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
-          
-          Sigmagv_in = np.append(Sigmagv_in, Sigmag_in)
-          Sigmagv_out = np.append(Sigmagv_out, Sigmag_out)
+    
               
-          #else:
-          #    Sigmap_in = Sigmadisk_act(rin, t[i], alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
-          #    Sigmap_out = Sigmadisk_act(rout, t[i], alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
-
-          Sigmadv_in = np.append(Sigmadv_in, Sigmadisk_act(rin, t[i], alpha, T0, betaT, mu, Mstar, r1, C))
-          Sigmadv_out = np.append(Sigmadv_out, Sigmadisk_act(rout, t[i], alpha, T0, betaT, mu, Mstar, r1, C))
-          
-          Sigmapv_in = np.append(Sigmapv_in, Sigmap_in)
-          Sigmapv_out = np.append(Sigmapv_out, Sigmap_out)
-
-     return dM_gas * f, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out, Sigmagv_in, Sigmagv_out
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
-def Msol_dt(r1, r2, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01, \
-             Sigmad = 0, Sigmap = 0, Sigmap1 = 0, Sigmap2 = 0):
-     if Sigmap == 0:
-         return np.pi * (r2 * cmperau)**2 * dusttogas * Sigmadisk(r2, Sigma0, betaS) - \
-                np.pi * (r1 * cmperau)**2 * dusttogas * Sigmadisk(r1, Sigma0, betaS)
-     else:
-         return np.pi * (r2 * cmperau)**2 * dusttogas * Sigmap2 - \
-                np.pi * (r1 * cmperau)**2 * dusttogas * Sigmap1
+#def dMdot(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+#    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
+#     
+#     Sigmap_in = Sigmadisk(rin, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
+#     Sigmap_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
+#     
+#     Sigmag_in = Sigmadisk(rin, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
+#     Sigmag_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C)
+#
+#     t = np.linspace(t0, tmax, n)
+#     #t = np.logspace(np.log10(t0), np.log10(tmax), n)
+#     dM_gas, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out, Sigmagv_in, Sigmagv_out = \
+#                [], [], [], [], [Sigmap_in], [Sigmap_out], [Sigmag_in], [Sigmag_out]
+#
+#     for i in range(len(t) - 1):
+#
+#          dMgas = dMgas_dt(rin, rout, t[i], s, alpha, rhos, T0, betaT, mu, r1, C, Mstar, sigma) * (t[i + 1] - t[i])
+#          dMsol = dMsol_dt(rin, rout, t[i], s, alpha, Sigmap_in, Sigmap_out, rhos, T0, betaT, mu, r1, C, Mstar, sigma, vrw) * (t[i + 1] - t[i])
+#
+#          dM_gas = np.append(dM_gas, dMgas)
+#          dM_sol = np.append(dM_sol, dMsol)
+#
+#          #if constdtg == 0:
+#          Sigmap_in = Sigmap_in + dMsol / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
+#          Sigmap_out = Sigmap_out + dMsol / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
+#          
+#          Sigmag_in = Sigmag_in + dMgas / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
+#          Sigmag_out = Sigmag_out + dMgas / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
+#          
+#          Sigmagv_in = np.append(Sigmagv_in, Sigmag_in)
+#          Sigmagv_out = np.append(Sigmagv_out, Sigmag_out)
+#              
+#          #else:
+#          #    Sigmap_in = Sigmadisk_act(rin, t[i], alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
+#          #    Sigmap_out = Sigmadisk_act(rout, t[i], alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
+#
+#          Sigmadv_in = np.append(Sigmadv_in, Sigmadisk_act(rin, t[i], alpha, T0, betaT, mu, Mstar, r1, C))
+#          Sigmadv_out = np.append(Sigmadv_out, Sigmadisk_act(rout, t[i], alpha, T0, betaT, mu, Mstar, r1, C))
+#          
+#          Sigmapv_in = np.append(Sigmapv_in, Sigmap_in)
+#          Sigmapv_out = np.append(Sigmapv_out, Sigmap_out)
+#
+#     return dM_gas * f, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out, Sigmagv_in, Sigmagv_out
 
 
-def Mgas_dt(r1, r2, sin, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
-    Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, eps = 0, vphi = 0, dusttogas = 0.01, \
-             Sigmad = 0, Sigmad1 = 0, Sigmad2 = 0):
-     if Sigmad == 0:
-         return np.pi * (r2 * cmperau)**2 * Sigmadisk(r2, Sigma0, betaS) - \
-                np.pi * (r1 * cmperau)**2 * Sigmadisk(r1, Sigma0, betaS)
-     else:
-         return np.pi * (r2 * cmperau)**2 * Sigmad2 - \
-                np.pi * (r1 * cmperau)**2 * Sigmad1
+
 
 
 

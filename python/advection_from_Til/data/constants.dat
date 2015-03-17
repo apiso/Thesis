@@ -1,6 +1,0 @@
-n_r            =	500          # number of radial grid points
-n_t            =	200          # number of snapshots
-M_star         =	1.9891e+33   # stellar mass [M_sun]
-RHO_S          =	1.6          # dust internal density [g cm^-3]
-a_0            =	10           # size of smallest grains [cm]
-mu             =	2.3          # mean molecular weight [proton masses]

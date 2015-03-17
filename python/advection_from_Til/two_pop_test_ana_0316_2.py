@@ -7,12 +7,12 @@ from matplotlib.pylab import * #@UnusedWildImport
 #
 # create the model
 #
-n_r       = 500
-n_t       = 200
+n_r       = 200
+n_t       = 50
 n_m       = 1
 x         = logspace(log10(0.05),log10(4e3),n_r)*AU
 
-alpha0        = 1e-3
+alpha0        = 1e-2
 M_star        = M_sun
 T_star        = 4300.
 R_star        = 2.5*R_sun
@@ -27,7 +27,7 @@ m_star        = M_star*ones(n_t)
 T_COAG_START  = 0.0
 RHO_S         = 1.6
 V_FRAG        = 0 #1000
-a_0           = 1e1
+a_0           = 1e-3
 E_drift       = 1.0
 #
 # set the initial surface density & velocity
@@ -37,13 +37,18 @@ sigma_g     = tile(profile,[n_t,1])
 #sigma_d     = tile(append(array(profile,ndmin=2)/100.,zeros([n_m-1,n_r]),0),[n_t,1])
 v_gas       = -3.0*alpha*k_b*T/mu/m_p/2./sqrt(Grav*M_star/x)*(1.+7./4.)
 
-sigma_d = np.ndarray(shape = (len(timesteps), len(x)), dtype = float)
-for i in range(len(timesteps)):
-    for j in range(len(x)):
-        if x[j] >= 20*AU and x[j] <=22*AU:
-            sigma_d[i, j] = profile[j] / 100
-        else:
-            sigma_d[i, j] = 1e-20
+profiled = maximum(profile[110] / 100 * np.exp(-(x-x[110])**2/(2*(1*AU)**2)), 1e-100)
+sigma_d     = tile(append(array(profiled,ndmin=2),zeros([n_m-1,n_r]),0),[n_t,1])
+
+#sigma_d = np.ndarray(shape = (len(timesteps), len(x)), dtype = float)
+#for i in range(len(timesteps)):
+#    for j in range(len(x)):
+#        if x[j] >= 20*AU and x[j] <=22*AU:
+#            sigma_d[i, j] = profile[j] / 100
+#        elif x[j] <= 20*AU:
+#            sigma_d[i, j] = profile[j] / 100 * np.exp(-20*AU/x[j])
+#        elif x[j] >= 22*AU:
+#            sigma_d[i, j] = profile[j] / 100 * np.exp(-x[j]/(22*AU))
 
 # call the model
 #

@@ -288,6 +288,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
         
     h = Sigmad * r * AU
     
+    ##uin = r * maximum(Sigmad[110] / 100 * np.exp(-(r-r[110])**2/(2*(1)**2)), 1e-100) * AU
     
     #uin = r * Sigmad * dusttogas * AU
     
