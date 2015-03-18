@@ -22,7 +22,7 @@ sigma =  5.670373e-5
 #unit conversion
 cmperau = 14959788700000.0
 AU = 1.49597887e13
-year = 3.16e7
+yr = 365*24*3600
 Myr = 3.16e13
 barP = 1e6 #dyne/cm*2 to bar (not that `bar` in matplotlib is problem in pylab)
 

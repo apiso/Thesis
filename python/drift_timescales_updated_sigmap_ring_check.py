@@ -319,19 +319,21 @@ def Sigmadisk(r, t, alpha, Mdisk, rc, T0 = 120, betaT = 3./7, mu = 2.35, Mstar =
      gas surface density in g cm^-2
            
      """    
+    
+     return 2200. * r**(-3./2)
 
-     if gammadflag == 0:
-         gammad = gamma(betaT)
-     else:
-         gammad = 1
-         
-     nu1 = nu(rc / cmperau, alpha, T0, betaT, mu, Mstar)
-     ts = 1. / (3 * (2 - gammad)**2) * rc**2 / nu1
-     T = t / ts + 1
-     rtild = r * cmperau / rc
-
-     return Mdisk / (2 * np.pi * rc**2 * rtild**gammad) * T**(- (2.5 - gammad) / (2 - gammad)) \
-            * np.exp(- rtild**(2 - gammad) / T)
+#     if gammadflag == 0:
+#         gammad = gamma(betaT)
+#     else:
+#         gammad = 1
+#         
+#     nu1 = nu(rc / cmperau, alpha, T0, betaT, mu, Mstar)
+#     ts = 1. / (3 * (2 - gammad)**2) * rc**2 / nu1
+#     T = t / ts + 1
+#     rtild = r * cmperau / rc
+#
+#     return Mdisk / (2 * np.pi * rc**2 * rtild**gammad) * T**(- (2.5 - gammad) / (2 - gammad)) \
+#            * np.exp(- rtild**(2 - gammad) / T)
                 
 
 def vacc_act(r, t, alpha, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, Mstar = Msun, gammadflag = 0):
@@ -1003,7 +1005,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
     
     uin = []
     for i in range(nr):
-        if r[i] >= 9.4 and r[i] <= 9.6:
+        if r[i] >= 30 and r[i] <= 30.2:
             uin = np.append(uin, r[i] * Sigmad[i] * dusttogas * AU)
         else:
             uin = np.append(uin, 1e-100)
@@ -1033,25 +1035,25 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
         uin = uout #updating the new dust surface density to be used in the next time step
         time = time + dt #moving on to the next time step
         
-        if sigmad_dt !=0: #if sigmad_dt = 0, we skip updating v, Sigmad, D
-            
-            v, Sigmad, D = [], [], [] #initializing new arrays
-        
-        
-            for i in range(nr):
-                
-                #updating v, Sigmad, D with their values at the new time step
-                v = np.append(v, rdot(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
-                    Mstar, gammadflag, sigma))
-                Sigmad = np.append(Sigmad, Sigmadisk(r[i], time, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
-                
-                if dif == 1:
-                    D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
-                        (1 + taus(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
-                else:
-                    D = zeros(nr)
-                        #D is the dust diffusivity, i.e. Dgas / (1+St^2), with Dgas the viscosity and St the Stokes number
-            h = Sigmad * r * AU
+        #if sigmad_dt !=0: #if sigmad_dt = 0, we skip updating v, Sigmad, D
+        #    
+        #    v, Sigmad, D = [], [], [] #initializing new arrays
+        #
+        #
+        #    for i in range(nr):
+        #        
+        #        #updating v, Sigmad, D with their values at the new time step
+        #        v = np.append(v, rdot(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+        #            Mstar, gammadflag, sigma))
+        #        Sigmad = np.append(Sigmad, Sigmadisk(r[i], time, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
+        #        
+        #        if dif == 1:
+        #            D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
+        #                (1 + taus(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
+        #        else:
+        #            D = zeros(nr)
+        #                #D is the dust diffusivity, i.e. Dgas / (1+St^2), with Dgas the viscosity and St the Stokes number
+        #    h = Sigmad * r * AU
         
     
     return sigarray

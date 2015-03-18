@@ -856,7 +856,7 @@ def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
      return brentq(f, 0.1, 100)
 
 
-def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.3, \
+def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15), npts = 1e6, nptsin = 1e4, tin = 1e-10, gammadflag = 0, returnall = False):
 
      def f(x, t):
@@ -877,7 +877,7 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 3.
           #sf = y[:,1][i - 1]
           #npts = 10 * npts
      if i == len(y[:,0] - 1):
-        print "No desorption." 
+        #print "No desorption." 
         if returnall == True:
           return tv, y[:,0] / cmperau, y[:,1]
         else:
@@ -890,8 +890,8 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 3.
      	  fintt = interp1d(yint[:,1][::-1], tint)
 
      	  try:
-     	      print "It's desorbing."
-     	      print i
+     	      #print "It's desorbing."
+     	      #print i
               af = float(finta(0))
               tf = float(fintt(0))
 
@@ -904,8 +904,8 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 3.
               else:
      	          return float(finta(0)) / cmperau
           except ValueError:
-              print "It's desorbing but there's an issue."
-              print i
+              #print "It's desorbing but there's an issue."
+              #print i
               if returnall == True:
                   return tv, y[:,0] / cmperau, y[:,1]
               else:
@@ -1096,53 +1096,140 @@ def dMdot_gas(rin, rout, t, alpha, Mdisk = 0.1*Msun, mu = 2.35, T0 = 120, betaT 
     return Mdot_gas(rout, t, alpha, Mdisk, mu, T0, betaT, rc, Mstar, gammadflag) - \
         Mdot_gas(rin, t, alpha, Mdisk, mu, T0, betaT, rc, Mstar, gammadflag)
         
+ 
         
+               
+                      
+                             
+                                           
         
-def dMdot(rin, rout, t, dt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc = 100*AU, dr = 1e-3, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc = 100*AU, dr = 1e-3, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
     Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1, f = 0.9*1e-4, Nx = 1e15, returnall = True, \
     npts = 1e6, nptsin = 1e4, tin = 1e-10):
     
-    dMdotsolids, sigin, sigout, sig = dMdot_solids(rin, rout, t, s, alpha, Mdisk, rc, dr, rhos, T0, betaT, mu, \
-        Mstar, sigma, dusttogas, gammadflag, sigmad_dt) 
-    dMdotgas = dMdot_gas(rin, rout, t, alpha, Mdisk, mu, T0, betaT, rc, Mstar, gammadflag)
-        
-    tf, af, sf = rf(rstart, t, s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
-        Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)  
+    nr = 50
+    rgrid = np.logspace(np.log10(0.05),np.log10(4e3),nr)
+    t = np.linspace(ti,tf,nt)
     
-    if sf[-1] != 0.0:
-        print "Not desorbing"
-        return 0, f * dMdotsolids
+    sigarray = Sigmap_act(rgrid[0], rgrid[-1], nr, t[0], t[-1], nt, s, alpha, Mdisk, rc, rhos, T0, betaT, mu, \
+        Mstar, sigma, dusttogas, gammadflag, sigmad_dt)
         
-        
-    elif af[-1] < rin:
-        print "Hasn't reached desorption distance"
-        return f * dMdotgas, f * dMdotsolids
+    func = scipy.interpolate.interp2d(t, rgrid, sigarray)
     
-    elif af[-1] > rout:
-        print "Already desorbed"
-        return f * dMdotgas, 0
-        
-        
-    else:
-        
-        nt = 50
-        nr = 50
+    Ms, Mg = [], []
+    Desv, dMdotsv, dMdots_newv = [], [], []
     
-        rgrid = np.logspace(np.log10(0.05),np.log10(4e3),nr)
-        tgrid = np.linspace(1e2,3e6,nt)*365*24*3600
-    
-        func = scipy.interpolate.interp2d(tgrid, rgrid, sig)
-        sigmapdes = func(tf[-1], af[-1])
-                
-        Des = 3 * sigmapdes * (af[-1]*AU) * (0.001*af[-1])*AU * 12*np.pi / (2 * rhos * s) * \
-            mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
+    for i in range(nt - 1):
         
-        dMdotgas_new = dMdotgas + f * Des
-        dMdotsolids_new = dMdotsolids - f * Des
-        sigmap_after_des = sigmapdes - f * Des * dt / (2 * np.pi * (af[-1] * AU) * (1e-3 * af[-1] * AU))
         
-        return f * dMdotgas_new, f * dMdotsolids_new, sigmapdes, sigmap_after_des
+        Mdots_in = -2 * np.pi * (rin * AU) * rdot_with_acc(rin, t[i], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+            Mstar, gammadflag, sigma) * func(t[i], rin)
+        Mdots_out = -2 * np.pi * (rout * AU) * rdot_with_acc(rout, t[i], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+            Mstar, gammadflag, sigma) * func(t[i], rout)
+        dMdots = Mdots_out - Mdots_in
+        
+        Mdotg_in = - 2 * np.pi * (rin * AU) * vacc_act(rin, t[i], alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
+            Sigmadisk(rin, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
+        Mdotg_out = - 2 * np.pi * (rout * AU) * vacc_act(rout, t[i], alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
+            Sigmadisk(rout, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
+        dMdotg = Mdotg_out - Mdotg_in
+        
+        tf, af, sf = rf(rstart, t[i], s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
+            Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)
+        
+        #Ms = np.append(Ms, f * dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))   
+        
+        if sf[-1] != 0.0:
+            print "Not desorbing", i
+            Mg = np.append(Mg, 0)
+            Ms = np.append(Ms, dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))
+            
+        elif af[-1] < rin:
+            print "Hasn't reached desorption distance", i
+            Mg = np.append(Mg, 0)
+            Ms = np.append(Ms, dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))
+            
+        elif af[-1] >= rin and af[-1] <= rout:
+            
+            print "It is desorbing", i
+            
+            sigmapdes = func(tf[-1], af[-1])
+            Des = 3 * sigmapdes * (rin*AU) * (rout-rin)*AU * 12*np.pi / (2 * rhos * s) * \
+                mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
+        
+            dMdotg_new = Des
+            dMdots_new = dMdots - Des   
+            
+            Mg = np.append(Mg, dMdotg_new * (t[i + 1] - t[i]) + Sigmadisk(rin, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * \
+                np.pi * ((rout*AU)**2 - (rin*AU)**2))
+            Ms = np.append(Ms, dMdots_new * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2)) 
+            
+            Desv = np.append(Desv, Des)
+            dMdotsv = np.append(dMdotsv, dMdots)
+            dMdots_newv = np.append(dMdots_newv, dMdots_new)           
+            
+                              
+    return Mg, Ms, Desv, dMdotsv, dMdots_newv                  
+                                            
+      
+        
+        #elif af[-1] >= rin and af[-1] <= rout:
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     
+    
+    #dMdotsolids, sigin, sigout, sig = dMdot_solids(rin, rout, t, s, alpha, Mdisk, rc, dr, rhos, T0, betaT, mu, \
+    #    Mstar, sigma, dusttogas, gammadflag, sigmad_dt) 
+    #dMdotgas = dMdot_gas(rin, rout, t, alpha, Mdisk, mu, T0, betaT, rc, Mstar, gammadflag)
+    #    
+    #tf, af, sf = rf(rstart, t, s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
+    #    Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)  
+    #
+    #if sf[-1] != 0.0:
+    #    print "Not desorbing"
+    #    return 0, f * dMdotsolids
+    #           
+    #elif af[-1] < rin:
+    #    print "Hasn't reached desorption distance"
+    #    return 0, f * dMdotsolids        
+    #    
+    #elif af[-1] >= rin and af[-1] <= rout:
+    #    
+    #    nt = 50
+    #    nr = 50
+    #
+    #    rgrid = np.logspace(np.log10(0.05),np.log10(4e3),nr)
+    #    tgrid = np.linspace(1e2,3e6,nt)*365*24*3600
+    #
+    #    func = scipy.interpolate.interp2d(tgrid, rgrid, sig)
+    #    sigmapdes = func(tf[-1], af[-1])
+    #            
+    #    Des = 3 * sigmapdes * (af[-1]*AU) * (0.001*af[-1])*AU * 12*np.pi / (2 * rhos * s) * \
+    #        mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
+    #    
+    #    dMdotgas_new = dMdotgas + f * Des
+    #    dMdotsolids_new = dMdotsolids - f * Des
+    #    sigmap_after_des = sigmapdes - f * Des * dt / (2 * np.pi * (af[-1] * AU) * (1e-3 * af[-1] * AU))
+    #    
+    #    return f * dMdotgas_new, f * dMdotsolids_new, sigmapdes, sigmap_after_des
+  
+    
+    
+    #elif af[-1] > rout:
+    #    print "Already desorbed"
+    #    return f * dMdotgas, 0  
 
     
               
