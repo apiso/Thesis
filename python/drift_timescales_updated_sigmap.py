@@ -1111,7 +1111,7 @@ def dMdot(rin, rout, t, dt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc = 100
     
     if sf[-1] != 0.0:
         print "Not desorbing"
-        return f * dMdotgas, f * dMdotsolids
+        return 0, f * dMdotsolids
         
         
     elif af[-1] < rin:
