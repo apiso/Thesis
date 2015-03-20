@@ -912,6 +912,22 @@ def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 3.
                   return y[:,0][-1] / cmperau
 
 
+def rdrift(rin, tin, tf, s, alpha, dr, Mdisk, rc = 100*AU, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+    Mstar = Msun, sigma = 2 * 10**(-15), npts = 100, gammadflag = 0):
+    
+    def f(x, t):
+          
+        return rdot_with_acc(x / cmperau, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)
+          
+
+    t = np.logspace(np.log10(tin), np.log10(tf), npts)
+    y = odeint(f, rin * cmperau, t)
+    
+    return y[-1][0] / AU
+    
+    
+
+
 #######################################################################################
 
 
@@ -1002,7 +1018,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
     
     #uin = []
     #for i in range(nr):
-    #    if r[i] >= 27 and r[i] <= 29:
+    #    if r[i] >= 10. and r[i] <= 10.5:
     #        uin = np.append(uin, r[i] * Sigmad[i] * dusttogas * AU)
     #    else:
     #        uin = np.append(uin, 1e-100)
@@ -1119,6 +1135,10 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc 
     Ms, Mg = [], []
     Desv, dMdotsv, dMdots_newv = [], [], []
     
+    tf, af, sf = rf(rstart, tf, s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
+            Mstar, sigma, npts, nptsin, ti, gammadflag, returnall)
+            
+    
     for i in range(nt - 1):
         
         
@@ -1134,8 +1154,8 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc 
             Sigmadisk(rout, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
         dMdotg = Mdotg_out - Mdotg_in
         
-        tf, af, sf = rf(rstart, t[i], s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
-            Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)
+        #tf, af, sf = rf(rstart, t[i], s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
+        #    Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)
         
         #Ms = np.append(Ms, f * dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))   
         
@@ -1154,8 +1174,9 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc 
             print "It is desorbing", i
             
             sigmapdes = func(tf[-1], af[-1])
-            Des = 3 * sigmapdes * (rin*AU) * (rout-rin)*AU * 12*np.pi / (2 * rhos * s) * \
+            Des = 3 * sigmapdes * ((rout*AU)**2-(rin*AU)**2) * 12*np.pi / (4 * rhos * s) * \
                 mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
+            #Des = 12 * np.pi * s**2 * mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT))
         
             dMdotg_new = Des
             dMdots_new = dMdots - Des   
@@ -1169,7 +1190,7 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc 
             dMdots_newv = np.append(dMdots_newv, dMdots_new)           
             
                               
-    return Mg, Ms, Desv, dMdotsv, dMdots_newv                  
+    return Mg, Ms, Desv, dMdotsv, dMdots_newv, af[-1]                  
                                             
       
         

@@ -168,6 +168,20 @@ def rdot_with_acc(r, s, Mdotgas, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, 
          Mstar, sigma, eps, vphi) + rdot_gas(r, s, Mdotgas, Sigma0, betaS) / \
               (1 + taus(r, s, rhos , T0, betaT, mu, Sigma0, betaS, \
                    Mstar, sigma, eps)**2)
+                   
+                   
+def rdrift(rin, tin, tf, s, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), eps = 0, vphi = 0, npts = 50):
+    
+    def f(x, t):
+          
+        return rdot(x / cmperau, s, rhos, T0, betaT, mu, Sigma0, betaS, Mstar, sigma, eps, vphi)
+          
+
+    t = np.logspace(np.log10(tin), np.log10(tf), npts)
+    y = odeint(f, rin * cmperau, t)
+    
+    return y[-1][0] / cmperau
 
 
 ################################################################################

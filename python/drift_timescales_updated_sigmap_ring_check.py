@@ -533,6 +533,10 @@ def eta(r, t, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, mu = 2.35, Msta
        
     """
     
+    return cdisk(r, T0, betaT, mu)**2 / \
+        (2 * (Omegak(r, Mstar) * r * cmperau)**2) 
+    
+    
     return - (r * AU) / (2 * rhodisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * (r * AU * Omegak(r, Mstar))**2) \
             * (Pdisk(r+dr, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) - \
                     Pdisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)) / (dr * AU)
@@ -1005,7 +1009,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
     
     uin = []
     for i in range(nr):
-        if r[i] >= 30 and r[i] <= 30.2:
+        if r[i] >= 10 and r[i] <= 10.5:
             uin = np.append(uin, r[i] * Sigmad[i] * dusttogas * AU)
         else:
             uin = np.append(uin, 1e-100)
