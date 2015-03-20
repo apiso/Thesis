@@ -7,4 +7,5 @@
 *.pdfsync
 *.synctex.gz
 *.bbl
+*.DS_Store
 
