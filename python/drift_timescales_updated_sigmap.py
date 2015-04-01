@@ -4,7 +4,7 @@ from numpy import ones, zeros, shape,arange,Inf,maximum,minimum,exp,array,sqrt,i
 from T_freeze import T_freeze, Rdes, tevap, vib_freq
 from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
 import scipy
-from scipy.integrate import odeint
+from scipy.integrate import odeint, quad
 from scipy.optimize import brentq
 from scipy.interpolate import interp1d
 from utils.zbrac import zbrac
@@ -1132,65 +1132,67 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, Mdisk = 0.1*Msun, rc 
         
     func = scipy.interpolate.interp2d(t, rgrid, sigarray)
     
-    Ms, Mg = [], []
+    Ms, Mg, sig = [], [], []
     Desv, dMdotsv, dMdots_newv = [], [], []
     
     tf, af, sf = rf(rstart, tf, s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
             Mstar, sigma, npts, nptsin, ti, gammadflag, returnall)
-            
     
-    for i in range(nt - 1):
+    if sf[-1] != 0.0 or af[-1] < rin:        
+    
+        for i in range(nt):
         
         
-        Mdots_in = -2 * np.pi * (rin * AU) * rdot_with_acc(rin, t[i], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
-            Mstar, gammadflag, sigma) * func(t[i], rin)
-        Mdots_out = -2 * np.pi * (rout * AU) * rdot_with_acc(rout, t[i], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
-            Mstar, gammadflag, sigma) * func(t[i], rout)
-        dMdots = Mdots_out - Mdots_in
+            #Mdots_in = -2 * np.pi * (rin * AU) * rdot_with_acc(rin, t[i], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+            #    Mstar, gammadflag, sigma) * func(t[i], rin)
+            #Mdots_out = -2 * np.pi * (rout * AU) * rdot_with_acc(rout, t[i], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+            #    Mstar, gammadflag, sigma) * func(t[i], rout)
+            #dMdots = Mdots_out - Mdots_in
+            
+            Mg = np.append(Mg, 0)
+            #Ms = np.append(Ms, dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))
+            def fint(x):
+                return 2 * np.pi * func(t[i], x/AU) * x
+            sig = np.append(sig, func(t[i], rin))
+            Ms = np.append(Ms, quad(fint, rin*AU, rout*AU)[0])
+            
+            
+            #print i
         
-        Mdotg_in = - 2 * np.pi * (rin * AU) * vacc_act(rin, t[i], alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
-            Sigmadisk(rin, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
-        Mdotg_out = - 2 * np.pi * (rout * AU) * vacc_act(rout, t[i], alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
-            Sigmadisk(rout, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
-        dMdotg = Mdotg_out - Mdotg_in
+        #Mdotg_in = - 2 * np.pi * (rin * AU) * vacc_act(rin, t[i], alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
+        #    Sigmadisk(rin, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
+        #Mdotg_out = - 2 * np.pi * (rout * AU) * vacc_act(rout, t[i], alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
+        #    Sigmadisk(rout, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
+        #dMdotg = Mdotg_out - Mdotg_in
         
         #tf, af, sf = rf(rstart, t[i], s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
         #    Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)
         
         #Ms = np.append(Ms, f * dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))   
-        
-        if sf[-1] != 0.0:
-            print "Not desorbing", i
-            Mg = np.append(Mg, 0)
-            Ms = np.append(Ms, dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))
+
             
-        elif af[-1] < rin:
-            print "Hasn't reached desorption distance", i
-            Mg = np.append(Mg, 0)
-            Ms = np.append(Ms, dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))
-            
-        elif af[-1] >= rin and af[-1] <= rout:
-            
-            print "It is desorbing", i
-            
-            sigmapdes = func(tf[-1], af[-1])
-            Des = 3 * sigmapdes * ((rout*AU)**2-(rin*AU)**2) * 12*np.pi / (4 * rhos * s) * \
-                mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
-            #Des = 12 * np.pi * s**2 * mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT))
-        
-            dMdotg_new = Des
-            dMdots_new = dMdots - Des   
-            
-            Mg = np.append(Mg, dMdotg_new * (t[i + 1] - t[i]) + Sigmadisk(rin, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * \
-                np.pi * ((rout*AU)**2 - (rin*AU)**2))
-            Ms = np.append(Ms, dMdots_new * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2)) 
-            
-            Desv = np.append(Desv, Des)
-            dMdotsv = np.append(dMdotsv, dMdots)
-            dMdots_newv = np.append(dMdots_newv, dMdots_new)           
+        #elif af[-1] >= rin and af[-1] <= rout:
+        #    
+        #    print "It is desorbing", i
+        #    
+        #    sigmapdes = func(tf[-1], af[-1])
+        #    Des = 3 * sigmapdes * ((rout*AU)**2-(rin*AU)**2) * 12*np.pi / (4 * rhos * s) * \
+        #        mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
+        #    #Des = 12 * np.pi * s**2 * mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT))
+        #
+        #    dMdotg_new = Des
+        #    dMdots_new = dMdots - Des   
+        #    
+        #    Mg = np.append(Mg, dMdotg_new * (t[i + 1] - t[i]) + Sigmadisk(rin, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * \
+        #        np.pi * ((rout*AU)**2 - (rin*AU)**2))
+        #    Ms = np.append(Ms, dMdots_new * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2)) 
+        #    
+        #    Desv = np.append(Desv, Des)
+        #    dMdotsv = np.append(dMdotsv, dMdots)
+        #    dMdots_newv = np.append(dMdots_newv, dMdots_new)           
             
                               
-    return Mg, Ms, Desv, dMdotsv, dMdots_newv, af[-1]                  
+    return Mg, Ms #, sig, fint#, Desv, dMdotsv, dMdots_newv, af[-1]                  
                                             
       
         
