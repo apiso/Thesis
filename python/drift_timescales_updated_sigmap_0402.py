@@ -1222,17 +1222,17 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, dtf = 0.001, Mdisk = 
             #for i in range(npts_at_des, nt - 1):
                           
         if af[-1] > rout:
-            return np.append(Mg, Mg_after_des), \
-            np.append(Ms, Ms_after_des), \
-                t, \
-                np.append(Mg_tot, Mg_tot_bf_des)  
+            return np.append(np.append(Mg, Mg[-1]), Mg_after_des), \
+            np.append(np.append(Ms, Ms[-1]), Ms_after_des), \
+                np.append(np.append(t[:k + 1], tf[-1]), t[k+1:])#, \
+                    #np.append(Mg_tot, Mg_tot_bf_des)  
                 
         else:    
                               
             return np.append(np.append(Mg, Mg_at_des), Mg_after_des), \
                 np.append(np.append(Ms, Ms_at_des), Ms_after_des), \
-                    np.append(np.append(t[:k + 1], tf[-1]), t[k+1:]), \
-                        np.append(Mg_tot, Mg_tot_bf_des)  
+                    np.append(np.append(t[:k + 1], tf[-1]), t[k+1:])#, \
+                       # np.append(Mg_tot, Mg_tot_bf_des)  
         
                                         
 
