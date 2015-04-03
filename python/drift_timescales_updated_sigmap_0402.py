@@ -1143,7 +1143,6 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, dtf = 0.001, Mdisk = 
     func = scipy.interpolate.interp2d(t, rgrid, sigarray)
     
     Ms, Mg, Mg_tot, Ms_tot, sig = [], [], [], [], []
-    #Desv, dMdotsv, dMdots_newv = [], [], []
     
     tf, af, sf = rf(rstart, tf, s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
             Mstar, sigma, npts, nptsin, ti, gammadflag, returnall)
@@ -1153,19 +1152,21 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, dtf = 0.001, Mdisk = 
         for i in range(nt):
             
             Mg = np.append(Mg, 0)
-            #Ms = np.append(Ms, dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))
+            
             def fint(x):
                 return 2 * np.pi * func(t[i], x/AU) * x
-            sig = np.append(sig, func(t[i], rin))
-            def fsig(x):
-                return 2 * np.pi * Sigmadisk(x/AU, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * x
-            Mg_tot = np.append(Mg_tot, quad(fsig, rin*AU, rout*AU)[0])
             Ms = np.append(Ms, quad(fint, rin*AU, rout*AU)[0])
             
+            def fsig(x):
+                return 2 * np.pi * Sigmadisk(x/AU, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * x
+            Mg_tot = np.append(Mg_tot, quad(fsig, rin*AU, rout*AU)[0])      
  
-        return Mg, Mg_tot, Ms
+        return Mg, Ms, t, Mg_tot
+        
+        
+        
             
-    elif af[-1] >= rin and af[-1] <= rout:
+    elif af[-1] >= rin:# and af[-1] <= rout:
         print "It is desorbing."
         
         sigmapdes = func(tf[-1], af[-1])
@@ -1179,39 +1180,27 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, dtf = 0.001, Mdisk = 
         k = i
         print k
             
-        for i in range(k):
+        for i in range(k + 1):
+
             Mg = np.append(Mg, 0)
             
-            #def fsig(x):
-            #    return 2 * np.pi * Sigmadisk(x/AU, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * x
-            #Mg_tot = np.append(Mg_tot, quad(fsig, rin*AU, rout*AU)[0])
-        
             def fint(x):
                 return 2 * np.pi * func(t[i], x/AU) * x
             Ms = np.append(Ms, quad(fint, rin*AU, rout*AU)[0])
-            #sig = np.append(sig, func(t[i], rin))
+            
+            def fsig(x):
+                return 2 * np.pi * Sigmadisk(x/AU, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * x
+            Mg_tot = np.append(Mg_tot, quad(fsig, rin*AU, rout*AU)[0])             
 
-            #Ms_tot = quad(fint, rin*AU, rout*AU)[0]
-            
-            #sigmapdes = func(tf[-1], af[-1])
-            #Des = 3 * sigmapdes * ((rout*AU)**2-(rin*AU)**2) * 12*np.pi / (4 * rhos * s) * \
-            #    mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
-            #Des = 12 * np.pi * s**2 * mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT))
-        
-        #if lin == 1:
-        #    tv_at_des = np.linspace(t[k], t[k + 1], npts_at_des)
-        #else:
-        #    tv_at_des = np.logspace(np.log10(t[k]), np.log10(t[k + 1]), npts_at_des)
-            
-
-            
-        #Mg_at_des, Ms_at_des = [], []
-            
-        #for i in range(npts_at_des - 1):
-            
+             
+             
         def fsig(x):
             return 2 * np.pi * Sigmadisk(x/AU, tf[-1], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * x
-        Mg_tot = quad(fsig, rin*AU, rout*AU)[0]
+        Mg_tot_bf_des = quad(fsig, rin*AU, rout*AU)[0]
+                    
+        def fint(x):
+            return 2 * np.pi * func(tf[-1], x/AU) * x
+        Ms_bf_des = quad(fint, rin*AU, rout*AU)[0]
     
         Mdots_in = 0 
         Mdots_out = -2 * np.pi * (rin * AU) * rdot_with_acc(rin, tf[-1], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
@@ -1221,160 +1210,33 @@ def dMdot(rin, rout, ti, tf, nt, rstart, s, alpha, mx, Ex, dtf = 0.001, Mdisk = 
         dMdotg_new = Des
         dMdots_new = dMdots - Des   
         
-        Mg_at_des = dMdotg_new * (dtf*tf[-1]) + Mg_tot #Sigmadisk(rin, tf[-1], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * \
-                #np.pi * ((rout*AU)**2 - (rin*AU)**2)
-        Ms_at_des = dMdots_new * (dtf*tf[-1]) + Ms_tot # func(tf[-1], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2)
-            
-            #Desv = np.append(Desv, Des)
-            #dMdotsv = np.append(dMdotsv, dMdots)
-            #dMdots_newv = np.append(dMdots_newv, dMdots_new) 
-            
-            #Mg_after_des, Ms_after_des = [], []
+        Mg_at_des = dMdotg_new * (dtf*tf[-1])
+        Ms_at_des = dMdots_new * (dtf*tf[-1]) + Ms_bf_des
+        
+        Mg_after_des, Ms_after_des = [], []
+        
+        for i in range(k + 1, nt):           
+            Mg_after_des = np.append(Mg_after_des, Mg_at_des)
+            Ms_after_des = np.append(Ms_after_des, 0)
             
             #for i in range(npts_at_des, nt - 1):
                           
-            
+        if af[-1] > rout:
+            return np.append(Mg, Mg_after_des), \
+            np.append(Ms, Ms_after_des), \
+                t, \
+                np.append(Mg_tot, Mg_tot_bf_des)  
+                
+        else:    
                               
-        return np.append(Mg, Mg_at_des), np.append(Ms, Ms_at_des), np.append(t[:k + 1], tf[-1]) #, sig, fint#, Desv, dMdotsv, dMdots_newv, af[-1]                  
-        #return Mg_at_des, Ms_at_des, Mg_tot, Ms_tot                                    
-                                            
-                                            
-            
-            #print i
+            return np.append(np.append(Mg, Mg_at_des), Mg_after_des), \
+                np.append(np.append(Ms, Ms_at_des), Ms_after_des), \
+                    np.append(np.append(t[:k + 1], tf[-1]), t[k+1:]), \
+                        np.append(Mg_tot, Mg_tot_bf_des)  
         
-        #Mdotg_in = - 2 * np.pi * (rin * AU) * vacc_act(rin, t[i], alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
-        #    Sigmadisk(rin, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
-        #Mdotg_out = - 2 * np.pi * (rout * AU) * vacc_act(rout, t[i], alpha, mu, T0, betaT, rc, Mstar, gammadflag) * \
-        #    Sigmadisk(rout, t[i], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
-        #dMdotg = Mdotg_out - Mdotg_in
-        
-        #tf, af, sf = rf(rstart, t[i], s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
-        #    Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)
-        
-        #Ms = np.append(Ms, f * dMdots * (t[i + 1] - t[i]) + func(t[i], rin) * np.pi * ((rout*AU)**2 - (rin*AU)**2))  
-        
-        
-            #Mdots_in = -2 * np.pi * (rin * AU) * rdot_with_acc(rin, t[i], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
-            #    Mstar, gammadflag, sigma) * func(t[i], rin)
-            #Mdots_out = -2 * np.pi * (rout * AU) * rdot_with_acc(rout, t[i], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
-            #    Mstar, gammadflag, sigma) * func(t[i], rout)
-            #dMdots = Mdots_out - Mdots_in
-        
-        #elif af[-1] >= rin and af[-1] <= rout:
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
-    
-    #dMdotsolids, sigin, sigout, sig = dMdot_solids(rin, rout, t, s, alpha, Mdisk, rc, dr, rhos, T0, betaT, mu, \
-    #    Mstar, sigma, dusttogas, gammadflag, sigmad_dt) 
-    #dMdotgas = dMdot_gas(rin, rout, t, alpha, Mdisk, mu, T0, betaT, rc, Mstar, gammadflag)
-    #    
-    #tf, af, sf = rf(rstart, t, s, mx, Ex, alpha, dr, Mdisk, rc, Nx, rhos, T0, betaT, mu, \
-    #    Mstar, sigma, npts, nptsin, tin, gammadflag, returnall)  
-    #
-    #if sf[-1] != 0.0:
-    #    print "Not desorbing"
-    #    return 0, f * dMdotsolids
-    #           
-    #elif af[-1] < rin:
-    #    print "Hasn't reached desorption distance"
-    #    return 0, f * dMdotsolids        
-    #    
-    #elif af[-1] >= rin and af[-1] <= rout:
-    #    
-    #    nt = 50
-    #    nr = 50
-    #
-    #    rgrid = np.logspace(np.log10(0.05),np.log10(4e3),nr)
-    #    tgrid = np.linspace(1e2,3e6,nt)*365*24*3600
-    #
-    #    func = scipy.interpolate.interp2d(tgrid, rgrid, sig)
-    #    sigmapdes = func(tf[-1], af[-1])
-    #            
-    #    Des = 3 * sigmapdes * (af[-1]*AU) * (0.001*af[-1])*AU * 12*np.pi / (2 * rhos * s) * \
-    #        mu * mp * Nx * Rdes(mx, Ex, Tdisk(af[-1], T0, betaT)) 
-    #    
-    #    dMdotgas_new = dMdotgas + f * Des
-    #    dMdotsolids_new = dMdotsolids - f * Des
-    #    sigmap_after_des = sigmapdes - f * Des * dt / (2 * np.pi * (af[-1] * AU) * (1e-3 * af[-1] * AU))
-    #    
-    #    return f * dMdotgas_new, f * dMdotsolids_new, sigmapdes, sigmap_after_des
-  
-    
-    
-    #elif af[-1] > rout:
-    #    print "Already desorbed"
-    #    return f * dMdotgas, 0  
+                                        
 
     
-              
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-
-
-#def dMdot(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
-#    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1):
-#     
-#     Sigmap_in = Sigmadisk(rin, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
-#     Sigmap_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
-#     
-#     Sigmag_in = Sigmadisk(rin, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)
-#     Sigmag_out = Sigmadisk_act(rout, t0, alpha, T0, betaT, mu, Mstar, r1, C)
-#
-#     t = np.linspace(t0, tmax, n)
-#     #t = np.logspace(np.log10(t0), np.log10(tmax), n)
-#     dM_gas, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out, Sigmagv_in, Sigmagv_out = \
-#                [], [], [], [], [Sigmap_in], [Sigmap_out], [Sigmag_in], [Sigmag_out]
-#
-#     for i in range(len(t) - 1):
-#
-#          dMgas = dMgas_dt(rin, rout, t[i], s, alpha, rhos, T0, betaT, mu, r1, C, Mstar, sigma) * (t[i + 1] - t[i])
-#          dMsol = dMsol_dt(rin, rout, t[i], s, alpha, Sigmap_in, Sigmap_out, rhos, T0, betaT, mu, r1, C, Mstar, sigma, vrw) * (t[i + 1] - t[i])
-#
-#          dM_gas = np.append(dM_gas, dMgas)
-#          dM_sol = np.append(dM_sol, dMsol)
-#
-#          #if constdtg == 0:
-#          Sigmap_in = Sigmap_in + dMsol / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
-#          Sigmap_out = Sigmap_out + dMsol / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
-#          
-#          Sigmag_in = Sigmag_in + dMgas / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
-#          Sigmag_out = Sigmag_out + dMgas / (np.pi * ((rout * cmperau)**2 - (rin * cmperau)**2))
-#          
-#          Sigmagv_in = np.append(Sigmagv_in, Sigmag_in)
-#          Sigmagv_out = np.append(Sigmagv_out, Sigmag_out)
-#              
-#          #else:
-#          #    Sigmap_in = Sigmadisk_act(rin, t[i], alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
-#          #    Sigmap_out = Sigmadisk_act(rout, t[i], alpha, T0, betaT, mu, Mstar, r1, C) * dusttogas
-#
-#          Sigmadv_in = np.append(Sigmadv_in, Sigmadisk_act(rin, t[i], alpha, T0, betaT, mu, Mstar, r1, C))
-#          Sigmadv_out = np.append(Sigmadv_out, Sigmadisk_act(rout, t[i], alpha, T0, betaT, mu, Mstar, r1, C))
-#          
-#          Sigmapv_in = np.append(Sigmapv_in, Sigmap_in)
-#          Sigmapv_out = np.append(Sigmapv_out, Sigmap_out)
-#
-#     return dM_gas * f, dM_sol, Sigmadv_in, Sigmadv_out, Sigmapv_in, Sigmapv_out, Sigmagv_in, Sigmagv_out
 
 
 
