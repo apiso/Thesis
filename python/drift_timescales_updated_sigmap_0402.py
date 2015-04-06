@@ -534,7 +534,11 @@ def eta(r, t, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, mu = 2.35, Msta
     return - (r * AU) / (2 * rhodisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * (r * AU * Omegak(r, Mstar))**2) \
             * (Pdisk(r+dr, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) - \
                     Pdisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag)) / (dr * AU)
-       
+
+
+    return  Pdisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) / \
+        (2 * rhodisk(r, t, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag) * (r * AU * Omegak(r, Mstar))**2) * 2.75       
+                     
 
 def ts(r, t, s, alpha, dr, Mdisk, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, mu = 2.35, \
     Mstar = Msun, gammadflag = 0, sigma = 2 * 10**(-15)):
@@ -854,6 +858,19 @@ def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
           return Tdisk(x, T0, betaT) - T_freeze(mx, Ex, nx)
 
      return brentq(f, 0.1, 100)
+     
+
+def r_stop(t, s, alpha, dr, Mdisk, mx, Ex, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, mu = 2.35, \
+    Mstar = Msun, gammadflag = 0, sigma = 2 * 10**(-15), Nx = 1e15):
+
+     def f(r):
+          return (r*AU) / (- rdot_with_acc(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+            Mstar, gammadflag, sigma)) - tdes(mx, Ex, Tdisk(r, T0, betaT), s, Nx, rhos)
+
+     try:
+          return brentq(f, 1e-3, 1e2)
+     except ValueError:
+          return 1e-10
 
 
 def rf(rin, tf, sin, mx, Ex, alpha, dr, Mdisk, rc = 100*AU, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
@@ -1009,7 +1026,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
         Sigmad = np.append(Sigmad, Sigmadisk(r[i], t[0], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
         
         if dif == 1:
-            D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
+            D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r[i], T0, betaT, mu, Mstar) / \
                 (1 + taus(r[i], t[0], s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
         else:
             D = zeros(nr)
@@ -1068,7 +1085,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
                 Sigmad = np.append(Sigmad, Sigmadisk(r[i], time, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
                 
                 if dif == 1:
-                    D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r, T0, betaT, mu, Mstar) / \
+                    D = np.append(D, alpha * cdisk(r[i], T0, betaT, mu) * Hdisk(r[i], T0, betaT, mu, Mstar) / \
                         (1 + taus(r[i], time, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, Mstar, gammadflag, sigma)**2))
                 else:
                     D = zeros(nr)
@@ -1077,6 +1094,146 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
         
     
     return sigarray
+
+
+
+def Sigmadisk_test(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, \
+    Mstar = Msun, sigma = 2 * 10**(-15), dusttogas = 0.01, gammadflag = 0, sigmad_dt = 1, dif = 1, lin = 1):
+    
+    """
+    Surface density of solids evolved in time using the advection-diffusion equation
+    
+    Input
+    -----
+    rin:
+        starting point of the radial grid size in AU
+    rout:
+        ending point of the radial grid size in AU
+    nr:
+        number of radial grid points
+    ti:
+        time at which we begin the evolution in s
+    tf:
+        time at which we end the evolution in s
+    nt:
+        number of time steps
+    s:
+        particle size in cm
+    alpha:
+        coefficient in the Shakura-Sunyaev disk prescription (dimensionless)
+    Mdisk:
+        disk mass in g
+    rc:
+        characteristic disk radius in cm
+    rhos:
+        density of the solid particle in g cm^-3
+    T0, betaT:
+        temperature normalization and powerlaw coefficient in the disk temperature profile
+    mu:
+        mean molecular weight of the disk gas (dimensionless)
+    Mstar:
+        host star mass in g
+    sigma:
+        cross section for collisions in cm^2
+    dusttogas:
+        dust-to-gas ratio in the disk (dimensionless)
+    gammadflag:
+        flag: if set to 0, the gamma in the viscosity powerlaw dependence is calculated;
+        if set to 1, gamma = 1, as is the case in "textbook" examples
+    sigma_dt:
+        flag; if sigma_dt = 1, we allow the gas surface density to evolve in time;
+        otherwise, the gas surface density does not change in time
+    
+    """
+    
+    r = np.logspace(np.log10(rin), np.log10(rout), nr) #radial grid
+    
+    if lin == 1:
+        t = np.linspace(ti, tf, nt)
+        dt = t[1] - t[0]  #temporal grid
+    else:
+        t = np.logspace(np.log10(ti), np.log10(tf), nt)
+     #time step in the advection-diffusion equation solver; set to be constant for now
+    
+    v, Sigmad = [], [] #initializing arrays for radial drift velocity, gas surface density and diffusivity
+    
+    sigarray = np.ndarray(shape = (nr, nt), dtype = float) #initializing array for the dust surface density at each time step
+    
+       
+    for i in range(nr):
+        
+        #ensuring that we don't run into an index error when setting up dr 
+        if i != nr - 1:
+            dr = r[i + 1] - r[i]
+        else:
+            dr = r[-1] - r[-2]
+        
+        #setting up v, Sigmad and D at time zero        
+        v = np.append(v, vacc_act(r[i], t[0], alpha, mu, T0, betaT, rc, Mstar, gammadflag = 0))
+        Sigmad = np.append(Sigmad, Sigmadisk(r[i], t[0], alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
+        
+        D = zeros(nr)
+        
+    
+    #setting up the solver        
+    h = Sigmad * r * AU
+    uin = r * Sigmad * AU
+    
+    #uin = r * maximum(Sigmad[280] / 100 * np.exp(-(r-r[280])**2/(2*(0.1)**2)), 1e-100) * AU
+    
+    #uin = []
+    #for i in range(nr):
+    #    if r[i] >= 10. and r[i] <= 10.5:
+    #        uin = np.append(uin, r[i] * Sigmad[i] * dusttogas * AU)
+    #    else:
+    #        uin = np.append(uin, 1e-100)
+    
+    g = ones(nr)
+    K = zeros(nr)
+    L = zeros(nr)
+    flim = ones(nr)
+    
+    A0 = zeros(nr)
+    B0 = zeros(nr)
+    C0 = zeros(nr)
+    D0 = zeros(nr)
+    
+    for i in range(nr):
+        #sigarray[i, 0] = Sigmad[i] * dusttogas
+        sigarray[i, 0] = uin[i] / (r[i] * AU)
+        
+    time = t[0]
+    
+    for j in range(1, nt):
+        if lin !=1 :
+            dt = t[j] - t[j - 1]
+        uout = impl_donorcell_adv_diff_delta(nr, r * AU, D, v, g, h, K, L, flim, uin, dt, 1,1, 0, 0, 0,0, 1, A0, B0, C0, D0)
+        
+        for i in range(nr):
+            sigarray[i, j] = uout[i] / (r[i] * AU)
+        
+        uin = uout #updating the new dust surface density to be used in the next time step
+        time = time + dt #moving on to the next time step
+        
+        if sigmad_dt !=0: #if sigmad_dt = 0, we skip updating v, Sigmad, D
+            
+            v, Sigmad = [], [] #initializing new arrays
+        
+        
+            for i in range(nr):
+                
+                #updating v, Sigmad, D with their values at the new time step
+                v = np.append(v, vacc_act(r[i], time, alpha, mu, T0, betaT, rc, Mstar, gammadflag = 0))
+                Sigmad = np.append(Sigmad, Sigmadisk(r[i], time, alpha, Mdisk, rc, T0, betaT, mu, Mstar, gammadflag))
+        
+                D = zeros(nr)
+                
+                        #D is the dust diffusivity, i.e. Dgas / (1+St^2), with Dgas the viscosity and St the Stokes number
+            h = Sigmad * r * AU
+        
+    
+    return sigarray
+
 
 
     

@@ -181,10 +181,15 @@ def lambdamfp(r, Mdisk, Rstar, Tstar, rc, mu = 2.35, Mstar = Msun, sigma = 2e-15
     return 1 / (np.sqrt(2) * sigma * \
           (rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) / (mu * mp)))
 
+#def eta(r, Mdisk, Rstar, Tstar, rc, dr, mu = 2.35, Mstar = Msun):
+#    """Power law coefficient in P \propto r^(-n)"""
+#    return - (r * AU) / (2 * rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) * (r * AU * Omegak(r, Mstar))**2) \
+#            * (Pdisk(r + dr, Mdisk, Rstar, Tstar, rc, mu, Mstar) - Pdisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar)) / (dr * AU)
+            
 def eta(r, Mdisk, Rstar, Tstar, rc, dr, mu = 2.35, Mstar = Msun):
     """Power law coefficient in P \propto r^(-n)"""
-    return - (r * AU) / (2 * rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) * (r * AU * Omegak(r, Mstar))**2) \
-            * (Pdisk(r + dr, Mdisk, Rstar, Tstar, rc, mu, Mstar) - Pdisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar)) / (dr * AU)
+    return  Pdisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) / \
+        (2 * rhodisk(r, Mdisk, Rstar, Tstar, rc, mu, Mstar) * (r * AU * Omegak(r, Mstar))**2) * 2.75
        
             
 #def eta(r, Mdisk, Tstar, Rstar, dr, rc, mu = 2.35, Mstar = Msun):
@@ -283,7 +288,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, Rstar, Tstar, rc, rho
             dr = r[-1] - r[-2]
         v = np.append(v, rdot_with_acc(r[i], s, alpha, Mdisk, Rstar, Tstar, rc, dr, rhos, mu, Mstar, sigma))
         Sigmad = np.append(Sigmad, Sigmadisk(r[i], Mdisk, rc))
-        D = np.append(D, alpha * cdisk(r[i], Tstar, Rstar, mu) * Hdisk(r, Tstar, Rstar, mu, Mstar))
+        D = np.append(D, alpha * cdisk(r[i], Tstar, Rstar, mu) * Hdisk(r[i], Tstar, Rstar, mu, Mstar))
         
     h = Sigmad * r * AU
     uin = r * Sigmad * dusttogas * AU
