@@ -113,15 +113,74 @@ We describe our analytic model for the radial drift of solids in section \ref{se
 
 \subsection{Relevant timescales}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{../../figs/drift_timescales_betaS1_gas_acc_new.pdf}
+%\vspace{-0.5in}
+\caption{Relevant timescales for dynamical effects in the desorption process: $t_{\rm r, drift}$ (solid lines), $t_{\rm evap}$ (dashed lines) and $t_{\rm gas, acc}$ (dotted lines). The timescales are calculated at three representative locations in the disk: ... AU (blue lines), ... AU (green lines) and ... AU(red lines). The horizontal dashed line represents a typical disk lifetime of 3 Myr. Radial drift and gas accretion affect desorption in the regions where their respective timescales, i.e. $t_{\rm r, drift}$ and $t_{\rm gas, acc}$ are comparable to the desorption timescale $t_{\rm evap}$. \textbf{Figure belongs to section 2.4.} (\emgr{We will probably want to change the notation on the plot to $t_{des}$ instead of $t_{\rm evap}$ for consistency.})}  %  (See text for a description of evolution to yet higher masses.) 
+\label{fig:timescales}
+\end{figure}
+
 \emgr{Calculate timescale for radial drift following Chiang \& Youdin (2010). Calculate desorption timescale following Hollenbach et al. (2009). Estimate gas accretion timescale for a given $\alpha$. Important: mention that, for simplicity and illustrative purposes, these calculations are performed for a passive disk. Show plot with the timescales as a function of particle size at different snowlines to show the regime in which drift matters}.
+
+
 
 \section{Snowline Locations}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{../../figs/desorption_distance_passive_active.pdf}
+%\vspace{-0.5in}
+\caption{Desorption distance as a function of a particle's initial location in the disk, for a range of particle sizes, and for both a passive disk (left panels) and an active disk (right panels). The desorption distance is calculated for particles composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The particle size increases from $10^{-3}$ cm to $10^8$ cm in a rainbow color scheme. For a range of particle sizes, the desorption distance is the same regardless of the particles' initial location. \textbf{Figure belongs to section 3.}}  %  (See text for a description of evolution to yet higher masses.) 
+\label{fig:snowlines}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{../../figs/desorption_distance_actual_vs_estimated_passive_active.pdf}
+%\vspace{-0.5in}
+\caption{Desorption distance estimated from analytic calculations (see text) as a function of the desorption distance calculated numerically, for the range of particle sizes that desorb at a fixed distance regardless of initial location (see Figure \ref{fig:snowlines} and text). The estimate is performed for a passive disk (left panels) and an active disk (right panels).  The particles are composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The analytic approximation is in good agreement with the numerical result for most cases. \textbf{Figure belongs to section 3.}}  %  (See text for a description of evolution to yet higher masses.) 
+\label{fig:an_vs_actual}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{../../figs/desorption_distance_vs_s.pdf}
+%\vspace{-0.5in}
+\caption{Desorption distance as a function of initial particle size, for the range of particles that desorb at a fixed distance regardless of initial location (see Figure \ref{fig:snowlines}). \textbf{Figure belongs to section 3.} \emgr{This is a figure that I'm not sure we should include, since it's not really provide that much useful inside. If we did include it though, there would be two panels both for the passive and the active disk. The caption is not complete since the active disk panel is not yet there.}}  %  (See text for a description of evolution to yet higher masses.) 
+\label{fig:an_vs_actual}
+\end{figure}
+
 \emgr{Present the equation set that you are solving, $dr/dt=\dot{r}$, $ds/dt=...$. I don't think it is necessary to describe in detail the numerical method of solving the equations since it's pretty straightforward. Present the pretty rainbow plots side by side for passive and active disks, and highlight the differences. Insert the plots that shows that for the intermediate size particles, the desorption distance can be estimated analytically with good accuracy. Maybe also include the plot showing the desorption distance as a function of particle size, both for passive and active disk. Split into subsections?}
+
 
 \section{Results for the C/O Ratio}
 
-\emgr{Present the plots analogous to Fig. 1 in \"Oberg et al. (2011) for different particle sizes, based on the snowline locations obtained in the previous section, both for passive and active disk. Perhaps show it at different times in the gas disk evolution (i.e., not just at 3 Myr) for the active disk. Then assume a particle size distribution and show the interpolated result for the C/O ratio. Generalize the result using a transition disk (this part might also fit in the discussion section).}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{../../figs/s_t_a.pdf}
+%\vspace{-0.5in}
+\caption{Left panels: size of desorbing H$_2$O particles as a function of time, for different initial particle sizes and for three initial locations in a passive disk: 1 AU (top left), 10 AU (middle left) and 100 AU (bottom left). Particles desorb almost instantaneously. Right panel: fractional mass lost by the desorbing particles as a function of the particle's location as it drifts, for different initial particle sizes, and at the same initial locations presented in the left panel. Particles lose most of their mass very close to the distance at which they fully desorb. \textbf{Figure belongs to section 4.}}
+\label{fig:s_t_a}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{../../figs/C_O_ratio_active_disk_many.pdf}
+%\vspace{-0.5in}
+\caption{C/O ratio in gas (solid lines) and in dust (dashed lines) for a passive disk (left panel \emgr{currently non-existent}) and for an active disk (right panel \emgr{currently just a single plot}), and for the range of particle sizes that desorb at a fixed distance regardless of their initial location in the disk. The particle size increases from 0.001 cm to 700 cm in a rainbow color scheme. The horizontal dotted line represents the stellar value of 0.54. The black lines (\emgr{currently non-existent}) represent the C/O ratio in gas (solid black line) and dust (dashed black line) for a static disk. The snowline location moves inward as the particle size increases. \textbf{Figure belongs to section 4.}}
+\label{fig:CO_ratio}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{lala}
+%\vspace{-0.5in}
+\caption{C/O ratios for different particle size distributions... \textbf{Figure belongs to section 4.} (\emgr{It will probably be a multi-panel plot, for different particle size distributions, for both passive and active disk, and perhaps at different times for the active disk. Not yet unsure how that figure will look like since I don't have the results yet, so I'll leave the figure caption open for now.})}
+\label{fig:...}
+\end{figure}
+
+\emgr{Motivate the fact that we can calculate a sharp, fixed snowline for each particle size by inserting the plot that shows that particles desorb almost instantaneously at a fixed distance.  Then present the plots analogous to Fig. 1 in \"Oberg et al. (2011) for different particle sizes, based on the snowline locations obtained in the previous section, both for passive and active disk. Perhaps show it at different times in the gas disk evolution (i.e., not just at 3 Myr) for the active disk. Then assume a particle size distribution and show the interpolated result for the C/O ratio. Generalize the result using a transition disk (this part might also fit in the discussion section).}
 
 %emgr{Present the flux equations used to keep track of the amount of C and O in gas and dust throughout the disk. Motivate the simplification of using a fixed particle sized, fixed timescale, and fixed desorption distance in the calculations by referring to the rainbow plot in the previous section and by inserting the plot that shows that particle desorb almost instantly at a fixed distance. Based on these assumptions, finally show the equivalent of Fig. 1 in \"Oberg et al. (2011) for different particle sizes, and at different times in the gas disk evolution (i.e., not just at 3 Myr) --- a multi-panel plot could be a good idea. Discuss the result, trends, etc. Ideally, have a final plot showing the results for a particle size distribution rather than for individual particles.}
 
