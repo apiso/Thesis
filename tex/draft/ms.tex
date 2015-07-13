@@ -101,7 +101,7 @@ We present our protoplanetary disk model for both a passive and an active disk i
 \subsection{Disk Model}
 \label{sec:disk}
 
-\textit{Passive disk.} We adopt a minimum mass solar nebula (MMSN) disk model for a passive disk similar to the prescription of \citet{chiang10}. The gas surface density and midplane temperature are
+\textbf{Passive disk.} We adopt a minimum mass solar nebula (MMSN) disk model for a passive disk similar to the prescription of \citet{chiang10}. The gas surface density and midplane temperature are
 \begin{subeqnarray}
 \label{eq:disk}
 \Sigma_{\rm d}&=&2200\, (r/\text{AU})^{-1}\,\, \text{g cm}^{-2} \slabel{eq:disksigma}\\
@@ -109,7 +109,7 @@ T_{\rm d} &=& 120\, (r/\text{AU})^{-3/7} \,\,\text{K}, \slabel{eq:diskT}
 \end{subeqnarray}
 where $r$ is the semimajor axis. Based on some observations of protoplanetary disks \citep{andrews10}, our surface density profile, $\Sigma_{\rm d} \propto r^{-1}$, is flatter than that of \citet{chiang10}, i.e. $\Sigma_{\rm d} \propto r^{-3/2}$. 
 
-\textit{Actively accreting disk with passive temperature profile.} We model the active disk as a thin disk with an $\alpha$-viscosity prescription \citep{shakura73}:
+\textbf{Actively accreting disk with passive temperature profile.} We model the active disk as a thin disk with an $\alpha$-viscosity prescription \citep{shakura73}:
 \begin{equation}
 \label{eq:nu}
 \nu=\alpha c_{\rm d} H_{\rm d}.
@@ -120,7 +120,7 @@ Here $\nu$ is the kinematic viscosity, $\alpha < 1$ is a dimensionless coefficie
 c_{\rm d} &=& \sqrt{\frac{k_{\rm B} T_{\rm d}}{\mu m_{\rm p}}} \slabel{eq:cd} \\
 H_{\rm d}&=& \frac{c_{\rm d}}{\Omega_{\rm k}} \slabel{eq:Hd},
 \end{subeqnarray}
-where $k_{\rm B}$ is the Boltzmann constant, $\mu$ is the mean molecular weight of the gas, $m_{\rm p}$ is the proton mass, and $\Omega_{\rm k}$ is the Keplerian angular velocity, $\Omega_{\rm k} \equiv \sqrt{G M_*/r^3}$, with $G$ the gravitational constant and $M_*$ the stellar mass. We choose $\mu=2.35$, corresponding to the Solar composition go hydrogen and helium. The temperature profile for an active disk is assumed to be the same as for the passive disk and given by Equation (\ref{eq:diskT}). From Equations (\ref{eq:nu}) and (\ref{eq:cdHd}), the viscosity can thus be expressed as a power-law in radius, $\nu \propto r^{\gamma}$, with $\gamma=15/14 \approx 1$ for our choice of parameters. Following \citet{armitage10}, we define $R \equiv r/r_{\rm c}$ and $\nu_{\rm c} \equiv \nu(r_{\rm c})$, where $r_{\rm c}$ is a characteristic disk radius. We choose $r_{\rm c}=100$ AU. The gas surface density is then given by the self-similar solution
+where $k_{\rm B}$ is the Boltzmann constant, $\mu$ is the mean molecular weight of the gas, $m_{\rm p}$ is the proton mass, and $\Omega_{\rm k}$ is the Keplerian angular velocity, $\Omega_{\rm k} \equiv \sqrt{G M_*/r^3}$, with $G$ the gravitational constant and $M_*$ the stellar mass. We choose $M_*=M_{\odot}$ and $\mu=2.35$, corresponding to the Solar composition go hydrogen and helium. The temperature profile for an active disk is assumed to be the same as for the passive disk and given by Equation (\ref{eq:diskT}). From Equations (\ref{eq:nu}) and (\ref{eq:cdHd}), the viscosity can thus be expressed as a power-law in radius, $\nu \propto r^{\gamma}$, with $\gamma=15/14 \approx 1$ for our choice of parameters. Following \citet{armitage10}, we define $R \equiv r/r_{\rm c}$ and $\nu_{\rm c} \equiv \nu(r_{\rm c})$, where $r_{\rm c}$ is a characteristic disk radius. We choose $r_{\rm c}=100$ AU. The gas surface density is then given by the self-similar solution
 \begin{equation}
 \label{eq:Sigmaact}
 \Sigma_{\rm d}(R, T) = \frac{M_{\rm d}}{2 \pi r_{\rm c}^2 R^{\gamma}} T^{(-5/2-\gamma)/(2-\gamma)} \exp{\Big[-\frac{R^{-(2-\gamma)}}{T}}\Big],
@@ -133,9 +133,17 @@ t_{\rm c} & \equiv & \frac{1}{3(2-\gamma)} \frac{r_{\rm c}^2}{\nu_{\rm c}},
 \end{subeqnarray}
 where $t$ is time. We take $M_{\rm d}=0.1 M_{\odot}$ (e.g., \citealt{birnstiel12}), but note that our results are insensitive to this choice (see Section \ref{sec:discussion}). 
 
-\textit{Active disk steady-state solution.} Calculating the midplane temperature self-consistently for an active disk is a non-trivial solution, so instead we use the steady state solution with a constant mass flux $\dot{M}=10^{-8} M_{\odot}$ yr$^{-1}$ \citep{armitage10}. For consistency we choose $\alpha=0.01$ as in the previous case.  
+\textbf{Active disk steady-state solution.} Calculating the midplane temperature self-consistently for an active disk is non-trivial, so instead we use the steady state solution for the surface density and temperature for a thin disk (e.g., \citealt{armitage10}):
 
-\textit{Static disk.} For comparison purposes with \citet{oberg11}, we also use a static disk model, with $\Sigma_{\rm d}$ and $T_{\rm d}$ described by Equations (\ref{eq:disksigma}) and (\ref{eq:diskT}), but that not takes into account gas accretion on to the central star or radial drift of solids (see Section \ref{sec:drift}).
+\begin{subeqnarray}
+\label{eq:activeT}
+T_{\rm d}^4 & = & \frac{3 G M_* \dot{M}}{8 \pi \sigma r^3} \slabel{eq:Tdact} \\
+\dot{M} & = & 3 \pi \nu \Sigma_{\rm d} \slabel{eq:Mdot},
+\end{subeqnarray}
+where $\dot{M}$, the mass flux, is constant for steady-state \footnote{Equations (\ref{eq:Tdact}) and (\ref{eq:Mdot}) are valid when $r \gg R_*$, the stellar radius, which is the regime in which we conduct our study.}. Based on disk observations (e.g., \citealt{andrews10}), we choose $\dot{M}=10^{-8} M_{\odot}$ yr$^{-1}$. We can then easily determine the radial temperature profile from Equation (\ref{eq:Tdact}), $c_{\rm d}$ and $H_{\rm d}$ from Equation (\ref{eq:cdHd}), as well as the viscosity $\nu$ from Equation (\ref{eq:nu}) for a given $\alpha$. For consistency, we choose  $\alpha=0.01$ as in the previous case. Finally, we determine $\Sigma_{\rm d}$ from Equation (\ref{eq:Mdot}).
+
+
+\textbf{Static disk.} For comparison purposes with \citet{oberg11}, we also use a static disk model, with $\Sigma_{\rm d}$ and $T_{\rm d}$ described by Equations (\ref{eq:disksigma}) and (\ref{eq:diskT}). The static model does not take into account gas accretion on to the central star or radial drift of solids (see Section \ref{sec:drift}).
 
 
 \subsection{Radial Drift}
@@ -168,14 +176,14 @@ and $P_{\rm d} = \rho_{\rm d} c_{\rm d}^2$ is the disk midplane pressure.
 For an active disk, the radial drift velocity has an additional term due to the radial movement of the gas, i.e.
 \begin{equation}
 \label{eq:rdotact}
-\dot{r} \approx -2 \eta \Omega_{\rm k} r \Big(\frac{\tau_{\rm s}}{1+\tau_{\rm s}^2}\Big) + \frac{v_{\rm gas}}{1+\tau_{\rm s}^2},
+\dot{r} \approx -2 \eta \Omega_{\rm k} r \Big(\frac{\tau_{\rm s}}{1+\tau_{\rm s}^2}\Big) + \frac{\dot{r}_{\rm gas}}{1+\tau_{\rm s}^2},
 \end{equation}
-where $v_{\rm gas}$ is the radial gas accretion velocity and can be expressed as (e.g., \citealt{fkr02})
+where $\dot{r}_{\rm gas}$ is the radial gas accretion velocity and can be expressed as (e.g., \citealt{fkr02})
 \begin{equation}
 \label{eq:vgas}
-v_{\rm gas}= - \frac{3}{\Sigma_{\rm d} \sqrt{r}} \frac{\partial}{\partial r}(\nu \Sigma_{\rm d} \sqrt{r}) 
+\dot{r}_{\rm gas} = - \frac{3}{\Sigma_{\rm d} \sqrt{r}} \frac{\partial}{\partial r}(\nu \Sigma_{\rm d} \sqrt{r}) 
 \end{equation}
-with $\Sigma_{\rm d}$ from Equation (\ref{eq:Sigmaact}).
+with $\Sigma_{\rm d}$ from Equation (\ref{eq:Sigmaact}). For the active disk steady-state solution (see Section \ref{sec:disk}), $\dot{r}_{\rm gas}$ can be expressed more simply using the definition of the mass flux, $\dot{M}=-2 \pi r \dot{r}_{\rm gas} \Sigma_{\rm d}$, with $\dot{M}$ fixed and $\Sigma_{\rm d}$ obtained from Equation (\ref{eq:Mdot}). 
 
 \subsection{Volatile Desorption}
 \label{sec:desorption}
@@ -210,7 +218,7 @@ where $N_x \approx 10^{15}$ sites cm$^{-2}$ is the number of adsorption sites of
 \label{eq:tdrift}
 t_{\rm r, drift} \sim \frac{r}{\dot{r}},
 \end{equation}
-where $\dot{r}$ is given by Equation (\ref{eq:rdotpas}) for a passive disk and by Equation (\ref{eq:rdotact}) for an active disk.
+where $\dot{r}$ is the radial drift velocity given by Equation (\ref{eq:rdotpas}) for a passive disk and by Equation (\ref{eq:rdotact}) for an active disk.
 
 \textit{Gas accretion timescale.} The timescale for gas accretion onto the central star for an active disk is (e.g., \citealt{armitage10})
 \begin{equation}
@@ -219,7 +227,7 @@ t_{\rm gas, acc} \sim \frac{r^2}{\nu} \sim \frac{1}{2 \alpha \eta \Omega_{\rm k}
 \end{equation}
 with the latter expression derived from Equations (\ref{eq:nu}) and (\ref{eq:eta}).
 
-For simplicity purposes, we calculate the radial drift timescale, $t_{\rm r, drift}$, for a passive disk in this section, but most of our conclusions hold true for an active disk as well. Figure \ref{fig:timescales} shows $t_{\rm des}$, $t_{\rm r, drift}$ and $t_{\rm gas, acc}$ as a function of particle size at three different locations in the disk, corresponding to the H$_2$O, CO$_2$ and CO snowlines in the static disk. As expected, micron-sized particles desorb on very short timescales of $\sim 1-1000$ years and their radial drift timescale exceeds the typical disk lifetime of a few Myr by several orders of magnitude. Thus for small particles in a passive disk, the snowline locations and the C/O ratio are the same as for a static disk (see Figure 1 from \citealt{oberg11}) \footnote{This is not true for an active disk, however, where gas accretion causes even micron-sized particles to drift significantly before desorbing, as we show in section \ref{sec:snowlines}.}. At the other extreme, kilometer-sized particles are unaffected by gas drag and have long desorption timescales ($\gg$1 Myr ), and the snowline locations and C/O ratio remain unchanged in this case as well. This is true for both passive and active disks, since large planetesimals are decoupled from the gas and hence unaffected by gas accretion onto the host star. 
+For simplicity purposes, we calculate the radial drift timescale, $t_{\rm r, drift}$, for a passive disk in this section, but most of our conclusions hold true for an active disk as well. Figure \ref{fig:timescales} shows $t_{\rm des}$, $t_{\rm r, drift}$ and $t_{\rm gas, acc}$ as a function of particle size at three different locations in the disk, corresponding to the H$_2$O, CO$_2$ and CO snowlines in the static disk. As expected, micron-sized particles desorb on very short timescales of $\sim 1-1000$ years in the close vicinity of their respective snowlines, since the desorption rate depends exponentially on temperature and hence disk location (see Equation \ref{eq:Rdes}).  On the other hand, their radial drift timescale exceeds the typical disk lifetime of a few Myr by several orders of magnitude due to their strong coupling with the gas. Thus for small particles in a passive disk, the snowline locations and the C/O ratio are the same as for a static disk (see Figure 1 from \citealt{oberg11}) \footnote{This is not true for an active disk, however, where gas accretion causes even micron-sized particles to drift significantly before desorbing, as we show in section \ref{sec:snowlines}.}. At the other extreme, kilometer-sized particles are unaffected by gas drag and have long desorption timescales ($\gg$1 Myr ), and the snowline locations and C/O ratio remain unchanged in this case as well. This is true for both passive and active disks, since large planetesimals are decoupled from the gas and hence unaffected by gas accretion onto the host star. 
 
 Of particular interest for our purposes is the particle size regime for which $t_{\rm r, drift} \lesssim t_{\rm des} \lesssim t_{\rm d}$ or $t_{\rm gas, acc} \lesssim t_{\rm des} \lesssim t_{\rm d}$, where $t_{\rm d}=3$ Myr is the disk lifetime. In these cases, radial drift or gas accretion (or both) are faster than thermal desorption. Particles of sizes that satisfy these requirements will drift significantly due to radial drift or gas accretion before desorbing, thus moving the H$_2$O, CO$_2$ and CO snowlines closer towards the central star and changing the C/O ratio throughout the disk. We quantify these effects in sections \ref{sec:snowlines} and \ref{sec:COratio}.
 
@@ -227,7 +235,7 @@ Of particular interest for our purposes is the particle size regime for which $t
 \centering
 \includegraphics[width=0.5\textwidth]{../../figs/drift_timescales_betaS1_gas_acc_new.pdf}
 %\vspace{-0.5in}
-\caption{Relevant timescales for dynamical effects in the desorption process: $t_{\rm r, drift}$ (solid lines), $t_{\rm evap}$ (dashed lines) and $t_{\rm gas, acc}$ (dotted lines). The timescales are calculated at three representative locations in the disk: ... AU (blue lines), ... AU (green lines) and ... AU(red lines). The horizontal dashed line represents a typical disk lifetime of 3 Myr. Radial drift and gas accretion affect desorption in the regions where their respective timescales, i.e. $t_{\rm r, drift}$ and $t_{\rm gas, acc}$, are comparable to the desorption timescale $t_{\rm evap}$. \textbf{Figure belongs to section 2.4.} (\emgr{We will probably want to change the notation on the plot to $t_{des}$ instead of $t_{\rm evap}$ for consistency.})}  %  (See text for a description of evolution to yet higher masses.) 
+\caption{Relevant timescales for dynamical effects in the desorption process: $t_{\rm r, drift}$ (solid lines), $t_{\rm evap}$ (dashed lines) and $t_{\rm gas, acc}$ (dotted lines). The timescales are calculated at three representative locations in the disk, i.e. the H$_2$O, CO$_2$ and CO snowlines. For our choice of parameters, the snowlines are located at $\sim$0.7 AU (blue lines), $\sim$8.6 AU (green lines) and $\sim$59 AU (red lines), respectively. The horizontal dashed line represents a typical disk lifetime of 3 Myr. Radial drift and gas accretion affect desorption in the regions where their respective timescales, i.e. $t_{\rm r, drift}$ and $t_{\rm gas, acc}$, are comparable to the desorption timescale $t_{\rm des}$.} 
 \label{fig:timescales}
 \end{figure}
 
@@ -240,34 +248,36 @@ Of particular interest for our purposes is the particle size regime for which $t
 
 In this section we use the model described in section \ref{sec:model} to quantify the effects of radial drift (passive disk) or radial drift and gas accretion (active disk) on the snowline location, for dust particles of different sizes composed of either H$_2$O, CO$_2$ or CO. Specifically, we determine a particle's final location (i.e., where the particle either fully desorbs or remains at its initial size due to a long desorption timescale) as a function of its initial position in the disk, after the gas disk has dissipated. The disk lifetime, $t_{\rm d}$, is particularly relevant since this is the timescale on which giant planets form. The snowline locations at $t=t_{\rm d}$ throughout the protoplanetary disk determine the disk C/O ratio in gas at this time, and thus the C/O ratio in giant planet atmospheres that have formed \textit{in situ}.   
 
-As a fiducial model, we choose $M_*=M_{\odot}$, $M_{\rm d}=0.1 M_{\odot}$ and $r_{\rm c}=100$ AU. For each species $x$, we determine the final location in the disk of a particle of initial size $s_0$ by solving the following system of coupled differential equations:
+For each species $x$, we determine the final location in the disk of a particle of initial size $s_0$ by solving the following system of coupled differential equations:
 
 \begin{subeqnarray}
 \label{eq:ddt}
 \frac{ds}{dt} &= & - \frac{3 \mu_x m_{\rm p}}{\rho_{\rm s}} N_x R_{\rm des, x}  \slabel{eq:dsdt} \\
-\frac{dr}{dt} &=& \dot{r},
+\frac{dr}{dt} &=& \dot{r} \slabel{eq:drdt},
 \end{subeqnarray}
-where $R_{\rm des, x}$ is evaluated at $T=T_{\rm d}(r)$, and $\dot{r}$ is given by Equation (\ref{eq:rdotpas}) for a passive disk and Equation (\ref{eq:rdotact}) for an active disk. Equation (\ref{eq:dsdt}) can be derived straightforwardly from Equation (\ref{eq:tdes}). Our boundary conditions are $s(t_0)=s_0$, $r(t_0)=r_0$, and $s(t_{\rm d})=0$, where $t_0$ is the initial time at which we start the integration and $r_0$ is the initial location of the particle. We choose $t_0=1$ year, but our result is independent on the initial integration time as long as $t_0 \ll t_{\rm d}$.
+where the desorption rate $R_{\rm des, x}$ for each particle type (i.e., composed of H$_2$O, CO$_2$ or CO) is evaluated at $T=T_{\rm d}(r)$, and the radial drift velocity $\dot{r}$ is given by Equation (\ref{eq:rdotpas}) for a passive disk and Equation (\ref{eq:rdotact}) for an active disk. Equations (\ref{eq:dsdt}) and (\ref{eq:drdt}) describe the coupled desorption and radial drift, and can be derived straightforwardly from Equation (\ref{eq:tdes}). Our boundary conditions are $s(t_0)=s_0$, $r(t_0)=r_0$, and $s(t_{\rm d})=0$, where $t_0$ is the initial time at which we start the integration and $r_0$ is the initial location of the particle. We choose $t_0=1$ year, but our result is independent on the initial integration time as long as $t_0 \ll t_{\rm d}$.
 
-Figure \ref{fig:snowlines} shows our results for H$_2$O, CO$_2$ and CO particles, and for both a passive and an active disk. The final distance of the dust particles is consistent with Figure \ref{fig:timescales}. Kilometer-sized bodies do not drift or desorb during the disk lifetime both for a passive and active disk. Micron- to mm-sized particles do not drift before desorbing in a passive disk, but they drift significantly in an active disk since they move at the same velocity as the accreting gas. For $0.5$ cm $\lesssim s_0 \lesssim$ 700 cm in a passive disk and $0.001$ cm $\lesssim s_0 \lesssim$ 700 cm in an active disk, we notice that particles of initial size $s_0$ desorb at a fixed distance $r_{\rm des}$ regardless of their original location in the disk. We show in section \ref{sec:COratio} that this result is essential in determining the C/O ratio throughout the disk for different particle sizes. 
+As we show in Section \ref{sec:COratio}, a drifting particle that desorbs will do so almost instantaneously and will lose most of its mass very close to the distance at which it fully desorbs. Thus a particle's final location will depend on whether a grain initially at a certain distance is completely desorbed or not within the disk lifetime of 3 Myr. For example, larger grains take longer to desorb and hence are more likely to not evaporate fully in a given timeframe. 
+
+Figure \ref{fig:snowlines} shows our results for H$_2$O, CO$_2$ and CO particles, and for both a passive and an active disk. We do not show the equivalent result for the steady-state active disk since the trends are qualitatively the same as for the active disk with the temperature profile given by Equation (\ref{eq:diskT}). Kilometer-sized bodies do not drift or desorb during the disk lifetime both for a passive and an active disk. Similarly, micron- to mm-sized particles neither drift nor desorb unless they are located inside the static disk snowlines. This is not in contradiction with the desorption timescales for small particles from Figure \ref{fig:timescales}, since small grains only desorb fast at or nearby their respective snowlines, as mentioned in Section \ref{sec:timescales}.  In an active disk, however, micron-to mm-sized grains do drift significantly since they move at the same velocity as the accreting gas. For $0.5$ cm $\lesssim s_0 \lesssim$ 700 cm in a passive disk and $0.001$ cm $\lesssim s_0 \lesssim$ 700 cm in an active disk, we notice that particles of initial size $s_0$ desorb at a fixed distance $r_{\rm des}$ regardless of their original location in the disk. In fact, the only grains that will both drift and evaporate are those that reach their fixed final location (represented by the horizontal curves in Figure \ref{fig:snowlines}) within the disk lifetime. We show in section \ref{sec:COratio} that this result is essential in determining the C/O ratio throughout the disk for different particle sizes. 
 
 \begin{figure*}[tb]
 \centering
 \includegraphics[width=\textwidth]{../../figs/desorption_distance_passive_active_colorbar_test.pdf}
 %\vspace{-0.5in}
-\caption{Desorption distance as a function of a particle's initial location in the disk, for a range of particle sizes, and for both a passive disk (left panels) and an active disk (right panels). The desorption distance is calculated for particles composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The particle size increases from $10^{-3}$ cm to $10^8$ cm as indicated by the color bar. For a range of particle sizes, the desorption distance is the same regardless of the particles' initial location. \textbf{Figure belongs to section 3.}}  %  (See text for a description of evolution to yet higher masses.) 
+\caption{Desorption distance as a function of a particle's initial location in the disk, for a range of particle sizes, and for both a passive disk (left panels) and an active disk (right panels). The desorption distance is calculated for particles composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The particle size increases from $10^{-3}$ cm to $10^8$ cm as indicated by the color bar. For the range of particle sizes that fully desorb during $t_{\rm d}=3$ Myr, the desorption distance is the same regardless of the particles' initial location.} 
 \label{fig:snowlines}
 \end{figure*}
 
 Intuitively, this fixed $r_{\rm des}$ should be the location in the disk for which $t_{\rm r, drift} \sim t_{\rm des}$, given an initial particle size. Figure \ref{fig:an_vs_actual} shows the validity of this approximation for the range of particle sizes that desorb at a fixed distance in a passive and an active disk. We notice that the analytic approximation accurately reproduces the numerical result for most cases of interest. 
 
-\begin{figure}[h!]
+\begin{figure*}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{../../figs/desorption_distance_actual_vs_estimated_passive_active.pdf}
+\includegraphics[width=0.8\textwidth]{../../figs/desorption_distance_actual_vs_estimated_passive_active.pdf}
 %\vspace{-0.5in}
 \caption{Desorption distance estimated from analytic calculations (see text) as a function of the desorption distance calculated numerically, for the range of particle sizes that desorb at a fixed distance regardless of initial location (see Figure \ref{fig:snowlines} and text). The estimate is performed for a passive disk (left panels) and an active disk (right panels).  The particles are composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The analytic approximation is in good agreement with the numerical result for most cases. \textbf{Figure belongs to section 3.}}  %  (See text for a description of evolution to yet higher masses.) 
 \label{fig:an_vs_actual}
-\end{figure}
+\end{figure*}
 
 %\emgr{I didn't write the text for Figure 4 since we haven't yet decided if in the end we will include it in some form. We can }
 
@@ -285,13 +295,18 @@ Intuitively, this fixed $r_{\rm des}$ should be the location in the disk for whi
 \section{Results for the C/O Ratio}
 \label{sec:COratio}
 
-\begin{figure}[h!]
+\begin{figure*}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{../../figs/s_t_a.pdf}
+\includegraphics[width=0.8\textwidth]{../../figs/s_t_a.pdf}
 %\vspace{-0.5in}
 \caption{Left panels: size of desorbing H$_2$O particles as a function of time, for different initial particle sizes and for three initial locations in a passive disk: 1 AU (top left), 10 AU (middle left) and 100 AU (bottom left). Particles desorb almost instantaneously. Right panel: fractional mass lost by the desorbing particles as a function of the particle's location as it drifts, for different initial particle sizes, and at the same initial locations presented in the left panel. Particles lose most of their mass very close to the distance at which they fully desorb. \textbf{Figure belongs to section 4.}}
 \label{fig:s_t_a}
-\end{figure}
+\end{figure*}
+
+We now use our model and the results of Section \ref{sec:snowlines} to determine the H$_2$O, CO$_2$ and CO snowline locations and the C/O ratio in disks with static chemistry that experience radial drift of solids and gas accretion on to the central star. In Section \ref{sec:snowlines} we showed that solid particles which drift and fully desorb during the lifetime of the protoplanetary disk will do so at a fixed stellocentric distance, regardless of their initial location in the disk. 
+
+
+
 
 \begin{figure}[h!]
 \centering
