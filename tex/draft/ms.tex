@@ -101,7 +101,7 @@ We present our protoplanetary disk model for both a passive and an active disk i
 \subsection{Disk Model}
 \label{sec:disk}
 
-We adopt a minimum mass solar nebula (MMSN) disk model for a passive disk similar to the prescription of \citet{chiang10}. The gas surface density and midplane temperature are
+\textit{Passive disk.} We adopt a minimum mass solar nebula (MMSN) disk model for a passive disk similar to the prescription of \citet{chiang10}. The gas surface density and midplane temperature are
 \begin{subeqnarray}
 \label{eq:disk}
 \Sigma_{\rm d}&=&2200\, (r/\text{AU})^{-1}\,\, \text{g cm}^{-2} \slabel{eq:disksigma}\\
@@ -109,18 +109,18 @@ T_{\rm d} &=& 120\, (r/\text{AU})^{-3/7} \,\,\text{K}, \slabel{eq:diskT}
 \end{subeqnarray}
 where $r$ is the semimajor axis. Based on some observations of protoplanetary disks \citep{andrews10}, our surface density profile, $\Sigma_{\rm d} \propto r^{-1}$, is flatter than that of \citet{chiang10}, i.e. $\Sigma_{\rm d} \propto r^{-3/2}$. 
 
-We model the active disk as a thin disk with an $\alpha$-viscosity prescription \citep{shakura73}:
+\textit{Actively accreting disk with passive temperature profile.} We model the active disk as a thin disk with an $\alpha$-viscosity prescription \citep{shakura73}:
 \begin{equation}
 \label{eq:nu}
 \nu=\alpha c_{\rm d} H_{\rm d}.
 \end{equation}
-Here $\nu$ is the kinematic viscosity, $\alpha < 1$ is a dimensionless coefficient, and $c_{\rm d}$, $H_{\rm d}$ are the isothermal sound speed and disk scale height, respectively:
+Here $\nu$ is the kinematic viscosity, $\alpha < 1$ is a dimensionless coefficient and we choose $\alpha=0.01$, and $c_{\rm d}$, $H_{\rm d}$ are the isothermal sound speed and disk scale height, respectively:
 \begin{subeqnarray}
 \label{eq:cdHd}
 c_{\rm d} &=& \sqrt{\frac{k_{\rm B} T_{\rm d}}{\mu m_{\rm p}}} \slabel{eq:cd} \\
 H_{\rm d}&=& \frac{c_{\rm d}}{\Omega_{\rm k}} \slabel{eq:Hd},
 \end{subeqnarray}
-where $k_{\rm B}$ is the Boltzmann constant, $\mu$ is the mean molecular weight of the gas, $m_{\rm p}$ is the proton mass, and $\Omega_{\rm k}$ is the Keplerian angular velocity, $\Omega_{\rm k} \equiv \sqrt{G M_*/r^3}$, with $G$ the gravitational constant and $M_*$ the stellar mass. The temperature profile for an active disk is assumed to be the same as for the passive disk and given by Equation (\ref{eq:diskT}). From Equations (\ref{eq:nu}) and (\ref{eq:cdHd}), the viscosity can thus be expressed as a power-law in radius, $\nu \propto r^{\gamma}$, with $\gamma=15/14 \approx 1$ for our choice of parameters. Following \citet{armitage10}, we define $R \equiv r/r_{\rm c}$ and $\nu_{\rm c} \equiv \nu(r_{\rm c})$, where $r_{\rm c}$ is a characteristic disk radius. The gas surface density is then given by the self-similar solution
+where $k_{\rm B}$ is the Boltzmann constant, $\mu$ is the mean molecular weight of the gas, $m_{\rm p}$ is the proton mass, and $\Omega_{\rm k}$ is the Keplerian angular velocity, $\Omega_{\rm k} \equiv \sqrt{G M_*/r^3}$, with $G$ the gravitational constant and $M_*$ the stellar mass. We choose $\mu=2.35$, corresponding to the Solar composition go hydrogen and helium. The temperature profile for an active disk is assumed to be the same as for the passive disk and given by Equation (\ref{eq:diskT}). From Equations (\ref{eq:nu}) and (\ref{eq:cdHd}), the viscosity can thus be expressed as a power-law in radius, $\nu \propto r^{\gamma}$, with $\gamma=15/14 \approx 1$ for our choice of parameters. Following \citet{armitage10}, we define $R \equiv r/r_{\rm c}$ and $\nu_{\rm c} \equiv \nu(r_{\rm c})$, where $r_{\rm c}$ is a characteristic disk radius. We choose $r_{\rm c}=100$ AU. The gas surface density is then given by the self-similar solution
 \begin{equation}
 \label{eq:Sigmaact}
 \Sigma_{\rm d}(R, T) = \frac{M_{\rm d}}{2 \pi r_{\rm c}^2 R^{\gamma}} T^{(-5/2-\gamma)/(2-\gamma)} \exp{\Big[-\frac{R^{-(2-\gamma)}}{T}}\Big],
@@ -131,7 +131,11 @@ where $M_{\rm d}$ is the total disk mass and
 T & \equiv & \frac{t}{t_{\rm c}} + 1 \\
 t_{\rm c} & \equiv & \frac{1}{3(2-\gamma)} \frac{r_{\rm c}^2}{\nu_{\rm c}},
 \end{subeqnarray}
-where $t$ is time.
+where $t$ is time. We take $M_{\rm d}=0.1 M_{\odot}$ (e.g., \citealt{birnstiel12}), but note that our results are insensitive to this choice (see Section \ref{sec:discussion}). 
+
+\textit{Active disk steady-state solution.} Calculating the midplane temperature self-consistently for an active disk is a non-trivial solution, so instead we use the steady state solution with a constant mass flux $\dot{M}=10^{-8} M_{\odot}$ yr$^{-1}$ \citep{armitage10}. For consistency we choose $\alpha=0.01$ as in the previous case.  
+
+\textit{Static disk.} For comparison purposes with \citet{oberg11}, we also use a static disk model, with $\Sigma_{\rm d}$ and $T_{\rm d}$ described by Equations (\ref{eq:disksigma}) and (\ref{eq:diskT}), but that not takes into account gas accretion on to the central star or radial drift of solids (see Section \ref{sec:drift}).
 
 
 \subsection{Radial Drift}
@@ -147,7 +151,7 @@ t_{\rm s}= \left\{
 \end{array} 
 \right.
 \end{equation}
-Here $\rho_{\rm d}$ is the gas midplane density, $\rho_{\rm s}$ is the density of a solid particle, $s$ is the particle size, $\lambda$ is the mean free path, and Re is the Reynolds number. 
+Here $\rho_{\rm d}$ is the gas midplane density, $\rho_{\rm s}=2$ g cm$^{-3}$ is the density of a solid particle, $s$ is the particle size, $\lambda$ is the mean free path, and Re is the Reynolds number. 
 
 For a passive disk, the radial drift velocity can be approximated analytically as
 \begin{equation}
@@ -215,7 +219,7 @@ t_{\rm gas, acc} \sim \frac{r^2}{\nu} \sim \frac{1}{2 \alpha \eta \Omega_{\rm k}
 \end{equation}
 with the latter expression derived from Equations (\ref{eq:nu}) and (\ref{eq:eta}).
 
-For simplicity purposes, we calculate the radial drift timescale, $t_{\rm r, drift}$, for a passive disk in this section, but most of our conclusions hold true for an active disk as well. Figure \ref{fig:timescales} shows $t_{\rm des}$, $t_{\rm r, drift}$ and $t_{\rm gas, acc}$ as a function of particle size at three different locations in the disk, for $\rho_{\rm s}=2$ g cm$^{-3}$ and $\alpha=0.01$. As expected, micron-sized particles desorb on very short timescales of $\sim 1-1000$ years and their radial drift timescale exceeds the typical disk lifetime of a few Myr by several orders of magnitude. Thus for small particles in a passive disk, the snowline locations and the C/O ratio are the same as for a static disk (see Figure 1 from \citealt{oberg11}) \footnote{This is not true for an active disk, however, where gas accretion causes even micron-sized particles to drift significantly before desorbing, as we show in section \ref{sec:snowlines}.}. At the other extreme, kilometer-sized particles are unaffected by gas drag and have long desorption timescales ($\gg$1 Myr ), and the snowline locations and C/O ratio remain unchanged in this case as well. This is true for both passive and active disks, since large planetesimals are decoupled from the gas and hence unaffected by gas accretion onto the host star. 
+For simplicity purposes, we calculate the radial drift timescale, $t_{\rm r, drift}$, for a passive disk in this section, but most of our conclusions hold true for an active disk as well. Figure \ref{fig:timescales} shows $t_{\rm des}$, $t_{\rm r, drift}$ and $t_{\rm gas, acc}$ as a function of particle size at three different locations in the disk, corresponding to the H$_2$O, CO$_2$ and CO snowlines in the static disk. As expected, micron-sized particles desorb on very short timescales of $\sim 1-1000$ years and their radial drift timescale exceeds the typical disk lifetime of a few Myr by several orders of magnitude. Thus for small particles in a passive disk, the snowline locations and the C/O ratio are the same as for a static disk (see Figure 1 from \citealt{oberg11}) \footnote{This is not true for an active disk, however, where gas accretion causes even micron-sized particles to drift significantly before desorbing, as we show in section \ref{sec:snowlines}.}. At the other extreme, kilometer-sized particles are unaffected by gas drag and have long desorption timescales ($\gg$1 Myr ), and the snowline locations and C/O ratio remain unchanged in this case as well. This is true for both passive and active disks, since large planetesimals are decoupled from the gas and hence unaffected by gas accretion onto the host star. 
 
 Of particular interest for our purposes is the particle size regime for which $t_{\rm r, drift} \lesssim t_{\rm des} \lesssim t_{\rm d}$ or $t_{\rm gas, acc} \lesssim t_{\rm des} \lesssim t_{\rm d}$, where $t_{\rm d}=3$ Myr is the disk lifetime. In these cases, radial drift or gas accretion (or both) are faster than thermal desorption. Particles of sizes that satisfy these requirements will drift significantly due to radial drift or gas accretion before desorbing, thus moving the H$_2$O, CO$_2$ and CO snowlines closer towards the central star and changing the C/O ratio throughout the disk. We quantify these effects in sections \ref{sec:snowlines} and \ref{sec:COratio}.
 
