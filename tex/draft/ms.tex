@@ -82,11 +82,23 @@
 
 %\emgr{Background topics: importance of atmospheric chemistry in providing constraints on the formation of giant planets; C/O ratio as important signature of atmospheric chemistry; C/O ratios observationally determined are different from interstellar --- one explanation is the different abundance in gas and dust form of the main C and O carriers, H$_2$O, CO$_2$ and CO, between their respective snowlines (cite \"Oberg et al. 2011).}
 
-Main sequence stars commonly host giant planets (refs). The chemical composition of gas giant atmospheres can provide important constraints on their formation, accretion and migration history. In recent years, the onset and development of sensitive infrared and (sub)millimeter spectroscopic observations has facilitated the detection of organic molecules in the outer regions of protoplanetary disks (e.g., \citealt{oberg10}, \citealt{oberg11b}, \citealt{oberg11c}, ...). Of particular importance are volatile compounds, since the location of their snowlines determines their relative abundance in gaseous and solid form in the protoplanetary disk, and thus the chemical composition of nascent giant planets. 
+\emgr{Paragraph 1: introduce the topic, context and its relevance in the big picture . Gas giants are important. The chemical composition of their atmospheres constraints their formation and evolution. Is is therefore important to understand the disk well enough to (1) predict what kind of planet compositions result from planet formation in different parts of the disk, and (2) backtrack the planet formation location based on planet composition.}
 
-Notably, an important signature of giant planets atmospheric chemistry is the carbon to oxygen (C/O) ratio. Spectroscopic observations of gas giants such as WASP-12b have found atmospheric C/O ratios close to unity, substantially different from the Solar value of 0.54 \citep{madhu11}. One explanation for this discrepancy was proposed by \citet{oberg11}, who considered the fact that the main carries of carbon and oxygen, i.e. H$_2$O, CO$_2$ and CO, have different condensation temperatures. This changes the relative abundance of C and O in gaseous and solid form as a function of the snowline location of the volatiles mentioned above. \citet{oberg11} calculated analytically the C/O ratio in gas in dust as a function of semimajor axis for passive protoplanetary disks and reproduced a gas C/O ratio of order unity between the CO$_2$ and CO snowlines, where oxygen gas is highly depleted.
+%Main sequence stars commonly host giant planets (refs). The chemical composition of gas giant atmospheres can provide important constraints on their formation, accretion and migration history. 
 
-In order to obtain more realistic estimates for C/O ratios across protoplanetary disks, dynamical processes and the disk evolving chemistry have to be taken into account. In this paper, we enhance the model of \citet{oberg11} considering two additional dynamic effects: (1) the radial drift of solids throughout the protoplanetary disk, and (2) the viscous accretion of the disk gas onto the host star. Our goal is two-fold: (1) to quantify the effect of radial drift of solids of different sizes on the location and shape of H$_2$O, CO$_2$ and CO snowlines, and (2) to calculate the resulting C/O ratio in gaseous and solid form throughout an actively accreting protoplanetary disk as a function of the grain size distribution and the evolutionary time of the nebula.
+\emgr{Paragraph 2: disks are complex, a lot of dynamical and chemical processes going on. However, We have detections of organic molecules. We have detections of snowlines. We see complex chemistry and many molecules we can study.}
+
+In recent years, the onset and development of sensitive infrared and (sub)millimeter spectroscopic observations has facilitated the detection of organic molecules in the outer regions of protoplanetary disks (e.g., \citealt{oberg10}, \citealt{oberg11b}, \citealt{oberg11c}, ...). Of particular importance are volatile compounds, since the location of their snowlines determines their relative abundance in gaseous and solid form in the protoplanetary disk, and thus the chemical composition of nascent giant planets. \emgr{Add part about snowlines, complex chemistry, many molecules.}
+
+\emgr{Paragraph 3: let's focus on one (set of) molecules: the C/O ratio. It's an important signature of atmospheric chemistry. While we cannot detect it directly in disks, we have observations in giant planet atmospheres. It's different than stellar. Why? Possible explanation based on snowlines.}
+
+\emgr{Start with the fact that we can't see C/O in disks directly. Then transition to planet atmospheres and modify the next sentence to follow up logically.} Notably, an important signature of giant planets atmospheric chemistry is the carbon to oxygen (C/O) ratio. Spectroscopic observations of gas giants such as WASP-12b have found atmospheric C/O ratios close to unity, substantially different from the Solar value of 0.54 \citep{madhu11}. One explanation for this discrepancy was proposed by \citet{oberg11}, who considered the fact that the main carries of carbon and oxygen, i.e. H$_2$O, CO$_2$ and CO, have different condensation temperatures. This changes the relative abundance of C and O in gaseous and solid form as a function of the snowline location of the volatiles mentioned above. \citet{oberg11} calculated analytically the C/O ratio in gas in dust as a function of semimajor axis for passive protoplanetary disks and reproduced a gas C/O ratio of order unity between the CO$_2$ and CO snowlines, where oxygen gas is highly depleted.
+
+\emgr{Paragraph 4: the static disk model is a great start, but there are additional dynamical and chemical processes to take into account. Several studies have done that in some form or another --- cite Ali-Dib+14, Madhusudhan+14, Thiabaud+15. Briefly discuss their assumptions.}
+
+\emgr{Paragraph 5: finally introduce our goal for this paper: study the dynamical effects such as drift and gas accretion. State our goals: understand the detailed qualitative and quantitative effect of drift and gas accretion on snowline locations, obtain a limit on how far in can the snowlines be pushed, and see how that affects the C/O ratio throughout the disk. State that our specific goals motivate the use of a simplified model (in other words, why what we are doing is different from the studies cited in the previous paragraph). }
+
+\emgr{This needs some restructuring and additions along the lines discussed above.} In order to obtain more realistic estimates for C/O ratios across protoplanetary disks, dynamical processes and the disk evolving chemistry have to be taken into account. In this paper, we enhance the model of \citet{oberg11} considering two additional dynamic effects: (1) the radial drift of solids throughout the protoplanetary disk, and (2) the viscous accretion of the disk gas onto the host star. Our goal is two-fold: (1) to quantify the effect of radial drift of solids of different sizes on the location and shape of H$_2$O, CO$_2$ and CO snowlines, and (2) to calculate the resulting C/O ratio in gaseous and solid form throughout an actively accreting protoplanetary disk as a function of the grain size distribution and the evolutionary time of the nebula.
 
 
 %\emgr{Describe goals and approach of this paper, i.e.: study the importance of radial drift on the location of snowlines in protoplanetary disks and how radial drift affects the C/O ratio. Mention that disks are viscously accreting in the early stages of planet formation, hence gas accretion has to be taken into account. The goal of this paper is two-fold: (1) estimate using both numerical models and analytic arguments the range of particle sizes for which radial drift changes snowline location; (2) calculate the C/O ratio for various particle sizes (and possibly a size distribution) and at different times throughout the evolution of the gas disk.}
@@ -254,7 +266,7 @@ Of particular interest for our purposes is the particle size regime for which $t
 \label{fig:snowlines}
 \end{figure*}
 
-\begin{figure*}[h!]
+\begin{figure*}[t!]
 \centering
 \includegraphics[width=0.7\textwidth]{../../figs/desorption_distance_actual_vs_estimated_passive_active.pdf}
 %\vspace{-0.5in}
@@ -279,30 +291,7 @@ As we show in Section \ref{sec:COratio}, a drifting particle that desorbs will d
 
 Figure \ref{fig:snowlines} shows our results for H$_2$O, CO$_2$ and CO particles, and for both a passive and an active disk. We do not show the equivalent result for the steady-state active disk since the trends are qualitatively the same as for the active disk with the temperature profile given by Equation (\ref{eq:diskT}). Kilometer-sized bodies do not drift or desorb during the disk lifetime both for a passive and an active disk. Similarly, micron- to mm-sized particles neither drift nor desorb unless they are located inside the static disk snowlines. This is not in contradiction with the desorption timescales for small particles from Figure \ref{fig:timescales}, since small grains only desorb fast at or nearby their respective snowlines, as mentioned in Section \ref{sec:timescales}.  In an active disk, however, micron-to mm-sized grains do drift significantly since they move at the same velocity as the accreting gas. For $0.5$ cm $\lesssim s_0 \lesssim$ 700 cm in a passive disk and $0.001$ cm $\lesssim s_0 \lesssim$ 700 cm in an active disk, we notice that particles of initial size $s_0$ desorb at a fixed distance $r_{\rm des}$ regardless of their original location in the disk. In fact, the only grains that will both drift and evaporate are those that reach their fixed final location (represented by the horizontal curves in Figure \ref{fig:snowlines}) within the disk lifetime. We show in section \ref{sec:COratio} that this result is essential in determining the C/O ratio throughout the disk for different particle sizes. 
 
-
-
-
-Intuitively, this fixed $r_{\rm des}$ should be the location in the disk for which $t_{\rm r, drift} \sim t_{\rm des}$, given an initial particle size. Figure \ref{fig:an_vs_actual} shows the validity of this approximation for the range of particle sizes that desorb at a fixed distance in a passive and an active disk. We notice that the analytic approximation accurately reproduces the numerical result for most cases of interest. 
-
-
-
-%\emgr{I didn't write the text for Figure 4 since we haven't yet decided if in the end we will include it in some form. We can }
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.5\textwidth]{../../figs/desorption_distance_vs_s.pdf}
-%\vspace{-0.5in}
-\caption{Desorption distance as a function of initial particle size, for the range of particles that desorb at a fixed distance regardless of initial location (see Figure \ref{fig:snowlines}). \textbf{Figure belongs to section 3.} \emgr{This is a figure that I'm not sure we should include, since it doesn't really provide that much useful inside. If we did include it though, there would be two panels both for the passive and the active disk. The caption is not complete since the active disk panel is not yet there.}}  %  (See text for a description of evolution to yet higher masses.) 
-\label{fig:r_vs_s}
-\end{figure}
-
-%\emgr{Present the equation set that you are solving, $dr/dt=\dot{r}$, $ds/dt=...$. I don't think it is necessary to describe in detail the numerical method of solving the equations since it's pretty straightforward. Present the pretty rainbow plots side by side for passive and active disks, and highlight the differences. Insert the plots that shows that for the intermediate size particles, the desorption distance can be estimated analytically with good accuracy. Maybe also include the plot showing the desorption distance as a function of particle size, both for passive and active disk. Split into subsections?}
-
-
-\section{Results for the C/O Ratio}
-\label{sec:COratio}
-
-\begin{figure*}[h!]
+\begin{figure*}[t!]
 \centering
 \includegraphics[width=0.8\textwidth]{../../figs/s_t_a.pdf}
 %\vspace{-0.5in}
@@ -310,17 +299,42 @@ Intuitively, this fixed $r_{\rm des}$ should be the location in the disk for whi
 \label{fig:s_t_a}
 \end{figure*}
 
+
+Intuitively, this fixed $r_{\rm des}$ should be the location in the disk for which $t_{\rm r, drift} \sim t_{\rm des}$, given an initial particle size. We can calculate this location analytically by equating Equations (\ref{eq:tdes}) and (\ref{eq:tdrift}) and solving for $r=r_{\rm des}(s)$ for a given particle size $s$. Figure \ref{fig:an_vs_actual} shows $r_{\rm des}$ calculated analytically using the prescription above as a function of the actual desorption distance calculated numerically,  for the range of particle sizes that desorb at a fixed distance in a passive and an active disk (see Figure \ref{fig:snowlines}). We notice that the analytic approximation accurately reproduces the numerical result for most cases of interest, but it slightly deviates for smaller particles. \emgr{I've yet to figure out why there is a discrepancy for the small grains. I'll keep thinking about it, but for now I'll leave it as it is since I don't want to give a false explanation just to have one.} 
+
+
+
+%\emgr{I didn't write the text for Figure 4 since we haven't yet decided if in the end we will include it in some form. We can }
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[width=0.5\textwidth]{../../figs/desorption_distance_vs_s.pdf}
+%%\vspace{-0.5in}
+%\caption{Desorption distance as a function of initial particle size, for the range of particles that desorb at a fixed distance regardless of initial location (see Figure \ref{fig:snowlines}). \textbf{Figure belongs to section 3.} \emgr{This is a figure that I'm not sure we should include, since it doesn't really provide that much useful inside. If we did include it though, there would be two panels both for the passive and the active disk. The caption is not complete since the active disk panel is not yet there.}}  %  (See text for a description of evolution to yet higher masses.) 
+%\label{fig:r_vs_s}
+%\end{figure}
+
+%\emgr{Present the equation set that you are solving, $dr/dt=\dot{r}$, $ds/dt=...$. I don't think it is necessary to describe in detail the numerical method of solving the equations since it's pretty straightforward. Present the pretty rainbow plots side by side for passive and active disks, and highlight the differences. Insert the plots that shows that for the intermediate size particles, the desorption distance can be estimated analytically with good accuracy. Maybe also include the plot showing the desorption distance as a function of particle size, both for passive and active disk. Split into subsections?}
+
+
+\section{Results for the C/O Ratio}
+\label{sec:COratio}
+
+
+
+
+
+We now use our model and the results of Section \ref{sec:snowlines} to determine the H$_2$O, CO$_2$ and CO snowline locations and the C/O ratio in disks with static chemistry that experience radial drift of solids and gas accretion on to the central star. In Section \ref{sec:snowlines} we showed that solid particles which drift and fully desorb during the lifetime of the protoplanetary disk will do so (1) instantaneously and at (2) at a fixed stellocentric distance, regardless of their initial location in the disk. Figure \ref{fig:s_t_a} confirms both of these effects. The left panels show the size evolution with time for H$_2$O particles of various initial sizes, starting at three different initial locations in a passive disk \footnote{Our conclusions remain valid for an active disk and for particles composed of CO$_2$ or CO.}.  Indeed, the solid H$_2$O particles evaporate almost instantly, although the time $t_{\rm des}$ at which a particle of a given initial size desorbs depends on its initial distance. A particle located at the initial time $t_0$ at a distance such that $t_{\rm des}>t_{\rm d}$ will therefore not desorb during the disk lifetime. However, our model assumes that particles drift continuously at any location in the disk. Therefore, a particle that can fully desorb during the disk lifetime for at least one initial location will always desorb, at a fixed distance as discussed in Section \ref{sec:snowlines} and displayed in Figure \ref{fig:snowlines}. The right panels of Figure \ref{fig:s_t_a} show that the drifting grains lose most of their mass in a very narrow distance range; moreover, this distance is the same for a given initial particle size, no matter where the particle started drifting at the time $t_0$ when the simulation is started. Figure \ref{fig:s_t_a} thus proves claims (1) and (2) above. It follows that the H$_2$O, CO$_2$ and CO snowlines are fixed for a given initial particle size and disk model (passive or active). The C/O ratio will then only depend on disk properties, grain size, and the abundance of H$_2$O, CO$_2$ and CO relative to the H$_2$ abundance in the disk midplane. 
+
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.5\textwidth]{../../figs/C_O_ratio_passive_active_disk_many_colorbar_test.pdf}
 %\vspace{-0.5in}
-\caption{C/O ratio in gas (solid lines) and in dust (dashed lines) for a passive disk (top panel) and for an active disk (bottom panel), and for the range of particle sizes that desorb at a fixed distance regardless of their initial location in the disk. The particle size increases from 0.001 cm to $\sim$700 cm as indicated by the color bar. The horizontal dotted line represents the stellar value of 0.54. The black lines represent the C/O ratio in gas (solid black line) and dust (dashed black line) for a static disk. The snowline location moves inward as the particle size increases. \textbf{Figure belongs to section 4.}}
+\caption{C/O ratio in gas (solid lines) and in dust (dashed lines) for a passive disk (top panel) and for an active disk (bottom panel), and for the range of particle sizes that desorb at a fixed distance regardless of their initial location in the disk. The particle size increases from 0.001 cm to $\sim$700 cm as indicated by the color bar. The horizontal dotted line represents the stellar value of 0.54. The black lines represent the C/O ratio in gas (solid black line) and dust (dashed black line) for a static disk. The snowline location moves inward as the particle size increases. \emgr{Some additional text for the currently non-existent third panel.}}
 \label{fig:CO_ratio}
 \end{figure}
 
-We now use our model and the results of Section \ref{sec:snowlines} to determine the H$_2$O, CO$_2$ and CO snowline locations and the C/O ratio in disks with static chemistry that experience radial drift of solids and gas accretion on to the central star. In Section \ref{sec:snowlines} we showed that solid particles which drift and fully desorb during the lifetime of the protoplanetary disk will do so (1) instantaneously and at (2) at a fixed stellocentric distance, regardless of their initial location in the disk. Figure \ref{fig:s_t_a} confirms both of these effects. The left panels show the size evolution with time for H$_2$O particles of various initial sizes, starting at three different initial locations in a passive disk \footnote{Our conclusions remain valid for an active disk and for particles composed of CO$_2$ or CO.}.  Indeed, the solid H$_2$O particles evaporate almost instantly, although the time $t_{\rm des}$ at which a particle of a given initial size desorbs depends on its initial distance. A particle located at the initial time $t_0$ at a distance such that $t_{\rm des}>t_{\rm d}$ will therefore not desorb during the disk lifetime. However, our model assumes that particles drift continuously at any location in the disk. Therefore, a particle that can fully desorb during the disk lifetime for at least one initial location will always desorb, at a fixed distance as discussed in Section \ref{sec:snowlines} and displayed in Figure \ref{fig:snowlines}. The right panels of Figure \ref{fig:s_t_a} show that the drifting grains lose most of their mass in a very narrow distance range; moreover, this distance is the same for a given initial particle size, no matter where the particle started drifting at the time $t_0$ when the simulation is started. Figure \ref{fig:s_t_a} thus proves claims (1) and (2) above. It follows that the H$_2$O, CO$_2$ and CO snowlines are fixed for a given initial particle size and disk model (passive or active). The C/O ratio will then only depend on disk properties, grain size, and the abundance of H$_2$O, CO$_2$ and CO relative to the H$_2$ abundance in the disk midplane. 
-
-We use the relative number densities of C and O in their different molecular forms (H$_2$O, CO$_2$ and CO) from Table 1 of \citet{oberg11}. \emgr{Is it necessary to reproduce that table? Seems sort of redundant.}. Figure \ref{fig:CO_ratio} shows the C/O ratio in gas and dust as a function of semimajor axis for a passive disk, an active disk with a passive temperature profile, and a steady-state active disk \emgr(not yet there). The C/O ratio for a static disk is shown as a guidline. The plot is consistent with Figure \ref{fig:snowlines}. For the passive disk, only grains larger than $\sim$0.5 cm drift, desorb and thus form a snowline. In contrast, even $\sim$micron-sized grains drift and desorb for the active disk, since the flow towards the host star together with the accreting gas. For the same particle size, the snowline locations are slightly closer to the central star in the active disk, due to the fact that the accreting gas adds an additional component to the drift velocity of the solids (cf. Equation \ref{eq:rdotact}). Perhaps the most interesting feature is the fact that the snowlines are pushed inwards as the grain size increases. While the plot only shows the snowlines and C/O ratio for particle sizes up to $\sim$7 m, we have found that even kilometer sized boulders are able to drift and desorb for both the passive and the active disk. However, bodies larger than $\sim$7 m will evaporate at the same location as the meter-sized planetesimals. Thus the innermost snowlines (depicted in red in Figure \ref{fig:CO_ratio}) set the limit on how far close in the H$_2$O, CO$_2$ and CO snowlines can be pushed due to radial drift and gas accretion on to the host star. Realistic grain size distributions in disks are dominated by large grains (e.g., \citealt{dalessio01}, \citealt{birnstiel12}). Therefore, the snowlines produced by the largest drifting solids in our model set the inner limit on the snowline locations and are insensitive to a particular grain size distribution. 
+We use the relative number densities of C and O in their different molecular forms (H$_2$O, CO$_2$ and CO) from Table 1 of \citet{oberg11}. \emgr{Is it necessary to reproduce that table? Seems sort of redundant.}. Figure \ref{fig:CO_ratio} shows the C/O ratio in gas and dust as a function of semimajor axis for a passive disk, an active disk with a passive temperature profile, and a steady-state active disk \emgr(not yet there). The C/O ratio for a static disk is shown as a guidline. The plot is consistent with Figure \ref{fig:snowlines}. For the passive disk, only grains larger than $\sim$0.5 cm drift, desorb and thus form a snowline. In contrast, even $\sim$micron-sized grains drift and desorb for the active disk, since the flow towards the host star together with the accreting gas. For the same particle size, the snowline locations are slightly closer to the central star in the active disk, due to the fact that the accreting gas adds an additional component to the drift velocity of the solids (cf. Equation \ref{eq:rdotact}). Perhaps the most interesting feature is the fact that the snowlines are pushed inwards as the grain size increases. While the plot only shows the snowlines and C/O ratio for particle sizes up to $\sim$7 m, we have found that even kilometer sized boulders are able to drift and desorb for both the passive and the active disk. However, bodies larger than $\sim$7 m will evaporate at the same location as the meter-sized planetesimals. Thus the innermost snowlines (depicted in red in Figure \ref{fig:CO_ratio}) set the limit on how far close in the H$_2$O, CO$_2$ and CO snowlines can be pushed due to radial drift and gas accretion on to the host star. Realistic grain size distributions in disks are dominated by large grains (e.g., \citealt{dalessio01}, \citealt{birnstiel12}). Therefore, the snowlines produced by the largest drifting solids in our model set the inner limit on the snowline locations and are insensitive to a particular grain size distribution. \emgr{There will be 1-2 additional sentences for the third panel, the steady-state disk, once that finishes running.}
 
 
 
@@ -341,15 +355,79 @@ We use the relative number densities of C and O in their different molecular for
 \section{Discussion and Model Limitations}
 \label{sec:discussion}
 
-\subsection{Dependence on Disk Model and Initial Conditions}
+\begin{figure*}[t!]
+\centering
+\includegraphics[width=\textwidth]{../../figs/time_plots.pdf}
+%\vspace{-0.5in}
+\caption{Desorption / final distance as a function of initial position in the disk for particles of initial size $s_0=1$ m (left panels) and $s_0=10$ m (right panels), for grains composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The evolution is shown at four representative timescales: $10^4$ yr (cyan curve), $10^5$ yr (red curve), 1 Myr (green curve), and 3 Myr, the disk lifetime (blue curve). For a given particle size, the desorption distance, and hence the H$_2$O, CO$_2$ and CO snowlines, have the same location regardless of the timescale at which the simulation is stopped.}
+\label{fig:timeplots}
+\end{figure*}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.5\textwidth]{../../figs/desorption_distance_varying_Md.pdf}
+%\vspace{-0.5in}
+\caption{Desorption / final distance as a function of initial position in the disk for H$_2$O particles of initial size of 1 m, for total disk masses $M_{\rm d}=0.1 M_{\odot}$ (solid lines) and $M_{\rm d}=0.01 M_{\odot}$ (dashed lines). The timescales of the simulations are the same as in Figure \ref{fig:timeplots}. A lower disk mass does not change the snowline location.}
+\label{fig:varMd}
+\end{figure}
+
+\subsection{Generality of Results: Dependence on Disk Parameters}
 \label{sec:incond}
+
+In this section we investigate the effect on our results of variations in our fiducial parameters, such as the total disk mass or the time in the disk evolution at which we determine the snowline locations and the C/O ratio. The disk lifetime $t_{\rm d}=3$ Myr is the most representative for our calculations, as this is the timeframe in which giant planets accrete their gaseous atmospheres (e.g., \citealt{pollack96}, \citealt{piso14}). However, protoplanetary cores start acquiring their envelope at earlier times, before the core is fully formed (e.g., \citealt{rafikov06}). Recent models such as aerodynamic pebble accretion \citep{lambrechts12} suggest rapid core growth on timescales of $10^5$ years, which implies that the time when cores accrete their massive envelope may be at least an order of magnitude shorter than the disk lifetime. The composition of giant planet atmospheres, and specifically their C/O ratio, can thus depend on the abundance of H$_2$O, CO$_2$ and CO in gas and dust forms at earlier times than $t_{\rm d}$ in the disk evolution. 
+
+Figure \ref{fig:timeplots} shows the desorption or final distance as a function of a particle's initial location in the disk, for grains of initial sizes of 10 cm and 1 m, composed of either H$_2$O, CO$_2$ or CO. These sizes are representative since radial drift timescales are shortest for particles within this size range (see Figure \ref{fig:timescales}) --- these are the particles whose drift and desorption evolution should be most strongly affected by variations in disk conditions. We perform the simulations at four representative timescales in the disk evolution to see how the snowline locations evolve with time and affect the C/O ratio. Particles that start at large stellocentric distances are not able to desorb within the shorter timeframes, e.g. $10^4$ or $10^5$ years. However, they do evaporate if their initial location is closer to the host star. As stated in Section \ref{sec:COratio}, this implies that the grains form a snowline even after $10^4$ years. More importantly, for a given initial grain size, the snowline locations are independent of the time elapsed. Therefore, our results are not only valid at $t_{\rm d}$, but also throughout the earlier time evolution of the protoplanetary disk. 
+
+We choose as a fiducial model a total disk mass $M_{\rm d}=0.1 M_{\odot}$, but this number is not universally valid. From observations of the dust continuum, \citet{andrews13} find that a linear scaling $M_{\rm d} \propto M_*$ is reasonable. Giant planets, however, have been detected around small stars (e.g., \citealt{montet14}), which can have masses as low as $M_* \sim 0.1 M_{\odot}$. We thus explore the effect of disk mass on the location of snowlines. Figure \ref{fig:varMd} shows the desorption or final distance as a function on the initial location of a H$_2$O particle with initial size of 1 m, for two total disk masses: $M_{\rm d}=0.1 M_{\odot}$, our fiducial model, and $M_{\rm d}=0.01 M_{\odot}$. The simulations are stopped after the same timeframes as those in Figure \ref{fig:timeplots}. The location of the H$_2$O snowline is the same for both disks (the same holds true for the CO$_2$ and CO snowlines). The C/O ratio is thus insensitive to the choice of $M_{\rm d}$. This result has implications for transition disks, which have inner cavities significantly depleted of dust (e.g., \citealt{espaillat12}). Since the snowline locations are independent of disk mass, we expect transition disks to exhibit the same drift-desorption behavior as standard disks under the simplified assumptions of our model.     
+
+\begin{table}[t!]
+\caption{Dynamical and chemical processes that affect the snowline locations of the main C and O carriers, H$_2$O, CO$_2$ and CO. The arrows signify the direction in which a particular processes affects the snowlines --- $\leftarrow$=snowline is pushed closer to the host star, $\rightarrow$=snowline is pushed further from the host star. The presence of both arrows means that the process may have both effects on the snowline location.}
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+\textbf{Process} & \textbf{Effect} \\\hline
+Radial drift & $\leftarrow$ \\\hline
+Gas accretion & $\leftarrow$ \\\hline
+Particle growth & $\rightarrow$ \\\hline
+Turbulent diffusion & $\rightarrow$ \\\hline
+Particle fragmentation & $\rightarrow$ $\leftarrow$ \\\hline
+Morphology & $\rightarrow$ \\\hline
+Particle composition & $\rightarrow$ $\leftarrow$ \\\hline
+Non-static chemistry & $\rightarrow$ $\leftarrow$ \\\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 \subsection{Neglected Effects}
 \label{sec:neglected}
 
-\emgr{Present the diagram that shows all the effects that can modify snowline location. For model limitations, include: non-inclusion of turbulence, assumption of perfect spheres when in fact they may have cracks, particles composed of a single volatile when in reality they are likely to be mixed, etc. Discuss uncertainty of initial conditions and estimate how much they matter. ....}
+Our goals in this paper were (1) to gain a detailed qualitative and quantitative understanding of the effect or radial drift and gas accretion on to the central star on snowline locations and the C/O ratio in disks, and (2) to obtain a limit on how close in the snowlines can be pushed due to drift and gas accretion. We have thus used a simplified model and out of necessity neglected potentially significant dynamical and chemical effects. In what follows, we discuss these limitations and their effects. We note that our future work will address some of these issues. 
+
+We summarize in Table 1 the potential physical and chemical processes occurring in disks and their effect on snowline locations. For the sake of completion, Table 1 also includes the processes addressed in this paper, i.e. radial drift and gas accretion. The neglected effects are discussed in more detail below. 
+
+
+
+\begin{enumerate}
+\item \textbf{Particle growth.} While our model assumes a range of particle sizes, each size is considered fixed for a given grain throughout their drift and evolution. However, grain growth has been observed in protoplanetary disks (e.g., \citealt{ricci10}, \citealt{perez12}), as well as theoretically constrained (e.g., \citealt{birnstiel10}, \citealt{birnstiel12}). In Section \ref{sec:COratio} we have shown that larger grains move the snowline locations closer in, but those locations remain fixed above a certain particle size. Once the solids grow larger than km-sized, they are no longer affected by drift or desorption, and the snowline reduces to that of a static disk. It follows that grain growth will eventually push the snowline location outwards.
+
+\item \textbf{Turbulent diffusion.} The radial drift model presented in Section \ref{sec:drift} only considers a laminar flow and thus ignores turbulence. However, the disk gas also experiences turbulent diffusion (e.g., \citealt{birnstiel12}, \citealt{alidib14}). Turbulence causes eddies and vertical mixing, which is likely to reduce the radial gas accretion flow. Additionally, the flow of H$_2$O, CO$_2$ and CO vapor will diffuse radially, causing it to move cross the snowline and refreeze, thus moving the snowline location outwards altogether.
+
+\item \textbf{Particle fragmentation.} Frequent particle collisions in disks causes them to fragment (e.g., \citealt{birnstiel12}). The fragmentation of meter- to km-sized particles will move the snowlines outwards, as smaller particles desorb faster and further out from the host star (cf. Figures \ref{fig:snowlines} and \ref{fig:CO_ratio}). Large boulders, which neither drift nor desorb, may become e.g. meter-sized due to collisions and subsequent fragmentation, which will cause them to drift significantly before desorbing, pushing the snowlines inwards. Thus fragmentation can move the snowline locations in either radial direction.
+
+\item \textbf{Morphology.} Our model assumes that the ice particles are perfect, homogeneous spheres. However, this is not a very good approximation, since grain growth can be fractal rather than compact (\citealt{zsom10}, \citealt{okuzumi12}). The inhomogeneity due to cracks in the grain structure will cause the particles to desorb faster, hence drift less before evaporating and moving the snowlines outwards.
+
+\item \textbf{Particle composition.} The ice particles in our model are assumed to be fully formed of either H$_2$O, CO$_2$ or CO. In reality, the grains have a layered structure, such as an interior composed of non-volatile materials (e.g., sillicates) covered by an icy layer. The ice thus only constitutes a fraction of the total particle mass, which accelerates its desorption and pushes the snowlines outwards. The grains may also be composed of a mixture of H$_2$O, CO$_2$ and CO ices. The relative fraction of each volatile, as well as their degree of mixing, will determine their desorption timescale, and as a result whether the snowlines are moved towards or away from the central star.
+
+\item \textbf{Non-static chemistry.} As the goal of this paper was to explore the dynamical effects on snowline locations and the C/O ratio in disks, we have assumed a very simple, static chemical model. However, gas-grain chemistry is very complex and time-dependent. In the inner disk, chemistry approaches equilibrium due to intense sources of ionizing radiation (e.g., \citealt{ilgner04}), while in the outer disk high energy radiation and cosmic rays are the key drivers of chemistry, which is no longer in equilibrium (e.g., \citealt{vandishoeck06}). A multitude of chemical evolution models have been developed (see references in \citealt{henning13}), many of which contain tens or hundreds of reactions. Due to the complexity of these chemical models, most of them are decoupled from disk dynamics. Their effect on snowline locations, shape, time evolution, or the C/O ratio is therefore difficult to estimate.  In a future paper, we plan to parametrize the chemical model developed by Merchantz et al. (in preparation) that traces the evolution of the main C and O oxygen carriers, and incorporate it in our radial drift calculation. 
+
+\end{enumerate}
+
+
+
+%\emgr{Present the diagram that shows all the effects that can modify snowline location. For model limitations, include: non-inclusion of turbulence, assumption of perfect spheres when in fact they may have cracks, particles composed of a single volatile when in reality they are likely to be mixed, etc. Discuss uncertainty of initial conditions and estimate how much they matter. ....}
 
 \section{Summary and Future Work}
+
+
 
 \emgr{Summarize results. Mention inclusion of $N_2$ as a first expansion. Mention the implementation of time-dependent chemical models in the drift calculation.}
 
