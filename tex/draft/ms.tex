@@ -201,7 +201,7 @@ where $E_x$ is the adsorption binding energy, $T_{\rm grain}$ is the grain tempe
 
 %\emgr{Describe disk model --- both passive MMSN and active self-similar solution with $\alpha$ prescription for viscosity. Describe the model for evolving the surface density profile of planetesimals following Birnstiel et al. (2012). Describe temperature profile --- currently power-law, but may change. Describe desorption model and parameters following Hollenbach et al. (2009). Mention that the solids are perfect spheres composed of a single volatile. Perhaps this subsection needs to be split into subsubsections.}
 
-\subsection{Relevant timescales}
+\subsection{Relevant Timescales}
 \label{sec:timescales}
 
 We can estimate the extent to which radial drift and gas accretion affect desorption by comparing the timescales for desorption, drift and accretion, for solids of different sizes and compositions. 
@@ -246,7 +246,25 @@ Of particular interest for our purposes is the particle size regime for which $t
 \section{Snowline Locations}
 \label{sec:snowlines}
 
+\begin{figure*}[tb]
+\centering
+\includegraphics[width=\textwidth]{../../figs/desorption_distance_passive_active_colorbar_test.pdf}
+%\vspace{-0.5in}
+\caption{Desorption distance as a function of a particle's initial location in the disk, for a range of particle sizes, and for both a passive disk (left panels) and an active disk (right panels). The desorption distance is calculated for particles composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The particle size increases from $10^{-3}$ cm to $10^8$ cm as indicated by the color bar. For the range of particle sizes that fully desorb during $t_{\rm d}=3$ Myr, the desorption distance is the same regardless of the particles' initial location.} 
+\label{fig:snowlines}
+\end{figure*}
+
+\begin{figure*}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{../../figs/desorption_distance_actual_vs_estimated_passive_active.pdf}
+%\vspace{-0.5in}
+\caption{Desorption distance estimated from analytic calculations (see text) as a function of the desorption distance calculated numerically, for the range of particle sizes that desorb at a fixed distance regardless of initial location (see Figure \ref{fig:snowlines} and text). The estimate is performed for a passive disk (left panels) and an active disk (right panels).  The particles are composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The analytic approximation is in good agreement with the numerical result for most cases. \textbf{Figure belongs to section 3.}}  %  (See text for a description of evolution to yet higher masses.) 
+\label{fig:an_vs_actual}
+\end{figure*}
+
 In this section we use the model described in section \ref{sec:model} to quantify the effects of radial drift (passive disk) or radial drift and gas accretion (active disk) on the snowline location, for dust particles of different sizes composed of either H$_2$O, CO$_2$ or CO. Specifically, we determine a particle's final location (i.e., where the particle either fully desorbs or remains at its initial size due to a long desorption timescale) as a function of its initial position in the disk, after the gas disk has dissipated. The disk lifetime, $t_{\rm d}$, is particularly relevant since this is the timescale on which giant planets form. The snowline locations at $t=t_{\rm d}$ throughout the protoplanetary disk determine the disk C/O ratio in gas at this time, and thus the C/O ratio in giant planet atmospheres that have formed \textit{in situ}.   
+
+
 
 For each species $x$, we determine the final location in the disk of a particle of initial size $s_0$ by solving the following system of coupled differential equations:
 
@@ -261,23 +279,12 @@ As we show in Section \ref{sec:COratio}, a drifting particle that desorbs will d
 
 Figure \ref{fig:snowlines} shows our results for H$_2$O, CO$_2$ and CO particles, and for both a passive and an active disk. We do not show the equivalent result for the steady-state active disk since the trends are qualitatively the same as for the active disk with the temperature profile given by Equation (\ref{eq:diskT}). Kilometer-sized bodies do not drift or desorb during the disk lifetime both for a passive and an active disk. Similarly, micron- to mm-sized particles neither drift nor desorb unless they are located inside the static disk snowlines. This is not in contradiction with the desorption timescales for small particles from Figure \ref{fig:timescales}, since small grains only desorb fast at or nearby their respective snowlines, as mentioned in Section \ref{sec:timescales}.  In an active disk, however, micron-to mm-sized grains do drift significantly since they move at the same velocity as the accreting gas. For $0.5$ cm $\lesssim s_0 \lesssim$ 700 cm in a passive disk and $0.001$ cm $\lesssim s_0 \lesssim$ 700 cm in an active disk, we notice that particles of initial size $s_0$ desorb at a fixed distance $r_{\rm des}$ regardless of their original location in the disk. In fact, the only grains that will both drift and evaporate are those that reach their fixed final location (represented by the horizontal curves in Figure \ref{fig:snowlines}) within the disk lifetime. We show in section \ref{sec:COratio} that this result is essential in determining the C/O ratio throughout the disk for different particle sizes. 
 
-\begin{figure*}[tb]
-\centering
-\includegraphics[width=\textwidth]{../../figs/desorption_distance_passive_active_colorbar_test.pdf}
-%\vspace{-0.5in}
-\caption{Desorption distance as a function of a particle's initial location in the disk, for a range of particle sizes, and for both a passive disk (left panels) and an active disk (right panels). The desorption distance is calculated for particles composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The particle size increases from $10^{-3}$ cm to $10^8$ cm as indicated by the color bar. For the range of particle sizes that fully desorb during $t_{\rm d}=3$ Myr, the desorption distance is the same regardless of the particles' initial location.} 
-\label{fig:snowlines}
-\end{figure*}
+
+
 
 Intuitively, this fixed $r_{\rm des}$ should be the location in the disk for which $t_{\rm r, drift} \sim t_{\rm des}$, given an initial particle size. Figure \ref{fig:an_vs_actual} shows the validity of this approximation for the range of particle sizes that desorb at a fixed distance in a passive and an active disk. We notice that the analytic approximation accurately reproduces the numerical result for most cases of interest. 
 
-\begin{figure*}[h!]
-\centering
-\includegraphics[width=0.8\textwidth]{../../figs/desorption_distance_actual_vs_estimated_passive_active.pdf}
-%\vspace{-0.5in}
-\caption{Desorption distance estimated from analytic calculations (see text) as a function of the desorption distance calculated numerically, for the range of particle sizes that desorb at a fixed distance regardless of initial location (see Figure \ref{fig:snowlines} and text). The estimate is performed for a passive disk (left panels) and an active disk (right panels).  The particles are composed of H$_2$O (top panels), CO$_2$ (middle panels) and CO (bottom panels). The analytic approximation is in good agreement with the numerical result for most cases. \textbf{Figure belongs to section 3.}}  %  (See text for a description of evolution to yet higher masses.) 
-\label{fig:an_vs_actual}
-\end{figure*}
+
 
 %\emgr{I didn't write the text for Figure 4 since we haven't yet decided if in the end we will include it in some form. We can }
 
@@ -299,14 +306,9 @@ Intuitively, this fixed $r_{\rm des}$ should be the location in the disk for whi
 \centering
 \includegraphics[width=0.8\textwidth]{../../figs/s_t_a.pdf}
 %\vspace{-0.5in}
-\caption{Left panels: size of desorbing H$_2$O particles as a function of time, for different initial particle sizes and for three initial locations in a passive disk: 1 AU (top left), 10 AU (middle left) and 100 AU (bottom left). Particles desorb almost instantaneously. Right panel: fractional mass lost by the desorbing particles as a function of the particle's location as it drifts, for different initial particle sizes, and at the same initial locations presented in the left panel. Particles lose most of their mass very close to the distance at which they fully desorb. \textbf{Figure belongs to section 4.}}
+\caption{Left panels: size of desorbing H$_2$O particles as a function of time, for different initial particle sizes and for three initial locations in a passive disk: 1 AU (top left), 10 AU (middle left) and 100 AU (bottom left). Particles desorb almost instantaneously. Right panel: fractional mass lost by the desorbing particles as a function of the particle's location as it drifts, for different initial particle sizes, and at the same initial locations presented in the left panel. Particles lose most of their mass very close to the distance at which they fully desorb.}
 \label{fig:s_t_a}
 \end{figure*}
-
-We now use our model and the results of Section \ref{sec:snowlines} to determine the H$_2$O, CO$_2$ and CO snowline locations and the C/O ratio in disks with static chemistry that experience radial drift of solids and gas accretion on to the central star. In Section \ref{sec:snowlines} we showed that solid particles which drift and fully desorb during the lifetime of the protoplanetary disk will do so at a fixed stellocentric distance, regardless of their initial location in the disk. 
-
-
-
 
 \begin{figure}[h!]
 \centering
@@ -316,6 +318,14 @@ We now use our model and the results of Section \ref{sec:snowlines} to determine
 \label{fig:CO_ratio}
 \end{figure}
 
+We now use our model and the results of Section \ref{sec:snowlines} to determine the H$_2$O, CO$_2$ and CO snowline locations and the C/O ratio in disks with static chemistry that experience radial drift of solids and gas accretion on to the central star. In Section \ref{sec:snowlines} we showed that solid particles which drift and fully desorb during the lifetime of the protoplanetary disk will do so (1) instantaneously and at (2) at a fixed stellocentric distance, regardless of their initial location in the disk. Figure \ref{fig:s_t_a} confirms both of these effects. The left panels show the size evolution with time for H$_2$O particles of various initial sizes, starting at three different initial locations in a passive disk \footnote{Our conclusions remain valid for an active disk and for particles composed of CO$_2$ or CO.}.  Indeed, the solid H$_2$O particles evaporate almost instantly, although the time $t_{\rm des}$ at which a particle of a given initial size desorbs depends on its initial distance. A particle located at the initial time $t_0$ at a distance such that $t_{\rm des}>t_{\rm d}$ will therefore not desorb during the disk lifetime. However, our model assumes that particles drift continuously at any location in the disk. Therefore, a particle that can fully desorb during the disk lifetime for at least one initial location will always desorb, at a fixed distance as discussed in Section \ref{sec:snowlines} and displayed in Figure \ref{fig:snowlines}. The right panels of Figure \ref{fig:s_t_a} show that the drifting grains lose most of their mass in a very narrow distance range; moreover, this distance is the same for a given initial particle size, no matter where the particle started drifting at the time $t_0$ when the simulation is started. Figure \ref{fig:s_t_a} thus proves claims (1) and (2) above. It follows that the H$_2$O, CO$_2$ and CO snowlines are fixed for a given initial particle size and disk model (passive or active). The C/O ratio will then only depend on disk properties, grain size, and the abundance of H$_2$O, CO$_2$ and CO relative to the H$_2$ abundance in the disk midplane. 
+
+We use the relative number densities of C and O in their different molecular forms (H$_2$O, CO$_2$ and CO) from Table 1 of \citet{oberg11}. \emgr{Is it necessary to reproduce that table? Seems sort of redundant.}. Figure \ref{fig:CO_ratio} shows the C/O ratio in gas and dust as a function of semimajor axis for a passive disk, an active disk with a passive temperature profile, and a steady-state active disk \emgr(not yet there). The C/O ratio for a static disk is shown as a guidline. The plot is consistent with Figure \ref{fig:snowlines}. For the passive disk, only grains larger than $\sim$0.5 cm drift, desorb and thus form a snowline. In contrast, even $\sim$micron-sized grains drift and desorb for the active disk, since the flow towards the host star together with the accreting gas. For the same particle size, the snowline locations are slightly closer to the central star in the active disk, due to the fact that the accreting gas adds an additional component to the drift velocity of the solids (cf. Equation \ref{eq:rdotact}). Perhaps the most interesting feature is the fact that the snowlines are pushed inwards as the grain size increases. While the plot only shows the snowlines and C/O ratio for particle sizes up to $\sim$7 m, we have found that even kilometer sized boulders are able to drift and desorb for both the passive and the active disk. However, bodies larger than $\sim$7 m will evaporate at the same location as the meter-sized planetesimals. Thus the innermost snowlines (depicted in red in Figure \ref{fig:CO_ratio}) set the limit on how far close in the H$_2$O, CO$_2$ and CO snowlines can be pushed due to radial drift and gas accretion on to the host star. Realistic grain size distributions in disks are dominated by large grains (e.g., \citealt{dalessio01}, \citealt{birnstiel12}). Therefore, the snowlines produced by the largest drifting solids in our model set the inner limit on the snowline locations and are insensitive to a particular grain size distribution. 
+
+
+
+
+
 %\begin{figure}[h!]
 %\centering
 %\includegraphics[width=0.5\textwidth]{lala}
@@ -324,12 +334,18 @@ We now use our model and the results of Section \ref{sec:snowlines} to determine
 %\label{fig:...}
 %\end{figure}
 
-\emgr{Motivate the fact that we can calculate a sharp, fixed snowline for each particle size by inserting the plot that shows that particles desorb almost instantaneously at a fixed distance.  Then present the plots analogous to Fig. 1 in \"Oberg et al. (2011) for different particle sizes, based on the snowline locations obtained in the previous section, both for passive and active disk. Perhaps show it at different times in the gas disk evolution (i.e., not just at 3 Myr) for the active disk. Then assume a particle size distribution and show the interpolated result for the C/O ratio. Generalize the result using a transition disk (this part might also fit in the discussion section).}
+%\emgr{Motivate the fact that we can calculate a sharp, fixed snowline for each particle size by inserting the plot that shows that particles desorb almost instantaneously at a fixed distance.  Then present the plots analogous to Fig. 1 in \"Oberg et al. (2011) for different particle sizes, based on the snowline locations obtained in the previous section, both for passive and active disk. Perhaps show it at different times in the gas disk evolution (i.e., not just at 3 Myr) for the active disk. Then assume a particle size distribution and show the interpolated result for the C/O ratio. Generalize the result using a transition disk (this part might also fit in the discussion section).}
 
 %emgr{Present the flux equations used to keep track of the amount of C and O in gas and dust throughout the disk. Motivate the simplification of using a fixed particle sized, fixed timescale, and fixed desorption distance in the calculations by referring to the rainbow plot in the previous section and by inserting the plot that shows that particle desorb almost instantly at a fixed distance. Based on these assumptions, finally show the equivalent of Fig. 1 in \"Oberg et al. (2011) for different particle sizes, and at different times in the gas disk evolution (i.e., not just at 3 Myr) --- a multi-panel plot could be a good idea. Discuss the result, trends, etc. Ideally, have a final plot showing the results for a particle size distribution rather than for individual particles.}
 
 \section{Discussion and Model Limitations}
 \label{sec:discussion}
+
+\subsection{Dependence on Disk Model and Initial Conditions}
+\label{sec:incond}
+
+\subsection{Neglected Effects}
+\label{sec:neglected}
 
 \emgr{Present the diagram that shows all the effects that can modify snowline location. For model limitations, include: non-inclusion of turbulence, assumption of perfect spheres when in fact they may have cracks, particles composed of a single volatile when in reality they are likely to be mixed, etc. Discuss uncertainty of initial conditions and estimate how much they matter. ....}
 
@@ -337,10 +353,10 @@ We now use our model and the results of Section \ref{sec:snowlines} to determine
 
 \emgr{Summarize results. Mention inclusion of $N_2$ as a first expansion. Mention the implementation of time-dependent chemical models in the drift calculation.}
 
-\appendix
-\section{...}
-
-\emgr{Right now it's unclear to me what could go in an appendix, if anything. Maybe discuss a bit the algorithm to evolve $\Sigma_{\rm p}$ (although it is already explained in detail in the appendix of Birnstiel et al. 2010). Maybe show some example profiles of $\Sigma_{\rm p}$ at different times and for different particle sizes.}
+%\appendix
+%\section{...}
+%
+%\emgr{Right now it's unclear to me what could go in an appendix, if anything. Maybe discuss a bit the algorithm to evolve $\Sigma_{\rm p}$ (although it is already explained in detail in the appendix of Birnstiel et al. 2010). Maybe show some example profiles of $\Sigma_{\rm p}$ at different times and for different particle sizes.}
 
 \if\bibinc n
 \bibliography{refs}
