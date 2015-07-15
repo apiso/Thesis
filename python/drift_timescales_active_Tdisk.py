@@ -652,6 +652,17 @@ def rdrift(rin, tin, tf, s, alpha, dr, Mdisk, rc = 100*AU, rhos = 3.0, T0 = 120,
     return y[-1][0] / AU
     
     
+    
+def r_stop(s, alpha, Mdot, mx, Ex, dr = 1e-3, rhos = 3.0, mu = 2.35, Mstar = Msun, sigma = 2 * 10**(-15), Nx = 1e15):
+
+     def f(r):
+          return (r*AU) / (- rdot_with_acc(r, s, alpha, Mdot, dr, rhos, mu, Mstar, sigma)) - \
+            tdes(mx, Ex, Tdisk(r, Mdot, Mstar), s, Nx, rhos)
+
+     try:
+          return brentq(f, 1e-3, 1e2)
+     except ValueError:
+          return 1e-10     
 
 
 #######################################################################################

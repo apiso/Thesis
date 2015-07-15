@@ -1477,7 +1477,19 @@ def n_with_acc(rin, sin, mx, Ex, Mdotgas, Nx = 1e15, rhos = 3.0, T0 = 120, betaT
 
      t, a, s = rfin
      
-     
+
+def r_stop(t, s, alpha, dr, Mdisk, mx, Ex, rc = 100*AU, T0=120, betaT=3./7, rhos = 3.0, mu = 2.35, \
+    Mstar = Msun, gammadflag = 0, sigma = 2 * 10**(-15), Nx = 1e15):
+
+     def f(r):
+          return (r*AU) / (- rdot_with_acc(r, t, s, alpha, dr, Mdisk, rc, T0, betaT, rhos, mu, \
+            Mstar, gammadflag, sigma)) - tdes(mx, Ex, Tdisk(r, T0, betaT), s, Nx, rhos)
+
+     try:
+          return brentq(f, 1e-3, 1e2)
+     except ValueError:
+          return 1e-10     
+               
      
 #def r_stop(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
 #    Mstar = Msun, sigma = 2 * 10**(-15)):
