@@ -128,30 +128,14 @@ def impl_donorcell_adv_diff_delta(n_x,x,Diff,v,g,h,K,L,flim,u_in,dt,pl,pr,ql,qr,
 ###########################
 
 
-def Tsurf(r, Mdot, Mstar = Msun):
-    
-    """
-    
-    Calculates the disk temperature as a function of semimajor axis for a passive disk.
-    
-    Input
-    -----
-    r:
-        semimajor axis in AU
-    T0:
-        temperature at 1 AU in K
-    betaT:
-        powerlaw coefficient in T = T0 * r**(-betaT)
-        
-    Output
-    ------
-    disk temperature in K
-    
-    """
-    
-    return (3 * G * Mstar * (Mdot * Mstar / yr) / (8 * np.pi * sigma * (r * AU)**3))**(1./4)
-    
-def tau(r, )
+
+
+
+
+
+
+
+###############################
      
 def gamma(betaT = 3./7):
     
