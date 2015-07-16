@@ -128,7 +128,7 @@ def impl_donorcell_adv_diff_delta(n_x,x,Diff,v,g,h,K,L,flim,u_in,dt,pl,pr,ql,qr,
 ###########################
 
 
-def Tdisk(r, Mdot, Mstar = Msun):
+def Tsurf(r, Mdot, Mstar = Msun):
     
     """
     
@@ -150,6 +150,8 @@ def Tdisk(r, Mdot, Mstar = Msun):
     """
     
     return (3 * G * Mstar * (Mdot * Mstar / yr) / (8 * np.pi * sigma * (r * AU)**3))**(1./4)
+    
+def tau(r, )
      
 def gamma(betaT = 3./7):
     
