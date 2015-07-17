@@ -1,4 +1,4 @@
-from utils.constants import G, kb, mp, Msun, cmperau, AU, yr
+from utils.constants import G, kb, mp, Msun, cmperau, AU, yr, sigmaB
 import numpy as np
 from numpy import ones, zeros, shape,arange,Inf,maximum,minimum,exp,array,sqrt,invert
 from T_freeze import T_freeze, Rdes, tevap, vib_freq
@@ -135,7 +135,7 @@ def Tc(r, alpha, Mdot, k0, mu, Mstar = Msun):
     r1 = r * AU
     
     return 3**(1./3)*G**(1./3)*k0**(1./3)*Mdot1**(2./3)*mp**(1./3)*Msun**(1./3)*mu**(1./3)*(G*Mstar/r1**3)**(1./6) / \
-        (4*alpha**(1./3)*kb**(1./3)*np.pi**(2./3)*r1*sigma**(1./3))
+        (4*alpha**(1./3)*kb**(1./3)*np.pi**(2./3)*r1*sigmaB**(1./3))
         
 
 def Tdisk(r, alpha, Mdot, k0, mu, Mstar = Msun, T0 = 120, betaT = 3./7):
