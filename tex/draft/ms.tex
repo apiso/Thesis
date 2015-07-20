@@ -64,7 +64,7 @@
 %\slugcomment{Draft Modified \today}
 
 
-\title{C/O in Protoplanetary Disks: The Effect of Radial Drift and Viscous Accretion}
+\title{C/O and Snowline Locations in Protoplanetary Disks: The Effect of Radial Drift and Viscous Accretion}
 
 \author{Ana-Maria A. Piso\altaffilmark{1}, et al}. %Karin I. \"Oberg\altaffilmark{1}, Ruth A. Murray-Clay\altaffilmark{2}, Tilman Birnstiel\altaffilmark{1}}
 \altaffiltext{1}{Harvard-Smithsonian Center for Astrophysics, 60 Garden Street, Cambridge, MA 02138}
@@ -72,7 +72,7 @@
 
 
 \begin{abstract}
-...
+... %We explore the effect of radial drift of solids and viscous gas accretion onto the central star on the H$_2$O, CO$_2$ and CO snowline locations in a protoplanetary disk, and the resulting C/O ratio in gas and dust. 
 \end{abstract}
 
 \section{Introduction}
@@ -112,10 +112,10 @@ We present our protoplanetary disk model for both a passive and an active disk i
 \subsection{Disk Model}
 \label{sec:disk}
 
-\textbf{Passive disk.} A passive disk is only irradiated by the central star and does not experience accretion heating. We adopt a minimum mass solar nebula (MMSN) disk model for a passive disk similar to the prescription of \citet{chiang10}. The gas surface density and midplane temperature are
+\textbf{Passive disk.} A passive disk is only irradiated by the central star and does not experience radial movement of gas or accretion heating. We adopt a minimum mass solar nebula (MMSN) disk model for a passive disk similar to the prescription of \citet{chiang10}. The gas surface density and midplane temperature are
 \begin{subeqnarray}
 \label{eq:disk}
-\Sigma_{\rm d}&=&2200\, (r/\text{AU})^{-1}\,\, \text{g cm}^{-2} \slabel{eq:disksigma}\\
+\Sigma_{\rm d}&=&2000\, (r/\text{AU})^{-1}\,\, \text{g cm}^{-2} \slabel{eq:disksigma}\\
 T_{\rm d} &=& 120\, (r/\text{AU})^{-3/7} \,\,\text{K}, \slabel{eq:diskT}
 \end{subeqnarray}
 where $r$ is the semimajor axis. Based on some observations of protoplanetary disks \citep{andrews10}, our surface density profile, $\Sigma_{\rm d} \propto r^{-1}$, is flatter than that of \citet{chiang10}, i.e. $\Sigma_{\rm d} \propto r^{-3/2}$. 
@@ -153,14 +153,14 @@ where $t$ is time. We choose $M_{\rm d}=0.1 M_{\odot}$ (e.g., \citealt{birnstiel
 where $\kappa_0=2 \times 10^{-6}$. By solving the Equation set (\ref{eq:diskeq}) we find
 \begin{equation}
 \label{eq:Tdact}
-T_{\rm d, act}=\frac{1}{4 r} \Big(\frac{3 G \kappa_0\dot{M}^2 M_* \mu m_{\rm p}. \Omega_{\rm k}}{\pi^2 \alpha k_{\rm B} \sigma}\Big)^{1/3}
+T_{\rm d, act}=\frac{1}{4 r} \Big(\frac{3 G \kappa_0\dot{M}^2 M_* \mu m_{\rm p} \Omega_{\rm k}}{\pi^2 \alpha k_{\rm B} \sigma}\Big)^{1/3}.
 \end{equation}
 However, both accretion heating and stellar irradiation contribute to the thermal evolution of the disk. We thus compute the midplane temperature for our steady-state active disk as
 \begin{equation}
 \label{eq:activeT}
-T_{\rm d}^4 = T_{\rm d, acc}^4 + T_{\rm d, pas}^4,
+T_{\rm d}^4 = T_{\rm d, act}^4 + T_{\rm d, pas}^4,
 \end{equation}
-where to avoid notation confusion $T_{\rm d, pas}=T_{\rm d}$ from Equation (\ref{eq:diskT}), the temperature profile for an active disk. We can then easily determine  $c_{\rm d}$ and $H_{\rm d}$ from Equation (\ref{eq:cdHd}), as well as the viscosity $\nu$ from Equation (\ref{eq:nu}) for a given $\alpha$. For consistency, we choose  $\alpha=0.01$ as in the previous case. Finally, we determine $\Sigma_{\rm d}$ from Equation (\ref{eq:Mdot}), where we choose $\dot{M}=10^{-8} M_{\odot}$ yr$^{-1}$ based on disk observations (e.g., \citealt{andrews10}). We note that $\Sigma_{\rm d}$ is no longer constant when stellar irradiation is taken into account in the disk evolution. 
+where to avoid notation confusion $T_{\rm d, pas}=T_{\rm d}$ from Equation (\ref{eq:diskT}), the temperature profile for an active disk. We can then easily determine  $c_{\rm d}$ and $H_{\rm d}$ from Equation (\ref{eq:cdHd}), as well as the viscosity $\nu$ from Equation (\ref{eq:nu}) for a given $\alpha$. For consistency, we choose  $\alpha=0.01$ as in the previous case. Finally, we determine $\Sigma_{\rm d}$ from Equation (\ref{eq:Mdot}), where we choose $\dot{M}=10^{-8} M_{\odot}$ yr$^{-1}$ based on disk observations (e.g., \citealt{andrews10}). We note that $\Sigma_{\rm d}$ is no longer constant when stellar irradiation is taken into account in the active disk steady-state solution. 
 
 %Calculating the midplane temperature self-consistently for an active disk is non-trivial, so instead we use the steady-state solution for the surface density and temperature for a thin disk (e.g., \citealt{armitage10}):
 
@@ -224,7 +224,7 @@ In order for a volatile species to thermally desorb, it has to overcome the bind
 \label{eq:Rdes}
 R_{\rm{des}, x} = \nu_x \exp{(-E_x/T_{\rm grain})},
 \end{equation}
-where $E_x$ is the adsorption binding energy in units of Kelvin, $T_{\rm grain}$ is the grain temperature, and $\nu_x=1.6 \times 10^{11} \sqrt{(E_x/\mu_x)}$ is the molecule's vibrational frequency, with $\mu_x$ the mean molecular weight. We assume that the dust and gas have the same temperature in the disk midplane, hence $T_{\rm grain}=T_{\rm d}$. For H$_2$O, CO$_2$ and CO, the binding energies $E_x$ are assumed to be 5800 K, 2000 K and 850 K, respectively \citep{oberg11}. We use the desorption rate, $R_{\rm des}$, to estimate the desorption timescale for particles of different sizes as described in section \ref{sec:timescales}. 
+where $E_x$ is the adsorption binding energy in units of Kelvin, $T_{\rm grain}$ is the grain temperature, and $\nu_x=1.6 \times 10^{11} \sqrt{(E_x/\mu_x)}$ s$^{-1}$ is the molecule's vibrational frequency, with $\mu_x$ the mean molecular weight. We assume that the dust and gas have the same temperature in the disk midplane, hence $T_{\rm grain}=T_{\rm d}$. For H$_2$O, CO$_2$ and CO, the binding energies $E_x$ are assumed to be 5800 K, 2000 K and 850 K, respectively \citep{oberg11}. We use the desorption rate, $R_{\rm des}$, to estimate the desorption timescale for particles of different sizes as described in section \ref{sec:timescales}. 
 
 
 
@@ -311,7 +311,7 @@ where the desorption rate $R_{\rm des, x}$ for each particle type (i.e., compose
 %Thus a particle's final location will depend on whether a grain initially at a certain distance is completely desorbed or not within the disk lifetime of 3 Myr. For example, larger grains take longer to desorb and hence are more likely to not evaporate fully in a given timeframe. 
 
 
-We define the final position of a grain as the disk location it has reached after $t_{\rm d}=3$ Myr, or the radius at which it completely desorbs if that happens after a time shorter than 3 Myr.  Figure \ref{fig:snowlines} shows our results for H$_2$O, CO$_2$ and CO particles, for both a passive and an active disk. We do not show the equivalent result for the steady-state active disk since the trends are qualitatively the same as for the active disk with the temperature profile given by Equation (\ref{eq:diskT}), but we discuss the C/O ratio steady-state disk results in Section \ref{COratio}.   Kilometer-sized bodies do not drift or desorb during the disk lifetime neither for a passive nor for an active disk. Similarly, micron- to mm-sized particles in the passive disk do not drift or desorb unless they are located inside the static snowlines. This is not in contradiction with the desorption timescales for small particles from Figure \ref{fig:timescales}, since small grains only desorb fast at or nearby their respective snowlines, as mentioned in Section \ref{sec:timescales}.  In an active disk, however, micron-to mm-sized grains do drift significantly since they move at the same velocity as the accreting gas. For $0.5$ cm $\lesssim s_0 \lesssim$ 700 cm in a passive disk and $0.001$ cm $\lesssim s_0 \lesssim$ 700 cm in an active disk, we notice that particles of initial size $s_0$ desorb at a fixed distance $r_{\rm des}$ regardless of their original location in the disk. In fact, the only grains that will both drift and evaporate are those that reach their fixed final location (represented by the horizontal curves in Figure \ref{fig:snowlines}) within the disk lifetime. We show in section \ref{sec:COratio} that this result is essential in determining the C/O ratio throughout the disk for different particle sizes. 
+We define the final position of a grain as the disk location it has reached after $t_{\rm d}=3$ Myr, or the radius at which it completely desorbs if that happens after a time shorter than 3 Myr.  Figure \ref{fig:snowlines} shows our results for H$_2$O, CO$_2$ and CO particles, for both a passive and an active disk. We do not show the equivalent result for the steady-state active disk since the trends are qualitatively the same as for the active disk with the temperature profile given by Equation (\ref{eq:diskT}), but we discuss the C/O ratio steady-state active disk results in Section \ref{sec:COratio}.   Kilometer-sized bodies do not drift or desorb during the disk lifetime neither for a passive nor for an active disk. Similarly, micron- to mm-sized particles in the passive disk do not drift or desorb unless they are located inside the static snowlines. This is not in contradiction with the desorption timescales for small particles from Figure \ref{fig:timescales}, since small grains only desorb fast at or nearby their respective snowlines, as mentioned in Section \ref{sec:timescales}.  In an active disk, however, micron-to mm-sized grains do drift significantly since they move at the same velocity as the accreting gas. For $0.5$ cm $\lesssim s_0 \lesssim$ 700 cm in a passive disk and $0.001$ cm $\lesssim s_0 \lesssim$ 700 cm in an active disk, we notice that particles of initial size $s_0$ desorb at a fixed distance $r_{\rm des}$ regardless of their original location in the disk. In fact, the only grains that will both drift and evaporate are those that reach their fixed final location (represented by the horizontal curves in Figure \ref{fig:snowlines}) within the disk lifetime. We show in section \ref{sec:COratio} that this result is essential in determining the C/O ratio throughout the disk for different particle sizes. 
 
 \begin{figure*}[t!]
 \centering
@@ -344,6 +344,13 @@ Intuitively, this fixed $r_{\rm des}$ should be the location in the disk for whi
 \section{Results for the C/O Ratio}
 \label{sec:COratio}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.55\textwidth]{../../figs/C_O_ratio_passive_active_disk_many_colorbar_complete.pdf}
+%\vspace{-0.5in}
+\caption{C/O ratio in gas (solid lines) and in dust (dashed lines) for a passive disk (top panel), an active disk with a passive temperature profile (middle panel) and a steady-state active disk (bottom panel), for the range of particle sizes that desorb at a fixed distance regardless of their initial location in the disk. The particle size increases from 0.001 cm to $\sim$700 cm as indicated by the color bar. The horizontal dotted line represents the stellar value of 0.54. The black lines represent the C/O ratio in gas (solid black line) and dust (dashed black line) for a static disk. The snowline location moves inward as the particle size increases.}
+\label{fig:CO_ratio}
+\end{figure}
 
 We now use our model and the results of Section \ref{sec:snowlines} to determine the H$_2$O, CO$_2$ and CO snowline locations and the C/O ratio in disks with static chemistry that experience radial drift of solids and gas accretion on to the central star. Figure \ref{fig:s_t_a}, left panels, shows the size evolution with time for H$_2$O particles of various initial sizes, starting at three different initial locations in a passive disk \footnote{Our conclusions remain valid for an active disk and for particles composed of CO$_2$ or CO.}.  Solid H$_2$O particles evaporate almost instantly, although the time $t_{\rm des}$ at which a particle of a given initial size desorbs depends on its initial distance. A particle located at the initial time $t_0$ at a distance such that $t_{\rm des}>t_{\rm d}$ will therefore not desorb during the disk lifetime, but our model assumes that particles drift continuously at any location in the disk. The right panels of Figure \ref{fig:s_t_a} show that the drifting grains lose most of their mass in a very narrow distance range; moreover, this distance is the same for a given initial particle size, no matter where the particle started drifting at the time $t_0$ when the simulation is started. Figure \ref{fig:s_t_a} thus demonstrates that solid particles that drift and fully desorb during the lifetime of the protoplanetary disk do so (1) instantaneously, and (2) at a fixed stellocentric distance, regardless of their initial location in the disk. 
 It follows that the H$_2$O, CO$_2$ and CO snowlines are fixed for a given initial particle size and disk model (passive or active). The C/O ratio will then only depend on disk properties, grain size, and the abundance of H$_2$O, CO$_2$ and CO relative to the H$_2$ abundance in the disk midplane. 
@@ -352,19 +359,13 @@ It follows that the H$_2$O, CO$_2$ and CO snowlines are fixed for a given initia
 %In Section \ref{sec:snowlines}, we showed that solid particles that drift and fully desorb during the lifetime of the protoplanetary disk do so (1) instantaneously, and (2) at a fixed stellocentric distance, regardless of their initial location in the disk. Figure \ref{fig:s_t_a} confirms both of these effects. The left panels show the size evolution with time for H$_2$O particles of various initial sizes, starting at three different initial locations in a passive disk \footnote{Our conclusions remain valid for an active disk and for particles composed of CO$_2$ or CO.}.  Indeed, the solid H$_2$O particles evaporate almost instantly, although the time $t_{\rm des}$ at which a particle of a given initial size desorbs depends on its initial distance. A particle located at the initial time $t_0$ at a distance such that $t_{\rm des}>t_{\rm d}$ will therefore not desorb during the disk lifetime. However, our model assumes that particles drift continuously at any location in the disk. Therefore, a particle that can fully desorb during the disk lifetime for at least one initial location will always desorb, at a fixed distance as discussed in Section \ref{sec:snowlines} and displayed in Figure \ref{fig:snowlines}. The right panels of Figure \ref{fig:s_t_a} show that the drifting grains lose most of their mass in a very narrow distance range; moreover, this distance is the same for a given initial particle size, no matter where the particle started drifting at the time $t_0$ when the simulation is started. Figure \ref{fig:s_t_a} thus proves claims (1) and (2) above. 
 
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=0.55\textwidth]{../../figs/C_O_ratio_passive_active_disk_many_colorbar_complete.pdf}
-%\vspace{-0.5in}
-\caption{C/O ratio in gas (solid lines) and in dust (dashed lines) for a passive disk (top panel) and for an active disk (bottom panel), and for the range of particle sizes that desorb at a fixed distance regardless of their initial location in the disk. The particle size increases from 0.001 cm to $\sim$700 cm as indicated by the color bar. The horizontal dotted line represents the stellar value of 0.54. The black lines represent the C/O ratio in gas (solid black line) and dust (dashed black line) for a static disk. The snowline location moves inward as the particle size increases. \emgr{Some additional text for the currently non-existent third panel.}}
-\label{fig:CO_ratio}
-\end{figure}
+
 
 We use the relative number densities of C and O in their different molecular forms (H$_2$O, CO$_2$ and CO) from Table 1 of \citet{oberg11}. Figure \ref{fig:CO_ratio} shows the C/O ratio in gas and dust as a function of semimajor axis for a passive disk, an active disk with a passive temperature profile, and a steady-state active disk. The C/O ratio for a static disk is shown as a guideline. The plot is consistent with Figure \ref{fig:snowlines}. For the passive disk, only grains larger than $\sim$0.5 cm drift, desorb and thus move the snowline compared to the static disk. In contrast, even $\sim$micron-sized grains drift and desorb for the active disk, since they flow towards the host star together with the accreting gas. For the same particle size, the snowline locations are slightly closer to the central star in the active disk with a passive temperature profile, due to the fact that the accreting gas adds an additional component to the drift velocity of the solids (cf. Equation \ref{eq:rdotact}). The addition of accretional heating in the steady-state active disk moves the H$_2$O snowline outwards. This is due to the fact that accretional heating dominates in the inner disk, where high temperatures cause the grains to evaporate further away from the star. Once $r\gtrsim1-2$  AU, stellar irradiation dominates the thermal evolution of the disk, and therefore the CO$_2$ and CO snowlines locations are the same as in the active disk with a passive temperature profile. 
 
 Perhaps the most interesting feature is the fact that the snowlines are pushed inwards as the grain size increases. While the plot only shows the snowlines and C/O ratio for particle sizes up to $\sim$7 m, we have found that almost kilometer-sized boulders are able to drift and desorb for both the passive and the active disk. Bodies larger than $\sim$7 m evaporate at the same location as the meter-sized planetesimals, though only the kilometer-sized boulders that are very close to the snownlines will contribute to determining the snowline location. Thus the innermost snowlines (depicted in red in Figure \ref{fig:CO_ratio}) set the limit on how close in the H$_2$O, CO$_2$ and CO snowlines can be pushed due to radial drift and gas accretion on to the host star. Realistic grain size distributions in disks are dominated by large grains (e.g., \citealt{dalessio01}, \citealt{birnstiel12}). Therefore, the snowlines produced by the largest drifting solids in our model set the inner limit on the snowline locations and are insensitive to a particular grain size distribution. 
 
-For our choice of parameters, the snowline radii are: $r_{\rm{H_2O}} \approx 0.3$ AU for the passive disk, $r_{\rm{H_2O}} \approx 0.26$ AU for the active disk with a passive temperature profile and $r_{\rm{H_2O}} \approx 0.63$ AU for the steady-state disk; $r_{\rm{CO_2}} \approx 3.7$ AU for the passive disk, $r_{\rm{CO_2}} \approx 3.4$ AU for both active disks; and $r_{\rm{CO}} \approx 30$ AU for the passive and both active disks. For comparison, $r_{\rm{H_2O}} \approx 0.67$ AU, $r_{\rm{CO_2}} \approx 8.6$ AU and $r_{\rm{CO}} \approx 59$ AU for the static disk. Radial drift and gas accretion therefore push the snowline locations by up to $\sim$$60$ \% for H$_2$O and CO$_2$, and by up to $\sim$$50$ \% for CO.  
+For our choice of parameters, the snowline radii are: $r_{\rm{H_2O}} \approx 0.3$ AU for the passive disk, $r_{\rm{H_2O}} \approx 0.26$ AU for the active disk with a passive temperature profile and $r_{\rm{H_2O}} \approx 0.63$ AU for the steady-state disk; $r_{\rm{CO_2}} \approx 3.7$ AU for the passive disk, $r_{\rm{CO_2}} \approx 3.4$ AU for both active disks; $r_{\rm{CO}} \approx 30$ AU for the passive and both active disks. For comparison, $r_{\rm{H_2O}} \approx 0.67$ AU, $r_{\rm{CO_2}} \approx 8.6$ AU and $r_{\rm{CO}} \approx 59$ AU for the static disk. Radial drift and gas accretion therefore push the snowline locations by up to $\sim$$60$ \% for H$_2$O and CO$_2$, and by up to $\sim$$50$ \% for CO.  
 
 
 %\emgr{There will be 1-2 additional sentences for the third panel, the steady-state disk, once that finishes running.}
@@ -418,7 +419,19 @@ We choose as a fiducial model a total disk mass $M_{\rm d}=0.1 M_{\odot}$, but t
 \subsection{Model Extensions}
 \label{sec:neglected}
 
-Our goals in this paper were (1) to gain a detailed qualitative and quantitative understanding of the effect of radial drift and gas accretion on to the central star on snowline locations and the C/O ratio in disks, and (2) to obtain a limit on how close in the snowlines can be pushed due to drift and gas accretion. We have thus used a simplified model and out of necessity neglected potentially significant dynamical and chemical processes. In what follows, we discuss these limitations and their effects. We note that our future work will address some of these issues. 
+Our goals in this paper were (1) to gain a detailed qualitative and quantitative understanding of the effect of radial drift and gas accretion onto the central star on snowline locations and the C/O ratio in disks, and (2) to obtain a limit on how close in the snowlines can be pushed due to drift and gas accretion. We have thus used a simplified model and out of necessity neglected potentially significant dynamical and chemical processes. In what follows, we discuss these limitations and their effects. We note that our future work will address some of these issues. 
+
+
+
+
+We summarize in Table 1 the potential physical and chemical processes occurring in disks and their effect on snowline locations. For the sake of completion, Table 1 also includes the processes addressed in this paper, i.e. radial drift and gas accretion. The neglected effects are discussed in more detail below. 
+
+
+
+\begin{enumerate}
+\item \textbf{Particle growth.} While our model assumes a range of particle sizes, each size is considered fixed for a given grain throughout its drift and evolution. However, grain growth has been observed in protoplanetary disks (e.g., \citealt{ricci10}, \citealt{perez12}), as well as theoretically constrained (e.g., \citealt{birnstiel10}, \citealt{birnstiel12}). In Section \ref{sec:COratio} we have shown that larger grains move the snowline locations closer in, but those locations remain fixed above a certain particle size. Particle growth will thus initially push the snowlines inwards. However, once the solids grow larger than km-sized, they are no longer affected by drift or desorption, and the snowline reduces to that of a static disk. It follows that grain growth will eventually push the snowline location outwards.
+
+\item \textbf{Turbulent diffusion.} The radial drift model presented in Section \ref{sec:drift} only considers a laminar flow and thus ignores turbulence. However, the disk gas also experiences turbulent diffusion (e.g., \citealt{birnstiel12}, \citealt{alidib14}). Turbulence causes eddies and vertical mixing, which are likely to reduce the radial gas accretion velocity. Additionally, the flow of H$_2$O, CO$_2$ and CO vapor will diffuse radially. Back-diffusion across the snowline will change the shape of the snowline, as well as the C/O ratio in gas and dust both inside and outside of the snowline, due to the reduction of gas-phase volatile abundance interior to the snowline. 
 
 \begin{table}[t!]
 \caption{The effects of dynamical and chemical processes on snowline shapes and locations}
@@ -438,17 +451,6 @@ Non-static chemistry & $\rightarrow$ $\leftarrow$ \\\hline
 
 \end{center}
 \end{table}
-
-
-We summarize in Table 1 the potential physical and chemical processes occurring in disks and their effect on snowline locations. For the sake of completion, Table 1 also includes the processes addressed in this paper, i.e. radial drift and gas accretion. The neglected effects are discussed in more detail below. 
-
-
-
-\begin{enumerate}
-\item \textbf{Particle growth.} While our model assumes a range of particle sizes, each size is considered fixed for a given grain throughout its drift and evolution. However, grain growth has been observed in protoplanetary disks (e.g., \citealt{ricci10}, \citealt{perez12}), as well as theoretically constrained (e.g., \citealt{birnstiel10}, \citealt{birnstiel12}). In Section \ref{sec:COratio} we have shown that larger grains move the snowline locations closer in, but those locations remain fixed above a certain particle size. Particle growth will thus initially push the snowlines inwards. However, once the solids grow larger than km-sized, they are no longer affected by drift or desorption, and the snowline reduces to that of a static disk. It follows that grain growth will eventually push the snowline location outwards.
-
-\item \textbf{Turbulent diffusion.} The radial drift model presented in Section \ref{sec:drift} only considers a laminar flow and thus ignores turbulence. However, the disk gas also experiences turbulent diffusion (e.g., \citealt{birnstiel12}, \citealt{alidib14}). Turbulence causes eddies and vertical mixing, which are likely to reduce the radial gas accretion velocity. Additionally, the flow of H$_2$O, CO$_2$ and CO vapor will diffuse radially. Back-diffusion across the snowline will change the shape of the snowline, as well as the C/O ratio in gas and dust both inside and outside of the snowline, due to the reduction of gas-phase volatile abundance interior to the snowline. 
-
 %causing it to cross the snowline and refreeze, thus moving the snowline location outwards altogether.
 
 \item \textbf{Particle fragmentation.} Frequent particle collisions in disks cause them to fragment (e.g., \citealt{birnstiel12}). The fragmentation of meter- to km-sized particles will move the snowlines outwards, as smaller particles desorb faster and further out from the host star (cf. Figures \ref{fig:snowlines} and \ref{fig:CO_ratio}). Large boulders, which neither drift nor desorb, may become e.g. meter-sized due to collisions and subsequent fragmentation, which will cause them to drift significantly before desorbing, pushing the snowlines inwards. Thus fragmentation can move the snowline locations in either radial direction.
@@ -488,7 +490,7 @@ We study the effect of radial drift of solids and viscous gas accretion onto the
 
 \item For our fiducial model, the innermost H$_2$O, CO$_2$ and CO snowlines are located at 0.3 AU, 3.7 AU and 30 AU for a passive disk, 0.26 AU, 3.4 AU and 30 AU for an active disk with a passive temperature profile, and 0.63 AU, 3.4 AU and 30 AU for a steady-state active disk. Compared to a static disk, radial drift and gas accretion move the snowlines by up to 60 \% for H$_2$O and CO$_2$, and by up to 50 \% for CO. 
 
-\item Our model finds that the C/O ratio is enhanced compared to the stellar value throughput most of the disk, with the C/O ratio reaching unity between the CO$_2$ and CO snowlines. This is consistent with observations of C/O ratios in some exoplanet atmospheres. 
+\item Our model finds that the C/O ratio is enhanced compared to the stellar value throughout most of the disk, with the C/O ratio reaching unity between the CO$_2$ and CO snowlines. This is consistent with observations of C/O ratios in some exoplanet atmospheres. 
 
 \item The snowline locations are independent of the time at which we stop our simulation and of the total disk mass. Our results are thus valid throughout the evolution of the gas disk, not only after the disk has dissipated, which has implications on the composition of nascent giant planets. 
 
@@ -514,6 +516,29 @@ T_{\rm d, act}^4 & = & \frac{3}{4} \tau T_{\rm d, surf}^4 \slabel{eq:Teq} \\
 \kappa & = & \kappa_0 T_{\rm d,act}^2 \slabel{eq:kappaeq},
 \end{subeqnarray}
 where $T_{\rm d, surf}$ is the surface temperature of the disk and the other quantities are defined in the main text. This is a system of nine equations with nine unknowns ($\nu$, $c_{\rm d}$, $H_{\rm d}$, $T_{\rm d, act}$, $\rho_{\rm d}$, $\Sigma_{\rm d}$, $\tau$, $T_{\rm d, surf}$, $\kappa$) that can be solved numerically once $\alpha$ and $\kappa_0$ are specified. 
+
+
+\section{Desorption distance analytic solution} \label{app:tdriftan}
+
+For a particle of size $s$ that desorbs and satisfies $\tau_{\rm s} \ll 1$ ($\tau_{\rm s}$ is the dimensionless stopping time, defined in Section \ref{sec:drift}), we can derive an explicit analytic solution for the particle's desorption distance in a passive disk. For $\tau_{\rm s} \ll 1$, a particle is in the Epstein drag regime (see Equation \ref{eq:ts}) and its drift velocity $\dot{r}$ (Equation \ref{eq:rdotpas}) can be approximated as
+\begin{equation}
+\label{eq:rdotapp}
+\dot{r} \approx -2 \eta \Omega_{\rm k} r \tau_{\rm s}.
+\end{equation}
+By using Equations (\ref{eq:tdes}) and (\ref{eq:tdrift}) and setting $t_{\rm r, drift}=t_{\rm des}$, we can express a particle's desorption distance as
+
+\begin{equation}
+\label{eq:tan}
+r_{\rm des}=\Bigg(\frac{d\,\, \mathcal{W}\Big[\frac{(B/A)^{-q/d} q\,C}{d} q C\Big]}{q \,C}\Bigg)^{\frac{1}{q}},
+\end{equation}
+where $\mathcal{W}$ is the Lambert-W function, $q=3/7$ is the power-law coefficient in Equation (\ref{eq:diskT}), $d=-\frac{1}{2}+p-q$ with $p=1$ the power-law coefficient in Equation (\ref{eq:disksigma}), and 
+\begin{subeqnarray}
+%\label{eq:tan}
+A & = &  \frac{\rho_0}{\rho_{\rm s}} \frac{r_0^2}{s c_0} r_0^d \\ 
+B & = & \frac{\rho_{\rm s} s}{3 \mu_{\rm x} N_{\rm x} \nu_{\rm x}} \\
+C & = & \frac{E_{\rm x}}{T_0} r_0^{-q}, \\
+\end{subeqnarray}
+where $r_0=1$ AU, $\rho_0=\rho_{\rm d}(r_0)$ and $c_0=c_{\rm d}(r_0)$.
 
 
 %

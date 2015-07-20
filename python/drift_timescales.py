@@ -1,10 +1,11 @@
-from utils.constants import G, kb, mp, Msun, cmperau
+from utils.constants import G, kb, mp, Msun, cmperau, AU
 import numpy as np
 from T_freeze import T_freeze, Rdes, tevap, vib_freq
 from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
 from scipy.integrate import odeint
 from scipy.optimize import brentq
 from scipy.interpolate import interp1d
+from scipy.special import lambertw
 from utils.zbrac import zbrac
 
 def Tdisk(r, T0 = 120, betaT = 3./7):
@@ -305,6 +306,20 @@ def r_stop(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, 
           return brentq(f, 1e-3, 1e2)
      except ValueError:
           return 1e-10
+
+
+def ran(s, mx, Ex, Nx = 1e15, rhos = 3.0, T0 = 120, betaT = 3./7, mu = 2.35, Sigma0 = 2200, betaS = 3./2, \
+    Mstar = Msun, sigma = 2 * 10**(-15), r0 = AU):
+    
+    d = -1./2 + betaS - betaT
+    c = Ex*r0**(-betaT)/T0
+    B = rhos*s/(3*mx*mp*Nx*vib_freq(Ex, mx))
+    
+
+    A = np.sqrt(8/np.pi)*np.sqrt(G*Mstar)*mu*mp*Sigma0*r0**(1./2+d) / (np.sqrt(2*np.pi)*kb*rhos*s*T0)
+
+    dist = (d * lambertw((B/A)**(-betaT/d) * betaT * c / d) / (betaT*c))**(1./betaT)
+    return np.real(dist)/AU
 
 
 def r_freeze(mx, Ex, nx, T0 = 120., betaT = 3./7):
