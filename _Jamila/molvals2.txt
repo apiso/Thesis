@@ -1,0 +1,74 @@
+#Database of Molecular Species Values
+#NOTE: This set uses values recommended by Dr. Edith and her sources
+#NOTE: Citation Sites contained in that email
+#Below are base masses (in kg)
+mH = 1.661e-27
+mO = 15.999*mH
+mC = 12.011*mH
+mN = 14.007*mH
+
+#CO2:
+xtotCO2 = (0.3)*(1e-4) #From Dr. Karin's Paper
+ECO2 = 2440 #From Dr. Edith's Paper
+massCO2 = 1*mC + 2*mO
+nameCO2 = 'CO2'
+CO2 = Mol(xtot=xtotCO2, energy=ECO2, mass=massCO2, name=nameCO2)
+
+	
+#H2O:
+xtotH2O = (0.9)*(1e-4) #From Dr. Karin's Paper
+EH2O = 5773 #From Fraser et al 2001
+massH2O = 2*mH + 1*mO
+nameH2O = 'H2O'
+H2O = Mol(xtot=xtotH2O, energy=EH2O, mass=massH2O, name=nameH2O)
+
+	
+#CO:
+xtotCO = (1.4)*(1e-4) #From Dr. Garrod's Paper
+	#(Or maybe (3.2)*(1e-4) for Oxygen to represent rather than Carbon? Probably from Carbon, since Oxygen could be bound in 'many' other molecules besides CO)
+ECO = 1389 #From Jodi's Thesis and recommendation
+massCO = mO + mC
+nameCO = 'CO'
+CO = Mol(xtot=xtotCO, energy=ECO, mass=massCO, name=nameCO)
+
+	
+#N2:
+#
+xtotN = 1.12186E-4
+xtotNH3 = .055*xtotH2O #From c2d Paper
+#
+xtotN2 = xtotN - xtotNH3
+EN2 = 1053 #From Jodi's Thesis and recommendation
+massN2 = 2*mN
+nameN2 = 'N2'
+N2 = Mol(xtot=xtotN2, energy=EN2, mass=massN2, name=nameN2)
+
+	
+#NH3: #MID VALUE, taken as mid from c2d summary
+#xtotNH3 given in N2 section
+ENH3 = 2965 #From Martin-Domenech Paper
+massNH3 = 1*mN + 3*mH
+nameNH3 = 'NH3'
+NH3mid = Mol(xtot=xtotNH3, energy=ENH3, mass=massNH3, name=nameNH3)
+
+
+#NH3: #MAX VALUE, taken as max of c2d table
+xtotNH3 = .1537*xtotH2O #From c2d Paper
+ENH3 = 2965 #From Martin-Domenech Paper
+massNH3 = 1*mN + 3*mH
+nameNH3 = 'NH3'
+NH3max = Mol(xtot=xtotNH3, energy=ENH3, mass=massNH3, name=nameNH3)
+
+
+
+#CH3OH:
+#xtotCH3OH = 
+#ECH3OH = 5530 #From Garrod Paper
+#massCH3OH = mC + 3*mH + 1*mO + 1*mH
+#CH3OH = Mol(xtot=xtotCH3OH, energy=ECH3OH, mass=massCH3OH, name=nameCH3OH)
+
+
+
+#NOTES:
+#Total N Abundance in Solar System as 1.12186E-4 #From 1989 paper on meteoritic elemental abundances
+#Previously used (7.5/2.0)*(1e-5) #From Dr. Garrod's Paper
