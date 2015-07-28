@@ -46,9 +46,9 @@ def n_N_O(species, NH3mid = 0, NH3max = 0):
     elif species == 'NH3' and NH3mid == 0 and NH3max == 0:
         return 0, 0
     elif species == 'NH3' and NH3mid == 1 and NH3max == 0:
-        return 0.055 * 0.9, 0
+        return 0.055 * 0.9, 0 #0.055 * n_H2O from Oberg+11 Spitzer paper
     elif species == 'NH3' and NH3max == 1 and NH3mid == 0:
-        return 0.1537 * 0.9, 0
+        return 0.1537 * 0.9, 0 #0.1537 * n_H2O from Bottinelli+10 Spitzer paper
 
 
 #in the following we calculate T_freeze for various species
