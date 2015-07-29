@@ -1,0 +1,93 @@
+%\documentclass[12pt, preprint,numberedappendix]{emulateapj}
+%\documentclass[12pt, preprint]{aastex}
+\documentclass[apj]{emulateapj}
+
+\newcommand\submitms{n}		% set to y to follow AAS ``ms'' names, etc.
+\newcommand\bibinc{n}		% set to y if bib pasted in .tex, set to n to use bibtex
+
+
+%\usepackage{pdfsync}
+\usepackage{subeqnarray}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage[utf8]{inputenc}
+
+\bibliographystyle{apj}
+
+\newcommand{\ie}{i.e.\ }
+\newcommand{\eg}{e.g.\ }
+\newcommand{\p}{\partial}
+\newcommand{\brak}[1]{\langle #1\rangle}
+
+
+\newcommand{\gcc}{\;\mathrm{g\; cm^{-3}}}
+\newcommand{\gsc}{\;\mathrm{g\; cm^{-2}}}
+\newcommand{\cm}{\; {\rm cm}}
+\newcommand{\mm}{\; {\rm mm}}
+%\newcommand{\ps}{\; {\rm s^{-1}}}
+\newcommand{\km}{\; {\rm km}}
+\newcommand{\au}{\; \varpi_{\rm AU}}
+\newcommand{\AU}{\; {\rm AU}}
+\def\K{\; {\rm K}}
+
+\newcommand{\vcs}[1]{\mbox{\boldmath{$\scriptstyle{#1}$}}}
+\newcommand{\vc}[1]{\mbox{\boldmath{$#1$}}}
+\newcommand{\nab}{\vc{\nabla}}
+\DeclareMathSymbol{\varOmega}{\mathord}{letters}{"0A}
+\DeclareMathSymbol{\varSigma}{\mathord}{letters}{"06}
+\DeclareMathSymbol{\varPsi}{\mathord}{letters}{"09}
+
+\newcommand{\Eq}[1]{Equation\,(\ref{#1})}
+\newcommand{\Eqs}[2]{Equations (\ref{#1}) and~(\ref{#2})}
+\newcommand{\Eqss}[2]{Equations (\ref{#1})--(\ref{#2})}
+\newcommand{\App}[1]{Appendix~\ref{#1}}
+\newcommand{\Sec}[1]{Sect.~\ref{#1}}
+\newcommand{\Chap}[1]{Chapter~\ref{#1}}
+\newcommand{\Fig}[1]{Fig.~\ref{#1}}
+\newcommand{\Figs}[2]{Figs.~\ref{#1} and \ref{#2}}
+\newcommand{\Figss}[2]{Figs.~\ref{#1}--\ref{#2}} 
+\newcommand{\Tab}[1]{Table \ref{#1}}
+
+\definecolor{gray}{gray}{0.5}
+\newcommand{\emgr}[1]{\emph{ \color{gray} #1}}
+
+
+%\newenvironment{packed_item}{
+%\begin{itemize}
+%  \setlength{\itemsep}{1pt}
+%  \setlength{\parskip}{0pt}
+%  \setlength{\parsep}{0pt}
+%}{\end{itemize}}
+
+\begin{document}
+
+%\slugcomment{Draft Modified \today}
+
+
+\title{TBD}
+
+\author{Ana-Maria A. Piso\altaffilmark{1}, Karin I. \"Oberg\altaffilmark{1}, et al. } %Tilman Birnstiel\altaffilmark{1}, Ruth A. Murray-Clay\altaffilmark{2}}
+\altaffiltext{1}{Harvard-Smithsonian Center for Astrophysics, 60 Garden Street, Cambridge, MA 02138}
+%\altaffiltext{2}{Department of Physics, University of California, Santa Barbara, CA 93106}
+
+
+\begin{abstract}
+...
+\end{abstract}
+
+\section{Introduction}
+
+\emgr{Background info. Importance of volatiles in disks and planetary atmospheres, detections of snowlines in disks, C/O ratios etc. State again the importance of radial drift and gas accretion on the snowlines location, and that a systematic study of the combination of these two particular effects across the disk has not been done before. Then transition to the fact that we provide such a systematic study in Paper I and in this paper: we enhance the model of Paper I by making two additions: (1) we add nitrogen in the static chemistry model, and (2) we explore how the abundance }
+
+
+\if\bibinc n
+\bibliography{refs}
+\fi
+
+\if\bibinc y
+\begin{thebibliography}
+\end{thebibliography}
+\fi
+
+
+\end{document}
