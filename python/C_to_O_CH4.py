@@ -42,7 +42,7 @@ def n_C_O(species, CH4mid = 0, CH4max = 0):
     elif species == 'CH4' and CH4mid == 1 and CH4max == 0:
         return 0.0555 * 0.9, 0 #5.55% H2O (Oberg+08 Spitzer paper) 
     elif species == 'CH4' and CH4mid == 0 and CH4max == 1:
-        return 0.13, 0 #13% H2O (Oberg+08 c2d paper)
+        return 0.13 * 0.9, 0 #13% H2O (Oberg+08 c2d paper)
      
 
 
