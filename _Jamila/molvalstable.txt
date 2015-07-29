@@ -1,0 +1,41 @@
+Table of Molecular Values
+
+Mol		Energy (K)		E. Source	Abundance (of nH)	A. Source
+CO2		2440			3.			(0.3)*(1e-4)		1.
+
+H2O		5773			4.			(0.9)*(1e-4)		1.
+
+CO		1389 (Mixed)	2.			(1.4)*(1e-4)		5.			
+		787 (Pure)		2.								
+		
+N2		1053 (Mixed)	2.			(N - NH3)(abun.)	-
+		787 (Pure)		2.								
+		
+NH3		2965			7.			(.055)*(H2O abun.)	6.
+
+N		-				-			1.12186e-4			8.
+
+
+Sources:
+1. "The Effects of Snowlines on C/O in Planetary Atmospheres"; Oberg, Karin et al; 2011
+http://iopscience.iop.org/2041-8205/743/1/L16/pdf/apjl_743_1_16.pdf
+
+2. Jodi's Thesis ("Ice Sublimation During Star and Planet Formation..."; Balfe, Jodi S.; 2015
+
+3. "Laboratory H2O:CO2 ice desorption data..."; ^Fayolle, E.C. et al; 2011
+http://www.eas-journal.org/articles/eas/abs/2012/06/eas1258053/eas1258053.html
+
+4. "Thermal Desorption of Water Ice in the Interstellar Medium"; Fraser, Helen J. et al; 2001
+http://articles.adsabs.harvard.edu/cgi-bin/nph-iarticle_query?2001MNRAS.327.1165F&amp;data_type=PDF_HIGH&amp;whole_paper=YES&amp;type=PRINTER&amp;filetype=.pdf
+
+5. "Formation of methyl formate and other organic species..."; Garrod, R.T. et al; 2006
+http://www.aanda.org/articles/aa/pdf/2006/39/aa5560-06.pdf
+
+6. "The c2d SPITZER Spectroscopic Survey of Ices... IV. NH3 and CH3OH"; Bottinelli, S. et al; 2010
+http://iopscience.iop.org/0004-637X/718/2/1100/pdf/apj_718_2_1100.pdf
+
+7. "Thermal desorption of circumstellar and cometary ice analogs"; Martin-Domenech, R. et al; 2014
+http://www.aanda.org/articles/aa/pdf/2014/04/aa22824-13.pdf
+
+8. "Abundances of the Elements: Meteoritic and Solar"; Anders, E. and Grevesse, N.; 1989
+http://ac.els-cdn.com/001670378990286X/1-s2.0-001670378990286X-main.pdf?_tid=b95819de-35fc-11e5-8a1b-00000aab0f02&acdnat=1438179706_345e41e306c54c9ec2f1ec21979f9e93
