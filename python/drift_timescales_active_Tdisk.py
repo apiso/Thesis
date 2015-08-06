@@ -274,6 +274,11 @@ def rdot_with_acc(r, s, alpha, Mdot, k0, dr = 1e-3, rhos = 3.0, mu = 2.35, T0 = 
 
 #######################################################################################
 
+def Mdots(r, s, alpha, Mdot, k0, rhos = 3.0, dr = 1e-3, Mstar = Msun, mu = 2.35, T0 = 120, betaT = 3./7):
+    
+    return -2 * np.pi * Sigmadisk(r, alpha, Mdot, k0, Mstar, mu, T0, betaT) * (r*AU) * \
+        rdot_with_acc(r, s, alpha, Mdot, k0, dr, rhos, mu, T0, betaT, Mstar, sigma) / (Mstar/yr)
+
 def tdes(mx, Ex, Tx, s, Nx = 1e15, rhos = 3.0):
   
      
@@ -520,6 +525,7 @@ def Sigmap_act(rin, rout, nr, ti, tf, nt, s, alpha, Mdisk, rc, rhos = 3.0, T0 = 
         
     
     return sigarray
+
 
 
     
