@@ -2,7 +2,7 @@ from utils.constants import G, kb, mp, Msun, cmperau, AU, yr, sigma
 import numpy as np
 from numpy import ones, zeros, shape,arange,Inf,maximum,minimum,exp,array,sqrt,invert
 from T_freeze import T_freeze, Rdes, tevap, vib_freq
-from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
+#$from C_to_O import T_freeze_H20, T_freeze_CO2, T_freeze_CO
 import scipy
 from scipy.integrate import odeint, quad
 from scipy.optimize import brentq
