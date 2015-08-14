@@ -50,7 +50,7 @@ def n_C_O(species, CH4mid = 0, CH4max = 0):
 T_freeze_H20 = T_freeze(18., 5800, 1e6)
 T_freeze_CO2 = T_freeze(44., 2000, 3e5)
 T_freeze_CH4 = T_freeze(16., 1300., 0.0555*1e6) #binding energy from Garrod+06 A&A paper
-T_freeze_CO = T_freeze(28., 1388, 1e6)
+T_freeze_CO = T_freeze(28., 834, 1e6)
 #T_freeze_CH4 = T_freeze(16., 1300., 0.13*1e6)
 
 
@@ -90,17 +90,17 @@ def n(T, elem, CH4mid, CH4max):
         return np.array([n_C_O('CO')[i] + n_C_O('CO2')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
             n_C_O('H2O')[i] + n_C_O('C_grains')[i] + n_C_O('silicate')[i]])
 
-    elif T_freeze_CO2 >= T > T_freeze_CO:
+    elif T_freeze_CO2 > T > T_freeze_CH4:
         return np.array([n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
             n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 n_C_O('CO2')[i]])            
             
-    elif T_freeze_CO >= T > T_freeze_CH4:
-        return np.array([n_C_O('CH4', CH4mid, CH4max)[i], \
+    elif T_freeze_CH4 > T > T_freeze_CO:
+        return np.array([n_C_O('CO')[i], \
             n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
-                n_C_O('CO2')[i] + +n_C_O('CO')[i]])
+                n_C_O('CO2')[i] + n_C_O('CH4', CH4mid, CH4max)[i]])
                 
-    elif T_freeze_CH4 >= T:
+    elif T_freeze_CO > T:
         return np.array([0, n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 n_C_O('CO2')[i] + n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i]])
             

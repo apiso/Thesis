@@ -55,8 +55,8 @@ def n_N_O(species, NH3mid = 0, NH3max = 0):
 T_freeze_H20 = T_freeze(18., 5800, 1e6)
 T_freeze_NH3 = T_freeze(17., 2965., 5.5e4)
 T_freeze_CO2 = T_freeze(44., 2000, 3e5)
-T_freeze_CO = T_freeze(28., 1388., 1e6)
-T_freeze_N2 = T_freeze(28., 1266., 1.12e6)
+T_freeze_CO = T_freeze(28., 834., 1e6)
+T_freeze_N2 = T_freeze(28., 767., 1.12e6)
 #T_freeze_NH3 = T_freeze(17., 2965., 1.5371e5)
 
 
