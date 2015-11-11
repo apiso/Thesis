@@ -4,8 +4,8 @@ to the H2O, CO2 and CO snowlines"""
 
 import numpy as np
 from T_freeze import T_freeze
+from drift_timescales import read_drag_file_many
 from drift_timescales_active_Tdisk import Tdisk
-from utils.constants import Msun
 
 def n_C_O(species, CH4mid = 0, CH4max = 0):
     
@@ -45,18 +45,18 @@ def n_C_O(species, CH4mid = 0, CH4max = 0):
         return 0.0555 * 0.9, 0 #5.55% H2O (Oberg+08 Spitzer paper) 
     elif species == 'CH4' and CH4mid == 0 and CH4max == 1:
         return 0.13 * 0.9, 0 #13% H2O (Oberg+08 c2d paper)
-     
 
 
 #in the following we calculate T_freeze for various species
-T_freeze_H20 = T_freeze(18., 5800, 1e6)
-T_freeze_CO2 = T_freeze(44., 2000, 3e5)
-T_freeze_CH4 = T_freeze(16., 1300., 0.0555*1e6) #binding energy from Garrod+06 A&A paper
-T_freeze_CO = T_freeze(28., 1388, 1e6)
-#T_freeze_CH4 = T_freeze(16., 1300., 0.13*1e6)
+s, a, arrayH2O = read_drag_file_many('s_neg3_8_steady_correct.txt', 'H2O', 50, 50)
+s, a, arrayCO2 = read_drag_file_many('s_neg3_8_steady_correct.txt', 'CO2', 50, 50)
+s, a, arrayCO = read_drag_file_many('s_neg3_8_steady_correct_CO_CO.txt', 'CO', 50, 50)
+s, a, arrayCH4 = read_drag_file_many('s_neg3_8_steady_correct.txt', 'CH4', 50, 50)
 
 
-def n(T, elem, CH4mid, CH4max):
+
+
+def n(index, r, elem, CH4mid = 0, CH4max = 0):
     
     """
     
@@ -84,31 +84,36 @@ def n(T, elem, CH4mid, CH4max):
     elif elem == 'O':
         i = 1 #flag to simplify the use of the n_C_O function; = 1 for O
         
-    if T >= T_freeze_H20:
+    size = s[index]
+    aH2O = arrayH2O[index][-1]
+    aCO2 = arrayCO2[index][-1]
+    aCO = arrayCO[index][-1] 
+    aCH4 = arrayCH4[index][-1]
+        
+    if r <= aH2O:
         return np.array([n_C_O('CO')[i] + n_C_O('CO2')[i] + n_C_O('H2O')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('C_grains')[i] + n_C_O('silicate')[i]])
+            n_C_O('C_grains')[i] + n_C_O('silicate')[i]]), size
             
-    elif T_freeze_H20 >= T >= T_freeze_CO2:
+    elif aH2O <= r <= aCO2:
         return np.array([n_C_O('CO')[i] + n_C_O('CO2')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('H2O')[i] + n_C_O('C_grains')[i] + n_C_O('silicate')[i]])
+            n_C_O('H2O')[i] + n_C_O('C_grains')[i] + n_C_O('silicate')[i]]), size
 
-    elif T_freeze_CO2 >= T > T_freeze_CO:
+    elif aCO2 < r <= aCH4:
         return np.array([n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
             n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
-                n_C_O('CO2')[i]])            
+                n_C_O('CO2')[i]]), size            
             
-    elif T_freeze_CO >= T > T_freeze_CH4:
-        return np.array([n_C_O('CH4', CH4mid, CH4max)[i], \
+    elif aCH4 < r <= aCO:
+        return np.array([n_C_O('CO')[i], \
             n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
-                n_C_O('CO2')[i] + +n_C_O('CO')[i]])
+                n_C_O('CO2')[i] + n_C_O('CH4', CH4mid, CH4max)[i]]), size
                 
-    elif T_freeze_CH4 >= T:
+    elif aCO < r:
         return np.array([0, n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
-                n_C_O('CO2')[i] + n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i]])
-            
+                n_C_O('CO2')[i] + n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i]]), size
             
 
-def C_O_ratio(a, alpha, Mdot, k0, mu, Mstar = Msun, T0 = 200, q = 0.62, acc = 0, CH4mid = 0, CH4max = 0):
+def C_O_ratio(r, index, CH4mid = 0, CH4max = 0):
     
     """
     
@@ -133,12 +138,8 @@ def C_O_ratio(a, alpha, Mdot, k0, mu, Mstar = Msun, T0 = 200, q = 0.62, acc = 0,
     C/O ratio in grains
     
     """
-    if acc == 0:
-        T = T0 * a**(-q)
-    else:
-        T = Tdisk(a, alpha, Mdot, k0, mu, Mstar, T0, q)
     
-    return n(T, 'C', CH4mid, CH4max) / n(T, 'O', CH4mid, CH4max)
+    return n(index, r, 'C', CH4mid, CH4max)[0] / n(index, r, 'O', CH4mid, CH4max)[0], n(index, r, 'O', CH4mid, CH4max)[1]
                        
             
             

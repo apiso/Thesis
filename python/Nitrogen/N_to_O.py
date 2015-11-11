@@ -38,11 +38,11 @@ def n_N_O(species, NH3mid = 0, NH3max = 0):
     elif species == 'silicate':
         return 0, 1.4
     elif species == 'N2' and NH3mid == 0 and NH3max == 0:
-        return 1.12 * 2, 0
+        return 0.8, 0
     elif species == 'N2' and NH3mid == 1 and NH3max == 0:
-        return (1.12 - 0.9 * 0.055) * 2, 0
+        return (0.8 - 0.9 * 0.055), 0
     elif species == 'N2' and NH3max == 1 and NH3mid == 0:
-        return (1.12 - 0.9 * 0.1537) * 2, 0
+        return (0.8 - 0.9 * 0.1537), 0
     elif species == 'NH3' and NH3mid == 0 and NH3max == 0:
         return 0, 0
     elif species == 'NH3' and NH3mid == 1 and NH3max == 0:
@@ -56,7 +56,7 @@ T_freeze_H20 = T_freeze(18., 5800, 1e6)
 T_freeze_NH3 = T_freeze(17., 2965., 5.5e4)
 T_freeze_CO2 = T_freeze(44., 2000, 3e5)
 T_freeze_CO = T_freeze(28., 1388., 1e6)
-T_freeze_N2 = T_freeze(28., 1266., 1.12e6)
+T_freeze_N2 = T_freeze(28., 1266., 0.8e6/2)
 #T_freeze_NH3 = T_freeze(17., 2965., 1.5371e5)
 
 

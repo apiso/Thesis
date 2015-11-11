@@ -4,6 +4,8 @@ to the H2O, CO2 and CO snowlines"""
 
 import numpy as np
 from T_freeze import T_freeze
+from drift_timescales_active_Tdisk import Tdisk
+from utils.constants import Msun
 
 def n_C_O(species, CH4mid = 0, CH4max = 0):
     
@@ -106,7 +108,7 @@ def n(T, elem, CH4mid, CH4max):
             
             
 
-def C_O_ratio(a, T0 = 200, q = 0.62, CH4mid = 0, CH4max = 0):
+def C_O_ratio(a, alpha, Mdot, k0, mu, Mstar = Msun, T0 = 200, q = 0.62, acc = 0, CH4mid = 0, CH4max = 0):
     
     """
     
@@ -131,8 +133,10 @@ def C_O_ratio(a, T0 = 200, q = 0.62, CH4mid = 0, CH4max = 0):
     C/O ratio in grains
     
     """
-    
-    T = T0 * a**(-q)
+    if acc == 0:
+        T = T0 * a**(-q)
+    else:
+        T = Tdisk(a, alpha, Mdot, k0, mu, Mstar, T0, q)
     
     return n(T, 'C', CH4mid, CH4max) / n(T, 'O', CH4mid, CH4max)
                        
