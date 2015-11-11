@@ -4,6 +4,8 @@ to the H2O, CO2 and CO snowlines"""
 
 import numpy as np
 from T_freeze import T_freeze
+from drift_timescales_active_Tdisk import Tdisk
+from utils.constants import Msun
 
 def n_N_O(species, NH3mid = 0, NH3max = 0):
     
@@ -55,8 +57,8 @@ def n_N_O(species, NH3mid = 0, NH3max = 0):
 T_freeze_H20 = T_freeze(18., 5800, 1e6)
 T_freeze_NH3 = T_freeze(17., 2965., 5.5e4)
 T_freeze_CO2 = T_freeze(44., 2000, 3e5)
-T_freeze_CO = T_freeze(28., 1388., 1e6)
-T_freeze_N2 = T_freeze(28., 1266., 0.8e6/2)
+T_freeze_CO = T_freeze(28., 834., 1e6)
+T_freeze_N2 = T_freeze(28., 767., 0.8e6/2)
 #T_freeze_NH3 = T_freeze(17., 2965., 1.5371e5)
 
 
@@ -116,11 +118,11 @@ def n(T, elem, NH3mid = 0, NH3max = 0):
             
             
 
-def N_O_ratio(a, T0 = 200, q = 0.62, NH3mid = 0, NH3max = 0):
+def N_O_ratio(a, alpha, Mdot, k0, mu, Mstar = Msun, T0 = 200, q = 0.62, acc = 0, NH3mid = 0, NH3max = 0):
     
     """
     
-    Returns the N/O ratio as a function of semimajor axis for a given disk
+    Returns the C/O ratio as a function of semimajor axis for a given disk
     temperature profile
     
     Input
@@ -137,12 +139,14 @@ def N_O_ratio(a, T0 = 200, q = 0.62, NH3mid = 0, NH3max = 0):
      
     Output
     ------
-    N/O ratio in gas
-    N/O ratio in grains
+    C/O ratio in gas
+    C/O ratio in grains
     
     """
-    
-    T = T0 * a**(-q)
+    if acc == 0:
+        T = T0 * a**(-q)
+    else:
+        T = Tdisk(a, alpha, Mdot, k0, mu, Mstar, T0, q)    
     
     return n(T, 'N', NH3mid, NH3max) / n(T, 'O', NH3mid, NH3max)
                        

@@ -4,6 +4,9 @@ to the H2O, CO2 and CO snowlines"""
 
 import numpy as np
 from T_freeze import T_freeze
+from drift_timescales_active_Tdisk import Tdisk
+from utils.constants import Msun
+from drift_timescales import read_drag_file_many
 
 def n_N_O(species, NH3mid = 0, NH3max = 0):
     
@@ -51,17 +54,14 @@ def n_N_O(species, NH3mid = 0, NH3max = 0):
         return 0.1537 * 0.9, 0 #0.1537 * n_H2O from Bottinelli+10 Spitzer paper
 
 
-#in the following we calculate T_freeze for various species
-T_freeze_H20 = T_freeze(18., 5800, 1e6)
-T_freeze_NH3 = T_freeze(17., 2965., 5.5e4)
-T_freeze_CO2 = T_freeze(44., 2000, 3e5)
-T_freeze_CO = T_freeze(28., 834., 1e6)
-T_freeze_N2 = T_freeze(28., 767., 0.8e6/2)
-#T_freeze_NH3 = T_freeze(17., 2965., 1.5371e5)
+s, a, arrayH2O = read_drag_file_many('s_neg3_8_steady_correct.txt', 'H2O', 50, 50)
+s, a, arrayCO2 = read_drag_file_many('s_neg3_8_steady_correct.txt', 'CO2', 50, 50)
+s, a, arrayCO = read_drag_file_many('s_neg3_8_steady_correct_CO_CO.txt', 'CO', 50, 50)
+s, a, arrayN2 = read_drag_file_many('s_neg3_8_steady_correct_N2_N2.txt', 'N2', 50, 50)
+s, a, arrayNH3 = read_drag_file_many('s_neg3_8_steady_correct.txt', 'NH3', 50, 50)
 
 
-
-def n(T, elem, NH3mid = 0, NH3max = 0):
+def n(index, r, elem, NH3mid = 0, NH3max = 0):
     
     """
     
@@ -89,38 +89,45 @@ def n(T, elem, NH3mid = 0, NH3max = 0):
     elif elem == 'O':
         i = 1 #flag to simplify the use of the n_N_O function; = 1 for O
         
-    if T >= T_freeze_H20:
+    size = s[index]
+    aH2O = arrayH2O[index][-1]
+    aCO2 = arrayCO2[index][-1]
+    aCO = arrayCO[index][-1]
+    aN2 = arrayN2[index][-1]
+    aNH3 = arrayNH3[index][-1]
+        
+    if r <= aH2O:
         return np.array([n_N_O('CO')[i] + n_N_O('CO2')[i] + n_N_O('H2O')[i] + n_N_O('N2', NH3mid, NH3max)[i] + n_N_O('NH3', NH3mid, NH3max)[i], \
-            n_N_O('C_grains')[i] + n_N_O('silicate')[i]])
+            n_N_O('C_grains')[i] + n_N_O('silicate')[i]]), size
 
-    elif T_freeze_H20 >= T >= T_freeze_NH3:
+    elif aH2O <= r <= aNH3:
         return np.array([n_N_O('CO')[i] + n_N_O('CO2')[i] + n_N_O('N2', NH3mid, NH3max)[i] + n_N_O('NH3', NH3mid, NH3max)[i], \
-            n_N_O('H2O')[i] + n_N_O('C_grains')[i] + n_N_O('silicate')[i]])            
+            n_N_O('H2O')[i] + n_N_O('C_grains')[i] + n_N_O('silicate')[i]]), size            
                                     
-    elif T_freeze_NH3 >= T >= T_freeze_CO2:
+    elif aNH3 <= r <= aCO2:
         return np.array([n_N_O('CO')[i] + n_N_O('CO2')[i] + n_N_O('N2', NH3mid, NH3max)[i], \
-            n_N_O('H2O')[i] + n_N_O('NH3', NH3mid, NH3max)[i] + n_N_O('C_grains')[i] + n_N_O('silicate')[i]])
+            n_N_O('H2O')[i] + n_N_O('NH3', NH3mid, NH3max)[i] + n_N_O('C_grains')[i] + n_N_O('silicate')[i]]), size
             
-    elif T_freeze_CO2 >= T >= T_freeze_CO:
+    elif aCO2 <= r <= aCO:
         return np.array([n_N_O('CO')[i] + n_N_O('N2', NH3mid, NH3max)[i], \
             n_N_O('C_grains')[i] + n_N_O('silicate')[i] + n_N_O('H2O')[i] + \
-                n_N_O('CO2')[i] + n_N_O('NH3', NH3mid, NH3max)[i]])
+                n_N_O('CO2')[i] + n_N_O('NH3', NH3mid, NH3max)[i]]), size
                 
-    elif T_freeze_CO >= T >= T_freeze_N2:
+    elif aCO <= r <= aN2:
         return np.array([n_N_O('N2', NH3mid, NH3max)[i], n_N_O('C_grains')[i] + n_N_O('silicate')[i] + n_N_O('H2O')[i] + \
-                n_N_O('CO2')[i] + n_N_O('CO')[i] + n_N_O('NH3', NH3mid, NH3max)[i]])
+                n_N_O('CO2')[i] + n_N_O('CO')[i] + n_N_O('NH3', NH3mid, NH3max)[i]]), size
 
-    elif T_freeze_N2 > T:
+    elif aN2 < r:
         return np.array([0, n_N_O('C_grains')[i] + n_N_O('silicate')[i] + n_N_O('H2O')[i] + \
-                n_N_O('CO2')[i] + n_N_O('CO')[i] + n_N_O('N2', NH3mid, NH3max)[i] + n_N_O('NH3', NH3mid, NH3max)[i]])
+                n_N_O('CO2')[i] + n_N_O('CO')[i] + n_N_O('N2', NH3mid, NH3max)[i] + n_N_O('NH3', NH3mid, NH3max)[i]]), size
             
             
 
-def N_O_ratio(a, T0 = 200, q = 0.62, NH3mid = 0, NH3max = 0):
+def N_O_ratio(r, index, NH3mid = 0, NH3max = 0):
     
     """
     
-    Returns the N/O ratio as a function of semimajor axis for a given disk
+    Returns the C/O ratio as a function of semimajor axis for a given disk
     temperature profile
     
     Input
@@ -137,15 +144,10 @@ def N_O_ratio(a, T0 = 200, q = 0.62, NH3mid = 0, NH3max = 0):
      
     Output
     ------
-    N/O ratio in gas
-    N/O ratio in grains
+    C/O ratio in gas
+    C/O ratio in grains
     
     """
     
-    T = T0 * a**(-q)
-    
-    return n(T, 'N', NH3mid, NH3max) / n(T, 'O', NH3mid, NH3max)
-                       
-            
-            
+    return n(index, r, 'N', NH3mid, NH3max)[0] / n(index, r, 'O', NH3mid, NH3max)[0], n(index, r, 'O', NH3mid, NH3max)[1]
             
