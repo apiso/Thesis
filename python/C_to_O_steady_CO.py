@@ -35,8 +35,12 @@ def n_C_O(species, CH4mid = 0, CH4max = 0):
         return 0.3, 0.6
     elif species == 'H2O':
         return 0, 0.9
-    elif species == 'C_grains':
+    elif species == 'C_grains' and CH4mid == 0 and CH4max == 0:
         return 0.6, 0
+    elif species == 'C_grains' and CH4mid == 1 and CH4max == 0:
+        return 0.6 - 0.0555 * 0.9, 0
+    elif species == 'C_grains' and CH4mid == 0 and CH4max == 1:
+        return 0.6 - 0.13 * 0.9, 0        
     elif species == 'silicate':
         return 0, 1.4
     elif species == 'CH4' and CH4mid == 0 and CH4max == 0:
@@ -92,24 +96,24 @@ def n(index, r, elem, CH4mid = 0, CH4max = 0):
         
     if r <= aH2O:
         return np.array([n_C_O('CO')[i] + n_C_O('CO2')[i] + n_C_O('H2O')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('C_grains')[i] + n_C_O('silicate')[i]]), size
+            n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i]]), size
             
     elif aH2O <= r <= aCO2:
         return np.array([n_C_O('CO')[i] + n_C_O('CO2')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('H2O')[i] + n_C_O('C_grains')[i] + n_C_O('silicate')[i]]), size
+            n_C_O('H2O')[i] + n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i]]), size
 
     elif aCO2 < r <= aCH4:
         return np.array([n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
+            n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 n_C_O('CO2')[i]]), size            
             
     elif aCH4 < r <= aCO:
         return np.array([n_C_O('CO')[i], \
-            n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
+            n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 n_C_O('CO2')[i] + n_C_O('CH4', CH4mid, CH4max)[i]]), size
                 
     elif aCO < r:
-        return np.array([0, n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
+        return np.array([0, n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 n_C_O('CO2')[i] + n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i]]), size
             
 

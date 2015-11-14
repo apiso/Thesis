@@ -92,24 +92,24 @@ def n(index, r, elem, CH4mid = 0, CH4max = 0):
         
     if r < aH2O:
         return np.array([n_C_O('CO')[i] + n_C_O('CO2')[i] + n_C_O('H2O')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('C_grains')[i] + n_C_O('silicate')[i]]), size
+            n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i]]), size
             
     elif aH2O <= r <= aCO2:
         return np.array([n_C_O('CO')[i] + n_C_O('CO2')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('H2O')[i] + n_C_O('C_grains')[i] + n_C_O('silicate')[i]]), size
+            n_C_O('H2O')[i] + n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i]]), size
 
     elif aCO2 <= r < aCO:
         return np.array([n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
+            n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 n_C_O('CO2')[i]]), size            
             
     elif aCO <= r < aCH4:
         return np.array([n_C_O('CH4', CH4mid, CH4max)[i], \
-            n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
+            n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 n_C_O('CO2')[i] + +n_C_O('CO')[i]]), size
                 
     elif aCH4 <= r:
-        return np.array([0, n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
+        return np.array([0, n_C_O('C_grains', CH4mid, CH4max)[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 n_C_O('CO2')[i] + n_C_O('CO')[i] + n_C_O('CH4', CH4mid, CH4max)[i]]), size
             
 
