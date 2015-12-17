@@ -81,6 +81,10 @@ The elemental compositions of planets define their chemistry, and could potentia
 \section{Introduction}
 \label{sec:intro}
 
+\begin {itemize}
+\item  
+\end {itemize}
+
 \emgr{Background info. Importance of volatiles in disks and planetary atmospheres, detections of snowlines in disks, C/O ratios etc. State again the importance of radial drift and gas accretion on the snowline locations, and that a systematic study of the combination of these two particular effects across the disk has not been done before. Then transition to the fact that we provide such a systematic study in Paper I and in this paper. Here, we expand the model of Paper I by making three additions: (1) we add N and CH4 in the static chemistry model, and explore how different abundances of CH4 and of the N main carriers (N2 and NH3) affect the C/O  and N/O ratios, (2) we quantify the effect of radial drift and gas accretion on the N2, CH4 and NH3 snowline locations, and (3) we explore how different binding energies of CO and N2 affect their snowline locations.}
 
 \begin{figure*}[t!]
@@ -101,15 +105,19 @@ We begin with a brief review of Paper I's model for the effect of radial drift a
 
 We first assume a static disk, which is only irradiated by the central star and does not experience redistribution of solids or radial movement of the nebular gas. To quantify the effects of radial drift and gas accretion, we use a viscous disk with a spatially and temporally constant mass flux, $\dot{M}$. The viscous disk takes into account radial drift, gas accretion onto the central star, as well as accretion heating. We prefer this disk model to an irradiated or evolving disk (see Paper I) because it includes all the dynamical and thermal processes we are interested in for the scope of this paper, and therefore it is the most realistic one.  
 
-We model the static disk as a minimum mass solar nebula (MMSN), using a prescription for the gas surface density, $\Sigma$, and disk midplane temperature, $T$, similar to that of \citet{chiang10}:
-\begin{subeqnarray}
-\label{eq:disk}
-\Sigma&=&2000\, (r/\text{AU})^{-1}\,\, \text{g cm}^{-2} \slabel{eq:disksigma}\\
-T &=& 120\, (r/\text{AU})^{-3/7} \,\,\text{K}, \slabel{eq:diskT}
-\end{subeqnarray}
-where $r$ is the semimajor axis. Based on observations of protoplanetary disks \citep{andrews10}, we choose a flatter surface density than the one assumed by \citet{chiang10}, where $\Sigma \propto r^{-3/2}$. 
-
-We use the \citet{shakura73}  steady-state disk solution to model the viscous disk. Solving the Equation set of Appendix A in Paper I yields an expression for the temperature profile in a steady-state disk:
+Following \citet{chiang10}, the temperature profile for a static disk is
+\begin{equation}
+\label{eq:diskT}
+T = 120\, (r/\text{AU})^{-3/7} \,\,\text{K},
+\end{equation}
+%We model the static disk as a minimum mass solar nebula (MMSN), using a prescription for the gas surface density, $\Sigma$, and disk midplane temperature, $T$, similar to that of \citet{chiang10}:
+%\begin{subeqnarray}
+%\label{eq:disk}
+%\Sigma&=&2000\, (r/\text{AU})^{-1}\,\, \text{g cm}^{-2} \slabel{eq:disksigma}\\
+%T &=& 120\, (r/\text{AU})^{-3/7} \,\,\text{K}, \slabel{eq:diskT}
+%\end{subeqnarray}
+where $r$ is the semimajor axis.% Based on observations of protoplanetary disks \citep{andrews10}, we choose a flatter surface density than the one assumed by \citet{chiang10}, where $\Sigma \propto r^{-3/2}$. 
+We use the \citet{shakura73}  steady-state disk solution to model the viscous disk. From Paper I, the viscous disk temperature profile is computed as % Solving the Equation set of Appendix A in Paper I yields an expression for the temperature profile in a steady-state disk:
 \begin{equation}
 \label{eq:Tdact}
 T_{\rm act}=\frac{1}{4 r} \Big(\frac{3 G \kappa_0\dot{M}^2 M_* \mu m_{\rm p} \Omega_{\rm k}}{\pi^2 \alpha k_{\rm B} \sigma}\Big)^{1/3}.
@@ -215,10 +223,12 @@ Figure \ref{fig:CO_ratio} shows the H$_2$O, CO$_2$ and CO snowline locations for
 \label{fig:CO_ratio}
 \end{figure}
 
-\section{Nitrogen Carriers and N/O Ratios}
+\section{Nitrogen and N/O Ratios}
 \label{sec:N}
 
-\emgr{Similar to the previous section, but with more details. Discuss that nitrogen is abundant in the solar system and disks and primarily found as N2. Due to the high volatility of N2, the gas phase N/O ratio in the outer disk may be even more enhanced than the C/O ratio. A fraction of the nitrogen abundance may be also carried by NH3. Discuss NH3 observed abundances and the choices that we make (no NH3, median, maximum). State that the NH3 desorption energy is only weakly dependent on whether it's pure NH3 or combined with H2O, but that is not the case for N2. Present new binding energies for N2 as pure ice and combined with water. Show Figure 4 and discuss how different nitrogen abundances and binding energies affect snowline locations and N/O ratio: N2 combined with H2O moves the N2 snowline inward by $\sim$50 AU (will calculate percentages too); the maximum reasonable abundance of NH3 changes the N/O ratio by $\sim$15\%. In the outer disk, the N/O ratio is enhanced by a factor of $\sim$4 compared to the solar value, twice as much as the C/O enhancement. Show Figure 5 and quantify the effect of drift and accretion on the NH3 snowline compared to a static disk. While NH3 does not have a significant effect on the N/O ratio in a static disk, this effect may be larger in a viscous disk, as the N gas abundance inside the NH3 snowline may be enhanced due to the differential motion of the desorbed ices and overall nebular gas (refer to Paper I). In this study, however, we neglect these effects and therefore do not include NH3 in estimating the N/O ratio (again, N/O ratio figure with drift is quite messy when including NH3 and does not add any information that is not already shown in Figures 4 and 5). Show Figure 6 and estimate the difference between N2-H2O and N2 pure ice snowlines in the case of drift, as well as the comparisons for the static disk for the N2 snowline. State that there will be an overabundance of gas-phase N/O between the CO and N2 snowlines, as there is no oxygen gas in this region.}
+In addition to carbon and oxygen, nitrogen is 
+
+%\emgr{Similar to the previous section, but with more details. Discuss that nitrogen is abundant in the solar system and disks and primarily found as N2. Due to the high volatility of N2, the gas phase N/O ratio in the outer disk may be even more enhanced than the C/O ratio. A fraction of the nitrogen abundance may be also carried by NH3. Discuss NH3 observed abundances and the choices that we make (no NH3, median, maximum). State that the NH3 desorption energy is only weakly dependent on whether it's pure NH3 or combined with H2O, but that is not the case for N2. Present new binding energies for N2 as pure ice and combined with water. Show Figure 4 and discuss how different nitrogen abundances and binding energies affect snowline locations and N/O ratio: N2 combined with H2O moves the N2 snowline inward by $\sim$50 AU (will calculate percentages too); the maximum reasonable abundance of NH3 changes the N/O ratio by $\sim$15\%. In the outer disk, the N/O ratio is enhanced by a factor of $\sim$4 compared to the solar value, twice as much as the C/O enhancement. Show Figure 5 and quantify the effect of drift and accretion on the NH3 snowline compared to a static disk. While NH3 does not have a significant effect on the N/O ratio in a static disk, this effect may be larger in a viscous disk, as the N gas abundance inside the NH3 snowline may be enhanced due to the differential motion of the desorbed ices and overall nebular gas (refer to Paper I). In this study, however, we neglect these effects and therefore do not include NH3 in estimating the N/O ratio (again, N/O ratio figure with drift is quite messy when including NH3 and does not add any information that is not already shown in Figures 4 and 5). Show Figure 6 and estimate the difference between N2-H2O and N2 pure ice snowlines in the case of drift, as well as the comparisons for the static disk for the N2 snowline. State that there will be an overabundance of gas-phase N/O between the CO and N2 snowlines, as there is no oxygen gas in this region.}
 
 \begin{figure}[h!]
 \centering
