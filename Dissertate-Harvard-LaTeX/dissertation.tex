@@ -3,6 +3,85 @@
 
 \documentclass{Dissertate}
 
+\usepackage{graphicx} 
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{subeqnarray}
+\usepackage{epstopdf}
+%\usepackage{natbib}
+%\bibliographystyle{apj}
+
+\newcommand{\emgr}[1]{\emph{ \color{gray} #1}}
+
+\newcommand{\ie}{i.e.\ }
+\newcommand{\eg}{e.g.\ }
+\newcommand{\p}{\partial}
+\newcommand{\xv}{\vc{x}}
+\newcommand{\kv}{\vc{k}}
+\newcommand{\brak}[1]{\langle #1\rangle}
+
+
+\newcommand{\gcc}{\;\mathrm{g\; cm^{-3}}}
+\newcommand{\gsc}{\;\mathrm{g\; cm^{-2}}}
+\newcommand{\cm}{\; {\rm cm}}
+\newcommand{\mm}{\; {\rm mm}}
+%\newcommand{\ps}{\; {\rm s^{-1}}}
+\newcommand{\km}{\; {\rm km}}
+
+\newcommand{\AU}{\; {\rm AU}}
+\newcommand{\yr}{\; {\rm yr}}
+\def\K{\; {\rm K}}
+
+\newcommand{\vcs}[1]{\mbox{\boldmath{$\scriptstyle{#1}$}}}
+\newcommand{\vc}[1]{\mbox{\boldmath{$#1$}}}
+\newcommand{\nab}{\vc{\nabla}}
+\DeclareMathSymbol{\varOmega}{\mathord}{letters}{"0A}
+\DeclareMathSymbol{\varSigma}{\mathord}{letters}{"06}
+\DeclareMathSymbol{\varPsi}{\mathord}{letters}{"09}
+
+\newcommand{\eq}[1]{equation\,(\ref{#1})}
+\newcommand{\Eq}[1]{Equation\,(\ref{#1})}
+\newcommand{\Eqs}[2]{Equations (\ref{#1}) and~(\ref{#2})}
+\newcommand{\Eqss}[2]{Equations (\ref{#1})--(\ref{#2})}
+\newcommand{\Eqsss}[3]{Equations (\ref{#1}), (\ref{#2}) and~(\ref{#3})}
+\newcommand{\App}[1]{Appendix~\ref{#1}}
+\newcommand{\Sec}[1]{Sect.~\ref{#1}}
+\newcommand{\Chap}[1]{Chapter~\ref{#1}}
+\newcommand{\Fig}[1]{Figure~\ref{#1}}
+\newcommand{\Figs}[2]{Figs.~\ref{#1} and \ref{#2}}
+\newcommand{\Figss}[2]{Figs.~\ref{#1}--\ref{#2}} 
+\newcommand{\Tab}[1]{Table \ref{#1}}
+
+\newenvironment{packed_item}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+\newcommand{\delad}{\nabla_{\rm ad}}
+\newcommand{\delrad}{\nabla_{\rm rad}}
+\newcommand{\Rg}{\mathcal{R}}
+\newcommand{\RB}{R_{\rm B}}
+\newcommand{\RH}{R_{\rm H}}
+\newcommand{\co}{_{\rm c}}
+\newcommand{\pla}{_{\rm p}}
+\newcommand{\di}{_{\rm d}}
+\newcommand{\cb}{_{\rm RCB}}
+\newcommand{\mc}{m_{\rm c \oplus}}
+\newcommand{\mcn}[1] { m_{ \rm c #1} }
+\newcommand{\mpn}[1] { m_{ \rm p #1} }
+\newcommand{\MC}{M_{\rm crit}}
+\newcommand{\au}{a_\oplus}
+\newcommand{\aun}[1]{ a_{#1} }
+\def\crit{_{\rm{c, crit}}}
+
+
+
 \begin{document}
 
 % the front matter
@@ -35,9 +114,9 @@
 
 % the back matter
 \clearpage
-\bibliography{references}
+\bibliography{refs}
 \addcontentsline{toc}{chapter}{References}
-\bibliographystyle{apalike2}
+\bibliographystyle{apj}
 
 \include{endmatter/colophon}
 
