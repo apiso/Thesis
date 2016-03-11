@@ -1,34 +1,34 @@
-\contentsline {chapter}{\numberline {0}Introduction}{1}{chapter.0}
-\contentsline {chapter}{\numberline {1}The title of chapter one}{4}{chapter.1}
-\contentsline {section}{\numberline {1.1}Introduction}{4}{section.1.1}
-\contentsline {section}{\numberline {1.2}Atmospheric Accretion Model}{6}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Disk and Opacity Model}{7}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Length Scales}{9}{subsection.1.2.2}
-\contentsline {subsection}{\numberline {1.2.3}Structure Equations and Boundary Conditions}{11}{subsection.1.2.3}
-\contentsline {subsection}{\numberline {1.2.4}Global Cooling of an Embedded Planet}{13}{subsection.1.2.4}
-\contentsline {subsection}{\numberline {1.2.5}The Two-Layer Model}{15}{subsection.1.2.5}
-\contentsline {section}{\numberline {1.3}Analytic Cooling Model}{16}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Two Layer Structure}{17}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Mass, Energy and Luminosity}{19}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}Cooling Times \& Core Masses}{21}{subsection.1.3.3}
-\contentsline {section}{\numberline {1.4}Quasi-Static Kelvin-Helmholtz Contraction}{23}{section.1.4}
-\contentsline {subsection}{\numberline {1.4.1}Atmospheric Structure}{23}{subsection.1.4.1}
-\contentsline {subsection}{\numberline {1.4.2}Time Evolution}{26}{subsection.1.4.2}
-\contentsline {subsection}{\numberline {1.4.3}Validity of the Two-Layer Cooling Model}{29}{subsection.1.4.3}
-\contentsline {section}{\numberline {1.5}Results for Giant Planet Formation}{29}{section.1.5}
-\contentsline {subsection}{\numberline {1.5.1}Runaway Growth Timescale}{30}{subsection.1.5.1}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}On the Minimum Core Mass For Giant Planet Formation at Wide Separations}{4}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Atmospheric Accretion Model}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Disk and Opacity Model}{8}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Length Scales}{10}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Structure Equations and Boundary Conditions}{12}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Global Cooling of an Embedded Planet}{14}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}The Two-Layer Model}{15}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Analytic Cooling Model}{17}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Two Layer Structure}{18}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Mass, Energy and Luminosity}{20}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Cooling Times \& Core Masses}{22}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Quasi-Static Kelvin-Helmholtz Contraction}{24}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Atmospheric Structure}{24}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Time Evolution}{26}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Validity of the Two-Layer Cooling Model}{29}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Results for Giant Planet Formation}{31}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Runaway Growth Timescale}{31}{subsection.2.5.1}
 \contentsline {subsubsection}{Effects of Core Mass}{31}{figure.caption.10}
 \contentsline {subsubsection}{Effects of Disk Temperature and Pressure}{33}{figure.caption.11}
-\contentsline {subsection}{\numberline {1.5.2}Critical Core Mass}{35}{subsection.1.5.2}
-\contentsline {subsection}{\numberline {1.5.3}Comparison with Previous Studies}{36}{subsection.1.5.3}
-\contentsline {section}{\numberline {1.6}Neglected Effects}{37}{section.1.6}
-\contentsline {subsection}{\numberline {1.6.1}Hydrodynamic Effects}{38}{subsection.1.6.1}
-\contentsline {subsection}{\numberline {1.6.2}Realistic Opacities}{38}{subsection.1.6.2}
-\contentsline {subsection}{\numberline {1.6.3}Equation of State}{39}{subsection.1.6.3}
-\contentsline {subsection}{\numberline {1.6.4}Core growth}{39}{subsection.1.6.4}
-\contentsline {section}{\numberline {1.7}Summary}{40}{section.1.7}
-\contentsline {chapter}{\numberline {2}The title of chapter two}{43}{chapter.2}
-\contentsline {chapter}{\numberline {3}Consectetuer adipiscing elit}{47}{chapter.3}
-\contentsline {chapter}{\numberline {4}Conclusion}{78}{chapter.4}
+\contentsline {subsection}{\numberline {2.5.2}Critical Core Mass}{34}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Comparison with Previous Studies}{36}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}Neglected Effects}{38}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Hydrodynamic Effects}{38}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Realistic Opacities}{39}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Equation of State}{40}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Core growth}{40}{subsection.2.6.4}
+\contentsline {section}{\numberline {2.7}Summary}{40}{section.2.7}
+\contentsline {chapter}{\numberline {3}The title of chapter two}{43}{chapter.3}
+\contentsline {chapter}{\numberline {4}Consectetuer adipiscing elit}{47}{chapter.4}
+\contentsline {chapter}{\numberline {5}Conclusion}{78}{chapter.5}
 \contentsline {chapter}{Appendix \numberline {A}Some extra stuff}{81}{Appendix.1.A}
 \contentsline {chapter}{References}{85}{chapter*.14}

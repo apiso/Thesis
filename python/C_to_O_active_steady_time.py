@@ -82,20 +82,20 @@ def n(index, r, elem):
     aCO = arrayCO[index][-1]    
                 
     if r <= aH2O:
-        return np.array([n_C_O('CO')[i] / (1 - (r/aCO)**(3./2)) + \
-                        n_C_O('CO2')[i] / (1 - (r/aCO2)**(3./2)) + \
-                        n_C_O('H2O')[i] / (1 - (r/aH2O)**(3./2)), \
+        return np.array([n_C_O('CO')[i] * (1 - (r/aCO)**(3./2)) + \
+                        n_C_O('CO2')[i] * (1 - (r/aCO2)**(3./2)) + \
+                        n_C_O('H2O')[i] * (1 - (r/aH2O)**(3./2)), \
             #n_C_O('C_grains')[i] + n_C_O('silicate')[i]]), 
                         size])
             
     elif aH2O <= r <= aCO2:
-        return np.array([n_C_O('CO')[i] / (1 - (r/aCO)**(3./2)) + \
-                        n_C_O('CO2')[i] / (1 - (r/aCO2)**(3./2)), \
+        return np.array([n_C_O('CO')[i] * (1 - (r/aCO)**(3./2)) + \
+                        n_C_O('CO2')[i] * (1 - (r/aCO2)**(3./2)), \
             #n_C_O('H2O')[i] + n_C_O('C_grains')[i] + n_C_O('silicate')[i]]), 
                         size])
             
     elif aCO2 < r < aCO:
-        return np.array([n_C_O('CO')[i] / (1 - (r/aCO)**(3./2)), \
+        return np.array([n_C_O('CO')[i] * (1 - (r/aCO)**(3./2)), \
             #n_C_O('C_grains')[i] + n_C_O('silicate')[i] + n_C_O('H2O')[i] + \
                 #n_C_O('CO2')[i]]), 
                         size])
