@@ -77,20 +77,23 @@
 \contentsline {subsection}{\numberline {5.3.3}C/N/O Ratios in Dynamic Disks}{127}{subsection.5.3.3}
 \contentsline {section}{\numberline {5.4}Discussion}{128}{section.5.4}
 \contentsline {section}{\numberline {5.5}Summary}{132}{section.5.5}
-\contentsline {chapter}{\numberline {6}Conclusion}{134}{chapter.6}
-\contentsline {chapter}{Appendix \numberline {A}Derivation of the Global Energy Equation}{137}{Appendix.1.A}
-\contentsline {chapter}{Appendix \numberline {B}Analytic Cooling Model Details}{141}{Appendix.1.B}
-\contentsline {subsection}{\numberline {B.0.1}Isothermal Atmosphere}{141}{subsection.1.B.0.1}
-\contentsline {subsection}{\numberline {B.0.2}Temperature and Pressure Corrections at the Radiative-Convective Boundary}{142}{subsection.1.B.0.2}
-\contentsline {subsection}{\numberline {B.0.3}The Opacity Effect}{144}{subsection.1.B.0.3}
-\contentsline {subsection}{\numberline {B.0.4}Surface Terms}{144}{subsection.1.B.0.4}
-\contentsline {section}{\numberline {B.1}Equation of State Table Extension}{146}{section.1.B.1}
-\contentsline {subsection}{\numberline {B.1.1}Hydrogen}{146}{subsection.1.B.1.1}
-\contentsline {subsection}{\numberline {B.1.2}Helium}{151}{subsection.1.B.1.2}
-\contentsline {section}{\numberline {B.2}Adiabatic Gradient Variations}{153}{section.1.B.2}
-\contentsline {subsection}{\numberline {B.2.1}Adiabatic Gradient during Partial Dissociation}{153}{subsection.1.B.2.1}
-\contentsline {subsection}{\numberline {B.2.2}Adiabatic Gradient during Conversion of Spin Isomers}{154}{subsection.1.B.2.2}
-\contentsline {section}{\numberline {B.3}Grain growth opacity and radiative windows}{158}{section.1.B.3}
-\contentsline {section}{\numberline {B.4}Steady-state active disk solution}{161}{section.1.B.4}
-\contentsline {section}{\numberline {B.5}Desorption distance analytic solution}{162}{section.1.B.5}
-\contentsline {chapter}{References}{169}{chapter*.47}
+\contentsline {chapter}{\numberline {6}Summary and Future Directions}{134}{chapter.6}
+\contentsline {section}{\numberline {6.1}Minimum Core Masses for Giant Planet Formation}{135}{section.6.1}
+\contentsline {section}{\numberline {6.2}The Role of Disk Dynamics and Ice Morphology on Snowline Locations and the C/N/O Ratios}{136}{section.6.2}
+\contentsline {section}{\numberline {6.3}Future Directions}{138}{section.6.3}
+\contentsline {chapter}{Appendix \numberline {A}Derivation of the Global Energy Equation}{139}{Appendix.1.A}
+\contentsline {chapter}{Appendix \numberline {B}Analytic Cooling Model Details}{143}{Appendix.1.B}
+\contentsline {subsection}{\numberline {B.0.1}Isothermal Atmosphere}{143}{subsection.1.B.0.1}
+\contentsline {subsection}{\numberline {B.0.2}Temperature and Pressure Corrections at the Radiative-Convective Boundary}{144}{subsection.1.B.0.2}
+\contentsline {subsection}{\numberline {B.0.3}The Opacity Effect}{146}{subsection.1.B.0.3}
+\contentsline {subsection}{\numberline {B.0.4}Surface Terms}{146}{subsection.1.B.0.4}
+\contentsline {chapter}{Appendix \numberline {C}Equation of State Table Extension}{148}{Appendix.1.C}
+\contentsline {subsection}{\numberline {C.0.5}Hydrogen}{149}{subsection.1.C.0.5}
+\contentsline {subsection}{\numberline {C.0.6}Helium}{153}{subsection.1.C.0.6}
+\contentsline {chapter}{Appendix \numberline {D}Adiabatic Gradient Variations}{156}{Appendix.1.D}
+\contentsline {subsection}{\numberline {D.0.7}Adiabatic Gradient during Partial Dissociation}{156}{subsection.1.D.0.7}
+\contentsline {subsection}{\numberline {D.0.8}Adiabatic Gradient during Conversion of Spin Isomers}{157}{subsection.1.D.0.8}
+\contentsline {chapter}{Appendix \numberline {E}Grain growth opacity and radiative windows}{161}{Appendix.1.E}
+\contentsline {chapter}{Appendix \numberline {F}Steady-state active disk solution}{165}{Appendix.1.F}
+\contentsline {chapter}{Appendix \numberline {G}Desorption distance analytic solution}{167}{Appendix.1.G}
+\contentsline {chapter}{References}{175}{chapter*.47}
