@@ -1,0 +1,163 @@
+\chapter{Analytic Cooling Model Details}
+\label{sec:analytic}
+%TODO (academic): Figure out if theta < 1 is actually required? Should be but need to check
+
+\subsection{Isothermal Atmosphere}
+\label{iso}
+
+We consider the structure of a non-self-gravitating, isothermal atmosphere that extends outward from the radiative-convective boundary (RCB) and matches onto the disk density, $\rho_{\rm d}$, at a distance $r_{\rm fit} = n_{\rm fit} \RB$, where $R_{\rm B}$ is the Bondi radius defined in equation (\ref{eq:RB}). From equation (\ref{eq:structa}) the resulting density profile is
+\begin{equation} \label{eq:rhoiso}
+\rho = \rho_{\rm d} \exp \left({R_{\rm B} \over r} - {1 \over n_{\rm{fit}}} \right) \approx   \rho_{\rm{d}} \exp \left(R_{\rm B} \over r  \right),
+\end{equation} 
+where the approximate inequality is valid deep inside the atmosphere ($r \ll \RB$) for any $n_{\rm fit} \gtrsim 1$.  However, the choice of boundary condition does have an order unity effect on the density near the Bondi radius. 
+
+The mass of the atmosphere is determined by integrating equation (\ref{eq:structb}) from the RCB to the Bondi radius using the density profile (\ref{eq:rhoiso}) and can be approximated as
+\begin{equation} \label{eq:MatmISO}
+M_{\rm iso} \approx 4 \pi \rho\di {R\cb^4 \over R_{\rm B}} e^{R_B/R\cb} = 4\pi \rho\cb \frac{R\cb^4}{R_{\rm B}} \, ,
+\end{equation}
+with $\rho\cb$ the density at the RCB.
+This result is the leading order term in a series expansion. By comparing the expression above and \Eq{eq:Matman} under the assumption that $R\cb \ll R_{\rm B}$, we see that the mass of the outer radiative region (which is nearly isothermal) is negligible when compared with the atmosphere mass in the convective layer, as stated in Section \ref{sec:coolingan}.
+% Furthermore, because the atmospheric scale-height at $R\co$ is $H_\rho = |dr /d\ln\rho| = R\co^2/R_B$, the result is intuitively the correct order of magnitude.
+%Planets can attract massive atmospheres if $\theta\co \equiv R_B/R\co \gg 1$.  
+
+\subsection{Temperature and Pressure Corrections at the Radiative-Convective Boundary}
+\label{RCBcorr}
+
+%\subsection{Temperature Contrast at Convective Boundary}
+We estimate the temperature and pressure corrections at the RCB due to the fact that the radiative region is not purely isothermal. From equation (\ref{eq:delrad}), we express the radiative lapse rate
+\begin{equation}\label{eq:delradan}
+\delrad = {3 \kappa P \over 64 \pi  G M \sigma T^4} L = \nabla\di {P/P_{\rm d} \over (T/T_{\rm d})^{4-\beta}},
+\end{equation}
+
+\noindent where the second equality follows from the opacity law (\ref{eq:opacitylaw}) and $\nabla_{\rm d}$ is the radiative temperature gradient at the disk:
+
+\begin{equation}
+\label{eq:delo}
+\nabla \di \equiv \frac{3 \kappa(T{\di}) P{\di}}{64 \pi G M \sigma T_{\rm d}^4} L.
+\end{equation}
+Here $M$ is the total planet mass. Since our analytic model neglects self-gravity, $M=M\co$ and therefore $\nabla\di$ is constant. From equation (\ref{eq:delradan}) and $\delrad=d \ln T / d\ln P$, the temperature profile in the radiative region integrates to
+\begin{equation}\label{eq:radTP}
+\left(T \over T_{\rm d}\right)^{4-\beta} - 1 = {\nabla\di \over \nabla_\infty} \left( {P \over P_{\rm d}} - 1 \right) \, ,
+\end{equation} 
+where $\nabla_\infty = 1/(4-\beta)$ is the radiative temperature gradient for $T ,P \rightarrow \infty$.
+Applying \Eqs{eq:delradan}{eq:radTP} at the RCB (where $\delrad = \delad$) under the assumption that $P\cb \gg P_{\rm d}$ results in  $T\cb=\chi T\di$ as in \Eq{eq:Tcb}, with $\chi$ defined in \Eq{eq:chi}.
+
+The pressure at the RCB follows from \Eqs{eq:radTP}{eq:Tcb} as
+\begin{equation}
+\label{eq:Pcbapprox}
+{P\cb\over P_{\rm d}} \simeq {\delad/\nabla\di \over 1 - \delad/\nabla_\infty}.
+\end{equation} 
+%This pressure contrast can be quite large since $\nabla_{\rm d} \ll 1$.
+ We can eliminate $\nabla\di$ from equation (\ref{eq:Pcbapprox}) to obtain a relation between temperature and pressure in the radiative zone as a function of the RCB pressure $P\cb$. From \Eq{eq:radTP}, it follows that
+ \begin{equation}\label{eq:TP}
+{T \over T_{\rm d}} = \left[1 + {1 \over {\nabla_\infty \over \delad} - 1} \left({P \over P\cb} -  {P_{\rm d} \over P\cb}\right) \right]^{1 \over 4-\beta}\, .
+\end{equation} 
+ We can then determine the RCB radius $R\cb$ from \Eq{eq:structa} as 
+\begin{equation}\label{eq:RCBint}
+{R_B \over R\cb} = \int_{P\di}^{P\cb} {T \over T_{\rm d}} {dP \over P}\, .
+\end{equation}
+Evaluating the integral leads to 
+\begin{equation}\label{eq:Rcb}
+{R_B \over r\cb} = \ln \left(P\cb \over P\di \right) - \ln \theta \, ,
+\end{equation} 
+with an extra correction term $\theta < 1$, when compared to an isothermal atmosphere (see Equation \ref{eq:rhoiso}). From this we arrive at the relation between $P\cb$ and $P\di$ given by Equation (\ref{eq:PcbRcb}). As opposed from the temperature correction factor $\chi$, an analytic expression for  $\theta$ cannot be obtained. Estimates for $\chi$ and $\theta$ for different values of the exponent $\beta$ in the opacity law (\ref{eq:opacitylaw}) are presented in Table 1.
+
+%As shown in section \S\ref{iso, an isothermal atmosphere gives a simple logarithmic dependence on $P\cb$.  However, using \Eq{eq:TP} in the integral gives
+
+% The form we chose for the correction term allows us to relate the disk and radiative-convective boundary pressures as :
+% \begin{equation}\label{eq:PcbRcb}
+%P\cb = \theta P_{\rm d} e^{R_B/R\cb} \, .
+%\end{equation}   
+%In the $P\cb \gg P_{\rm d}$ limit, the correction term is an order unity constant that depends on $\alpha$, $\beta$ and $\delad$. Similarly to the temperature correction factor $\chi$,  $\theta$ accounts for the fact that the radiative region is not perfectly isothermal. For $\delad=2/7$, $\alpha=0$ and $\beta=2$, we find $\theta \approx 0.556$. Values of $\theta$ for other choices of $\beta$ are summarized in \App{sec:analytic}.  A simple analytic expression for $\theta$ is not possible.  
+
+
+
+
+\subsection{The Opacity Effect}
+\label{opacityan}
+A  lower opacity  decreases the critical core mass.  Reducing the opacity by a factor of one hundred results in a critical core mass one order of magnitude lower than in the standard ISM case, for our analytic model. The reduction is not  as strong as the nominal scaling would imply, $0.01^{3/5} \approx 0.06$, because $\xi$ increases.
+
+Even with significantly lower opacities, radiative diffusion remains a good approximation at the RCB. For $\beta = 2$, we estimate the optical depth as
+\begin{equation}
+\tau\cb \sim {\kappa\cb P\cb \over g} \sim 7 \times 10^4 {F_T^4 F_\kappa \over \left(\mc \over 10 \right) \left(\au \over 10\right)^{12 \over 7}}, 
+\end{equation} 
+where $P\cb \sim P_M$ for a self-gravitating atmosphere and $g \sim G M\co/R_B^2$, with both approximations good to within the order unity factor $\xi$.  We see that $\tau\cb \gg 1$ even for $F_\kappa \lesssim 0.01$ out to very wide separations, hence the atmosphere remains optically thick at the RCB.
+
+%A hotter disk would increase core masses.  Instead of our passive disk model, adopting the standard Hayashi temperature profile would increase core masses by $\sim 50\%$.  A hotter accretion phase would further increase core masses, but such phases are presumably short lived.
+
+\subsection{Surface Terms}
+\label{surfterms}
+In this section we check the relevance of the neglected surface terms in \Eq{eq:coolingglobal}.  We first show that accretion energy is only a small correction at the RCB, which is where we apply our cooling model. A rough comparison (ignoring terms of order $\xi$) of  accretion luminosity vs. $\dot{E}$ gives
+\begin{equation}
+{G M \dot{M} \over R \dot{E}} = {G M  \over R}{dM \over dE} \sim {G M\co^2 \over R_B E}{P\cb \over P_M} \sim \sqrt{R\co \over R_B} \ll 1,
+\end{equation} 
+where we assume $P\cb \sim P_M$  for a massive atmosphere.  Accretion energy at the protoplanetary surface is thus very weak for marginally self-gravitating atmospheres, and even weaker for lower mass atmospheres.  A similar scaling analysis shows that the work term $P_M \p V_M/\p t$ is similarly weak.  Nevertheless, our numerical calculations include these surface terms in a more realistic and complete model of self-gravitating atmospheres.
+
+
+%\subsection{Hydrogen Dissociation}
+%The dissociation of molecular hydrogen deep in the atmospheres of accreting protoplanets plays a significant role in the energetics of core accretion.  In the high density regions $r  \ll R\cb$ of a convective atmosphere, the thermal plus gravitational energy scales as
+%\begin{equation}
+%dE = -4 \pi \nabla_{\rm ad}^{1/\nabla_{\rm ad}} \rho\cb R_B'^{1/(\gamma-1)} r^{\frac{2\gamma - 3}{\gamma - 1}} {dr \over r}
+%\end{equation} 
+%If $\gamma < 3/2$ then the main contribution to the energy is at the bottom of the atmosphere, i.e.\ the core.  This is the case for a diatomic ideal gas ($\gamma = 1.4$) or a solar mixture of hydrogen and helium ($\gamma \approx 1.43$).  However a monatomic gas has $\gamma = 5/3 > 3/2$.  In this case, the atmosphere's energy is no longer concentrated near the bottom, but will be concentrated near the top of the convective zone.
+%
+%A likely structure is an atmosphere that is dissociated near the base, but becomes molecular near the top of the convective zone.  In this case the atmosphere's energy budget would be concentrated near the atomic to molecular transition.
+%
+%The energy required to dissociate a hydrogen molecule, $I = 4.467$ eV can be significant to the overall energy budget.
+%Since
+%\begin{equation}
+%{I \over \nabla_{\rm ad} G M\co (2 m_{\rm H})/r} \approx 3 \left(M\co \over 10 M_\oplus \right)^{-2/3} {r \over R_{\rm c}}
+%\end{equation} 
+%we see that this energy is always relevant.
+%
+%We can use the Saha equation to determine where dissociation is significant,
+%\begin{equation}
+%{n_{\rm H}^2 \over n_{\rm H_2}} = \left(\pi m_{\rm H} k T \over h \right)^{3/2} e^{-I/(kT)}
+%\end{equation} 
+%We introduce a reaction coordinate $\delta$ so that $n_{\rm H} = 2 \delta n_o$ and $n_{\rm H_2} = (1-\delta) n_o$ with $n_o = \rho X/(2 m_{\rm H})$ the number density when all hydrogen is molecular.  We express equilibrium as
+%\begin{equation}
+%{\delta^2 \over 1-\delta} = f_\mu {P_{\rm diss}(T) \over P}
+%\end{equation} 
+%with the characteristic pressure below which dissociation occurs is
+%\begin{equation}
+%P_{\rm diss} = {\left(kT\right)^{5/2} \over 4} \left( \pi m_{\rm H} \over h^2\right)^{3/2}  e^{-I/(kT)}
+%\end{equation} 
+%and the order unity factor
+%\begin{equation}
+%f_\mu = 2\delta + (1-\delta) + Y/2 + Z/\mu_Z
+%\end{equation} 
+%accounts for variations in the mean molecular weight with dissociation.  (Take $\mu_Z = 31/2$, but not too significant.)
+%
+%Thus dissociation occurs where $P \lesssim P_{\rm diss}(T)$.  At disk temperatures (say 150 K) the dissociation pressure is negligibly small ($\sim 10^{-141}$ dyne cm$^{-2}$) and no dissociation occurs.  However at core temperatures the dissociation pressure is quite large especially for massive cores.  Dissociation is guaranteed.
+
+
+\begin{table}{cccccc}  % <--- column justification (center/left/right)
+\gdef \numcols {6}
+\tablecolumns{\numcols}
+\tablecaption{Parameters Describing Structure of Radiative Zone.}
+\tablehead{   \multicolumn{\numcols}{c} {$\gamma = 7/5$ ($\delad = 2/7$)} }  
+\startdata
+ $\beta$   		 &1/2  	& 3/4 &1   		& 3/2  		& 2   \\
+ $\nabla_\infty$ & 2/7 \tablenotemark{a}  	&  4/13	& 1/3 	& 2/5 	 	& 1/2 \\
+ $\chi$ 		 & \nodata &  2.25245 &1.91293 	& 1.65054 	& 1.52753 \\
+ $\theta $  		 &\nodata   & 0.145032	&0.285824   &0.456333   & 0.556069   \\
+\enddata
+\tablenotetext{a}{Since $\delad = \nabla_\infty$ there is no convective transition at depth for this case.}
+\end{table}
+
+
+
+%\subsection{Estimate of Atmosphere Mass Outside the Bondi Radius}
+%
+%Here we consider the mass exterior to the Bondi radius.  For a meaningful evaluation we only include the mass coming from the overdensity relative to the background density.  The resulting external mass for an isothermal atmosphere is
+%\begin{subeqnarray}
+%M_{\rm ext} &=& 4 \pi \int_{\RB}^{r_{\rm fit}} (\rho - \rho\di) r^2 dr \\
+%&=& M\co \theta\co \int_1^{n_{\rm fit}} 3 \left[ \exp \left({1 \over x} - {1 \over n_{\rm fit}}\right) - 1 \right] x^2 dx  \nonumber \\
+%&\equiv& M\co \theta\co I(n_{\rm fit})
+%\end{subeqnarray} 
+%where $\theta_c=R_B/R_{\rm c}$ and the dimensionless integral $I(n_{\rm fit})$ obeys the limits $I(1) = 0$ and $I \rightarrow n_{\rm fit}^2/2$ as $n_{\rm fit} \rightarrow \infty$.  Since this external mass does not converge, the choice of an outer boundary does matter in principle.  In practice, however, the assumption that   $r_{\rm fit} = R_{\rm H}$ limits $n_{\rm fit}$ to modest values
+%\begin{equation}
+%n_{\rm fit} = {R_{\rm H} \over \RB} \approx 1.3 {\aun{10}^{4/7} \over \mcn{10}^{2/3}}{F_T \over  m_\ast^{1/3}}.
+%\end{equation} 
+%Since for instance $I(2) = 1.1$, these modest $n_{\rm fit}$ values will only produce a small external mass.
+

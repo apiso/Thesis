@@ -1,0 +1,124 @@
+\documentclass[apj, numberedappendix]{emulateapj}
+
+\usepackage{graphicx} 
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{subeqnarray}
+\usepackage{epstopdf}
+%\usepackage{natbib}
+%\bibliographystyle{apj}
+
+\newcommand{\emgr}[1]{\emph{ \color{gray} #1}}
+
+\newcommand{\ie}{i.e.\ }
+\newcommand{\eg}{e.g.\ }
+\newcommand{\p}{\partial}
+\newcommand{\xv}{\vc{x}}
+\newcommand{\kv}{\vc{k}}
+\newcommand{\brak}[1]{\langle #1\rangle}
+
+
+\newcommand{\gcc}{\;\mathrm{g\; cm^{-3}}}
+\newcommand{\gsc}{\;\mathrm{g\; cm^{-2}}}
+\newcommand{\cm}{\; {\rm cm}}
+\newcommand{\mm}{\; {\rm mm}}
+%\newcommand{\ps}{\; {\rm s^{-1}}}
+\newcommand{\km}{\; {\rm km}}
+
+\newcommand{\AU}{\; {\rm AU}}
+\newcommand{\yr}{\; {\rm yr}}
+\def\K{\; {\rm K}}
+
+\newcommand{\vcs}[1]{\mbox{\boldmath{$\scriptstyle{#1}$}}}
+\newcommand{\vc}[1]{\mbox{\boldmath{$#1$}}}
+\newcommand{\nab}{\vc{\nabla}}
+\DeclareMathSymbol{\varOmega}{\mathord}{letters}{"0A}
+\DeclareMathSymbol{\varSigma}{\mathord}{letters}{"06}
+\DeclareMathSymbol{\varPsi}{\mathord}{letters}{"09}
+
+\newcommand{\eq}[1]{equation\,(\ref{#1})}
+\newcommand{\Eq}[1]{Equation\,(\ref{#1})}
+\newcommand{\Eqs}[2]{Equations (\ref{#1}) and~(\ref{#2})}
+\newcommand{\Eqss}[2]{Equations (\ref{#1})--(\ref{#2})}
+\newcommand{\Eqsss}[3]{Equations (\ref{#1}), (\ref{#2}) and~(\ref{#3})}
+\newcommand{\App}[1]{Appendix~\ref{#1}}
+\newcommand{\Sec}[1]{Sect.~\ref{#1}}
+\newcommand{\Chap}[1]{Chapter~\ref{#1}}
+\newcommand{\Fig}[1]{Figure~\ref{#1}}
+\newcommand{\Figs}[2]{Figs.~\ref{#1} and \ref{#2}}
+\newcommand{\Figss}[2]{Figs.~\ref{#1}--\ref{#2}} 
+\newcommand{\Tab}[1]{Table \ref{#1}}
+
+\newenvironment{packed_item}{
+\begin{itemize}
+  \setlength{\itemsep}{1pt}
+  \setlength{\parskip}{0pt}
+  \setlength{\parsep}{0pt}
+}{\end{itemize}}
+
+\newcommand{\delad}{\nabla_{\rm ad}}
+\newcommand{\delrad}{\nabla_{\rm rad}}
+\newcommand{\Rg}{\mathcal{R}}
+\newcommand{\RB}{R_{\rm B}}
+\newcommand{\RH}{R_{\rm H}}
+\newcommand{\co}{_{\rm c}}
+\newcommand{\pla}{_{\rm p}}
+\newcommand{\di}{_{\rm d}}
+\newcommand{\cb}{_{\rm RCB}}
+\newcommand{\mc}{m_{\rm c \oplus}}
+\newcommand{\mcn}[1] { m_{ \rm c #1} }
+\newcommand{\mpn}[1] { m_{ \rm p #1} }
+\newcommand{\MC}{M_{\rm crit}}
+\newcommand{\au}{a_\oplus}
+\newcommand{\aun}[1]{ a_{#1} }
+\def\crit{_{\rm{c, crit}}}
+
+
+\begin{document}
+
+
+\section{Introduction}
+
+Within the last two decades, more than one thousand extrasolar planets (exoplanets)have been discovered [1]. Their diversity in terms of mass, radius, location and composition[2] provides an exciting field of research, with the eventual goal of finding planets that aresimilar to our own Earth and may sustain life. For this purpose, it is thus crucial to exploreand understand how planets obtain their compositions. Observations of Earth-like planetsthat can provide useful insight about their composition are challenging — the solid interiorstructure of terrestrial planets cannot be detected, and their gaseous envelopes are small bycomparison (both in mass and radius), which makes it difficult to obtain atmospheric spectraand find out what chemical compounds they are made of. We therefore turn to giant planets,which have provided a rich and intriguing research area for decades. Gas giants contain mostof their mass in their atmosphere, hence their chemical composition is determined by thatof their envelopes. The last few years have seen a substantial increase in the number ofgiant planets with observed atmospheric spectra (e.g., [3], [4]), which has enhanced ourunderstanding of these planets’ chemical structure, and has provided us with quantitativeinformation about the abundances of various compounds in their envelopes besides hydrogenand helium. Finally, gas giants shape the architecture of planetary systems and affect thedelivery of volatile compunds to terrestrial planets, which has direct consequences for thehabitability of worlds similar to our own. Thus testing theories of planet formation againstgas giant compositions will help constrain planet formation theories more generally.Both terrestrial and giant planets are born in protoplanetary disks, which implies thattheir compositions are determined by and tightly linked to the structure andcomposition of the disk. The chemical and dynamical evolution of disks, as well theformation of giant planets have both been previously investigated in isolation. However, thecoupled chemo-dynamical disk evolution, planet compositions, and most importantly thedisk-planet connection have not yet been considered in detail. In this thesis, I uncover some of the answers to this issue from two standpoints: (1) by looking at the role of disk location in setting the conditions for the formation of wide-separation gas giants, and (2) by investigating how the structure and chemical composition of the protoplanetary disk at different radii affects the composition of nascent giant planets.
+
+\subsection{The Role of Disk Location in Setting the Minimum Core Mass for Giant Planet formation}
+
+\begin{itemize}
+
+\item Gas giants are largely believed to form through core accretion (insert core accretion sketch from various talks). This process is particularly challenging in the outer disk due to long dynamical timescales. At the same time, wide separation gas giants have been discovered (HR 8799 plot). This poses an intriguing question: how do these planets form: I answer this question in the first part of my thesis; specifically I calculate the minimum Mcrit, which applies when cores no longer accrete solids. Standard core accretion studies are not built to properly explore this Mcrit. Here explain standard core accretion studies in more detail and insert e.g. one of the Mass vs time figures from Pollack et al. 1996. Explain how our study is different. Finalize by saying that the studies I performed clearly challenge previous claims that  core accretion cannot operate at wide separations, thus reopening the case for in-situ formation of wide separation gas giants.
+
+\end{itemize}
+
+\subsection{The Role of Disk Dynamics and Morphology in Setting Snowline locations and C/N/O Ratios}
+
+\begin{itemize}
+
+\item Disk Composition Regulates Planet Composition. It is thus essential to (1) predict what kinds of planet compositions result from planet location in different parts of the disk, and (2) conversely, bacl-track planet formation location based on planet composition.
+
+\item Disks are complex. Show figure from Henning and Semenov with all processes that occur in disks and discuss which ones I tackle in the thesis.
+
+\item However, we do know some things about disks. Volatile molecules have detected in disks (show figure with Spitzer IR spectrum of AA Tauri). Snowlines have also been detected (show CO snowline plot from Qi+13).
+
+\item One important signature of atmospheric chemistry is the C/O ratio (explain why and show plot from Molliere+15 which shows the effect of varying C/O ratio on the abundance of other volatiles). Discuss claims that super stellar C/O ratios have been detected (show Wasp 12-b spectrum from Madhusudhan), but have since been refuted. Explain that this poses an intriguing question from a theoretical standpoint. Mention idea proposed by Oberg+11 (show plot). Discuss that disk dynamics have an important role, which is partly what we tackle in this part of the thesis.
+
+\item There are other important volatiles besides H2O, CO2 and CO. Discuss the importance of N2 and show plot with abundances in comets that show that NH3 is the main carrier based on observations, but it doesn't account for all the nitrogen in the solar system. 
+
+\item Ice morphology is important. Discuss why. Discuss how binding energies depend on the ice environment and show plot from Edit's paper. 
+
+\item It follows that we have to take into account additional volatiles, abundances and ice morphologies besides disk dynamics to see their effect on snowline locations and the C/N/O ratios. We tackle this in Chaper xx.
+
+\item We demonstrate in this part to the thesis that C/N/O ratios may be used to track a planet's formation origin, when combined with observations, but that more observations are needed.
+
+\end{itemize}
+
+\subsection{Disk-Planet Connection}
+
+Our work in the two main parts of this thesis confirms that there is indeed a tight link between disks and planets. More importantly, as we will demonstrate in detail, the formation and composition of giant planets highly depends on disk location and properties.
+
+This thesis is organized as follows....
+
+\end{document}

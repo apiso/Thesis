@@ -1,0 +1,17 @@
+\section{Steady-state active disk solution} \label{app:steadystate}
+
+Following \citet{shakura73} and \citet{armitage10}, the steady-state solution for a geometrically thin, optically thick actively accreting disk with an $\alpha$-prescription for viscosity is governed by the following set of equations:
+
+\begin{subeqnarray}
+\label{eq:diskeq}
+\nu & = & \alpha c H \slabel{eq:nueq} \\
+c^2 & = & \frac{k_{\rm B} T_{\rm act}}{\mu m_{\rm p}} \slabel{eq:cdeq} \\
+\rho & = & \frac{1}{\sqrt{2 \pi}} \frac{\Sigma}{H} \slabel{eq:rhoeq} \\
+H & = & \frac{c}{\Omega_{k}} \slabel{eq:Heq} \\
+T_{\rm act}^4 & = & \frac{3}{4} \tau T_{\rm surf}^4 \slabel{eq:Teq} \\
+\tau & = & \frac{1}{2} \Sigma \kappa \slabel{eq:taueq} \\
+\nu \Sigma & = & \frac{\dot{M}}{3 \pi} \slabel{eq:Mdot} \\
+\sigma T_{\rm surf}^4 & = & \frac{9}{8} \nu \Sigma \Omega_{\rm k}^2 \slabel{eq:nusigeq} \\
+\kappa & = & \kappa_0 T_{\rm act}^2 \slabel{eq:kappaeq},
+\end{subeqnarray}
+where $T_{\rm surf}$ is the surface temperature of the disk and the other quantities are defined in the main text. This is a system of nine equations with nine unknowns ($\nu$, $c$, $H$, $T_{\rm act}$, $\rho$, $\Sigma$, $\tau$, $T_{\rm surf}$, $\kappa$) that can be solved numerically once $\alpha$ and $\kappa_0$ are specified. 

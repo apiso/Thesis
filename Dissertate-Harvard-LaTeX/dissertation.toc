@@ -1,34 +1,96 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {chapter}{\numberline {2}On the Minimum Core Mass For Giant Planet Formation at Wide Separations}{4}{chapter.2}
-\contentsline {section}{\numberline {2.1}Introduction}{5}{section.2.1}
-\contentsline {section}{\numberline {2.2}Atmospheric Accretion Model}{7}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Disk and Opacity Model}{8}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Length Scales}{10}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Structure Equations and Boundary Conditions}{12}{subsection.2.2.3}
-\contentsline {subsection}{\numberline {2.2.4}Global Cooling of an Embedded Planet}{14}{subsection.2.2.4}
-\contentsline {subsection}{\numberline {2.2.5}The Two-Layer Model}{15}{subsection.2.2.5}
-\contentsline {section}{\numberline {2.3}Analytic Cooling Model}{17}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Two Layer Structure}{18}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Mass, Energy and Luminosity}{20}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}Cooling Times \& Core Masses}{22}{subsection.2.3.3}
-\contentsline {section}{\numberline {2.4}Quasi-Static Kelvin-Helmholtz Contraction}{24}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Atmospheric Structure}{24}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Time Evolution}{26}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Validity of the Two-Layer Cooling Model}{29}{subsection.2.4.3}
-\contentsline {section}{\numberline {2.5}Results for Giant Planet Formation}{31}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Runaway Growth Timescale}{31}{subsection.2.5.1}
-\contentsline {subsubsection}{Effects of Core Mass}{31}{figure.caption.10}
-\contentsline {subsubsection}{Effects of Disk Temperature and Pressure}{33}{figure.caption.11}
-\contentsline {subsection}{\numberline {2.5.2}Critical Core Mass}{34}{subsection.2.5.2}
-\contentsline {subsection}{\numberline {2.5.3}Comparison with Previous Studies}{36}{subsection.2.5.3}
-\contentsline {section}{\numberline {2.6}Neglected Effects}{38}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Hydrodynamic Effects}{38}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Realistic Opacities}{39}{subsection.2.6.2}
-\contentsline {subsection}{\numberline {2.6.3}Equation of State}{40}{subsection.2.6.3}
-\contentsline {subsection}{\numberline {2.6.4}Core growth}{40}{subsection.2.6.4}
-\contentsline {section}{\numberline {2.7}Summary}{40}{section.2.7}
-\contentsline {chapter}{\numberline {3}The title of chapter two}{43}{chapter.3}
-\contentsline {chapter}{\numberline {4}Consectetuer adipiscing elit}{47}{chapter.4}
-\contentsline {chapter}{\numberline {5}Conclusion}{78}{chapter.5}
-\contentsline {chapter}{Appendix \numberline {A}Some extra stuff}{81}{Appendix.1.A}
-\contentsline {chapter}{References}{85}{chapter*.14}
+\contentsline {subsection}{\numberline {1.0.1}The Role of Disk Location in Setting the Minimum Core Mass for Giant Planet formation}{2}{subsection.1.0.1}
+\contentsline {subsection}{\numberline {1.0.2}The Role of Disk Dynamics and Morphology in Setting Snowline locations and C/N/O Ratios}{3}{subsection.1.0.2}
+\contentsline {subsection}{\numberline {1.0.3}Disk-Planet Connection}{4}{subsection.1.0.3}
+\contentsline {chapter}{\numberline {2}On the Minimum Core Mass For Giant Planet Formation at Wide Separations}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}Atmospheric Accretion Model}{8}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Disk and Opacity Model}{9}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Length Scales}{11}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Structure Equations and Boundary Conditions}{13}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Global Cooling of an Embedded Planet}{15}{subsection.2.2.4}
+\contentsline {subsection}{\numberline {2.2.5}The Two-Layer Model}{16}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Analytic Cooling Model}{18}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Two Layer Structure}{19}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Mass, Energy and Luminosity}{21}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Cooling Times \& Core Masses}{23}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Quasi-Static Kelvin-Helmholtz Contraction}{25}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Atmospheric Structure}{25}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Time Evolution}{27}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Validity of the Two-Layer Cooling Model}{30}{subsection.2.4.3}
+\contentsline {section}{\numberline {2.5}Results for Giant Planet Formation}{32}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Runaway Growth Timescale}{32}{subsection.2.5.1}
+\contentsline {subsubsection}{Effects of Core Mass}{32}{figure.caption.10}
+\contentsline {subsubsection}{Effects of Disk Temperature and Pressure}{34}{figure.caption.11}
+\contentsline {subsection}{\numberline {2.5.2}Critical Core Mass}{35}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Comparison with Previous Studies}{37}{subsection.2.5.3}
+\contentsline {section}{\numberline {2.6}Neglected Effects}{39}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Hydrodynamic Effects}{39}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Realistic Opacities}{40}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Equation of State}{41}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Core growth}{41}{subsection.2.6.4}
+\contentsline {section}{\numberline {2.7}Summary}{41}{section.2.7}
+\contentsline {chapter}{\numberline {3}Minimum Core Masses for Giant Planet Formation With Realistic Equations of State and Opacities}{44}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduction}{45}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Equation of State}{47}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Opacity}{47}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Paper Plan}{48}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Atmospheric Model Review}{49}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Assumptions and Disk Model}{49}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Structure Equations and Cooling Model}{50}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Adiabatic Gradient for the Tabulated Equation of State}{53}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Intermediate $T$: Ideal Gas}{54}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}High $T$: Dissociation and Ionization of Hydrogen}{54}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Low $T$: Hydrogen Rotation and Spin Isomers}{55}{subsection.3.3.3}
+\contentsline {subsubsection}{Thermodynamic equilibrium of spin isomers}{56}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Role of the Equation of State}{58}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Role of $-dE/dM$}{60}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Role of $L$}{61}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Impact of Opacity on Atmosphere Evolution}{63}{section.3.5}
+\contentsline {section}{\numberline {3.6}Critical Core Mass}{65}{section.3.6}
+\contentsline {section}{\numberline {3.7}Effects of Planetesimal Accretion}{66}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Planetesimal Accretion Rates}{67}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Core Growth during KH Contraction}{69}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}Comparison with Steady-State Results}{69}{subsection.3.7.3}
+\contentsline {section}{\numberline {3.8}Summary}{71}{section.3.8}
+\contentsline {chapter}{\numberline {4}C/O and Snowline Locations in Protoplanetary Disks: The Effect of Radial Drift and Viscous Gas Accretion}{79}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{80}{section.4.1}
+\contentsline {section}{\numberline {4.2}Model Framework}{83}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Disk Model}{83}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Radial Drift}{87}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Volatile Desorption}{89}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Relevant Timescales}{89}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Snowline Locations}{92}{section.4.3}
+\contentsline {section}{\numberline {4.4}C/O Ratio Estimates}{95}{section.4.4}
+\contentsline {section}{\numberline {4.5}Discussion}{100}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Generality of Results: Dependence on Disk Parameters}{100}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Model Extensions}{102}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Summary}{106}{section.4.6}
+\contentsline {chapter}{\numberline {5}The Role of Ice Compositions and Morphology for Snowlines and the C/N/O Ratios in Active Disks}{115}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{116}{section.5.1}
+\contentsline {section}{\numberline {5.2}Coupled Drift-Desorption Model}{118}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Disk Model}{118}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Desorption-Drift Equations and Results}{119}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Results}{122}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Snowlines in a Static Disk: The Importance of Ice Morphology}{122}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}C/N/O Ratios in Static Disks}{123}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}C/N/O Ratios in Dynamic Disks}{127}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Discussion}{128}{section.5.4}
+\contentsline {section}{\numberline {5.5}Summary}{132}{section.5.5}
+\contentsline {chapter}{\numberline {6}Conclusion}{134}{chapter.6}
+\contentsline {chapter}{Appendix \numberline {A}Derivation of the Global Energy Equation}{137}{Appendix.1.A}
+\contentsline {chapter}{Appendix \numberline {B}Analytic Cooling Model Details}{141}{Appendix.1.B}
+\contentsline {subsection}{\numberline {B.0.1}Isothermal Atmosphere}{141}{subsection.1.B.0.1}
+\contentsline {subsection}{\numberline {B.0.2}Temperature and Pressure Corrections at the Radiative-Convective Boundary}{142}{subsection.1.B.0.2}
+\contentsline {subsection}{\numberline {B.0.3}The Opacity Effect}{144}{subsection.1.B.0.3}
+\contentsline {subsection}{\numberline {B.0.4}Surface Terms}{144}{subsection.1.B.0.4}
+\contentsline {section}{\numberline {B.1}Equation of State Table Extension}{146}{section.1.B.1}
+\contentsline {subsection}{\numberline {B.1.1}Hydrogen}{146}{subsection.1.B.1.1}
+\contentsline {subsection}{\numberline {B.1.2}Helium}{151}{subsection.1.B.1.2}
+\contentsline {section}{\numberline {B.2}Adiabatic Gradient Variations}{153}{section.1.B.2}
+\contentsline {subsection}{\numberline {B.2.1}Adiabatic Gradient during Partial Dissociation}{153}{subsection.1.B.2.1}
+\contentsline {subsection}{\numberline {B.2.2}Adiabatic Gradient during Conversion of Spin Isomers}{154}{subsection.1.B.2.2}
+\contentsline {section}{\numberline {B.3}Grain growth opacity and radiative windows}{158}{section.1.B.3}
+\contentsline {section}{\numberline {B.4}Steady-state active disk solution}{161}{section.1.B.4}
+\contentsline {section}{\numberline {B.5}Desorption distance analytic solution}{162}{section.1.B.5}
+\contentsline {chapter}{References}{169}{chapter*.47}

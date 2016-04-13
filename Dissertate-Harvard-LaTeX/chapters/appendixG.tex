@@ -1,0 +1,21 @@
+\section{Desorption distance analytic solution} \label{app:tdriftan}
+
+For a particle of size $s$ that desorbs and satisfies $\tau_{\rm s} \ll 1$ ($\tau_{\rm s}$ is the dimensionless stopping time, defined in Section \ref{sec:drift}), we can derive an explicit analytic solution for the particle's desorption distance in an irradiated disk. For $\tau_{\rm s} \ll 1$, a particle is in the Epstein drag regime (see Equation \ref{eq:ts}) and its drift velocity $\dot{r}$ (Equation \ref{eq:rdotpas}) can be approximated as
+\begin{equation}
+\label{eq:rdotapp}
+\dot{r} \approx -2 \eta \Omega_{\rm k} r \tau_{\rm s}.
+\end{equation}
+By using Equations (\ref{eq:tdes}) and (\ref{eq:tdrift}) and setting $t_{\rm drift}=t_{\rm des}$, we can express a particle's desorption distance as
+
+\begin{equation}
+\label{eq:tan}
+r_{\rm des}=\Bigg(\frac{d}{q \,C} \,\, \mathcal{W}\Big[\frac{(B/A)^{-q/d} q\,C}{d}\Big]\Bigg)^{\frac{1}{q}},
+\end{equation}
+where $\mathcal{W}$ is the Lambert-W function, $q=3/7$ is the power-law coefficient in Equation (\ref{eq:diskT}), $d=-\frac{1}{2}+p-q$ with $p=1$ the power-law coefficient in Equation (\ref{eq:disksigma}), and 
+\begin{subeqnarray}
+%\label{eq:tan}
+A & = &  \frac{\rho_0}{\rho_{\rm s}} \frac{r_0^2}{s c_0} r_0^d \\ 
+B & = & \frac{\rho_{\rm s} s}{3 \mu_{\rm x} N_{\rm x} \nu_{\rm x}} \\
+C & = & \frac{E_{\rm x}}{T_0} r_0^{-q}, \\
+\end{subeqnarray}
+where $r_0=1$ AU, $\rho_0=\rho(r_0)$ and $c_0=c(r_0)$.

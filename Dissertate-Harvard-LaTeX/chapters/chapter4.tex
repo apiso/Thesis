@@ -1,84 +1,11 @@
-%\documentclass[12pt, preprint,numberedappendix]{emulateapj}
-%\documentclass[12pt, preprint]{aastex}
-%\documentclass[dvips,12pt]{article}
-\documentclass[apj]{emulateapj}
+\chapter{The Role of Ice Compositions and Morphology for Snowlines and the C/N/O Ratios in Active Disks}
 
-\newcommand\submitms{n}		% set to y to follow AAS ``ms'' names, etc.
-\newcommand\bibinc{n}		% set to y if bib pasted in .tex, set to n to use bibtex
-
-
-%\usepackage{pdfsync}
-\usepackage{subeqnarray}
-\usepackage{natbib}
-\usepackage{color}
-\usepackage[utf8]{inputenc}
-
-\bibliographystyle{apj}
-
-\newcommand{\ie}{i.e.\ }
-\newcommand{\eg}{e.g.\ }
-\newcommand{\p}{\partial}
-\newcommand{\brak}[1]{\langle #1\rangle}
-
-
-\newcommand{\gcc}{\;\mathrm{g\; cm^{-3}}}
-\newcommand{\gsc}{\;\mathrm{g\; cm^{-2}}}
-\newcommand{\cm}{\; {\rm cm}}
-\newcommand{\mm}{\; {\rm mm}}
-%\newcommand{\ps}{\; {\rm s^{-1}}}
-\newcommand{\km}{\; {\rm km}}
-\newcommand{\au}{\; \varpi_{\rm AU}}
-\newcommand{\AU}{\; {\rm AU}}
-\def\K{\; {\rm K}}
-
-\newcommand{\vcs}[1]{\mbox{\boldmath{$\scriptstyle{#1}$}}}
-\newcommand{\vc}[1]{\mbox{\boldmath{$#1$}}}
-\newcommand{\nab}{\vc{\nabla}}
-\DeclareMathSymbol{\varOmega}{\mathord}{letters}{"0A}
-\DeclareMathSymbol{\varSigma}{\mathord}{letters}{"06}
-\DeclareMathSymbol{\varPsi}{\mathord}{letters}{"09}
-
-\newcommand{\Eq}[1]{Equation\,(\ref{#1})}
-\newcommand{\Eqs}[2]{Equations (\ref{#1}) and~(\ref{#2})}
-\newcommand{\Eqss}[2]{Equations (\ref{#1})--(\ref{#2})}
-\newcommand{\App}[1]{Appendix~\ref{#1}}
-\newcommand{\Sec}[1]{Sect.~\ref{#1}}
-\newcommand{\Chap}[1]{Chapter~\ref{#1}}
-\newcommand{\Fig}[1]{Fig.~\ref{#1}}
-\newcommand{\Figs}[2]{Figs.~\ref{#1} and \ref{#2}}
-\newcommand{\Figss}[2]{Figs.~\ref{#1}--\ref{#2}} 
-\newcommand{\Tab}[1]{Table \ref{#1}}
-
-\definecolor{gray}{gray}{0.5}
-\newcommand{\emgr}[1]{\emph{ \color{gray} #1}}
-
-
-%\newenvironment{packed_item}{
-%\begin{itemize}
-%  \setlength{\itemsep}{1pt}
-%  \setlength{\parskip}{0pt}
-%  \setlength{\parsep}{0pt}
-%}{\end{itemize}}
-
-\begin{document}
-
-%\slugcomment{Draft Modified \today}
-
-
-\title{The Role of Ice Compositions and Morphology for Snowlines and the C/N/O Ratios in Active Disks}
-
-\author{Ana-Maria A. Piso\altaffilmark{1}, Jamila Pegues\altaffilmark{2}, Karin I. \"Oberg\altaffilmark{1}}
-\altaffiltext{1}{Harvard-Smithsonian Center for Astrophysics, 60 Garden Street, Cambridge, MA 02138}
-\altaffiltext{2}{Department of Astrophysical Sciences, Princeton University, Princeton, NJ 08544}
-
-
-\begin{abstract}
+\section*{abstract}
 The elemental compositions of planets define their chemistry, and could potentially be used as beacons for their formation location if the elemental gas and grain ratios of planet birth environments, i.e. protoplanetary disks, are well understood. In disks, the ratios of volatile elements, such as C/O and N/O, are regulated by the abundance of the main C, N, O carriers, their ice binding environment, and the presence of snowlines of major volatiles at different distances from the central star. We explore the effects of disk dynamical processes, molecular compositions and abundances, and ice morphology on the snowline locations of the main C, O and N carriers, and the C/N/O ratios in gas and dust throughout the disk. The gas-phase N/O ratio enhancement in the outer disk (exterior to the H$_2$O snowline) exceeds the C/O ratio enhancement for all reasonable volatile compositions. Ice morphology and disk dynamics individually change the snowline location of N$_2$, the main nitrogen carrier, by a factor of 2-3, and when considered together the range of possible N$_2$ snowline locations is $\sim$11-$\sim$79 AU in a standard disk model. Observations that anchor snowline locations at different stages of planet formation are therefore key to develop C/N/O ratios as a probe of planet formation zones. 
 
 %Both ice morphology and disk dynamics substantially change the disk regions where gas phase C/O and N/O are enhanced over the stellar value, and taken together they may move the CO and N$_2$ snowlines by a factor of $\sim$7 inward. Between the CO$_2$ and CO snowlines, the gaseous C/O and N/O are enhanced by factors of $\sim$$2$ and $\sim$$3$, respectively. The gas-phase N/O ratio is enhanced by many orders of magnitude between the CO and N$_2$ snowlines due to the depletion of oxygen gas in this region. Our estimates for the C/N/O ratios are moderately affected by the presence of some C in the form of CH$_4$ and of some N in the form of NH$_3$.  
 
 %We note that N/O enhancements in disk gas can be even more extreme than C/O in the outer disk due to the low volatility of N2 compared to all major C and O carriers. I will discuss these results together with the effects of additional dynamical processes, and outline a path toward a coupled drift-desorption-chemistry model that will provide robust quantitative results for volatile snowline locations and C/N/O abundance ratios as the disk evolves in time.
-\end{abstract}
 
 \section{Introduction}
 \label{sec:intro}
@@ -182,7 +109,7 @@ where $E_x$ is the adsorption binding energy in units of Kelvin, $T_{\rm grain}=
 
 \begin{figure*}[t!]
 \centering
-\includegraphics[width=0.95\textwidth]{CNO_and_snowlines_2.pdf}
+\includegraphics[width=0.95\textwidth]{figures/CNO_and_snowlines_2.pdf}
 %\vspace{-0.5in}
 \caption{The total carbon, nitrogen and oxygen abundance in solids as a function of semimajor axis in a static disk, for CO and N$_2$ as pure ices (top panel) and water dominated ices (bottom panel). Relevant volatile snowlines are marked by the vertical dashed lines. The grain abundances are calculated as a function of the observed median CH$_4$ and NH$_3$ abundances in protostellar cores. The total grain abundance increases with semimajor axis as more and more species freeze out.} 
 \label{fig:CNOstatic}
@@ -236,7 +163,7 @@ Figure \ref{fig:COstatic} shows the C/O ratio in gas and dust as a function of s
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{C_O_ratio_CH4.pdf}
+\includegraphics[width=0.5\textwidth]{figures/C_O_ratio_CH4.pdf}
 %\vspace{-0.5in}
 \caption{The C/O ratio in gas (solid lines) and dust (dashed lines) as a function of semimajor axis in a static disk, assuming no carbon is present in the form of CH$_4$ (top panel), the median observed CH$_4$ abundance is assumed (middle panel), and the maximum observed CH$_4$ abundance is assumed (bottom panel). The C/O estimates are performed assuming that the CO ices are in pure form. The vertical dotted lines mark the snowline locations of the main C and O carriers. The horizontal dotted lines represent the stellar C/O value. The presence of methane only modestly increases the C/O ratio in gas between the CO$_2$ and CH$_4$ snowlines.} 
 \label{fig:COstatic}
@@ -261,7 +188,7 @@ We assume that the main nitrogen-bearing species are N$_2$ and NH$_3$, since oth
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{N_O_ratio.pdf}
+\includegraphics[width=0.5\textwidth]{figures/N_O_ratio.pdf}
 %\vspace{-0.5in}
 \caption{The N/O ratio in gas (solid lines) and dust (dashed lines) as a function of semimajor axis in a static disk, assuming no nitrogen is present in the form of NH$_3$ (top panel), the median observed NH$_3$ abundance is assumed (middle panel), and the maximum observed NH$_3$ abundance is assumed (bottom panel). The N/O estimates are performed assuming that the CO and N$_2$ ices are in pure form. The vertical dotted lines mark the snowline locations of the main C,O and N carriers. The horizontal dotted lines represent the average N/O value in the disk. The gas-phase N/O ratio is enhanced by a factor of two between the H$_2$O and CO$_2$ snowlines compared to its average value, and by a factor of three between the CO$_2$ and CO snowlines. The arrows mark a highly elevated N/O ratio in gas between the CO and N$_2$ snowlines due to the depletion of oxygen gas in this region. The presence of NH$_3$ moderately decreases the N/O ratio in gas between the NH$_3$ and CO$_2$ snowlines.} 
 \label{fig:Nstatic}
@@ -281,7 +208,7 @@ Here we use the model of Section \ref{sec:review} to estimate the movement of th
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{C_O_water_ice.pdf}
+\includegraphics[width=0.5\textwidth]{figures/C_O_water_ice.pdf}
 %\vspace{-0.5in}
 \caption{C/O ratio estimates in gas (solid lines) and dust (dashed lines) as function of semimajor axis in a viscous disk, for CO as pure ice (top panel) or as water dominated ices (bottom panel). The H$_2$O, CO$_2$ and CO snowlines are shown for particles with initial sizes $\sim0.05$ cm $\lesssim s \lesssim$ 7 m as indicated by the color bar. The C/O ratio in a static disk (black lines) is shown for comparison. The arrows show that the C/O ratio in gas will decrease inside the H$_2$O and CO$_2$
 snowlines in the viscous disk, as the relative fluxes of the desorbed icy
@@ -296,7 +223,7 @@ Figure \ref{fig:NO_ratio} shows the H$_2$O, CO$_2$, CO and N$_2$ snowline locati
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{N_O_water_ice_many.pdf}
+\includegraphics[width=0.5\textwidth]{figures/N_O_water_ice_many.pdf}
 %\vspace{-0.5in}
 \caption{N/O ratio estimates in gas (solid lines) and dust (dashed lines) as function of semimajor axis in a viscous disk, for CO and N$_2$ as pure ices (top panel) or as water dominated ices (bottom panel). The H$_2$O, CO$_2$, CO and N$_2$ snowlines are shown for particles with initial sizes $\sim0.05$ cm $\lesssim s \lesssim$ 7 m as indicated by the color bar. The N/O ratio in a static disk (black lines) is shown for comparison. The arrows show that the N/O ratio in gas will decrease inside the H$_2$O and CO$_2$ snowlines in the viscous disk, as the relative fluxes of the desorbed icy
 particles and the overall nebular gas will cause an excess of oxygen gas inside these snowlines (see Paper I for details). Radial drift and gas accretion move the N$_2$ snowline inward by up to $\sim$50\% compared to a static disk. The presence of N$_2$ in a water ice environment rather than as pure ice moves the N$_2$ snowline significantly inward by $\sim$70\%. Taken together, disk dynamics and ice morphology move the N$_2$ snowline inward by a factor of $\sim$7. The results of an enhanced gas-phase N/O ratio between the H$_2$O and CO snowlines compared to its average value, and of highly elevated N/O ratios in gas between the CO and N$_2$ snowlines (see Figure \ref{fig:Nstatic}), are preserved.}  
@@ -318,7 +245,7 @@ Theoretical models of the magnitude and role of N/O (and N/C) ratios in exoplane
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.5\textwidth]{CN_norm.pdf}
+\includegraphics[width=0.5\textwidth]{figures/CN_norm.pdf}
 %\vspace{-0.5in}
 \caption{Gas phase C/O (blue curve) and N/O (red curve) ratios divided by the average C/O and N/O ratio in a static disk, assuming CO and N$_2$ are pure ices, and there is no CH$_4$ or NH$_3$. The dashed vertical lines mark the H$_2$O, CO$_2$, CO and N$_2$ snowlines. The arrow indicates that the N/O ratio is enhanced by orders of magnitude compared to its average value between the CO and N$_2$ snowlines. The gaseous N/O ratio is enhanced throughout most of the disk, and more enhanced than the C/O ratio.}  
 \label{fig:enhance}
@@ -359,47 +286,3 @@ In this paper we explore the role of icy grain morphology and disk dynamics on t
 \end{enumerate}
 
 Our results have direct consequences for the composition of nascent giant planets. The considerable inward movement of the CO and N$_2$ snowlines due to the ice grains being water dominated rather than pure ices implies than giant planets with high C/O and/or N/O ratios in their atmospheres may form closer in than previously predicted by theoretical models. Moreover, our model shows that wide separation gas giants may have an excess of nitrogen in their envelopes, which may be used to trace their origins. %In future work, we plan to add new levels of complexity to our model in terms of disk chemistry, dynamics, and planetary dynamics, thus forming a solid framework for understanding the origins of gas giants. 
-
-\acknowledgments{This work is supported by a Simons Collaboration on the Origins of Life (SCOL) investigator award to KIO. JP was supported by the Banneker institute.}
-
-%\emgr{Maybe we can include the summary in the discussion section?}
-
-%\section{Volatile Abundances and Binding Energies: Effect on C/O and N/O Ratios in a Static Disk}
-%
-%\subsection{Nitrogen and CH4}
-%
-%\emgr{Discuss that nitrogen is abundant in the solar system and should be abundant in disks as well, but that its dominant form is largely unknown. Discuss that the main carrier of nitrogen is N2, but some fraction of it can be NH3 as well. Present and motivate the choices that we make for NH3 abundances. Along the same lines, discuss CH4, and the choices that we make for CH4 abundances.}
-%
-%\subsection{Volatile Desorption Energies}
-%
-%\emgr{State that desorption energies for H2O and CO2 are well constrained experimentally, and that the CO2 binding energy is only weakly dependent on whether it's pure CO2 or combined with H2O, but that is not the case for CO, N2 (and perhaps CH4 and NH3?). Briefly discuss CO-CO, N2-N2, CO-H2O and N2-H2O (and perhaps the same for CH4 and NH3 if we find literature on that) experimental results for binding energies, and motivate the choices that we make.}
-%
-%\subsection{Results for C/O and N/O in a Static Disk}
-%
-%\emgr{For each of them (C/O and N/O), show a 3-panel plot as follows: each panel has a specific CH4/NH3 abundance (top: none, middle: median abundance, bottom: maximum abundance); for a given panel, have multiple curves for C/O or N/O, depending on the choice of binding energies, so that it's clear visually how the binding energy changes the snowline location. Discuss how different abundances  and binding energies affect snowline locations and C/O or N/O ratios.}
-%\section{Results}
-%
-%\subsection{N2, NH3 and CH4 Snowline Locations}
-%
-%\emgr{One multipanel 3x3 (or 3x2) rainbow plot similar to the snowline plots from Paper I, for \textit{one} choice for the binding energies (perhaps the largest ones, since we want a limit on how far in we can push the snowlines?). Rows: snowlines as a function or particle size for passive, active and (maybe) steady-state disk. Columns: N2, NH3 and CH4. Not entirely certain how necessary these plots/subsection actually are, since it is exactly the same qualitatively as in Paper I...}
-%
-%\subsection{C/O and N/O Ratios}
-%
-%\emgr{For each of them (C/O and N/O) show a 3x3 multipanel plot similar to the C/O plot from Paper I, for the same choice of binding energies as in the previous subsection. Columns: C/O or N/O in passive, active and steady-state disk. Rows: No CH4/NH3, median CH4/NH3, maximum CH4/NH3. Again, not sure if we need/want this for all disk choices, at least in the case of C/O since we already have that in Paper I. For N/O, quantify how the snowline location changes from a static disk due to drift and gas accretion.}
-
-
-
-
-
-
-\if\bibinc n
-\bibliography{refs}
-\fi
-
-\if\bibinc y
-\begin{thebibliography}
-\end{thebibliography}
-\fi
-
-
-\end{document}
