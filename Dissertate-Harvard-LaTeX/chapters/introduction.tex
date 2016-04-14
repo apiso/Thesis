@@ -35,11 +35,14 @@ formation of giant planets have both been previously investigated in isolation. 
 coupled chemo-dynamical disk evolution, planet compositions, and most importantly the
 disk-planet connection have not yet been considered in detail. In this thesis, we uncover some of the answers to this issue from two standpoints: (1) by looking at the role of disk location in setting the conditions for the formation of wide-separation gas giants, and (2) by investigating how the structure and chemical composition of the protoplanetary disk at different radii affects the composition of nascent giant planets.
 
+
+
+
 \section{Dynamics and Chemistry in Protoplanetary Disks}
 
 Protoplanetary disks are the result of the collapse of a molecular cloud, and are structures composed of gas and dust that are rotationally supported and that represent the birth environment of planets (Figure \ref{fig:proto}). Disks are complex objects, whose structure and evolution are affected by a multitude of chemical and dynamical processes. The latter include transport of both dust through radial drift and gas through viscous gas accretion, as well as grain growth and dust settling to the disk midplane, which affect the disk structure. In terms of chemistry, the strongly irradiated disk surface is dominated by photochemical reactions, while the ionized lower layers have a rich ion-molecule chemistry. Finally, the cold disk midplane is mostly shielded from irradiation, and volatile compounds experience freeze-out.  Many of these processes are summarized in \citet{henning13}, and several of them are not yet fully understood.  Moreover, the timescales for various disk chemical and dynamical processes may be comparable at least in some parts of the disk \citep{semenov11}, which makes the coupling between chemistry and dynamics very challenging. As a first step it is thus easier to isolate the different dynamical and chemical processes that occur in the disk midplane where planets are born, and understand their role and relative importance in shaping disk and planet compositions. We explore some of these processes in Chapters 4 and 5, and investigate their consequences for the compositions of giant planets forming at different radii. 
 
-\begin{figure}[t!]
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/proto.pdf}
 %\vspace{-0.5in}
@@ -48,6 +51,11 @@ Protoplanetary disks are the result of the collapse of a molecular cloud, and ar
 \end{figure}
 
 %\subsection{Disk Temperature and Density Structure}
+\subsection{Disk Temperature and Density Structure}
+
+The midplane temperature in a protoplanetary disk is set both by the irradiation from the host star and by accretion heating (e.g., \citealt{armitage10}). Accretion heating dominates in the inner disk (typically within a few AU) where the accretion flows are strongest, while the outer disk is dominated by stellar irradiation. While the irradiation component of the temperature simply follows a power-law in radius, the accretional component is determined by viscosity and the gas mass accretion rate, which in turn depend on the temperature itself, as well as the gas surface density (for a more complete review see \citealt{shakura73}). As the gas surface density changes with time in an active disk, it follows that determining the midplane temperature in an active disk in which both stellar irradiation and accretion heating contribute to the thermal evolution of the disk is non-trivial. We simplify this problem in Chapters 4 and 5 by assuming a steady-state disk with a constant mass accretion flow, and by solving the thin disk Shakura-Sunyaev equations.
+
+The gas surface density in a viscous disk follows the continuity equation, and is set by both the disk temperature and viscosity. Infall of material onto the disk or outflow may also contribute to the gas surface density evolution \citep{birnstiel10}. The dust surface density can be described by an advection-diffusion equation (e.g., \citealt{birnstiel12}), where both the radial movement of the dust and diffusion contribute to its evolution. The diffusion term is due to the fact that the dust is turbulently mixed by the gas, which causes a change in the dust-to-gas ratio and thus a radial gradient in the ratio between solid and gas surface densities. In the case of small particles that are well coupled to the gas, the surface density follows that of the gas and a constant dust-to-gas ratio is maintained. The movement of larger particles, however, is affected both by radial drift, gas drag and diffusion, which cause the dust surface density to "decouple" from that of the gas. This results in depletion of solids in some disk regions and a pile-up in others, depending on a particle's radial drift velocity and the level of turbulent mixing. The dust surface density is further affected by grain growth and fragmentation. We do not address all these effects in Chapter 4 and 5, and instead assume a constant inflow of particles such that the dust surface density remains spatially and temporally constant. We note, however, that these effects have to be taken into account for a more realistic modeling of the dust surface density, and thus of the surface density evolution of volatiles, both in solid and gaseous form.  
 
 
 
@@ -81,7 +89,7 @@ Volatile compounds, which have low sublimation temperatures, are of particular i
 %\label{fig:spitzer}
 %\end{figure}
 
-\begin{figure}[t!]
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/CO.png}
 %\vspace{-0.5in}
@@ -101,7 +109,7 @@ Volatile compounds, which have low sublimation temperatures, are of particular i
 
 One important effect of the existence of snowlines is that disks are expected to contain different amounts of volatiles in gas and in dust at different locations. As the main carbon and oxygen carriers, i.e. H$_2$O, CO$_2$ and CO, are amongst the most abundant volatiles in comets and protostellar cores (\citealt{rodgers02}, \citealt{mumma11}, \citealt{henning13}), variations in the carbon-to-oxygen (C/O) ratio in gas and dust throughout a disk are particularly important. This issue was first addressed by \citet{oberg11}. Figure \ref{fig:oberg} shows the C/O ratio in gas and dust as a function of semimajor axis, assuming protostellar abundances for the volatiles. The C/O ratio in gas is enhanced compared to the stellar value, particularly between the CO$_2$ and CO snowlines where it reaches unity. The pioneering work of \citet{oberg11} inspired Chapter 4 of this thesis. \citet{oberg11} consider a static disk, and thus do not account for dynamical processes such as redistribution of solids due to radial drift, the radial movement of the nebular gas, and accretion heating. We thus expand this model by considering the processes outlined above and their effect on snowline locations. In particular, we focus on how radial drift of solids and viscous gas accretion onto the central star affect the H$_2$O, CO$_2$ and CO snowline locations for particles of different sizes. We find that drift and accretion heating alone may move the snowlines inward by factors of $\sim$2 compared to a static disk, thus substantially changing the disk regions with enhanced gas-phase C/O ratios. %, which has direct consequences for planet formation. 
 
-\begin{figure}[t!]
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/oberg11.png}
 %\vspace{-0.5in}
