@@ -23,6 +23,7 @@
 \RequirePackage{lettrine}
 \RequirePackage{setspace}
 \RequirePackage{verbatim}
+\RequirePackage{amsmath}
 
 % Fonts.
 \RequirePackage{color}

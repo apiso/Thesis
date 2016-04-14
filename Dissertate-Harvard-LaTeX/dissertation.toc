@@ -24,8 +24,8 @@
 \contentsline {subsection}{\numberline {2.4.3}Validity of the Two-Layer Cooling Model}{39}{subsection.2.4.3}
 \contentsline {section}{\numberline {2.5}Results for Giant Planet Formation}{39}{section.2.5}
 \contentsline {subsection}{\numberline {2.5.1}Runaway Growth Timescale}{40}{subsection.2.5.1}
-\contentsline {subsubsection}{Effects of Core Mass}{41}{figure.caption.14}
-\contentsline {subsubsection}{Effects of Disk Temperature and Pressure}{43}{figure.caption.15}
+\contentsline {subsubsection}{\numberline {2.5.1.1}Effects of Core Mass}{41}{subsubsection.2.5.1.1}
+\contentsline {subsubsection}{\numberline {2.5.1.2}Effects of Disk Temperature and Pressure}{43}{subsubsection.2.5.1.2}
 \contentsline {subsection}{\numberline {2.5.2}Critical Core Mass}{45}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}Comparison with Previous Studies}{46}{subsection.2.5.3}
 \contentsline {section}{\numberline {2.6}Neglected Effects}{47}{section.2.6}
@@ -46,7 +46,7 @@
 \contentsline {subsection}{\numberline {3.3.1}Intermediate $T$: Ideal Gas}{63}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}High $T$: Dissociation and Ionization of Hydrogen}{64}{subsection.3.3.2}
 \contentsline {subsection}{\numberline {3.3.3}Low $T$: Hydrogen Rotation and Spin Isomers}{64}{subsection.3.3.3}
-\contentsline {subsubsection}{Thermodynamic equilibrium of spin isomers}{65}{subsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.3.1}Thermodynamic equilibrium of spin isomers}{65}{subsubsection.3.3.3.1}
 \contentsline {section}{\numberline {3.4}Role of the Equation of State}{67}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Role of $-dE/dM$}{69}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Role of $L$}{70}{subsection.3.4.2}
@@ -93,7 +93,7 @@
 \contentsline {subsection}{\numberline {B.0.4}Surface Terms}{155}{subsection.1.B.0.4}
 \contentsline {chapter}{Appendix \numberline {C}Equation of State Table Extension}{157}{Appendix.1.C}
 \contentsline {subsection}{\numberline {C.0.5}Hydrogen}{158}{subsection.1.C.0.5}
-\contentsline {subsection}{\numberline {C.0.6}Helium}{163}{subsection.1.C.0.6}
+\contentsline {subsection}{\numberline {C.0.6}Helium}{162}{subsection.1.C.0.6}
 \contentsline {chapter}{Appendix \numberline {D}Adiabatic Gradient Variations}{165}{Appendix.1.D}
 \contentsline {subsection}{\numberline {D.0.7}Adiabatic Gradient during Partial Dissociation}{165}{subsection.1.D.0.7}
 \contentsline {subsection}{\numberline {D.0.8}Adiabatic Gradient during Conversion of Spin Isomers}{166}{subsection.1.D.0.8}
