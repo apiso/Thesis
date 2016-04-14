@@ -28,11 +28,11 @@
 \contentsline {subsubsection}{\numberline {2.5.1.2}Effects of Disk Temperature and Pressure}{43}{subsubsection.2.5.1.2}
 \contentsline {subsection}{\numberline {2.5.2}Critical Core Mass}{45}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}Comparison with Previous Studies}{46}{subsection.2.5.3}
-\contentsline {section}{\numberline {2.6}Neglected Effects}{47}{section.2.6}
+\contentsline {section}{\numberline {2.6}Neglected Effects}{48}{section.2.6}
 \contentsline {subsection}{\numberline {2.6.1}Hydrodynamic Effects}{48}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Realistic Opacities}{48}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.2}Realistic Opacities}{49}{subsection.2.6.2}
 \contentsline {subsection}{\numberline {2.6.3}Equation of State}{49}{subsection.2.6.3}
-\contentsline {subsection}{\numberline {2.6.4}Core growth}{49}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.4}Core growth}{50}{subsection.2.6.4}
 \contentsline {section}{\numberline {2.7}Summary}{50}{section.2.7}
 \contentsline {chapter}{\numberline {3}Minimum Core Masses for Giant Planet Formation With Realistic Equations of State and Opacities}{53}{chapter.3}
 \contentsline {section}{\numberline {3.1}Introduction}{54}{section.3.1}
@@ -48,12 +48,12 @@
 \contentsline {subsection}{\numberline {3.3.3}Low $T$: Hydrogen Rotation and Spin Isomers}{64}{subsection.3.3.3}
 \contentsline {subsubsection}{\numberline {3.3.3.1}Thermodynamic equilibrium of spin isomers}{65}{subsubsection.3.3.3.1}
 \contentsline {section}{\numberline {3.4}Role of the Equation of State}{67}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Role of $-dE/dM$}{69}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Role of $L$}{70}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.1}Role of $-dE/dM$}{70}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Role of $L$}{71}{subsection.3.4.2}
 \contentsline {section}{\numberline {3.5}Impact of Opacity on Atmosphere Evolution}{72}{section.3.5}
 \contentsline {section}{\numberline {3.6}Critical Core Mass}{74}{section.3.6}
 \contentsline {section}{\numberline {3.7}Effects of Planetesimal Accretion}{76}{section.3.7}
-\contentsline {subsection}{\numberline {3.7.1}Planetesimal Accretion Rates}{76}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.1}Planetesimal Accretion Rates}{77}{subsection.3.7.1}
 \contentsline {subsection}{\numberline {3.7.2}Core Growth during KH Contraction}{78}{subsection.3.7.2}
 \contentsline {subsection}{\numberline {3.7.3}Comparison with Steady-State Results}{79}{subsection.3.7.3}
 \contentsline {section}{\numberline {3.8}Summary}{80}{section.3.8}
