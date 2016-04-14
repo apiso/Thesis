@@ -31,8 +31,8 @@
 \RequirePackage{url}
 \RequirePackage{amssymb}
 \RequirePackage{mathspec}
-\setmathsfont(Digits,Latin,Greek)[Numbers={Proportional}]{Times-Roman}
-\setmathrm{Times-Roman}
+%\setmathsfont(Digits,Latin,Greek)[Numbers={Proportional}]{Times-Roman}
+%\setmathrm{Times-Roman}
 \widowpenalty=300
 \clubpenalty=300
 \setromanfont[Numbers=OldStyle, Ligatures={Common, TeX}, Scale=1.0]{EB Garamond}

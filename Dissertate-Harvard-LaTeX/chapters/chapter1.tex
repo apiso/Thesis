@@ -409,19 +409,23 @@ now using $t_{\rm run}$, defined as the time when $M_{\rm atm} = f M\co$,  inste
 
 We examine the structure and evolution of our model atmospheres, calculated as described in \S\ref{sec:model}.  For comparison, we also show results of the non-self-gravitating analytic model of \S\ref{sec:coolingan}.  Radial structure is presented in \S\ref{sec:profiles}, time evolution is described in \S\ref{sec:timeev}, and the validity of our two-layer cooling model is examined in \S\ref{sec:endoftime}.
 
-\begin{figure}[tb]
-\centering
-\includegraphics[width=0.5\textwidth]{figures/PTm_profiles_v2_smallM.pdf}
-%\vspace{-0.5in}
-\caption{Radial profiles of atmospheric pressure, temperature and enclosed mass (core included) for a $5 M_{\oplus}$ core at $60$ AU.   Solid, dotted, dashed and dot-dashed lines correspond to solutions with total mass (core and atmosphere) of $5.01 M_{\oplus}$, $5.10 M_{\oplus}$, $6.00 M_{\oplus}$ and $8.99 M_{\oplus}$, respectively (see text for significance of these masses).  Circles and triangles mark the locations of the Bondi radii and of the radiative-convective boundaries, respectively.  The radial profiles extend from the core to the Hill radius.} %  (See text for a description of evolution to yet higher masses.) 
-\label{fig:profiles}
-\end{figure}
+
 
 
 \subsection{Atmospheric Structure}
 \label{sec:profiles}
 Figure \ref{fig:profiles} shows radial profiles at different stages of atmospheric growth around a $5 M_{\oplus}$ core at $60$ AU.  Quoted mass values include the core plus atmosphere within the smaller of $\RB$ or $\RH$, which for these cases is $\RB$.  The 8.99 $M_{\oplus}$ solution is the mass 
 that satisfies our runaway growth criteria (described in \S\ref{sec:timeev}). % we can reach in our evolutionary sequence, as we explain further in \S\ref{sec:endoftime}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/PTm_profiles_v2_smallM.eps}
+%\vspace{-0.5in}
+\caption{Radial profiles of atmospheric pressure, temperature and enclosed mass (core included) for a $5 M_{\oplus}$ core at $60$ AU.   Solid, dotted, dashed and dot-dashed lines correspond to solutions with total mass (core and atmosphere) of $5.01 M_{\oplus}$, $5.10 M_{\oplus}$, $6.00 M_{\oplus}$ and $8.99 M_{\oplus}$, respectively (see text for significance of these masses).  Circles and triangles mark the locations of the Bondi radii and of the radiative-convective boundaries, respectively.  The radial profiles extend from the core to the Hill radius.} %  (See text for a description of evolution to yet higher masses.) 
+\label{fig:profiles}
+\end{figure}
+
+%\clearpage
 
 The lowest mass atmosphere -- which we take as our initial state -- is fully convective and shares the disk's entropy.  In \Fig{fig:profiles} this state is the 5.01 $M_{\oplus}$ solution with no radiative zone.
 
@@ -434,13 +438,7 @@ In agreement with \Eq{eq:cb2}, the radiative zones remain nearly isothermal, eve
 
 \subsection{Time Evolution}\label{sec:timeev}
 
-\begin{figure}[tb]
-\centering
-\includegraphics[width=0.5\textwidth]{figures/Lt_profiles_v2.pdf}
-%\vspace{-0.5in}
-\caption{Evolution of the luminosity and elapsed time during atmospheric growth around a $5 M_{\oplus}$ core at $60$ AU.  The luminosity is initially high, then decreases as the atmosphere grows in mass and the radiative zone becomes optically thicker.  Due to the neglect of self-gravity, the analytic model (\emph{dashed curve}) gives luminosities that are too low and evolution times that are too long.}
-\label{fig:Ltplot}
-\end{figure}
+
 
 The cooling model of \S\ref{sec:twolayer} is used to connect solutions with different atmospheric masses into an evolutionary sequence.  \Fig{fig:Ltplot} shows the luminosity evolution and the elapsed time as a function of atmospheric mass for the same parameters as in \Fig{fig:profiles}.
 
@@ -448,19 +446,43 @@ During the early stages of atmospheric growth, the luminosity drops sharply.  Th
 
 At later stages of evolution, the numerical model in \Fig{fig:Ltplot} shows a flat luminosity with increasing mass and also time (not shown).  By contrast, the non-self-gravitating analytic model gives a luminosity that continues to drop as the atmosphere becomes more massive.  To understand this difference, consider the scaling of \Eq{eq:Lcb}, $L\cb \propto M\cb T\cb^4/ (\kappa\cb  P\cb)$, which holds in both cases.   Accounting for the higher enclosed mass in the self-gravitating model gives a somewhat higher luminosity, as desired.  However, the main effect is that \Eq{eq:crit} -- which describes a nearly linear relation between atmospheric mass and RCB pressure --  breaks down for self-gravitating solutions.  This behavior can be seen in the top panel of \Fig{fig:profiles} where the $P\cb$ increases significantly from 5.10 to 6.0 $M_\oplus$, but only increases relatively modestly with further growth to 8.99 $M_\oplus$.   In the higher mass solutions, the relatively low $P\cb$ values (and thus the relatively high luminosities) require an outward shift in $R\cb$, as shown in \Fig{fig:profiles}. This shift does not occur in the analytic solution, where $R\cb$ continually decreases with atmospheric mass (cf. Equations \ref{eq:PcbRcb} and \ref{eq:crit}).
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Lt_profiles_v2.eps}
+\vspace{-0.35in}
+\caption{Evolution of the luminosity and elapsed time during atmospheric growth around a $5 M_{\oplus}$ core at $60$ AU.  The luminosity is initially high, then decreases as the atmosphere grows in mass and the radiative zone becomes optically thicker.  Due to the neglect of self-gravity, the analytic model (\emph{dashed curve}) gives luminosities that are too low and evolution times that are too long.}
+\label{fig:Ltplot}
+\end{figure}
+
+%\clearpage
+
 The accelerated growth in the numerical model, as shown in the bottom panel of \Fig{fig:Ltplot}, is also a direct result of the higher cooling luminosities with self-gravity included.  Even when $M_{\rm atm} / M\co$ is only few percent, i.e.\ well before the crossover mass, the effect of self-gravity is  quite evident.  Closer to the star, the effects of self-gravity are not as strong for low atmosphere masses.  Nevertheless, all our models show that self-gravity noticeably accelerates growth for $M_{\rm atm} > 0.1 M\co$.
 
-In \Fig{fig:LtvsMopacity}, our standard dust opacity, \Eq{eq:opacitylaw}, is reduced by factors of 10 and 100.  Lower opacities result in higher luminosities and faster evolution.  Our model thus confirms a well-established result \citep{hubickyj05}.  While clearly an important effect, atmospheric dust opacities are difficult to robustly predict. Ablation of infalling solids is a dust source.  Sinks include the sequestration of solids in the core and dust settling through the radiative zone.  Grain growth both reduces dust opacities per unit mass and favors settling.  Our scenario of negligible ongoing particle accretion tends to favor low dust opacities.   To be conservative, however, our reference case considers full Solar abundances. The effect of opacity reduction on the critical core mass is described in \S\ref{sec:critical}. 
-
-\begin{figure}[tb]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{figures/opacity_effect.pdf}
-%\vspace{-0.5in}
+\includegraphics[width=0.7\textwidth]{figures/opacity_effect.eps}
+\vspace{-0.35in}
 \caption{The effect of dust abundance on atmospheric evolution.   Reducing dust opacities by factors of 10 and 100 from standard Solar abundances gives higher luminosities and faster atmospheric growth.  Plotted quantities are similar to \Fig{fig:Ltplot}, but for a $5 M_{\oplus}$ core at 10 AU. }  %The actual magnitude of dust opacities is difficult to robustly predict.}
 \label{fig:LtvsMopacity}
 \end{figure}
 
+In \Fig{fig:LtvsMopacity}, our standard dust opacity, \Eq{eq:opacitylaw}, is reduced by factors of 10 and 100.  Lower opacities result in higher luminosities and faster evolution.  Our model thus confirms a well-established result \citep{hubickyj05}.  While clearly an important effect, atmospheric dust opacities are difficult to robustly predict. Ablation of infalling solids is a dust source.  Sinks include the sequestration of solids in the core and dust settling through the radiative zone.  Grain growth both reduces dust opacities per unit mass and favors settling.  Our scenario of negligible ongoing particle accretion tends to favor low dust opacities.   To be conservative, however, our reference case considers full Solar abundances. The effect of opacity reduction on the critical core mass is described in \S\ref{sec:critical}. 
+
+
+
+%\clearpage
+
 \Fig{fig:growthtime} plots the evolution of the atmospheric growth timescale, $M_{\rm atm}/\dot{M}$,  around a $5 M_{\oplus}$ core at several locations in our reference disk model.  This instantaneous growth time shows clearly that the atmosphere spends the bulk of its time growing though intermediate atmospheric masses, $\sim 1 -3$ $M_\oplus$ in this case.  Growth times are short both early -- when the radiative zone is transparent -- and late -- when self-gravity accelerates growth.  
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Mt_profile_temp.eps}
+%\vspace{-0.5in}
+\caption{Evolution of the atmospheric growth timescale with mass around a $5 M_{\oplus}$ solid core  located at 10, 30 or 60 AU, for standard Solar opacities.  Growth is slowest for $M_{\mathrm{atm}} \sim 1 - 3 M_{\oplus}$, i.e.\ before the crossover mass at $M_{\rm atm} = M\co$.}
+\label{fig:growthtime}
+\end{figure}
+
+%\clearpage
 
 The fact that growth times have a well defined maximum is a characteristic of accelerating growth.  Unlike our analytic model, which must assume that runaway growth begins near the crossover mass, our numerical model allows us to measure when runaway accretion starts.  Runaway growth does not begin at a universal value of $M_{\rm atm}/M\co$.  Further from the star, runaway growth begins at smaller $M_{\rm atm}/M\co$, as \Fig{fig:growthtime} shows.  \Fig{fig:tvsM} (described in the next section) shows how the onset of runaway growth depends on core mass. 
 
@@ -468,13 +490,7 @@ We quantify the runaway growth timescale, $t_{\rm run}$, as the time when $M_{\r
 
 %The onset of runaway growth at high masses is also evident in \Figs{fig:Ltplot}{fig:LtvsMopacity} (bottom panels) as the flattening of the $t$ vs.\ $M_{\rm atm}$ curve.  
 
-\begin{figure}[tb]
-\centering
-\includegraphics[width=0.5\textwidth]{figures/Mt_profile_temp.pdf}
-%\vspace{-0.5in}
-\caption{Evolution of the atmospheric growth timescale with mass around a $5 M_{\oplus}$ solid core  located at 10, 30 or 60 AU, for standard Solar opacities.  Growth is slowest for $M_{\mathrm{atm}} \sim 1 - 3 M_{\oplus}$, i.e.\ before the crossover mass at $M_{\rm atm} = M\co$.}
-\label{fig:growthtime}
-\end{figure}
+
 
 \subsection{Validity of the Two-Layer Cooling Model}
 \label{sec:endoftime}
@@ -483,18 +499,24 @@ We examine the  validity of our cooling model by comparing our model luminosity 
 
  \Fig{fig:coolingterms} shows that the neglected luminosity is indeed negligible during the early stages of evolution.  However, $L_{\rm negl}$ exceeds the model luminosity, $L$, at high masses, $M_{\rm atm} > 3 M_\oplus$ in this case.  Our cooling model is thus inaccurate at higher masses.  However, the model remains reasonably accurate up to the beginning stages of runaway growth, which is sufficient for our purposes of widely exploring parameter space and exploring trends.
  
-The individual terms in the global cooling model of \Eq{eq:coolingglobal}, evaluated at the RCB, are also plotted in \Fig{fig:coolingterms}.  At low masses, the change in energy, $- \dot{E}$, makes the dominant contribution to luminosity.  As the mass increases, the surface terms become more significant, led by the accretion energy.  However, the surface terms are everywhere smaller than $L_{\rm negl}$.  Thus wherever our model is accurate -- including the crucial early phases of growth -- surface terms are a minor correction.  The neglect of surface terms in the analytic model is thus not a serious omission.
-
-%At even higher masses than shown in \Fig{fig:coolingterms}, our cooling model breaks down.  Mathematically, the breakdown manifests as a negative time step (due to an increase in internal entropy) when advancing to a higher atmospheric mass.  This unphysical result has no deep significance, as the neglected luminosity overwhelms the model luminosity by this point.    Effectively the model is telling us when to ignore it.  Our results are unaffected by the breakdown, which occurs comfortably after $t_{\rm run}$, our threshold for runaway growth.  
+ The individual terms in the global cooling model of \Eq{eq:coolingglobal}, evaluated at the RCB, are also plotted in \Fig{fig:coolingterms}.  At low masses, the change in energy, $- \dot{E}$, makes the dominant contribution to luminosity.  As the mass increases, the surface terms become more significant, led by the accretion energy.  However, the surface terms are everywhere smaller than $L_{\rm negl}$.  Thus wherever our model is accurate -- including the crucial early phases of growth -- surface terms are a minor correction.  The neglect of surface terms in the analytic model is thus not a serious omission.
 
  
-\begin{figure}[tb]
+ \begin{figure}[H]
 \centering
-\includegraphics[width=0.5\textwidth]{figures/cooling_a10_Mc5_rcb.pdf}
+\includegraphics[width=0.7\textwidth]{figures/cooling_a10_Mc5_rcb.eps}
 %\vspace{-0.5in}
 \caption{Individual terms in the atmospheric cooling model of \Eq{eq:coolingglobal}, for a $5 M_\oplus$ core at 10 AU.  The dashed curve for accretion energy indicates a negative contribution.  All quantities are evaluated at the RCB, except for $L_{\rm negl}$, the extra luminosity that would have been generated in the radiative zone, but is neglected in our model. The neglected luminosity is a small correction to the model luminosity $L$ for $M_{\rm atm} \lesssim 3 M_{\oplus}$.   Since these low masses dominate growth times, our model is roughly accurate.}
 \label{fig:coolingterms}
 \end{figure}
+
+%\clearpage
+ 
+
+%At even higher masses than shown in \Fig{fig:coolingterms}, our cooling model breaks down.  Mathematically, the breakdown manifests as a negative time step (due to an increase in internal entropy) when advancing to a higher atmospheric mass.  This unphysical result has no deep significance, as the neglected luminosity overwhelms the model luminosity by this point.    Effectively the model is telling us when to ignore it.  Our results are unaffected by the breakdown, which occurs comfortably after $t_{\rm run}$, our threshold for runaway growth.  
+
+ 
+
 
 
 
@@ -511,22 +533,16 @@ Our models focus on giant planet formation between 5 and 100 AU, as the outer di
 \label{sec:tcross}
 The time to undergo atmospheric runaway growth, $t_{\rm run}$, sets a minimum timescale for the formation of giant planets.  Due to the accelerating nature of runaway growth, the precise threshold chosen for $t_{\rm run}$ (explained in \S\ref{sec:timeev}) is of minor significance.
 
-\begin{figure}[tb]
+\begin{figure}[H]
 %\centering
-\hspace{-.1in}
-\includegraphics[width=0.5\textwidth]{figures/cumul_coolingtime_vs_Matm_10au_mu235.pdf}
-%\vspace{-0.5in}
+%\hspace{-.1in}
+\includegraphics[width=0.7\textwidth]{figures/cumul_coolingtime_vs_Matm_10au_mu235.eps}
+%\vspace{-0.35in}
 \caption{Time to grow an atmosphere of mass $M_{\rm{atm}}$ for cores with fixed masses between $5 M_{\oplus}$ and $14 M_{\oplus}$ (as labeled) at $10$ AU in our fiducial disk. Circles mark the runaway growth time, $t_{\rm run}$, which occurs at roughly the crossover mass, $M_{\rm{atm}} = M\co$.  Both the time to reach a fixed atmosphere mass and the runaway growth time are shorter for larger cores. For larger $M\co$, runaway growth commences at higher $M_{\rm atm}/M\co$ values.}
 \label{fig:tvsM}
 \end{figure}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.48\textwidth]{figures/coolingtime_vs_Mc_10au.pdf}
-%\vspace{-0.5in}
-\caption{Runaway growth time, $t_{\rm{run}}$, vs.\ core mass at $10$ AU, for two values of the mean molecular weight.  Our numerical model (\emph{solid curves}) is compared to our non-self-gravitating analytic model (\emph{dashed curves}, from Equation \ref{eq:tcoolanf}).  A typical protoplanetary disk life time of $3$ Myr is plotted for comparison. The runaway growth time is larger for a lower mean molecular weight.}
-\label{fig:tvsMcomp}
-\end{figure}
+
 
 
 \subsubsection{Effects of Core Mass}
@@ -534,28 +550,46 @@ The time to undergo atmospheric runaway growth, $t_{\rm run}$, sets a minimum ti
 
 \Fig{fig:tvsM} shows the growth of atmospheric mass with time for several core masses at $10$ AU in our fiducial disk.  Atmospheres grow faster around more massive cores due to stronger gravitational binding.  The endpoint of each curve marks $t_{\rm run}$.   Runaway growth occurs near the crossover mass, when $M_{\rm atm} \sim M\co$, in agreement with previous studies. Lower core masses undergo runaway accretion at fractionally smaller atmosphere masses. %Thus, when compared to the assumption that runaway occurs at a universal $M_{\rm atm}/M\co$ ratio,  effects that lower the critical core mass are amplified by the earlier onset of runaway growth.
 
+
+
+%\clearpage
+
 \Fig{fig:tvsMcomp} shows how $t_{\rm run}$ varies with core mass, also at 10 AU.  The numerical results are plotted against our non-self-gravitating analytic model, described in \S\ref{sec:coolingan}.  The analytic model reproduces the general decline in $t_{\rm run}$ with core mass.  The numerical model, which includes self-gravity, has a somewhat steeper mass dependence.  A modest correction due to self-gravity is unsurprising, and consistent with the above-mentioned trend in $M_{\rm atm}/M\co$ ratios.  Moreover, in the analytic theory, crucial quantities like $M_{\rm atm}$ and $L$ (both roughly $\propto M\co^3$ near crossover) have non-linear dependence on core mass, offering plenty of opportunity for self-gravitational corrections.
+
+
+
+%\clearpage
 
 The effect of mean molecular weight is also shown in \Fig{fig:tvsMcomp}.  A lower $\mu$ gives longer growth times, because more cooling is required to compress the atmosphere.  This effect is both well established in core accretion studies \citep{stevenson82} and intuitive since the atmospheric scale height $\propto 1/\mu$ is more extended for lower $\mu$.   Moreover, the Bondi radius decreases as $\RB \propto \mu$, giving a smaller gravitational sphere of influence (and a weaker compression at $\RH$ when that is the more relevant scale).  To see how this affects cooling times, note that the characteristic RCB depth near runaway scales as $P\cb \sim P_{\rm M} \propto \mu^{-4}$ from \Eq{eq:PM}.  Thus $L \propto 1/P\cb \propto \mu^4$ explains the trend of slower cooling for lower $\mu$.
 %he larger atmospheric scale height due to a lower $\mu$ also results in a larger pressure depth at the RCB, $P\cb$, and thus a lower $R\cb$, cf. \Eq{eq:PcbRcb}.} 
 
 For $\mu = 2.0$, which represents the idealized case of an H$_2$ atmosphere completely devoid of Helium, $t_{\rm run}$ increases by factors of $\sim 2 - 3$.  Thus fairly drastic changes in atmospheric composition are required for $\mu$ to significantly affect core accretion timescales. In principle, changes in the mean molecular weight of the gas also affect the EOS, including $\delad$, but such effects are not considered here (see \S\ref{sec:EOS}).
 
-
-
-\begin{figure*}[tb]
+\begin{figure}[H]
 \centering
-\includegraphics[width=1.\textwidth]{figures/TdPd_effect.pdf}
-\vspace{-0.3in}
-\caption{Runaway growth time as a function of disk temperature (\emph{left}) and pressure (\emph{right}) around a $M_{\rm c} = 5 M_{\oplus}$ core.   The disk pressure or temperature (\emph{left} or \emph{right}, respectively) are fixed at values for 10 AU in our disk model.   The analytic scalings given by \Eq{eq:tcoolanf} are plotted for comparison, as described in the text.  Gas accretion slows down significantly at higher temperatures, but only speeds up modestly as the disk pressure or density increase.} 
-\label{fig:TPeffects}
-\end{figure*}
+\includegraphics[width=0.7\textwidth]{figures/coolingtime_vs_Mc_10au.eps}
+%\vspace{-0.35in}
+\caption{Runaway growth time, $t_{\rm{run}}$, vs.\ core mass at $10$ AU, for two values of the mean molecular weight.  Our numerical model (\emph{solid curves}) is compared to our non-self-gravitating analytic model (\emph{dashed curves}, from Equation \ref{eq:tcoolanf}).  A typical protoplanetary disk life time of $3$ Myr is plotted for comparison. The runaway growth time is larger for a lower mean molecular weight.}
+\label{fig:tvsMcomp}
+\end{figure}
+
+
 
 
 \subsubsection{Effects of Disk Temperature and Pressure}
 \label{sec:TPeffects}
 
 \Fig{fig:TPeffects} shows how the runaway accretion time varies with disk temperature, $T\di$, or pressure, $P\di$, holding the other quantity fixed.   The analytic model roughly reproduces the temperature and pressure scalings, again with some discrepancies due mainly to the neglect of self-gravity.  Temperature variations are much more significant than pressure variations (note the difference in logarithmic and linear axes).  Since midplane disk conditions depend only on temperature and pressure in our model,\footnote{See \Eq{eq:diskparam}.  When gap opening is considered in models of later growth stages, the orbital frequency and effective viscosity become relevant as well.} the dominant effect of disk location is temperature.  
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.\textwidth]{figures/TdPd_effect.eps}
+%\vspace{-0.3in}
+\caption{Runaway growth time as a function of disk temperature (\emph{left}) and pressure (\emph{right}) around a $M_{\rm c} = 5 M_{\oplus}$ core.   The disk pressure or temperature (\emph{left} or \emph{right}, respectively) are fixed at values for 10 AU in our disk model.   The analytic scalings given by \Eq{eq:tcoolanf} are plotted for comparison, as described in the text.  Gas accretion slows down significantly at higher temperatures, but only speeds up modestly as the disk pressure or density increase.} 
+\label{fig:TPeffects}
+\end{figure}
+
+%\clearpage
 
 The decline in growth times with lower temperatures arises from a balance of competing effects.  The cooling luminosity is inherently smaller at lower temperatures.  Overpowering this effect, the larger Bondi radius and lower dust opacity act to accelerate growth at lower temperatures.
 
@@ -564,32 +598,40 @@ Growth times depend only weakly on, but do fall slightly with, pressure.   This 
 Section \ref{sec:coolingan} shows how these temperature and pressure effects arise in our analytic model.
 
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.5\textwidth]{figures/Mcrit_vs_a_3Myrs_new.pdf}
-%\vspace{-0.5in}
-\caption{The critical core mass as a function of semimajor axis, for a disk lifetime of $3$ Myrs and two values of the mean molecular weight ($\mu = 2.35$ is for Solar abundances). The decline in $\MC$ with distance is a robust result for standard disk models.  The analytic model, which neglects self-gravity, over-predicts the steepness of the decline.}
-\label{fig:Mcvsa}
-\end{figure}
 
-\begin{figure}[htb]
-\centering
-\includegraphics[width=0.5\textwidth]{figures/Mcrit_vs_a_3Myrs_opacity.pdf}
-%\vspace{-0.5in}
-\caption{Critical core masses vs. distance for standard and reduced (by a factor of ten) dust opacities.  Lower opacities give significantly lower $\MC$ values.  Atmospheric opacity remains a large uncertainty in core accretion models.}
-\label{fig:Mcritopacity}
-\end{figure}
+
+
 
 \subsection{Critical Core Mass}
 \label{sec:critcore}
 
 The critical core mass declines with distance from the star, as shown in \Fig{fig:Mcvsa} for our standard disk model.   The main reason for the decline, as explained above, is that atmospheres grow faster at lower temperatures.  The lower densities and pressures in the outer disk have a much smaller effect.  Since the vast majority of disk models have a disk temperature that declines with $a$, our qualitative result is robust.   We also show that higher $\mu$ values give lower values of $\MC$.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Mcrit_vs_a_3Myrs_new.eps}
+%\vspace{-0.5in}
+\caption{The critical core mass as a function of semimajor axis, for a disk lifetime of $3$ Myrs and two values of the mean molecular weight ($\mu = 2.35$ is for Solar abundances). The decline in $\MC$ with distance is a robust result for standard disk models.  The analytic model, which neglects self-gravity, over-predicts the steepness of the decline.}
+\label{fig:Mcvsa}
+\end{figure}
+
+%\clearpage
+
 The average power-law decline from 1 to 100 AU (not plotted) is $\MC \propto a^{-0.3}$, for both choices of $\mu$.   While not a drastic decline, the ability of distant low mass cores to accrete gas efficiently is significant for the interpretation of direct imaging surveys.  However, our model offers no guarantee of copious giant planets at large distances.  Many histories of solid accretion are possible, and solid cores may grow too slowly to allow the rapid gas accretion that we model.  
 
 Our non-self-gravitating analytic model (dashed curves in \Fig{fig:Mcvsa}) over-predicts the steepness of the decline in $\MC$ with $a$.  This discrepancy is not surprising, as we have shown that self-gravity strongly affects evolution, even before runaway growth begins and the crossover mass is reached.
 
 \Fig{fig:Mcritopacity} shows that reducing the opacity by an order of magnitude significantly reduces $\MC$.  Furthermore, this opacity effect is stronger at larger distances.  The opacity reduction by a factor of 10 lowers $\MC$ at 5 AU by a factor of $\sim$$2.5$ and at 100 AU by a factor of $\sim$$3.5$.  Atmospheric opacity is a dominant uncertainty in core accretion modeling.  However, unless atmospheric opacity varies significantly with disk radius, the general decline in $\MC$ with increasing $a$ should hold.  For our scenario of negligible ongoing planetesimal accretion, it is tempting to think that dust could settle out of the radiative zone, lowering the opacity \citep{podolak03}.  Nonetheless, since opacity near the RCB is a crucial factor, we speculate that convective overshoot may prevent very low opacities.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Mcrit_vs_a_3Myrs_opacity.eps}
+%\vspace{-0.5in}
+\caption{Critical core masses vs. distance for standard and reduced (by a factor of ten) dust opacities.  Lower opacities give significantly lower $\MC$ values.  Atmospheric opacity remains a large uncertainty in core accretion models.}
+\label{fig:Mcritopacity}
+\end{figure}
+
+%\clearpage
 
 A larger disk lifetime further reduces $M_{\rm crit}$. Recent studies have shown that gas disks may live up to $\propto$$10-12$ Myr \citep{bell13}. As $M_{\rm crit} \sim t\di^{-3/5}$ (cf. Equation \ref{eq:tcoolan}), a disk lifetime of 10 Myrs decreases the critical core mass by a factor of two.  Of course, some fraction of the disk lifetime must be allocated to the growth and possibly migration of the core.
 

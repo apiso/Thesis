@@ -327,7 +327,7 @@ For our gas equation of state, we use the interpolated EOS tables of \citet{saum
 
 We note that helium behaves like an ideal monatomic gas with $\delad=2/5$ in our regime of interest.  Its presence in the atmosphere thus only causes a small, constant upward shift in the adiabatic gradient of the mixture.
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/delad_S_mixt.pdf}
 \includegraphics[width=0.62\textwidth]{figures/delad_S_mixt.pdf}
@@ -516,7 +516,7 @@ Both EOS 2 and EOS 3 yield slower gas accretion when compared to EOS 1. Noting t
 
 %The growth time is dependent on both the total energy that must be released (i.e., the rate at which energy is released) and on the luminosity of the atmosphere. {\bf `Rate of energy release' and luminosity are the same thing.  You may be calling $dE/dM$ a `rate' which is confusing.  Again, I think if you introduce and physically explain $\dot{M} = -L/(dE/dM)$ at the outset, then the resulting explanations can more compactly and clearly refer to the terms that matter.}  We explore the \sout{relative} influence of these two factors separately.  {\bf Haven't you already started exploring these factors separately?  Why say this again? Also perhaps worth a note (if not an explanation) that the combined effect is significantly greater than either individually (again noting log scale).}
 
-\begin{figure}[h]
+\begin{figure}[htb]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/tplot.pdf}
 \includegraphics[width=0.5\textwidth]{figures/tplot.pdf}
@@ -989,7 +989,7 @@ In this section we put together the results obtained in Sections \S\ref{EOSeffec
 
 Figure \ref{fig:tvsMplot} displays the time evolution and the runaway growth time for atmospheres forming around cores with masses between 15 $M_{\oplus}$ and 25 $M_{\oplus}$ at $a=10$ AU in our fiducial disk, for a realistic EOS with an equilibrium ortho-to-para ratio and standard ISM opacity. Higher mass cores have shorter $t_{\rm run}$, consistent with the results of Paper I. We also note that $M_{\rm atm}$ at $t_{\rm run}$ is larger for the realistic EOS than for the polytropic EOS considered in Paper I, for the same core mass.
 
-\begin{figure}[h!]
+\begin{figure}[htb]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/t_vs_M_10au.pdf}
 \includegraphics[width=0.5\textwidth]{figures/t_vs_M_10au.pdf}
@@ -1014,7 +1014,7 @@ for a gas described by a realistic EOS and an ISM dust opacity. The results of P
 %(e.g., \citealt{jay99}), 
 %for a gas described by a realistic EOS and an ISM dust opacity. The results of Paper I for an ideal diatomic gas are plotted for comparison. The inclusion of realistic EOS effects increases $M_{\rm crit}$ by more than a factor of two when compared to an ideal gas polytrope. %As such, non-ideal effects substantially increase the core mass needed to form a giant planet  before the dissipation of the protoplanetary disk.   
 
-\begin{figure}[h!]
+\begin{figure}[htb]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/Mc_vs_a_poly_real_paper.pdf}
 \includegraphics[width=0.5\textwidth]{figures/Mc_vs_a_poly_real_paper.pdf}
@@ -1024,7 +1024,7 @@ for a gas described by a realistic EOS and an ISM dust opacity. The results of P
 \end{figure}
 
 
-\begin{figure}[h!]
+\begin{figure}[htb]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/Mcrit_vs_a_gg.pdf}
 \includegraphics[width=0.5\textwidth]{figures/Mcrit_vs_a_gg.pdf}
@@ -1035,7 +1035,7 @@ for a gas described by a realistic EOS and an ISM dust opacity. The results of P
 
 Figure \ref{fig:Mcritvsagg} shows $M_{\rm crit}$ as a function of semimajor axis, for a realistic EOS with an equilibrium ortho-to-para ratio and grain growth opacity with a size distribution given by Equation (\ref{eq:graindistr}) with $p=3.5$ and maximum particle size $s_{\rm max}=1$ cm. The critical core mass is lower than in the standard interstellar opacity case, and less sensitive to location in the disk. Location primarily affects the atmosphere through the opacity in the outer envelope, which depends on disk temperature. For the simplified analytic model developed in Paper I, we approximated $t_{\rm run}$ by  $t_{\rm co}$, the time when $M_{\rm atm}=M\co$, and found that $t_{\rm co} \sim T_{\rm d}^{\beta+1/2}$, with $\beta$ the power-law exponent in Equation (\ref{eq:opacitylaw}). Opacity is less sensitive to temperature variations for larger grains and has an almost flat profile (see Figure \ref{fig:opacity}), which results in $\beta \ll 1$ and a much weaker temperature (and therefore semimajor axis) dependence of $M_{\rm crit}$, as seen in Figure \ref{fig:Mcritvsagg}. Moreover, grain growth reduces the absolute value of the opacity, which also lowers $M_{\rm crit}$. % As noted in Section \S\ref{sec:opacity}, the critical core mass may be significantly lower if coagulation is taken into account, i.e. $p=2.5$.
 
-\begin{figure}[h!]
+\begin{figure}[htb]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/tco_vs_a_Mc4_comp.pdf}
 \includegraphics[width=0.5\textwidth]{figures/tco_vs_a_Mc4_comp.pdf}
@@ -1103,7 +1103,7 @@ Figure \ref{fig:accrates} shows that $\dot{M}_{\rm c,KH}$ is $\sim2-3$ orders of
 %or the planet's feeding zone could have been depleted of solids due to a giant neighbor.  
 
 
- \begin{figure}[h]
+ \begin{figure}[htb]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/acc_rates_paper.pdf}
 \includegraphics[width=0.5\textwidth]{figures/acc_rates_paper.pdf}
@@ -1171,7 +1171,7 @@ M_{\rm{crit, KH}} \sim \Big[\frac{\min[\dot{M}_{\rm c, KH}(M_{\rm{c}})]}{64 \pi^
 \end{equation}
 where $C$ is an order unity constant depending on the adiabatic gradient and disk properties (see R06, Equation B3). From Equation (\ref{eq:McdotKH}), the accretion rate $\dot{M}_{\rm c, KH}$ depends on the core mass $M\co$. We find $M_{\rm crit, KH}$ numerically by setting $M\co=M_{\rm crit, KH}$ on the right-hand side of Equation (\ref{eq:critraf}). The result is displayed in Figure \ref{fig:raf2}; the critical core mass corresponding to planetesimal accretion at the rates displayed in Figure \ref{fig:accrates} is displayed for comparison.  
 
- \begin{figure}[h]
+ \begin{figure}[htb]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/Mc_vs_a_poly_comp.pdf}
 \includegraphics[width=0.5\textwidth]{figures/Mc_vs_a_poly_comp.pdf}
