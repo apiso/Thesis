@@ -87,16 +87,16 @@
 \contentsline {section}{\numberline {6.3}Future Directions}{150}{section.6.3}
 \contentsline {chapter}{Appendix \numberline {A}Derivation of the Global Energy Equation}{151}{Appendix.1.A}
 \contentsline {chapter}{Appendix \numberline {B}Analytic Cooling Model Details}{155}{Appendix.1.B}
-\contentsline {subsection}{\numberline {B.0.1}Isothermal Atmosphere}{155}{subsection.1.B.0.1}
-\contentsline {subsection}{\numberline {B.0.2}Temperature and Pressure Corrections at the Radiative-Convective Boundary}{156}{subsection.1.B.0.2}
-\contentsline {subsection}{\numberline {B.0.3}The Opacity Effect}{158}{subsection.1.B.0.3}
-\contentsline {subsection}{\numberline {B.0.4}Surface Terms}{158}{subsection.1.B.0.4}
+\contentsline {section}{\numberline {B.1}Isothermal Atmosphere}{155}{section.1.B.1}
+\contentsline {section}{\numberline {B.2}Temperature and Pressure Corrections at the Radiative-Convective Boundary}{156}{section.1.B.2}
+\contentsline {section}{\numberline {B.3}The Opacity Effect}{158}{section.1.B.3}
+\contentsline {section}{\numberline {B.4}Surface Terms}{158}{section.1.B.4}
 \contentsline {chapter}{Appendix \numberline {C}Equation of State Table Extension}{160}{Appendix.1.C}
-\contentsline {subsection}{\numberline {C.0.5}Hydrogen}{161}{subsection.1.C.0.5}
-\contentsline {subsection}{\numberline {C.0.6}Helium}{165}{subsection.1.C.0.6}
+\contentsline {section}{\numberline {C.1}Hydrogen}{161}{section.1.C.1}
+\contentsline {section}{\numberline {C.2}Helium}{166}{section.1.C.2}
 \contentsline {chapter}{Appendix \numberline {D}Adiabatic Gradient Variations}{168}{Appendix.1.D}
-\contentsline {subsection}{\numberline {D.0.7}Adiabatic Gradient during Partial Dissociation}{168}{subsection.1.D.0.7}
-\contentsline {subsection}{\numberline {D.0.8}Adiabatic Gradient during Conversion of Spin Isomers}{169}{subsection.1.D.0.8}
+\contentsline {section}{\numberline {D.1}Adiabatic Gradient during Partial Dissociation}{168}{section.1.D.1}
+\contentsline {section}{\numberline {D.2}Adiabatic Gradient during Conversion of Spin Isomers}{170}{section.1.D.2}
 \contentsline {chapter}{Appendix \numberline {E}Grain growth opacity and radiative windows}{173}{Appendix.1.E}
 \contentsline {chapter}{Appendix \numberline {F}Steady-state active disk solution}{177}{Appendix.1.F}
 \contentsline {chapter}{Appendix \numberline {G}Desorption distance analytic solution}{179}{Appendix.1.G}

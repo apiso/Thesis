@@ -1,7 +1,7 @@
 \chapter{Adiabatic Gradient Variations}
 \label{alldelad}
 
-\subsection{Adiabatic Gradient during Partial Dissociation}\label{deladdiss}
+\section{Adiabatic Gradient during Partial Dissociation}\label{deladdiss}
 
 %The adiabatic gradient during dissociation or ionization is a function of temperature and the dissociation or ionization fraction $x$. The Saha equation (e.g., \citealt{kippenhahn90}) relates $x$ to the gas 
 
@@ -33,17 +33,17 @@ with $\Phi_H \equiv \frac{5}{2}+\frac{\chi}{k_B T}$. The derivation of $\delad$ 
 Using Equation (\ref{eq:deladdiss}), we recover $\delad=2/7$ for $x=0$ (no ongoing dissociation hence hydrogen is purely molecular and diatomic) and $\delad=2/5$ for $x=1$ (hydrogen is fully dissociated into atoms and hence monatomic). Figure \ref{fig:deladdiss} shows the dependence of $\delad$ on the dissociation fraction, for $T=3000$ K, the temperature at which dissociation typically occurs \citep{langmuir12}. The adiabatic gradient drops substantially during partial dissociation, since part of the internal energy is used in dissociation rather than in increasing the temperature of the system.
 
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/delad_dissociation.pdf}
-\includegraphics[width=0.5\textwidth]{figures/delad_dissociation.pdf}
+\includegraphics[width=0.6\textwidth]{figures/delad_dissociation.pdf}
 %%\vspace{-0.5in}
 \caption{Adiabatic gradient as a function of the hydrogen dissociation fraction $x$. The adiabatic gradient is $\delad=2/7$ for pure molecular hydrogen ($x=0$) and $\delad=2/5$ for fully atomic hydrogen ($x=1$), and drops to low values during partial dissociation.}
 \label{fig:deladdiss}
 \end{figure}
 
 
-\subsection{Adiabatic Gradient during Conversion of Spin Isomers}
+\section{Adiabatic Gradient during Conversion of Spin Isomers}
 \label{deladspin}
 
 The adiabatic gradient scales as $\delad \sim 1/c_{\rm V}$.
@@ -51,7 +51,18 @@ The adiabatic gradient scales as $\delad \sim 1/c_{\rm V}$.
 % is the specific heat capacity at constant volume and $c_{\rm V, t}$ and $c_{\rm V,r}$ are the translational and rotational components, respectively.  
 The translational component of the heat capacity, $c_{\rm V, t}=3\mathcal{R}/2$, is independent of temperature.  As $c_{\rm V,r}$ increases, $\delad$ declines. We can therefore understand how conversion between spin isomers affects $\delad$ by studying the dependence on temperature of $c_{\rm V, r}$ of the ortho-para mixture. 
 
+
+
 The internal energy per unit mass and specific heat capacity associated with rotation for the individual isomers, for the equilibrium mixture, and for a fixed ortho-para ratio of 3:1 can be derived from their partition functions (see \App{EOStables} for details), and are plotted in Figure  \ref{fig:ucvr} (after \citealt{farkas35}, Figure 1). At low temperatures, parahydrogen is in the $j=0$ state and has no rotational energy, while orthohydrogen is in the $j=1$ state and has the energy of its first rotational level. Both para- and orthohydrogen, as well as their equilibrium mixture, behave like monatomic gases at low temperatures and thus have zero rotational heat capacity. This is consistent with $\delad=2/5$ at low temperatures as seen in Figure \ref{fig:deladmap}. As the temperature increases, the energetically higher-lying rotational states of para- and orthohydrogen are populated and the heat capacity of both spin isomers increases as a result. We note that the heat capacity of the equilibrium mixture is not a weighted average of the heat capacities of the individual components because it takes into account both the rotational energy uptake of para- and orthohydrogen, and also the shift in their equilibrium concentrations with temperature. This results in a peak in the heat capacity of the mixture around $\sim$$50$ K, as seen in the bottom plot of Figure \ref{fig:ucvr}. It follows that the adiabatic gradient has to reduce, reach a minimum, then increase as the temperature rises, as shown in Figure \ref{fig:deladmap}. In contrast, the heat capacity for the 3:1 ortho-para ratio mixture will be a weighted average between the individual ortho- and para- components, and will hence have intermediate values between the two, as displayed in Figure \ref{fig:ucvr}.
+
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/ortho_para_energy.pdf}
+\includegraphics[width=0.6\textwidth]{figures/ortho_para_energy.pdf}
+%%\vspace{-0.5in}
+\caption{Internal energy per unit mass and specific heat capacity associated with rotation for parahydrogen (dashed blue), orthohydrogen (dotted green), the equilibrium mixture (solid red) and a fixed 3:1 ortho-to-para ratio (dash-dotted light blue) as a function of temperature. After \citet{farkas35}, Figure 1.}
+\label{fig:ucvr}
+\end{figure}
 
 Figure \ref{fig:Lt_31}, bottom panel, shows that the atmospheric growth time may increase by a factor of $\sim$$3$ if a fixed 3:1 ortho-para ratio is assumed instead of thermal equilibrium between the hydrogen spin isomers.  This enhanced growth time  increases $M_{\rm crit}$. 
 
@@ -71,16 +82,9 @@ Figure \ref{fig:Lt_31}, bottom panel, shows that the atmospheric growth time may
 
 
 
-\begin{figure}[h]
-\centering
-%\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/ortho_para_energy.pdf}
-\includegraphics[width=0.5\textwidth]{figures/ortho_para_energy.pdf}
-%%\vspace{-0.5in}
-\caption{Internal energy per unit mass and specific heat capacity associated with rotation for parahydrogen (dashed blue), orthohydrogen (dotted green), the equilibrium mixture (solid red) and a fixed 3:1 ortho-to-para ratio (dash-dotted light blue) as a function of temperature. After \citet{farkas35}, Figure 1.}
-\label{fig:ucvr}
-\end{figure}
 
-\begin{figure}[h]
+
+\begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/Ltplot_31.pdf}
 \includegraphics[width=0.5\textwidth]{figures/Ltplot_31.pdf}

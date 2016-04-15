@@ -14,7 +14,7 @@ using the following method.
 
 %We choose $\log_{10} T (\rm{K})=1$ and $ \log_{10}P$(dyn cm$^{-2})=-4.4$ as our lower boundaries for temperature and pressure, respectively. Our temperature and pressure grid becomes: $1 < \log_{10} T(\rm{K})<7.06$ and $-4.4<\log_{10}P$(dyn cm$^{-2})<19$. The other thermodynamic variables in the tables are calculated as follows.
 
-\subsection{Hydrogen}
+\section{Hydrogen}
 
 \label{hydrogen}
 
@@ -153,28 +153,29 @@ We calculate $S_T$ and $S_P$ through finite differencing.
 \delad=\frac{\partial \ln{T}}{\partial \ln{P}} \Big |_S = -\frac{S_P}{S_T}
 \end{equation}
 
+\begin{figure}[H]
+\centering
+%\includegraphics[scale=.8]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/delad_S_H.pdf}
+\includegraphics[scale=.7]{figures/delad_S_H.pdf}
+\caption{Contour plot of the hydrogen adiabatic gradient $\delad$ as a function of gas temperature and pressure. The upper right rectangle encloses the region described by the original \citet{saumon95} EOS tables, while the rest of the plot is our extension to lower temperatures and pressures for an equilibrium mixture of ortho- and parahydrogen. The black curves represent constant entropy adiabats with labels $\log_{10}(S)$, where $S$ [erg K$^{-1}$ g$^{-1}$] is the absolute entropy per unit mass.  At high temperatures, hydrogen dissociates and ionizes, while at low temperatures the rotational states of the hydrogen molecule are only partially excited and it no longer behaves like an ideal diatomic gas. Regions in which the EOS is invalid or has not been computed are masked in white (see text).}
+\label{fig:deladH}
+\end{figure}
+
 We evaluate $\delad$ from the tabulated values for $S_T$ and $S_P$ determined above. Figure \ref{fig:deladH} shows a contour plot of $\delad$ as a function of temperature and pressure for the extended EOS table for hydrogen, assuming thermal equilibrium between the spin isomers. For the 3:1 ortho-to-para ratio, $\delad$ decreases continuously with $T$ for $T \lesssim 200$ K, in contrast with the equilibrium case, in which $\delad$ sharply decreases, then increases as $T$ goes down. Our extension is only valid for $T \lesssim 2000$ K, since it does not take into account hydrogen dissociation. We choose $T=1500$ K as a conservative temperature cutoff. While we account for vibrational motion for completeness, its contribution is negligible in the temperature regime of interest. \citet{saumon95} do not compute the EOS at very high pressures, since hydrogen is solid or may form a Coulomb lattice in this regime, and thus their EOS treatment is no longer valid. While the boundaries of the region in which the free-energy EOS treatment fails can be determined from fundamental thermodynamic constraints, such calculations are not the object of this work. Instead, we choose as boundary a constant entropy curve ($\log(S)=8.4$) above the region in which the \citet{saumon95} model fails. The expressions derived above are sufficient to give good results for the colored regions of the extended map, which fully cover the temperature and pressures ranges required by our models.
 
  %Our extension smoothly matches the original tables for $8.80<\log{S}$(K g$^{-1})<9.07$ (\textbf{numbers are wrong, change once you have the final figure version}).
 
 \end{enumerate}
 
-\begin{figure}[h!]
-\centering
-%\includegraphics[scale=.8]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/delad_S_H.pdf}
-\includegraphics[scale=.8]{figures/delad_S_H.pdf}
-\caption{Contour plot of the hydrogen adiabatic gradient $\delad$ as a function of gas temperature and pressure. The upper right rectangle encloses the region described by the original \citet{saumon95} EOS tables, while the rest of the plot is our extension to lower temperatures and pressures for an equilibrium mixture of ortho- and parahydrogen. The black curves represent constant entropy adiabats with labels $\log_{10}(S)$, where $S$ [erg K$^{-1}$ g$^{-1}$] is the absolute entropy per unit mass.  At high temperatures, hydrogen dissociates and ionizes, while at low temperatures the rotational states of the hydrogen molecule are only partially excited and it no longer behaves like an ideal diatomic gas. Regions in which the EOS is invalid or has not been computed are masked in white (see text).}
-\label{fig:deladH}
-\end{figure}
 
-\subsection{Helium}
+\section{Helium}
 
 We extend the helium EOS tables based on a similar procedure. Since helium is primarily neutral and atomic at low temperatures and pressures, we treat it as an ideal monoatomic gas and  only take into account the translational component of the partition function (\ref{eq:Zt}). Figure \ref{fig:deladHe} shows $\delad$ as a function of temperature and pressure for the extended EOS table. %The original and extended table join smoothly for entropy curves between $8.29<\log{S}$(K g$^{-1})<8.77$ in this case (\textbf{numbers are wrong, change once you have the final figure version}).
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 %\includegraphics[scale=.8]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/delad_S_He.pdf}
-\includegraphics[scale=.8]{figures/delad_S_He.pdf}
+\includegraphics[scale=.7]{figures/delad_S_He.pdf}
 \caption{Same as Figure \ref{fig:deladH} but for pure helium. Helium ionizes at $T \gtrsim 10,000$ K, but behaves as an ideal monatomic gas otherwise. We choose $T=7,000$ K as a conservative temperature cutoff above which our  extension is no longer valid (masked in white). The EOS has not been computed in the lower-right region of the plot (see text).}
 \label{fig:deladHe}
 \end{figure}
