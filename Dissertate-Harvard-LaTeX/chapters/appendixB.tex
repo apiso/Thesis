@@ -5,13 +5,13 @@
 \subsection{Isothermal Atmosphere}
 \label{iso}
 
-We consider the structure of a non-self-gravitating, isothermal atmosphere that extends outward from the radiative-convective boundary (RCB) and matches onto the disk density, $\rho_{\rm d}$, at a distance $r_{\rm fit} = n_{\rm fit} \RB$, where $R_{\rm B}$ is the Bondi radius defined in equation (\ref{eq:RB}). From equation (\ref{eq:structa}) the resulting density profile is
+We consider the structure of a non-self-gravitating, isothermal atmosphere that extends outward from the radiative-convective boundary (RCB) and matches onto the disk density, $\rho_{\rm d}$, at a distance $r_{\rm fit} = n_{\rm fit} \RB$, where $R_{\rm B}$ is the Bondi radius defined in equation (\ref{1eq:RB}). From equation (\ref{1eq:structa}) the resulting density profile is
 \begin{equation} \label{eq:rhoiso}
 \rho = \rho_{\rm d} \exp \left({R_{\rm B} \over r} - {1 \over n_{\rm{fit}}} \right) \approx   \rho_{\rm{d}} \exp \left(R_{\rm B} \over r  \right),
 \end{equation} 
 where the approximate inequality is valid deep inside the atmosphere ($r \ll \RB$) for any $n_{\rm fit} \gtrsim 1$.  However, the choice of boundary condition does have an order unity effect on the density near the Bondi radius. 
 
-The mass of the atmosphere is determined by integrating equation (\ref{eq:structb}) from the RCB to the Bondi radius using the density profile (\ref{eq:rhoiso}) and can be approximated as
+The mass of the atmosphere is determined by integrating equation (\ref{1eq:structb}) from the RCB to the Bondi radius using the density profile (\ref{eq:rhoiso}) and can be approximated as
 \begin{equation} \label{eq:MatmISO}
 M_{\rm iso} \approx 4 \pi \rho\di {R\cb^4 \over R_{\rm B}} e^{R_B/R\cb} = 4\pi \rho\cb \frac{R\cb^4}{R_{\rm B}} \, ,
 \end{equation}
@@ -24,12 +24,12 @@ This result is the leading order term in a series expansion. By comparing the ex
 \label{RCBcorr}
 
 %\subsection{Temperature Contrast at Convective Boundary}
-We estimate the temperature and pressure corrections at the RCB due to the fact that the radiative region is not purely isothermal. From equation (\ref{eq:delrad}), we express the radiative lapse rate
+We estimate the temperature and pressure corrections at the RCB due to the fact that the radiative region is not purely isothermal. From equation (\ref{1eq:delrad}), we express the radiative lapse rate
 \begin{equation}\label{eq:delradan}
 \delrad = {3 \kappa P \over 64 \pi  G M \sigma T^4} L = \nabla\di {P/P_{\rm d} \over (T/T_{\rm d})^{4-\beta}},
 \end{equation}
 
-\noindent where the second equality follows from the opacity law (\ref{eq:opacitylaw}) and $\nabla_{\rm d}$ is the radiative temperature gradient at the disk:
+\noindent where the second equality follows from the opacity law (\ref{1eq:opacitylaw}) and $\nabla_{\rm d}$ is the radiative temperature gradient at the disk:
 
 \begin{equation}
 \label{eq:delo}
@@ -52,7 +52,7 @@ The pressure at the RCB follows from \Eqs{eq:radTP}{eq:Tcb} as
  \begin{equation}\label{eq:TP}
 {T \over T_{\rm d}} = \left[1 + {1 \over {\nabla_\infty \over \delad} - 1} \left({P \over P\cb} -  {P_{\rm d} \over P\cb}\right) \right]^{1 \over 4-\beta}\, .
 \end{equation} 
- We can then determine the RCB radius $R\cb$ from \Eq{eq:structa} as 
+ We can then determine the RCB radius $R\cb$ from \Eq{1eq:structa} as 
 \begin{equation}\label{eq:RCBint}
 {R_B \over R\cb} = \int_{P\di}^{P\cb} {T \over T_{\rm d}} {dP \over P}\, .
 \end{equation}
@@ -60,7 +60,7 @@ Evaluating the integral leads to
 \begin{equation}\label{eq:Rcb}
 {R_B \over r\cb} = \ln \left(P\cb \over P\di \right) - \ln \theta \, ,
 \end{equation} 
-with an extra correction term $\theta < 1$, when compared to an isothermal atmosphere (see Equation \ref{eq:rhoiso}). From this we arrive at the relation between $P\cb$ and $P\di$ given by Equation (\ref{eq:PcbRcb}). As opposed from the temperature correction factor $\chi$, an analytic expression for  $\theta$ cannot be obtained. Estimates for $\chi$ and $\theta$ for different values of the exponent $\beta$ in the opacity law (\ref{eq:opacitylaw}) are presented in Table 1.
+with an extra correction term $\theta < 1$, when compared to an isothermal atmosphere (see Equation \ref{eq:rhoiso}). From this we arrive at the relation between $P\cb$ and $P\di$ given by Equation (\ref{eq:PcbRcb}). As opposed from the temperature correction factor $\chi$, an analytic expression for  $\theta$ cannot be obtained. Estimates for $\chi$ and $\theta$ for different values of the exponent $\beta$ in the opacity law (\ref{1eq:opacitylaw}) are presented in Table 1.
 
 %As shown in section \S\ref{iso, an isothermal atmosphere gives a simple logarithmic dependence on $P\cb$.  However, using \Eq{eq:TP} in the integral gives
 
@@ -87,7 +87,7 @@ where $P\cb \sim P_M$ for a self-gravitating atmosphere and $g \sim G M\co/R_B^2
 
 \subsection{Surface Terms}
 \label{surfterms}
-In this section we check the relevance of the neglected surface terms in \Eq{eq:coolingglobal}.  We first show that accretion energy is only a small correction at the RCB, which is where we apply our cooling model. A rough comparison (ignoring terms of order $\xi$) of  accretion luminosity vs. $\dot{E}$ gives
+In this section we check the relevance of the neglected surface terms in \Eq{1eq:coolingglobal}.  We first show that accretion energy is only a small correction at the RCB, which is where we apply our cooling model. A rough comparison (ignoring terms of order $\xi$) of  accretion luminosity vs. $\dot{E}$ gives
 \begin{equation}
 {G M \dot{M} \over R \dot{E}} = {G M  \over R}{dM \over dE} \sim {G M\co^2 \over R_B E}{P\cb \over P_M} \sim \sqrt{R\co \over R_B} \ll 1,
 \end{equation} 

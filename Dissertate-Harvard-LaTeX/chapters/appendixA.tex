@@ -3,7 +3,7 @@
 
 %\section{Derivation of the Global Energy Equation}\label{sec:globalderiv}
 
-To derive  the global energy equation (\ref{eq:coolingglobal}) for an embedded protoplanet, we generalize the analogous calculations in stellar structure theory, e.g.\ in \S4.3 of \citet{kippenhahn90}.  For our problem, we add the effects of finite core radius, surface pressure and mass accretion. We start with the local energy equation (\ref{eq:structd}), whose more natural form in Lagrangian (mass) coordinates is $\p L/ \p m = \epsilon - T \p S /\p t$.  Integrating from the core to a higher shell with enclosed mass $M$ gives:
+To derive  the global energy equation (\ref{1eq:coolingglobal}) for an embedded protoplanet, we generalize the analogous calculations in stellar structure theory, e.g.\ in \S4.3 of \citet{kippenhahn90}.  For our problem, we add the effects of finite core radius, surface pressure and mass accretion. We start with the local energy equation (\ref{1eq:structd}), whose more natural form in Lagrangian (mass) coordinates is $\p L/ \p m = \epsilon - T \p S /\p t$.  Integrating from the core to a higher shell with enclosed mass $M$ gives:
 \begin{subeqnarray}
 L - L\co &=& \int_{M\co}^M {\p L \over \p m} dm \\
 &=& \int_{M\co}^M \left(\epsilon - T {\p S \over \p t} \right)dm \\
@@ -37,7 +37,7 @@ To make further progress, we use the virial theorem:
 \label{eq:virial}
 E_G=-3 \int_{M\co}^M \frac{P}{\rho} dm + 4 \pi (R^3 P_M-R\co^3 P\co),
 \end{equation}
-which follows from \Eqsss{eq:structb}{eq:structa}{eq:Eg} by integrating hydrostatic balance in Lagrangian coordinates.  As an aside, the integral in equation (\ref{eq:virial}) can be evaluated for a polytropic EOS to give simple expressions for the total energy:
+which follows from \Eqsss{1eq:structb}{1eq:structa}{1eq:Eg} by integrating hydrostatic balance in Lagrangian coordinates.  As an aside, the integral in equation (\ref{eq:virial}) can be evaluated for a polytropic EOS to give simple expressions for the total energy:
 \begin{subeqnarray}
 E&=&(1-\zeta)U+4 \pi (R^3 P_M-R\co^3 P\co) \slabel{eq:vira} \\
 &=&\frac{\zeta-1}{\zeta}E_G+\frac{4 \pi}{\zeta} (R^3 P_M-R\co^3 P\co) \slabel{eq:virb} \, ,
@@ -51,7 +51,7 @@ To express the work integral, i.e. the final term in \Eq{eq:DLc}, in terms of ch
  -  3{P_M \over \rho_M} \dot{M}+ 3 \dot{P}_M V_M -3 \dot{P}\co V\co  + 3  P_M {\dot{ V}_M} \, . 
 \end{eqnarray} 
 %where the volumes, $V_M = 4 \pi R^3/3$ and $V\co = 4 \pi R\co^3/3$. 
-The first integral in \Eq{eq:EGdot} is the one we want, but the second one must be eliminated.  The time derivative of \Eq{eq:Eg} (times four) gives
+The first integral in \Eq{eq:EGdot} is the one we want, but the second one must be eliminated.  The time derivative of \Eq{1eq:Eg} (times four) gives
 \begin{subeqnarray}
  4 \dot{E}_G &=&  -4 {G M \dot{M} \over R} + 4 \int_{M\co}^M {G m \over r^2}{\p r \over \p t} dm\\ 
 &=&   -4 {G M \dot{M} \over R} + 4 \pi \int_{M\co}^M r^3{\p \over \p m}{\p P \over \p t} dm \slabel{eq:4EGb} \\
@@ -74,7 +74,7 @@ Subtracting \Eqs{eq:udot}{eq:4EGc} and rearranging terms with the help of \Eqsss
 \begin{eqnarray}\label{eq:PdVint}
 \int_{M\co}^M {P \over \rho^2} {\p \rho \over \p t} dm  &=&  - \dot{E}_G - {G M \dot{M} \over R} - P_M {\p V_M \over \p t} \,  .
 \end{eqnarray} 
-Combining \Eqsss{eq:DLc}{eq:udot}{eq:PdVint}, we reproduce \Eq{eq:coolingglobal} with the accreted specific energy $e_M \equiv u_M - GM/R$.  
+Combining \Eqsss{eq:DLc}{eq:udot}{eq:PdVint}, we reproduce \Eq{1eq:coolingglobal} with the accreted specific energy $e_M \equiv u_M - GM/R$.  
 
 %\section{Analytic Cooling Model Details}\label{sec:analytic}
 %TODO (academic): Figure out if theta < 1 is actually required? Should be but need to check

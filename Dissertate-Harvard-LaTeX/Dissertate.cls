@@ -24,6 +24,7 @@
 \RequirePackage{setspace}
 \RequirePackage{verbatim}
 \RequirePackage{amsmath}
+\RequirePackage{deluxetable}
 
 % Fonts.
 \RequirePackage{color}
