@@ -327,10 +327,10 @@ For our gas equation of state, we use the interpolated EOS tables of \citet{saum
 
 We note that helium behaves like an ideal monatomic gas with $\delad=2/5$ in our regime of interest.  Its presence in the atmosphere thus only causes a small, constant upward shift in the adiabatic gradient of the mixture.
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/delad_S_mixt.pdf}
-\includegraphics[width=0.62\textwidth]{figures/delad_S_mixt.pdf}
+\includegraphics[width=0.75\textwidth]{figures/delad_S_mixt.pdf}
 %%\vspace{-0.5in}
 \caption{Contour plot of the adiabatic gradient $\delad$ for a hydrogen-helium mixture in thermodynamic equilibrium as a function of gas temperature and pressure. The upper-right rectangle encloses the region described by the original \citet{saumon95} EOS tables, while the rest of the plot is our extension. The black curves represent constant entropy adiabats, with the labels $\log_{10}(S)$ [erg K$^{-1}$ g$^{-1}$]. The regions in which the EOS is either invalid or not computed are masked in white. Further details about the masked regions can be found in \App{hydrogen}.}
 \label{fig:deladmap}
@@ -516,10 +516,10 @@ Both EOS 2 and EOS 3 yield slower gas accretion when compared to EOS 1. Noting t
 
 %The growth time is dependent on both the total energy that must be released (i.e., the rate at which energy is released) and on the luminosity of the atmosphere. {\bf `Rate of energy release' and luminosity are the same thing.  You may be calling $dE/dM$ a `rate' which is confusing.  Again, I think if you introduce and physically explain $\dot{M} = -L/(dE/dM)$ at the outset, then the resulting explanations can more compactly and clearly refer to the terms that matter.}  We explore the \sout{relative} influence of these two factors separately.  {\bf Haven't you already started exploring these factors separately?  Why say this again? Also perhaps worth a note (if not an explanation) that the combined effect is significantly greater than either individually (again noting log scale).}
 
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/tplot.pdf}
-\includegraphics[width=0.5\textwidth]{figures/tplot.pdf}
+\includegraphics[width=0.7\textwidth]{figures/tplot.pdf}
 %%\vspace{-0.5in}
 \caption{Elapsed time to grow a planet of total mass (core + atmosphere) for a variety of EOS combinations (see text), for a planet forming at 5 AU and with a fixed core mass $M_{\rm c}=10 M_{\oplus}$. Both hydrogen dissociation at high temperatures deep in the atmosphere and fractional occupation of $\rm H_2$ rotational states at low temperatures in the outer envelope result in slower gas accretion when compared to an ideal gas polytrope.}
 \label{fig:tplotall}
@@ -527,16 +527,7 @@ Both EOS 2 and EOS 3 yield slower gas accretion when compared to EOS 1. Noting t
 
 
 
-\begin{figure*}[tb]
-\centering
-%\includegraphics[width=\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/all_plot_test.pdf}
-\includegraphics[width=\textwidth]{figures/all_plot_test.pdf}
-%%\vspace{-0.5in}
-\caption{
-%{\bf (Left and right panels could be different figs.  The left panel could benefit from showing $P$ or $\rho$.  Also $E_{\rm tot}$ is not yet well defined; the local quantity $e \rho r^3$ might be more instructive.  A greater range of $E$ would show what the polytrope is doing better.  The right panel could benefit from adding $\dot{M}$.  We call $E_{\rm tot} \rightarrow E$ elsewhere, so should be consistent.  Why don't x-axes line up in right panel, are masses different?  What is the discontinuity in $dE/dM$ for the polytrope around 14 $M_\oplus$?  (A kink would be course resolution, but a discontinuity is harder to understand.)  I don't think you need an abs.\ val. around $-dE/dM$.)} 
-We explore atmosphere growth around a core of $M\co=10 M_{\oplus}$ forming at 5 AU in our fiducial disk, for the EOS choices in Figure \ref{fig:tplotall}. Left panels show radial profiles of pressure (upper), $-e \rho r^3$ (middle) and temperature (lower), for a total mass (core + atmosphere) of $12 M_{\oplus}$. Right panels display evolution with total mass of $L$ (upper), $-dE/dM$ (middle) and $\dot{M}$ (lower). Upper-left and upper-right: The variable occupation of $\rm H_2$ rotational states in the outer atmosphere results in a deeper RCB and a lower luminosity for the realistic EOS. Middle-left and middle-right: the (negative) total energy of the atmosphere is more concentrated at the bottom of the envelope when compared to an ideal gas polytrope due to $H_2$ dissociation. This increases the amount of energy per unit mass, $-dE/dM$, that needs to be radiated away to accrete the next parcel of gas. Lower-left: $H_2$ dissociation in the inner atmosphere decreases the temperature near the core. Lower-right: Dissociation and fractional occupation of rotational states reduce $\dot{M}$ and thus slow down atmospheric growth.}
-\label{fig:all_plot}
-\end{figure*}
+
 
 %In Figure \ref{fig:all_plot}, middle-right and upper-right panels, we show an example evolution with planet mass of $-dE/dM$ and $L$, respectively, for the EOSs described above. The realistic EOS increases $-dE/dM$ by a factor of $\sim$$3$ and decreases $L$ by a factor of $\sim$$1.5$, when compared to the ideal gas polytrope. 
 %Atmospheric growth is therefore primarily slowed by changes in the energy profile $E(r)$, with the luminosity $L$ having a secondary effect. 
@@ -551,7 +542,16 @@ Throughout Section \ref{EOSeffects}, we use a power-law opacity given by
 \noindent with $\beta =2$, $F_{\kappa} = 1$, and $T_{\rm{ref}}=100$K, appropriate for ice grains in the interstellar medium (ISM) \citep{bell94}.  We improve our treatment of opacity in Section \ref{sec:opacity}.
 
 
-
+\begin{figure}[H]
+\centering
+%\includegraphics[width=\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/all_plot_test.pdf}
+\includegraphics[width=\textwidth]{figures/all_plot_test.pdf}
+%%\vspace{-0.5in}
+\caption{
+%{\bf (Left and right panels could be different figs.  The left panel could benefit from showing $P$ or $\rho$.  Also $E_{\rm tot}$ is not yet well defined; the local quantity $e \rho r^3$ might be more instructive.  A greater range of $E$ would show what the polytrope is doing better.  The right panel could benefit from adding $\dot{M}$.  We call $E_{\rm tot} \rightarrow E$ elsewhere, so should be consistent.  Why don't x-axes line up in right panel, are masses different?  What is the discontinuity in $dE/dM$ for the polytrope around 14 $M_\oplus$?  (A kink would be course resolution, but a discontinuity is harder to understand.)  I don't think you need an abs.\ val. around $-dE/dM$.)} 
+We explore atmosphere growth around a core of $M\co=10 M_{\oplus}$ forming at 5 AU in our fiducial disk, for the EOS choices in Figure \ref{fig:tplotall}. Left panels show radial profiles of pressure (upper), $-e \rho r^3$ (middle) and temperature (lower), for a total mass (core + atmosphere) of $12 M_{\oplus}$. Right panels display evolution with total mass of $L$ (upper), $-dE/dM$ (middle) and $\dot{M}$ (lower). Upper-left and upper-right: The variable occupation of $\rm H_2$ rotational states in the outer atmosphere results in a deeper RCB and a lower luminosity for the realistic EOS. Middle-left and middle-right: the (negative) total energy of the atmosphere is more concentrated at the bottom of the envelope when compared to an ideal gas polytrope due to $H_2$ dissociation. This increases the amount of energy per unit mass, $-dE/dM$, that needs to be radiated away to accrete the next parcel of gas. Lower-left: $H_2$ dissociation in the inner atmosphere decreases the temperature near the core. Lower-right: Dissociation and fractional occupation of rotational states reduce $\dot{M}$ and thus slow down atmospheric growth.}
+\label{fig:all_plot}
+\end{figure}
 
 \subsection{Role of $-dE/dM$}\label{sec:dEdM}
 
@@ -597,14 +597,7 @@ An atmosphere with more negative total energy (EOS 3 and 4) requires a larger am
 
 % It takes more energy to bring gas deep into the atmosphere for an envelope that has the bulk of its energy concentrated towards the bottom,  {\bf (This argument isn't clear, new gas isn't brought deep into the atmosphere, it is added at the surface.)} which increases the amount of energy per unit mass that needs to be radiated, i.e. $|dE/dM|$. The cooling time is therefore larger {\bf with dissociation} \sout{for the realistic EOS at high temperatures} (3) when compared to the ideal gas polytrope (1). This increase in $|dE/dM|$ is shown in the bottom-right panel of Figure \ref{fig:all_plot}.
 
-\begin{figure*}[tb]
-\centering
-%\includegraphics[width=\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/varying_delad_4panel_3.pdf}
-\includegraphics[width=\textwidth]{figures/varying_delad_4panel_3.pdf}
-%%\vspace{-0.5in}
-\caption{As an illustrative numerical experiment, we explore atmosphere growth around a core with $M\co=10 M_{\oplus}$ forming at 5 AU, and with total mass (core + atmosphere) 12 $M_{\oplus}$, for the EOS choice of \Eq{eq:deladvar} and various $\nabla_{\rm ad,1}$ and $\nabla_{\rm ad,2}$. In each panel, the circles mark the RCB location. The horizontal dash-dotted lines show the temperature $T_{\rm switch}=500$ K at which the adiabatic gradient changes. We show radial profiles of temperature (upper panels) and pressure (lower panels). Upper-left: fixed $\nabla_{\rm ad,1}$, varying  $\nabla_{\rm ad,2}$. A larger $\nabla_{\rm ad,2}$ yields a deeper radiative region. Upper-right: varying $\nabla_{\rm ad,1}$, fixed $\nabla_{\rm ad,2}$. A lower $\nabla_{\rm ad,1}$ yields a more shallow radiative region. In both upper panels, the analytic profile of Equation (\ref{eq:Tdeep}) is over-plotted for comparison (\textit{dotted line}) in regions of agreement. Lower-left: fixed $\nabla_{\rm ad,1}$, varying  $\nabla_{\rm ad,2}$. Lower-right: varying $\nabla_{\rm ad,1}$, fixed $\nabla_{\rm ad,2}$. In both lower panels, the dashed black line is the analytic prediction for the pressure profile in the radiative zone, which agrees with the numerical results.}
-\label{fig:varying_delad}
-\end{figure*}
+
 
 
 
@@ -632,6 +625,11 @@ The adiabatic gradient of EOS 2 is larger, on average, than for EOS 1 in the out
 \right.
 \end{equation}   
 where $\nabla_{\rm ad, 1}$ and $\nabla_{\rm ad,2}$ are constant (Figure \ref{fig:varying_delad}).
+
+
+
+
+
 %We explore the independent effects of varying $\nabla_{\rm ad,1}$ and $\nabla_{\rm ad,2}$ by alternately fixing one and varying the other   (Figure \ref{fig:varying_delad}). 
 %The adiabatic gradient $\nabla_{\rm ad,1}$ dictates the temperature profile deep in the convective interior, while $\nabla_{\rm ad,2}$ sets the RCB temperature $T\cb$. 
 %Given these inputs, the RCB location and its pressure $P\cb \propto \exp(\RB/R\cb)$ (see Figure \ref{fig:varying_delad}, lower panels) are determined by matching the interior and exterior profiles. Higher $P\cb$ implies lower luminosity (Equation \ref{eq:delrad}).
@@ -658,6 +656,14 @@ Even though $\nabla_{\rm ad,1}$ is an order unity coefficient, the temperature s
 %We can use 
 The RCB temperature, $T\cb$, is an order unity correction from the disk temperature that depends on the adiabatic gradient in the outer envelope, $\nabla_{\rm ad,2}$.  We have shown in Paper I that $T\cb \simeq T\di (1- 2 \nabla_{\rm ad, 2})^{-1/2}$ (for $\beta=2$ in Equation \ref{eq:opacitylaw}). This approximation agrees with the numerically calculated $T\cb$ shown in Figure \ref{fig:varying_delad} to within 5\%. Note that $T\cb$ modestly increases with $\nabla_{\rm ad,2}$ (upper-left panel), and is constant for fixed $\nabla_{\rm ad,2}$  regardless of $\nabla_{\rm ad,1}$ (upper-right panel).
 
+\begin{figure}[H]
+\centering
+%\includegraphics[width=\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/varying_delad_4panel_3.pdf}
+\includegraphics[width=\textwidth]{figures/varying_delad_4panel_3.pdf}
+%%\vspace{-0.5in}
+\caption{As an illustrative numerical experiment, we explore atmosphere growth around a core with $M\co=10 M_{\oplus}$ forming at 5 AU, and with total mass (core + atmosphere) 12 $M_{\oplus}$, for the EOS choice of \Eq{eq:deladvar} and various $\nabla_{\rm ad,1}$ and $\nabla_{\rm ad,2}$. In each panel, the circles mark the RCB location. The horizontal dash-dotted lines show the temperature $T_{\rm switch}=500$ K at which the adiabatic gradient changes. We show radial profiles of temperature (upper panels) and pressure (lower panels). Upper-left: fixed $\nabla_{\rm ad,1}$, varying  $\nabla_{\rm ad,2}$. A larger $\nabla_{\rm ad,2}$ yields a deeper radiative region. Upper-right: varying $\nabla_{\rm ad,1}$, fixed $\nabla_{\rm ad,2}$. A lower $\nabla_{\rm ad,1}$ yields a more shallow radiative region. In both upper panels, the analytic profile of Equation (\ref{eq:Tdeep}) is over-plotted for comparison (\textit{dotted line}) in regions of agreement. Lower-left: fixed $\nabla_{\rm ad,1}$, varying  $\nabla_{\rm ad,2}$. Lower-right: varying $\nabla_{\rm ad,1}$, fixed $\nabla_{\rm ad,2}$. In both lower panels, the dashed black line is the analytic prediction for the pressure profile in the radiative zone, which agrees with the numerical results.}
+\label{fig:varying_delad}
+\end{figure}
 
 % modestly increases with $\nabla_{\rm ad,2}$, consistent with the upper-left panel of Figure \ref{fig:varying_delad}. Moreover, a constant $\nabla_{\rm ad,2}$ in the exterior yields the same value for $T\cb$, independent of $\nabla_{\rm ad,1}$ (Figure \ref{fig:varying_delad}, upper-right panel), again consistent with the analytic prediction. Quantitatively, we have found that the analytic approximation for $T\cb$ agrees with the numerical result to within 5\%.
 When these temperature conditions are matched for a fixed atmosphere mass, Figure \ref{fig:varying_delad} shows that a larger adiabatic gradient in the outer atmosphere results in a deeper radiative region. We can understand this effect by assuming that $R_{\rm switch}$ is fixed. A steeper adiabat (i.e., with a larger adiabatic gradient) that starts at a given depth (here $R_{\rm switch}$) will match the fixed RCB temperature at a smaller radius. A quantitative scaling of $R\cb$ is not possible because Equation (\ref{eq:Tdeep})  is only valid to order of magnitude at $R_{\rm switch}$ and relatively small variations in the physical depth of the RCB can impact the RCB pressure significantly. It follows that $L \propto 1/P\cb$ decreases with increasing outer $\nabla_{\rm ad}$; thus the overall larger adiabatic gradient due to the variable occupation of rotation states at low temperatures decreases $L$ and slows down growth. 
@@ -986,26 +992,38 @@ In this section we put together the results obtained in Sections \S\ref{EOSeffec
 %\label{tvsM}
 
 %\textbf{t vs. M at fixed distance, similar to the plot from paper I. Compare scalings.}
-
-Figure \ref{fig:tvsMplot} displays the time evolution and the runaway growth time for atmospheres forming around cores with masses between 15 $M_{\oplus}$ and 25 $M_{\oplus}$ at $a=10$ AU in our fiducial disk, for a realistic EOS with an equilibrium ortho-to-para ratio and standard ISM opacity. Higher mass cores have shorter $t_{\rm run}$, consistent with the results of Paper I. We also note that $M_{\rm atm}$ at $t_{\rm run}$ is larger for the realistic EOS than for the polytropic EOS considered in Paper I, for the same core mass.
-
-\begin{figure}[htb]
+\begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/t_vs_M_10au.pdf}
-\includegraphics[width=0.5\textwidth]{figures/t_vs_M_10au.pdf}
-%%\vspace{-0.5in}
+\includegraphics[width=0.65\textwidth]{figures/t_vs_M_10au.pdf}
+\vspace{-0.35in}
 \caption{Elapsed time as a function of atmosphere mass, for cores with fixed masses between $15 M_{\oplus}$ and $25 M_{\oplus}$ at $a=10$ AU in our fiducial disk, for a realistic EOS with an equilibrium ortho-to-para ratio and standard ISM opacity. The circles mark the runaway growth time. The numbers label the core mass in Earth masses. A larger core mass results in a lower $t_{\rm run}$.}% and a higher $M_{\rm atm}/M\co$ at runaway.}
 \label{fig:tvsMplot}
 \end{figure}
+
+
+Figure \ref{fig:tvsMplot} displays the time evolution and the runaway growth time for atmospheres forming around cores with masses between 15 $M_{\oplus}$ and 25 $M_{\oplus}$ at $a=10$ AU in our fiducial disk, for a realistic EOS with an equilibrium ortho-to-para ratio and standard ISM opacity. Higher mass cores have shorter $t_{\rm run}$, consistent with the results of Paper I. We also note that $M_{\rm atm}$ at $t_{\rm run}$ is larger for the realistic EOS than for the polytropic EOS considered in Paper I, for the same core mass.
+
+Figure \ref{fig:Mvsaplot}, upper panel, displays $M_{\rm crit}$
+%(e.g., \citealt{jay99}), 
+for a gas described by a realistic EOS and an ISM dust opacity. The results of Paper I for an ideal diatomic gas are plotted for comparison. When compared to an ideal gas polytrope, the inclusion of realistic EOS effects increases $M_{\rm crit}$ by a factor of $\sim$2 if the $H_2$ spin isomers are in equilibrium, and by a factor of $\sim$$2-4$ for a fixed 3:1 ortho-to-para ratio. This latter increase is more significant at larger stellocentric distances. In Figure \ref{fig:Mvsaplot}, bottom panel, we compare our results with those for a disk with a gas surface density an order of magnitude larger than $\Sigma_{\rm d}$ of our fiducial disk (see Equation \ref{eq:diska}), and find that $M_{\rm crit}$ reduces by $\sim$15-25$\%$.
+
+Figure \ref{fig:Mcritvsagg} shows $M_{\rm crit}$ as a function of semimajor axis, for a realistic EOS with an equilibrium ortho-to-para ratio and grain growth opacity with a size distribution given by Equation (\ref{eq:graindistr}) with $p=3.5$ and maximum particle size $s_{\rm max}=1$ cm. The critical core mass is lower than in the standard interstellar opacity case, and less sensitive to location in the disk. Location primarily affects the atmosphere through the opacity in the outer envelope, which depends on disk temperature. For the simplified analytic model developed in Paper I, we approximated $t_{\rm run}$ by  $t_{\rm co}$, the time when $M_{\rm atm}=M\co$, and found that $t_{\rm co} \sim T_{\rm d}^{\beta+1/2}$, with $\beta$ the power-law exponent in Equation (\ref{eq:opacitylaw}). Opacity is less sensitive to temperature variations for larger grains and has an almost flat profile (see Figure \ref{fig:opacity}), which results in $\beta \ll 1$ and a much weaker temperature (and therefore semimajor axis) dependence of $M_{\rm crit}$, as seen in Figure \ref{fig:Mcritvsagg}. Moreover, grain growth reduces the absolute value of the opacity, which also lowers $M_{\rm crit}$. % As noted in Section \S\ref{sec:opacity}, the critical core mass may be significantly lower if coagulation is taken into account, i.e. $p=2.5$.
 
 %\subsection{Critical Core Mass}
 %\label{Mcrit}
 
 %\textbf{Mcrit vs. a plot, realistic EOS and polytrope. Discuss the larger critical core mass for the real EOS in light of the effects from section 4.}
+\begin{figure}[H]
+\centering
+%\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/Mc_vs_a_poly_real_paper.pdf}
+\includegraphics[width=0.7\textwidth]{figures/Mc_vs_a_poly_real_paper.pdf}
+%%\vspace{-0.5in}
+\caption{Top panel: The minimum core mass for an atmosphere to initiate runaway gas accretion within the lifetime of a typical protoplanetary disk $t \sim 3$ Myrs as a function of semimajor axis, for a realistic hydrogen-helium mixture and a standard ISM opacity. The results of Paper I for an ideal diatomic gas are plotted for comparison. The realistic EOS yields core masses larger by a factor of $\sim$2 when compared to the polytrope, for an equilibrium ortho-to-para ratio. The critical core mass is $\sim$$2-4$ times larger than the polytrope case for a fixed 3:1 ratio between the $H_2$ spin isomers. The increase is more pronounced at larger stellocentric distances. Bottom panel: Critical core mass as a function of semimajor axis for a disk gas surface density 10 times larger than that of our fiducial disk. A larger $\Sigma_{\rm d}$ reduces $M_{\rm crit}$ by $\sim$$15-25 \%$.}
+\label{fig:Mvsaplot}
+\end{figure}
 
-Figure \ref{fig:Mvsaplot}, upper panel, displays $M_{\rm crit}$
-%(e.g., \citealt{jay99}), 
-for a gas described by a realistic EOS and an ISM dust opacity. The results of Paper I for an ideal diatomic gas are plotted for comparison. When compared to an ideal gas polytrope, the inclusion of realistic EOS effects increases $M_{\rm crit}$ by a factor of $\sim$2 if the $H_2$ spin isomers are in equilibrium, and by a factor of $\sim$$2-4$ for a fixed 3:1 ortho-to-para ratio. This latter increase is more significant at larger stellocentric distances. In Figure \ref{fig:Mvsaplot}, bottom panel, we compare our results with those for a disk with a gas surface density an order of magnitude larger than $\Sigma_{\rm d}$ of our fiducial disk (see Equation \ref{eq:diska}), and find that $M_{\rm crit}$ reduces by $\sim$15-25$\%$.
+
 
  %As such, non-ideal effects substantially increase the core mass needed to form a giant planet  before the dissipation of the protoplanetary disk.   
 
@@ -1014,37 +1032,34 @@ for a gas described by a realistic EOS and an ISM dust opacity. The results of P
 %(e.g., \citealt{jay99}), 
 %for a gas described by a realistic EOS and an ISM dust opacity. The results of Paper I for an ideal diatomic gas are plotted for comparison. The inclusion of realistic EOS effects increases $M_{\rm crit}$ by more than a factor of two when compared to an ideal gas polytrope. %As such, non-ideal effects substantially increase the core mass needed to form a giant planet  before the dissipation of the protoplanetary disk.   
 
-\begin{figure}[htb]
-\centering
-%\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/Mc_vs_a_poly_real_paper.pdf}
-\includegraphics[width=0.5\textwidth]{figures/Mc_vs_a_poly_real_paper.pdf}
-%%\vspace{-0.5in}
-\caption{Top panel: The minimum core mass for an atmosphere to initiate runaway gas accretion within the lifetime of a typical protoplanetary disk $t \sim 3$ Myrs as a function of semimajor axis, for a realistic hydrogen-helium mixture and a standard ISM opacity. The results of Paper I for an ideal diatomic gas are plotted for comparison. The realistic EOS yields core masses larger by a factor of $\sim$2 when compared to the polytrope, for an equilibrium ortho-to-para ratio. The critical core mass is $\sim$$2-4$ times larger than the polytrope case for a fixed 3:1 ratio between the $H_2$ spin isomers. The increase is more pronounced at larger stellocentric distances. Bottom panel: Critical core mass as a function of semimajor axis for a disk gas surface density 10 times larger than that of our fiducial disk. A larger $\Sigma_{\rm d}$ reduces $M_{\rm crit}$ by $\sim$$15-25 \%$.}
-\label{fig:Mvsaplot}
-\end{figure}
 
 
-\begin{figure}[htb]
+
+
+
+
+
+\begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/Mcrit_vs_a_gg.pdf}
-\includegraphics[width=0.5\textwidth]{figures/Mcrit_vs_a_gg.pdf}
+\includegraphics[width=0.7\textwidth]{figures/Mcrit_vs_a_gg.pdf}
 %%\vspace{-0.5in}
 \caption{Critical core mass as a function of semimajor axis for a realistic EOS with an equilibrium ortho-to-para ratio and radiative opacities that account for grain growth (purple triangles, with $p=3.5$ and $a_{\rm max}=1$ cm; see text for details). The critical core mass is lower than it would be if dust grains had an ISM-like size distribution (blue circles).}
 \label{fig:Mcritvsagg}
 \end{figure}
 
-Figure \ref{fig:Mcritvsagg} shows $M_{\rm crit}$ as a function of semimajor axis, for a realistic EOS with an equilibrium ortho-to-para ratio and grain growth opacity with a size distribution given by Equation (\ref{eq:graindistr}) with $p=3.5$ and maximum particle size $s_{\rm max}=1$ cm. The critical core mass is lower than in the standard interstellar opacity case, and less sensitive to location in the disk. Location primarily affects the atmosphere through the opacity in the outer envelope, which depends on disk temperature. For the simplified analytic model developed in Paper I, we approximated $t_{\rm run}$ by  $t_{\rm co}$, the time when $M_{\rm atm}=M\co$, and found that $t_{\rm co} \sim T_{\rm d}^{\beta+1/2}$, with $\beta$ the power-law exponent in Equation (\ref{eq:opacitylaw}). Opacity is less sensitive to temperature variations for larger grains and has an almost flat profile (see Figure \ref{fig:opacity}), which results in $\beta \ll 1$ and a much weaker temperature (and therefore semimajor axis) dependence of $M_{\rm crit}$, as seen in Figure \ref{fig:Mcritvsagg}. Moreover, grain growth reduces the absolute value of the opacity, which also lowers $M_{\rm crit}$. % As noted in Section \S\ref{sec:opacity}, the critical core mass may be significantly lower if coagulation is taken into account, i.e. $p=2.5$.
 
-\begin{figure}[htb]
+
+In Equation (\ref{eq:graindistr}), the coefficient $p=3.5$ corresponds to a standard collisional cascade. If coagulation is taken into account, the exponent $p$ can be approximated as $p=2.5$ \citep{dalessio01}. This results in a flatter and significantly lower opacity (see \App{radwindow}), which may substantially reduce $M_{\rm crit}$. However, we have found that our model breaks down for low core masses ($M\co \lesssim 3 M_{\oplus}$) under our assumption of constant luminosity in the outer radiative layer. Figure \ref{fig:p25p35} shows the runaway accretion time $t_{\rm run}$ as a function of semimajor axis for the lowest core mass for which our model is valid, $M\co=4 M_{\oplus}$. The runaway accretion time is more than one order of magnitude lower for $p=2.5$, which implies that $M_{\rm crit}$ may be, in fact, significantly lower than presented in Figure \ref{fig:Mcritvsagg}. In other words, grain growth can yield critical core masses up to an order of magnitude lower than in the case where interstellar opacities are used.
+
+\begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/tco_vs_a_Mc4_comp.pdf}
-\includegraphics[width=0.5\textwidth]{figures/tco_vs_a_Mc4_comp.pdf}
+\includegraphics[width=0.7\textwidth]{figures/tco_vs_a_Mc4_comp.pdf}
 %%\vspace{-0.5in}
 \caption{Runaway accretion times for a realistic EOS with an equilibrium ortho-to-para ratio and different grain size distributions, for an atmosphere forming around a core with $M\co=4 M_{\oplus}$. The lines marked by purple and orange triangles have grain growth opacities with $a_{\rm max}=1$ cm, and $p=3.5$ and $p=2.5$, respectively (see text for details). The blue circle line has an ISM power-law opacity. The runaway accretion time is more than one order of magnitude lower when coagulation is accounted for, i.e. $p=2.5$.}
 \label{fig:p25p35}
 \end{figure}
-
-In Equation (\ref{eq:graindistr}), the coefficient $p=3.5$ corresponds to a standard collisional cascade. If coagulation is taken into account, the exponent $p$ can be approximated as $p=2.5$ \citep{dalessio01}. This results in a flatter and significantly lower opacity (see \App{radwindow}), which may substantially reduce $M_{\rm crit}$. However, we have found that our model breaks down for low core masses ($M\co \lesssim 3 M_{\oplus}$) under our assumption of constant luminosity in the outer radiative layer. Figure \ref{fig:p25p35} shows the runaway accretion time $t_{\rm run}$ as a function of semimajor axis for the lowest core mass for which our model is valid, $M\co=4 M_{\oplus}$. The runaway accretion time is more than one order of magnitude lower for $p=2.5$, which implies that $M_{\rm crit}$ may be, in fact, significantly lower than presented in Figure \ref{fig:Mcritvsagg}. In other words, grain growth can yield critical core masses up to an order of magnitude lower than in the case where interstellar opacities are used.
 
 In summary, we have found $M_{\rm crit}\sim 30 M_{\oplus}$ at 5 AU, steadily decreasing to $\sim$$7 M_{\oplus}$ at 100 AU, for a realistic EOS with the $H_2$ spin isomers in equilibrium and interstellar opacity. For a fixed 3:1 ortho-to-para ratio and interstellar opacity, $M_{\rm crit}$ is $\sim$$32 M_{\oplus}$ at 5 AU and decreases to $\sim$$15 M_{\oplus}$ at 100 AU. For a grain growth opacity with a size distribution given by Equation (\ref{eq:graindistr}) with $p=3.5$ and an equilibrium ortho-to-para ratio, $M_{\rm crit}$ significantly drops to $\sim$$8 M_{\oplus}$ at 5 AU and $\sim$$5 M_{\oplus}$ at 100 AU. Accounting for coagulation (i.e., $p=2.5$) $M_{\rm crit}$ is less than $4M_\oplus$ and may be up to an order of magnitude smaller.
 
@@ -1103,10 +1118,10 @@ Figure \ref{fig:accrates} shows that $\dot{M}_{\rm c,KH}$ is $\sim2-3$ orders of
 %or the planet's feeding zone could have been depleted of solids due to a giant neighbor.  
 
 
- \begin{figure}[htb]
+ \begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/acc_rates_paper.pdf}
-\includegraphics[width=0.5\textwidth]{figures/acc_rates_paper.pdf}
+\includegraphics[width=0.7\textwidth]{figures/acc_rates_paper.pdf}
 %\vspace{-0.5in}
 \caption{Various accretion rates for a planet forming at 30 AU and with a core mass $M\co=10 M_{\oplus}$, using a polyropic EOS and ISM power-law opacity. For this choice of parameters, the runaway accretion time is $t_{\rm run} \sim 1.4$ Myrs. The $\dot{M}_{\rm{atm}}$ (solid blue) curve represents the growth rate of the atmosphere as estimated by our model. The core accretion rate $\dot{M}_{\rm c, acc}$ (dashed green) necessary to grow the core on the timescale $t_{\rm run}$ is larger than $\dot{M}_{\rm c, KH}$ (dotted red), the maximum planetesimal accretion rate during KH contraction for which our regime is valid (see text). The frequently used planetesimal accretion rate $\dot{M}_{\rm c, Hill}$ (dashed-dotted light blue) for which the random velocity of the planetesimals is given by the Hill velocity due to the core (see text), also exceeds $\dot{M}_{\rm c, KH}$.This motivates our requirement  that planetesimal accretion must have slowed down after core growth for our model to be valid.}
 
@@ -1171,10 +1186,10 @@ M_{\rm{crit, KH}} \sim \Big[\frac{\min[\dot{M}_{\rm c, KH}(M_{\rm{c}})]}{64 \pi^
 \end{equation}
 where $C$ is an order unity constant depending on the adiabatic gradient and disk properties (see R06, Equation B3). From Equation (\ref{eq:McdotKH}), the accretion rate $\dot{M}_{\rm c, KH}$ depends on the core mass $M\co$. We find $M_{\rm crit, KH}$ numerically by setting $M\co=M_{\rm crit, KH}$ on the right-hand side of Equation (\ref{eq:critraf}). The result is displayed in Figure \ref{fig:raf2}; the critical core mass corresponding to planetesimal accretion at the rates displayed in Figure \ref{fig:accrates} is displayed for comparison.  
 
- \begin{figure}[htb]
+ \begin{figure}[H]
 \centering
 %\includegraphics[width=0.5\textwidth]{../../figs/ModelAtmospheres/RadSelfGravRealEOS/PaperFigs/Mc_vs_a_poly_comp.pdf}
-\includegraphics[width=0.5\textwidth]{figures/Mc_vs_a_poly_comp.pdf}
+\includegraphics[width=0.7\textwidth]{figures/Mc_vs_a_poly_comp.pdf}
 %\vspace{-0.5in}
 \caption{Comparison between the critical core mass $M_{\rm{crit, KH}}$ given significant planetesimal accretion and the critical core mass when gas contraction dominates, for a polytropic EOS and an ISM opacity reduced by a factor of 100. Our results yield lower core masses than in the fast planetesimal accretion case (e.g., \citealt{rafikov06}). The critical core mass corresponding to $\dot{M}_{\rm c, Hill}$ and $\dot{M}_{\rm c, acc}$ from Figure \ref{fig:accrates} is plotted for comparison.}
 \label{fig:raf2}

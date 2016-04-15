@@ -50,54 +50,54 @@
 \contentsline {section}{\numberline {3.4}Role of the Equation of State}{68}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Role of $-dE/dM$}{71}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}Role of $L$}{72}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Impact of Opacity on Atmosphere Evolution}{73}{section.3.5}
-\contentsline {section}{\numberline {3.6}Critical Core Mass}{75}{section.3.6}
-\contentsline {section}{\numberline {3.7}Effects of Planetesimal Accretion}{77}{section.3.7}
-\contentsline {subsection}{\numberline {3.7.1}Planetesimal Accretion Rates}{78}{subsection.3.7.1}
-\contentsline {subsection}{\numberline {3.7.2}Core Growth during KH Contraction}{79}{subsection.3.7.2}
-\contentsline {subsection}{\numberline {3.7.3}Comparison with Steady-State Results}{80}{subsection.3.7.3}
-\contentsline {section}{\numberline {3.8}Summary}{81}{section.3.8}
-\contentsline {chapter}{\numberline {4}C/O and Snowline Locations in Protoplanetary Disks: The Effect of Radial Drift and Viscous Gas Accretion}{90}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introduction}{91}{section.4.1}
-\contentsline {section}{\numberline {4.2}Model Framework}{94}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Disk Model}{94}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Radial Drift}{98}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Volatile Desorption}{100}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Relevant Timescales}{101}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Snowline Locations}{103}{section.4.3}
-\contentsline {section}{\numberline {4.4}C/O Ratio Estimates}{106}{section.4.4}
-\contentsline {section}{\numberline {4.5}Discussion}{111}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Generality of Results: Dependence on Disk Parameters}{111}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Model Extensions}{113}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Summary}{117}{section.4.6}
-\contentsline {chapter}{\numberline {5}The Role of Ice Compositions and Morphology for Snowlines and the C/N/O Ratios in Active Disks}{126}{chapter.5}
-\contentsline {section}{\numberline {5.1}Introduction}{127}{section.5.1}
-\contentsline {section}{\numberline {5.2}Coupled Drift-Desorption Model}{129}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Disk Model}{129}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Desorption-Drift Equations and Results}{130}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Results}{133}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Snowlines in a Static Disk: The Importance of Ice Morphology}{133}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}C/N/O Ratios in Static Disks}{135}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}C/N/O Ratios in Dynamic Disks}{138}{subsection.5.3.3}
-\contentsline {section}{\numberline {5.4}Discussion}{139}{section.5.4}
-\contentsline {section}{\numberline {5.5}Summary}{143}{section.5.5}
-\contentsline {chapter}{\numberline {6}Summary and Future Directions}{145}{chapter.6}
-\contentsline {section}{\numberline {6.1}Minimum Core Masses for Giant Planet Formation}{146}{section.6.1}
-\contentsline {section}{\numberline {6.2}The Role of Disk Dynamics and Ice Morphology on Snowline Locations and the C/N/O Ratios}{147}{section.6.2}
-\contentsline {section}{\numberline {6.3}Future Directions}{149}{section.6.3}
-\contentsline {chapter}{Appendix \numberline {A}Derivation of the Global Energy Equation}{150}{Appendix.1.A}
-\contentsline {chapter}{Appendix \numberline {B}Analytic Cooling Model Details}{154}{Appendix.1.B}
-\contentsline {subsection}{\numberline {B.0.1}Isothermal Atmosphere}{154}{subsection.1.B.0.1}
-\contentsline {subsection}{\numberline {B.0.2}Temperature and Pressure Corrections at the Radiative-Convective Boundary}{155}{subsection.1.B.0.2}
-\contentsline {subsection}{\numberline {B.0.3}The Opacity Effect}{157}{subsection.1.B.0.3}
-\contentsline {subsection}{\numberline {B.0.4}Surface Terms}{157}{subsection.1.B.0.4}
-\contentsline {chapter}{Appendix \numberline {C}Equation of State Table Extension}{159}{Appendix.1.C}
-\contentsline {subsection}{\numberline {C.0.5}Hydrogen}{160}{subsection.1.C.0.5}
-\contentsline {subsection}{\numberline {C.0.6}Helium}{164}{subsection.1.C.0.6}
-\contentsline {chapter}{Appendix \numberline {D}Adiabatic Gradient Variations}{167}{Appendix.1.D}
-\contentsline {subsection}{\numberline {D.0.7}Adiabatic Gradient during Partial Dissociation}{167}{subsection.1.D.0.7}
-\contentsline {subsection}{\numberline {D.0.8}Adiabatic Gradient during Conversion of Spin Isomers}{168}{subsection.1.D.0.8}
-\contentsline {chapter}{Appendix \numberline {E}Grain growth opacity and radiative windows}{172}{Appendix.1.E}
-\contentsline {chapter}{Appendix \numberline {F}Steady-state active disk solution}{176}{Appendix.1.F}
-\contentsline {chapter}{Appendix \numberline {G}Desorption distance analytic solution}{178}{Appendix.1.G}
-\contentsline {chapter}{References}{180}{subequation.1.G.0.3.5}
+\contentsline {section}{\numberline {3.5}Impact of Opacity on Atmosphere Evolution}{75}{section.3.5}
+\contentsline {section}{\numberline {3.6}Critical Core Mass}{77}{section.3.6}
+\contentsline {section}{\numberline {3.7}Effects of Planetesimal Accretion}{81}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Planetesimal Accretion Rates}{82}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Core Growth during KH Contraction}{84}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}Comparison with Steady-State Results}{85}{subsection.3.7.3}
+\contentsline {section}{\numberline {3.8}Summary}{87}{section.3.8}
+\contentsline {chapter}{\numberline {4}C/O and Snowline Locations in Protoplanetary Disks: The Effect of Radial Drift and Viscous Gas Accretion}{89}{chapter.4}
+\contentsline {section}{\numberline {4.1}Introduction}{90}{section.4.1}
+\contentsline {section}{\numberline {4.2}Model Framework}{93}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Disk Model}{93}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Radial Drift}{97}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Volatile Desorption}{99}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Relevant Timescales}{100}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Snowline Locations}{102}{section.4.3}
+\contentsline {section}{\numberline {4.4}C/O Ratio Estimates}{108}{section.4.4}
+\contentsline {section}{\numberline {4.5}Discussion}{114}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Generality of Results: Dependence on Disk Parameters}{114}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Model Extensions}{117}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Summary}{122}{section.4.6}
+\contentsline {chapter}{\numberline {5}The Role of Ice Compositions and Morphology for Snowlines and the C/N/O Ratios in Active Disks}{125}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{126}{section.5.1}
+\contentsline {section}{\numberline {5.2}Coupled Drift-Desorption Model}{128}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Disk Model}{128}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Desorption-Drift Equations and Results}{129}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Results}{132}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Snowlines in a Static Disk: The Importance of Ice Morphology}{132}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}C/N/O Ratios in Static Disks}{134}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}C/N/O Ratios in Dynamic Disks}{137}{subsection.5.3.3}
+\contentsline {section}{\numberline {5.4}Discussion}{138}{section.5.4}
+\contentsline {section}{\numberline {5.5}Summary}{142}{section.5.5}
+\contentsline {chapter}{\numberline {6}Summary and Future Directions}{144}{chapter.6}
+\contentsline {section}{\numberline {6.1}Minimum Core Masses for Giant Planet Formation}{145}{section.6.1}
+\contentsline {section}{\numberline {6.2}The Role of Disk Dynamics and Ice Morphology on Snowline Locations and the C/N/O Ratios}{146}{section.6.2}
+\contentsline {section}{\numberline {6.3}Future Directions}{148}{section.6.3}
+\contentsline {chapter}{Appendix \numberline {A}Derivation of the Global Energy Equation}{149}{Appendix.1.A}
+\contentsline {chapter}{Appendix \numberline {B}Analytic Cooling Model Details}{153}{Appendix.1.B}
+\contentsline {subsection}{\numberline {B.0.1}Isothermal Atmosphere}{153}{subsection.1.B.0.1}
+\contentsline {subsection}{\numberline {B.0.2}Temperature and Pressure Corrections at the Radiative-Convective Boundary}{154}{subsection.1.B.0.2}
+\contentsline {subsection}{\numberline {B.0.3}The Opacity Effect}{156}{subsection.1.B.0.3}
+\contentsline {subsection}{\numberline {B.0.4}Surface Terms}{156}{subsection.1.B.0.4}
+\contentsline {chapter}{Appendix \numberline {C}Equation of State Table Extension}{158}{Appendix.1.C}
+\contentsline {subsection}{\numberline {C.0.5}Hydrogen}{159}{subsection.1.C.0.5}
+\contentsline {subsection}{\numberline {C.0.6}Helium}{163}{subsection.1.C.0.6}
+\contentsline {chapter}{Appendix \numberline {D}Adiabatic Gradient Variations}{166}{Appendix.1.D}
+\contentsline {subsection}{\numberline {D.0.7}Adiabatic Gradient during Partial Dissociation}{166}{subsection.1.D.0.7}
+\contentsline {subsection}{\numberline {D.0.8}Adiabatic Gradient during Conversion of Spin Isomers}{167}{subsection.1.D.0.8}
+\contentsline {chapter}{Appendix \numberline {E}Grain growth opacity and radiative windows}{171}{Appendix.1.E}
+\contentsline {chapter}{Appendix \numberline {F}Steady-state active disk solution}{175}{Appendix.1.F}
+\contentsline {chapter}{Appendix \numberline {G}Desorption distance analytic solution}{177}{Appendix.1.G}
+\contentsline {chapter}{References}{179}{subequation.1.G.0.3.5}

@@ -65,7 +65,7 @@ The first assumption of spherical accretion breaks down early in the inner disk,
 \subsection{Disk and Opacity Model}\label{sec:disk}
 
 We adopt a minimum mass solar nebula (MMSN) model for a passively irradiated disk \citep{chiang10}. With the semimajor axis $a$ normalized to the outer disk as $\aun{10} = a/(10 \text{ AU})$, the gas surface density and mid-plane temperature are  
-\begin{subeqnarray} \label{eq:diskparam}
+\begin{subeqnarray}  \label{1eq:diskparam}
 \varSigma\di  &=& 70 \,F_\varSigma \aun{10}^{-3/2} ~{\rm g~cm}^{-2} \\
 T\di &=& 45  \,F_T\, \aun{10}^{-3/7} ~{\rm K} \, .
 %\Sigma\di&=&2200 F_{\Sigma} a^{-3/2}\,\, \text{g cm}^{-2} \slabel{eq:diska}\\
@@ -75,7 +75,7 @@ The normalization factors $F_{\Sigma}$ and $F_T$  adjust the model relative to t
 
 For a vertically isothermal disk in hydrostatic balance (with no self-gravity), the mid-plane pressure of disk gas is 
 \begin{equation}
-\label{eq:Pd}
+\label{1eq:Pd}
 P\di = 6.9 \times 10^{-3} F_\varSigma \sqrt{F_T} \, \aun{10}^{-45/14}~{\rm dyn~cm^{-2}}
 %P\di=1.1 \times 10^{-4} F_{\Sigma} \sqrt{F_T} a^{-45/14} \,\, \text{dyne cm}^{-2} %\times \sqrt{m_\ast}
 \end{equation}
@@ -94,7 +94,7 @@ in terms of the Keplerian frequency $\varOmega = \sqrt{G M_\ast/a^3}$, with $G$ 
 
 We assume a dust opacity characteristic of interstellar grains, following \citet{bell94}:
 \begin{equation}
-\label{eq:opacitylaw}
+\label{1eq:opacitylaw}
 \kappa= 2 F_\kappa  \left(\frac{T}{100\; \rm{K}}\right)^{\beta} \; \mathrm{cm^2 ~ g^{-1}},
 \end{equation}
 with a power-law index $\beta = 2$ and normalization $F_\kappa = 1$ unless noted otherwise. Grain growth tends to lower both $F_\kappa$ and $\beta$, while dust abundance scales with $F_\kappa$.   Section \S\ref{sec:op} discusses dust sublimation and more realistic opacity laws.
@@ -107,27 +107,27 @@ The characteristic length scales for protoplanetary atmospheres are crucial for 
 
 The solid core has a radius
 \begin{equation}
-\label{eq:rc}
+\label{1eq:rc}
 R\co \equiv \left(\frac{3 M\co}{4 \pi \rho\co}\right)^{1/3} \approx 10^{-4} \mcn{10}^{1/3} ~\text{AU},
 \end{equation}
 where the core mass, $M\co$, is normalized to 10 Earth masses as $\mcn{10} \equiv M\co/(10~M_\oplus)$. The core density is held fixed at $\rho\co=3.2$ g cm$^{-3}$, representing a mixture of ice and rocky material \citep{pap99}.  We thus neglect  the detailed EOS of the solid core \citep{fortney07}.
 
 A planet can bind a dense atmosphere if its escape velocity exceeds the sound speed.  This criterion is satisfied inside the Bondi radius
 \begin{equation}
-\label{eq:RB}
+\label{1eq:RB}
 \RB \equiv \frac{G M\pla}{c\di^2} \approx 0.17 \, {\mpn{10}  \, \aun{10}^{3/7} \over F_T} ~\AU,
 \end{equation}
 where the enclosed planet mass, $M\pla = M\co + M_\mathrm{atm}$, includes the core and any atmosphere within the Bondi radius and $\mpn{10} \equiv M\pla /(10~M_\oplus)$.   The contribution of the atmospheric mass is small in early evolutionary stages.
 
 Stellar tides dominate the planet's gravity beyond the Hill radius
 \begin{equation}
-\label{eq:RHill}
+\label{1eq:RHill}
 R_{\rm H} = \left(M\pla \over 3 M_\ast \right)^{1/3}a \approx 0.22 \, {\mpn{10}^{1/3} \, \aun{10} }~\AU ,
 \end{equation}
 where spherical symmetry and hydrostatic balance break down.  (Here we use the same symbol, $M\pla$, to now mean the mass within $\RH$.) 
 
 The relevant length scales of the atmosphere and disk satisfy the relation $\RB H\di^2 = 3 R_{\rm H}^3$.  The length scales are roughly equal at the ``thermal mass'' (e.g., \citealt{menou04})
-\begin{equation}\label{eq:Mth}
+\begin{equation}\label{1eq:Mth}
 M_{\rm th} > {c\di^{3} \over G \varOmega} \approx 25 \, {F_T^{3/2} \over \sqrt{m_\ast} } \, \aun{10}^{6/7}~ M_\oplus \, .
 \end{equation} 
 
@@ -156,57 +156,57 @@ The choice of $\RH$ as the outer boundary is based on this being the largest rad
 %\textbf{where $\Sigma_p$ is the surface density of solids. Since in our regime the core is no longer accreting solids, we require $M_{\rm isol}$ to always be smaller than the core mass at which runaway gas accretion commences, i.e. the critical core mass.}
 
 \subsection{Structure Equations and Boundary Conditions}
-\label{sec:struct}
+\label{1sec:struct}
 
 Our atmosphere calculations use the standard structure equations of mass conservation, hydrostatic balance, thermal gradients, and energy conservation:
 \begin{subeqnarray}
-\label{eq:struct}
-\frac{dm}{dr}&=&4 \pi r^2 \rho\slabel{eq:structb} \\
-\frac{dP}{dr}&=&-\frac{G m}{r^2}\rho \slabel{eq:structa} \\
-\frac{dT}{dr}&=&\nabla \frac{T}{P}\frac{dP}{dr}\slabel{eq:structc} \\
-\frac{dL}{dr}&=&4 \pi r^2 \rho \left(\epsilon - \left. T {\partial S \over \partial t} \right|_m \right)\slabel{eq:structd}, 
+\label{1eq:struct}
+\frac{dm}{dr}&=&4 \pi r^2 \rho\slabel{1eq:structb} \\
+\frac{dP}{dr}&=&-\frac{G m}{r^2}\rho \slabel{1eq:structa} \\
+\frac{dT}{dr}&=&\nabla \frac{T}{P}\frac{dP}{dr}\slabel{1eq:structc} \\
+\frac{dL}{dr}&=&4 \pi r^2 \rho \left(\epsilon - \left. T {\partial S \over \partial t} \right|_m \right)\slabel{1eq:structd}, 
 \end{subeqnarray}
-\noindent where $r$ is the radial coordinate, $L$ is the luminosity, and $P$, $T$, $\rho$  and $S$ are the gas pressure, temperature, density and entropy, respectively.  The enclosed mass  at radius $r$ is $m$. \Eq{eq:structc} simply defines the temperature gradient  $\nabla \equiv d \ln T/d \ln P$.  
+\noindent where $r$ is the radial coordinate, $L$ is the luminosity, and $P$, $T$, $\rho$  and $S$ are the gas pressure, temperature, density and entropy, respectively.  The enclosed mass  at radius $r$ is $m$. \Eq{1eq:structc} simply defines the temperature gradient  $\nabla \equiv d \ln T/d \ln P$.  
 
 Radiation diffusion gives a temperature gradient
 \begin{equation}
-\label{eq:delrad}
+\label{1eq:delrad}
 \delrad \equiv \frac{3 \kappa P}{64 \pi G m \sigma T^4} L\, ,
 \end{equation}
 with $\sigma$ the Stefan-Boltzmann constant.  In our models, optically thick diffusion is a good approximation throughout the radiative zones.  In convectively unstable regions, efficient convection gives an isentropic temperature gradient with $\nabla = \delad$, the adiabatic gradient 
 
 \begin{equation}
-\label{eq:delad}
+\label{1eq:delad}
 \delad \equiv \Big(\frac{d \ln T}{d \ln P}\Big)_{\rm{ad}}.
 \end{equation}
 According to the Schwarzschild criterion, convective instability occurs when $\delrad > \delad$.  Thus $\nabla = \min(\delrad, \delad)$ sets the temperature gradient.
 
-In the energy equation (\ref{eq:structd}), $\epsilon$ represents all local sources of heat input, except for the motion of the atmosphere itself.  From stellar structure, $\epsilon$ may be familiar as a nuclear burning term.  In a protoplanetary atmosphere, dissipative drag on planetesimals contributes to $\epsilon$.  Our models set $\epsilon = 0$, consistent with our neglect of planetesimal accretion.
+In the energy equation (\ref{1eq:structd}), $\epsilon$ represents all local sources of heat input, except for the motion of the atmosphere itself.  From stellar structure, $\epsilon$ may be familiar as a nuclear burning term.  In a protoplanetary atmosphere, dissipative drag on planetesimals contributes to $\epsilon$.  Our models set $\epsilon = 0$, consistent with our neglect of planetesimal accretion.
 
-The energy input from gravitational contraction, $\epsilon_{\rm g} = -T \partial S / \partial t$, is crucial for a cooling model.\footnote{In general, any motion is accounted for by this term.  The partial time derivative is performed on shells of fixed mass.}  The partial time derivative would normally require our radial derivative to be partial as well.  However, our subsequent developments will replace the local energy equation (\ref{eq:structd}) with global energy balance (see section \S\ref{cooling}), reverting the structure equations to time-independent ordinary differential equations (ODEs). %\textbf{}
+The energy input from gravitational contraction, $\epsilon_{\rm g} = -T \partial S / \partial t$, is crucial for a cooling model.\footnote{In general, any motion is accounted for by this term.  The partial time derivative is performed on shells of fixed mass.}  The partial time derivative would normally require our radial derivative to be partial as well.  However, our subsequent developments will replace the local energy equation (\ref{1eq:structd}) with global energy balance (see section \S\ref{cooling}), reverting the structure equations to time-independent ordinary differential equations (ODEs). %\textbf{}
 
-To solve the equation set (\ref{eq:struct}), an EOS is required for closure. In our study, we adopt an ideal gas law with a polytropic EOS 
-\begin{subeqnarray}\label{eq:idealEOS}
+To solve the equation set (\ref{1eq:struct}), an EOS is required for closure. In our study, we adopt an ideal gas law with a polytropic EOS 
+\begin{subeqnarray}\label{1eq:idealEOS}
 P &=& \rho \Rg T \, ,\slabel{eq:idealgas} \\
 S &=& \Rg \ln \left(T^{1/\delad} \over P \right) \, ,\slabel{eq:polyEOS}  % P &=&K \rho^{\gamma} \, , 
 \end{subeqnarray}
 with $S$ a relative entropy.  This work uses $\delad=2/7$, i.e.\  a polytropic index $\gamma \equiv 1/(1 - \delad) = 7/5$, for an ideal diatomic gas.\footnote{\Eq{eq:polyEOS} is equivalent to the standard polytropic relation,  $P =K \rho^{\gamma}$, if the polytropic index $K$ replaces $S$.}    We thus neglect the presence of monatomic Helium in our choice of polytropes, a common practice in idealized studies.  We do, however, account for Helium in our reference value of $\mu = 2.35$ proton masses. 
 
-Boundary conditions must be satisfied at both the base and the top of the atmosphere, with $m(R\co) = M\co$, $T(\RH) = T\di$ and $P(\RH) = P\di$.  Our model atmospheres also obey $L(R\co) = 0$. Along with \Eq{eq:structd}, this boundary condition is incorporated in the global cooling model described below.
+Boundary conditions must be satisfied at both the base and the top of the atmosphere, with $m(R\co) = M\co$, $T(\RH) = T\di$ and $P(\RH) = P\di$.  Our model atmospheres also obey $L(R\co) = 0$. Along with \Eq{1eq:structd}, this boundary condition is incorporated in the global cooling model described below.
 
 
 \subsection{Global Cooling of an Embedded Planet}\label{cooling}
 
 We now consider the global energy balance of a planet embedded in a gas disk.  More generally, our derivation applies to any spherical, hydrostatic object in pressure equilibrium with a background medium.  The total atmospheric energy includes gravitational and internal energies, $E = E_G + U$, with
 \begin{subeqnarray}
-E_G&=&-\int_{M\co}^M \frac{G m}{r} dm \, , \label{eq:Eg} \\
-U&=&\int_{M\co}^M u dm \, .\slabel{eq:U}
+E_G&=&-\int_{M\co}^M \frac{G m}{r} dm \, , \label{1eq:Eg} \\
+U&=&\int_{M\co}^M u dm \, .\slabel{1eq:U}
 \end{subeqnarray}
 The specific internal energy is $u = C_V T = \Rg (\delad^{-1} -1) T$ for a polytropic EOS.  For a star or coreless planet, $M\co = 0$.
 
 We start with a standard result, global energy balance for an isolated, i.e.\ not embedded, planet:
 \begin{equation}
-\label{eq:coolingstar}
+\label{1eq:coolingstar}
 L_M = L\co + \Gamma - \dot{E}.
 \end{equation}
 The surface luminosity, $L_M$, includes the core luminosity $L\co$ from e.g.\ planetesimal accretion or radioactive decay.   The total heat generation $\Gamma$  is the integral of $\epsilon$ over the atmosphere.  The rate of change of atmospheric energy, $\dot{E}$, is a loss term. 
@@ -215,7 +215,7 @@ For an object with no core luminosity (or no core) and no internal heat sources,
 
 A protoplanetary atmosphere embedded in a gas disk lacks a free surface.  For objects without a free surface (or interior to a free surface), the full energy equation, 
 \begin{equation}
-\label{eq:coolingglobal}
+\label{1eq:coolingglobal}
 L_M=L\co+\Gamma-\dot{E}+e_M \dot{M} - P_M \left. \frac{\partial V_M}{\partial t}\right|_M \, ,
 \end{equation}
 acquires surface terms as derived in  \App{sec:globalderiv}.  The surface can be at any mass level $M$, where the instantaneous radius is $R$.  Surface quantities are labeled by $M$ subscripts (except for $R$).  The energy accreted across the surface is given by the specific energy, $e_M = u_M-G M/R$, and the mass accretion rate of gas, $\dot{M}$.  The work done by the surface is $P_M \partial V_M/ \partial t$, with the partial derivative performed at fixed mass.  
@@ -231,22 +231,22 @@ is shorter than the actual evolutionary timescale.  Thus, $\tau_{\rm KH}$, which
 
 To simplify our evolutionary calculations, we develop a two-layer atmospheric model with a convective interior and a radiative exterior.   The existence of this layered structure is well known from previous studies (e.g., R06) and can be readily understood.  Before the protoplanetary atmosphere can cool, it has the entropy of the disk.  As the atmosphere cools, the deep interior remains convective.  Convective interiors are a common feature of low mass cool objects (brown dwarfs and planets) that results from the behavior of $\delrad$ for realistic opacity laws.  However, the entropy of the deep interior decreases as the atmosphere cools.  A region of outwardly increasing entropy, i.e.\ a radiative layer, is required to connect the convective interior to the disk.  A more complicated structure, with radiative windows in the convection zone, is possible as discussed in \S\ref{sec:op}. 
 
-In convective regions, the adiabatic structure is independent of luminosity and can be calculated without local energy balance, \Eq{eq:structd}.  Thus, for fully convective objects, a cooling sequence can be established by connecting a series of adiabatic solutions using a global energy equation, $L_M = -\dot{E}$ or \Eq{eq:coolingstar}.  Such methods are commonly used for their computational efficiency and are sometime referred to as ``following the adiabats," since the steady state solutions evolve in order of decreasing entropy \citep{marleau13}.
+In convective regions, the adiabatic structure is independent of luminosity and can be calculated without local energy balance, \Eq{1eq:structd}.  Thus, for fully convective objects, a cooling sequence can be established by connecting a series of adiabatic solutions using a global energy equation, $L_M = -\dot{E}$ or \Eq{1eq:coolingstar}.  Such methods are commonly used for their computational efficiency and are sometime referred to as ``following the adiabats," since the steady state solutions evolve in order of decreasing entropy \citep{marleau13}.
 
-In the radiative zone,  local energy balance, \Eq{eq:structd}, does affect the atmospheric structure.  We proceed by assuming that the majority of energy is lost from the convective interior, and thus the luminosity can be treated as constant in the outer radiative zone, i.e. the RHS of \Eq{eq:structd} is set to zero.  This assumption greatly simplifies the numerical problem.  Instead of solving time dependent partial differential equations, we can solve for  static solutions to a set of ODEs, Equations (\ref{eq:struct}a -- c), which we connect in a time series as described below. We show in \S\ref{sec:endoftime} that the approximation of constant luminosity in the outer layer holds for our regime of interest.   
+In the radiative zone,  local energy balance, \Eq{1eq:structd}, does affect the atmospheric structure.  We proceed by assuming that the majority of energy is lost from the convective interior, and thus the luminosity can be treated as constant in the outer radiative zone, i.e. the RHS of \Eq{1eq:structd} is set to zero.  This assumption greatly simplifies the numerical problem.  Instead of solving time dependent partial differential equations, we can solve for  static solutions to a set of ODEs, Equations (\ref{1eq:struct}a -- c), which we connect in a time series as described below. We show in \S\ref{sec:endoftime} that the approximation of constant luminosity in the outer layer holds for our regime of interest.   
 
 %{Under our assumptions, the  convective interior fully sets the atmospheric luminosity. We note, however, that the location and extent of the convective region is set by the matching of the upper radiative layer to the nebula.} %is set by the convective interior, and the radiative upper layer   luminosity  emerging from the convective interior   Since most of the luminosity emerges from the inner convective region of the atmosphere,   
 
-To obtain a single atmosphere solution (indexed by $i$), we choose a planet mass $M_i$.  At the outer boundary, at $\RH(M_i)$, the temperature and pressure are set to the disk values.  A luminosity value is required to compute $\delrad$ and integrate Equations (\ref{eq:struct}a--c).  The correct value of the luminosity is not known in advance, and is the eigenvalue of the problem.  The boundary conditions can only be satisfied for the correct value of the luminosity eigenvalue, which we find by the shooting method.  Specifically, we alter the luminosity until the integrated value of mass at the core, $m(R\co)$, matches the actual core mass, $M\co$. Physically, the luminosity determines the location of the radiative-convective boundary (RCB), consistent with the structure equations and the Schwarzschild criterion.
+To obtain a single atmosphere solution (indexed by $i$), we choose a planet mass $M_i$.  At the outer boundary, at $\RH(M_i)$, the temperature and pressure are set to the disk values.  A luminosity value is required to compute $\delrad$ and integrate Equations (\ref{1eq:struct}a--c).  The correct value of the luminosity is not known in advance, and is the eigenvalue of the problem.  The boundary conditions can only be satisfied for the correct value of the luminosity eigenvalue, which we find by the shooting method.  Specifically, we alter the luminosity until the integrated value of mass at the core, $m(R\co)$, matches the actual core mass, $M\co$. Physically, the luminosity determines the location of the radiative-convective boundary (RCB), consistent with the structure equations and the Schwarzschild criterion.
 
-To understand time evolution, we construct an array of solutions to Equations (\ref{eq:struct}a -- c) in order of increasing atmospheric mass.  We then use global energy balance, \Eq{eq:coolingglobal}, to ``follow the mass" and place these solutions in a cooling sequence.  To establish the time difference between neighboring solutions, we apply \Eq{eq:coolingglobal} at the RCB.  In principle, energy balance could be evaluated at any level.  Our approximate treatment of the radiative zone makes the RCB  the preferred location.     The elapsed time $\Delta t$  between states $i$ and $i +1$ is given by the finite difference
+To understand time evolution, we construct an array of solutions to Equations (\ref{1eq:struct}a -- c) in order of increasing atmospheric mass.  We then use global energy balance, \Eq{1eq:coolingglobal}, to ``follow the mass" and place these solutions in a cooling sequence.  To establish the time difference between neighboring solutions, we apply \Eq{1eq:coolingglobal} at the RCB.  In principle, energy balance could be evaluated at any level.  Our approximate treatment of the radiative zone makes the RCB  the preferred location.     The elapsed time $\Delta t$  between states $i$ and $i +1$ is given by the finite difference
 \begin{equation}
-\label{eq:dti}
+\label{1eq:dti}
 \Delta t = %\left(
 { -\Delta E + \brak{e} \Delta M - \brak{P}  \Delta V_{\brak{M}} \over \brak{L} }\, ,
 \end{equation} 
-using \Eq{eq:coolingglobal} with $\Gamma = L\co = 0$.
-Brackets indicate an average of, and $\Delta$ indicates a difference between, the two states.  All values are evaluated at the RCB.  Due to the partial derivative in \Eq{eq:coolingglobal}, the volume difference $\Delta V_{<M>}$ is performed at fixed mass, here the average of the masses at the RCB.  
+using \Eq{1eq:coolingglobal} with $\Gamma = L\co = 0$.
+Brackets indicate an average of, and $\Delta$ indicates a difference between, the two states.  All values are evaluated at the RCB.  Due to the partial derivative in \Eq{1eq:coolingglobal}, the volume difference $\Delta V_{<M>}$ is performed at fixed mass, here the average of the masses at the RCB.  
 
 
 
@@ -255,7 +255,7 @@ Brackets indicate an average of, and $\Delta$ indicates a difference between, th
 
 This section develops the analytic version of our two-layer model. This analytic model is less accurate than our numerical model, primarily because it neglects self-gravity.  We show (in \S\ref{sec:KH}) that self-gravity becomes important at rather low atmospheric masses, $M_{\rm atm} \gtrsim 0.1 M\co$.  Nevertheless, the analytic model is useful for understanding atmospheric evolution and interpreting the numerical results.
 
-The analytic model also assumes that the upper radiative layer is thick enough that $P\cb \gg P\di$.  This approximation ignores the earliest stages of cooling, which are rapid enough to be of minor importance.  The analytic model also ignores the surface terms in \Eq{eq:coolingglobal}, which we show to be a modest correction in \S\ref{sec:endoftime}.  Finally, while the numerical models set the outer boundary at $\RH$, we simplify the analytic calculations by setting the outer boundary to infinity, effectively neglecting the finite scale-height of the disk.   As shown in \App{iso}, the effect of this approximation is minor for $\RB \lesssim \RH$, the primary case of interest (see also R06).
+The analytic model also assumes that the upper radiative layer is thick enough that $P\cb \gg P\di$.  This approximation ignores the earliest stages of cooling, which are rapid enough to be of minor importance.  The analytic model also ignores the surface terms in \Eq{1eq:coolingglobal}, which we show to be a modest correction in \S\ref{sec:endoftime}.  Finally, while the numerical models set the outer boundary at $\RH$, we simplify the analytic calculations by setting the outer boundary to infinity, effectively neglecting the finite scale-height of the disk.   As shown in \App{iso}, the effect of this approximation is minor for $\RB \lesssim \RH$, the primary case of interest (see also R06).
 
 Of all the approximations, the neglect of self-gravity is by far the most significant, as we have verified by comparison to numerical integrations that only neglect self-gravity.
 
@@ -349,7 +349,7 @@ The emergent luminosity from the RCB,
 \begin{equation} \label{eq:Lcb}
 L\cb = {64 \pi G M\cb \sigma T\cb^4 \over 3 \kappa P\cb } \nabla_{\rm ad} \approx L\di {P_{\rm d} \over P\cb}\, , % \left({P\di \over P\cb}\right)%^{1+\alpha}
 \end{equation} 
-follows from \Eq{eq:delrad} and marginal convective stability, $\delrad = \delad$, where we define 
+follows from \Eq{1eq:delrad} and marginal convective stability, $\delrad = \delad$, where we define 
 \begin{equation} 
 L\di \equiv {64 \pi G M\cb \sigma T_{\rm d}^4 \over 3 \kappa(T_{\rm d}) P_{\rm d}} \nabla_{\rm ad}\chi^{4-\beta}.
 \end{equation} 
@@ -358,7 +358,7 @@ The scaling $L\cb \propto 1/P\cb$ shows that luminosity drops as the atmosphere 
 \subsection{Cooling Times \& Core Masses}
 \label{coolingan}
 
-Our analytic cooling model uses $L = -\dot{E}$,  neglecting the surface terms in \Eq{eq:coolingglobal}.\footnote{\App{surfterms} shows that these terms are negligible for a non-self-gravitating model.}  %They do become relevant when self-gravity is important and included, as shown in \S\ref{sec:endoftime}.}  
+Our analytic cooling model uses $L = -\dot{E}$,  neglecting the surface terms in \Eq{1eq:coolingglobal}.\footnote{\App{surfterms} shows that these terms are negligible for a non-self-gravitating model.}  %They do become relevant when self-gravity is important and included, as shown in \S\ref{sec:endoftime}.}  
 Applying \Eqs{eq:Eus}{eq:Lcb}, the time it takes to cool the atmosphere until the RCB reaches a given pressure depth, $P\cb$, is 
 \begin{subeqnarray} 
 t_{\rm  cool} &=&- \int_{P\di}^{P\cb } {d E/d P\cb \over L \cb} dP\cb \\
@@ -466,7 +466,7 @@ The accelerated growth in the numerical model, as shown in the bottom panel of \
 \label{fig:LtvsMopacity}
 \end{figure}
 
-In \Fig{fig:LtvsMopacity}, our standard dust opacity, \Eq{eq:opacitylaw}, is reduced by factors of 10 and 100.  Lower opacities result in higher luminosities and faster evolution.  Our model thus confirms a well-established result \citep{hubickyj05}.  While clearly an important effect, atmospheric dust opacities are difficult to robustly predict. Ablation of infalling solids is a dust source.  Sinks include the sequestration of solids in the core and dust settling through the radiative zone.  Grain growth both reduces dust opacities per unit mass and favors settling.  Our scenario of negligible ongoing particle accretion tends to favor low dust opacities.   To be conservative, however, our reference case considers full Solar abundances. The effect of opacity reduction on the critical core mass is described in \S\ref{sec:critical}. 
+In \Fig{fig:LtvsMopacity}, our standard dust opacity, \Eq{1eq:opacitylaw}, is reduced by factors of 10 and 100.  Lower opacities result in higher luminosities and faster evolution.  Our model thus confirms a well-established result \citep{hubickyj05}.  While clearly an important effect, atmospheric dust opacities are difficult to robustly predict. Ablation of infalling solids is a dust source.  Sinks include the sequestration of solids in the core and dust settling through the radiative zone.  Grain growth both reduces dust opacities per unit mass and favors settling.  Our scenario of negligible ongoing particle accretion tends to favor low dust opacities.   To be conservative, however, our reference case considers full Solar abundances. The effect of opacity reduction on the critical core mass is described in \S\ref{sec:critical}. 
 
 
 
@@ -499,14 +499,14 @@ We examine the  validity of our cooling model by comparing our model luminosity 
 
  \Fig{fig:coolingterms} shows that the neglected luminosity is indeed negligible during the early stages of evolution.  However, $L_{\rm negl}$ exceeds the model luminosity, $L$, at high masses, $M_{\rm atm} > 3 M_\oplus$ in this case.  Our cooling model is thus inaccurate at higher masses.  However, the model remains reasonably accurate up to the beginning stages of runaway growth, which is sufficient for our purposes of widely exploring parameter space and exploring trends.
  
- The individual terms in the global cooling model of \Eq{eq:coolingglobal}, evaluated at the RCB, are also plotted in \Fig{fig:coolingterms}.  At low masses, the change in energy, $- \dot{E}$, makes the dominant contribution to luminosity.  As the mass increases, the surface terms become more significant, led by the accretion energy.  However, the surface terms are everywhere smaller than $L_{\rm negl}$.  Thus wherever our model is accurate -- including the crucial early phases of growth -- surface terms are a minor correction.  The neglect of surface terms in the analytic model is thus not a serious omission.
+ The individual terms in the global cooling model of \Eq{1eq:coolingglobal}, evaluated at the RCB, are also plotted in \Fig{fig:coolingterms}.  At low masses, the change in energy, $- \dot{E}$, makes the dominant contribution to luminosity.  As the mass increases, the surface terms become more significant, led by the accretion energy.  However, the surface terms are everywhere smaller than $L_{\rm negl}$.  Thus wherever our model is accurate -- including the crucial early phases of growth -- surface terms are a minor correction.  The neglect of surface terms in the analytic model is thus not a serious omission.
 
  
  \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/cooling_a10_Mc5_rcb.eps}
 %\vspace{-0.5in}
-\caption{Individual terms in the atmospheric cooling model of \Eq{eq:coolingglobal}, for a $5 M_\oplus$ core at 10 AU.  The dashed curve for accretion energy indicates a negative contribution.  All quantities are evaluated at the RCB, except for $L_{\rm negl}$, the extra luminosity that would have been generated in the radiative zone, but is neglected in our model. The neglected luminosity is a small correction to the model luminosity $L$ for $M_{\rm atm} \lesssim 3 M_{\oplus}$.   Since these low masses dominate growth times, our model is roughly accurate.}
+\caption{Individual terms in the atmospheric cooling model of \Eq{1eq:coolingglobal}, for a $5 M_\oplus$ core at 10 AU.  The dashed curve for accretion energy indicates a negative contribution.  All quantities are evaluated at the RCB, except for $L_{\rm negl}$, the extra luminosity that would have been generated in the radiative zone, but is neglected in our model. The neglected luminosity is a small correction to the model luminosity $L$ for $M_{\rm atm} \lesssim 3 M_{\oplus}$.   Since these low masses dominate growth times, our model is roughly accurate.}
 \label{fig:coolingterms}
 \end{figure}
 
@@ -526,7 +526,7 @@ We examine the  validity of our cooling model by comparing our model luminosity 
 %We now use our structure and evolution models to calculate the necessary conditions for gas giant formation by core accretion.   
 We now use our structure and evolution models to estimate the timescales and minimum core masses for giant planet formation for a range of disk conditions and other model parameters.  Our results for atmosphere growth times -- the time for a core of fixed mass to undergo runaway gas accretion -- are presented in \S\ref{sec:tcross}.  Section \ref{sec:critcore} gives our results for critical core masses, the minimum values that trigger runaway atmospheric growth within a plausible disk lifetime, here 3 Myr.
 
-Our models focus on giant planet formation between 5 and 100 AU, as the outer disk is of particular interest for direct imaging searches.   The growth of atmospheres close to the star is also important, but spherical accretion models (including ours) are less applicable here.  In the inner disk, critical core masses increase, yet lower mass planets start to open gaps and outgrow the disk scale height, see \Eq{eq:Mth}.  These concerns prevent us from applying our model to the inner disk. 
+Our models focus on giant planet formation between 5 and 100 AU, as the outer disk is of particular interest for direct imaging searches.   The growth of atmospheres close to the star is also important, but spherical accretion models (including ours) are less applicable here.  In the inner disk, critical core masses increase, yet lower mass planets start to open gaps and outgrow the disk scale height, see \Eq{1eq:Mth}.  These concerns prevent us from applying our model to the inner disk. 
 
 
 \subsection{Runaway Growth Timescale}
@@ -579,7 +579,7 @@ For $\mu = 2.0$, which represents the idealized case of an H$_2$ atmosphere comp
 \subsubsection{Effects of Disk Temperature and Pressure}
 \label{sec:TPeffects}
 
-\Fig{fig:TPeffects} shows how the runaway accretion time varies with disk temperature, $T\di$, or pressure, $P\di$, holding the other quantity fixed.   The analytic model roughly reproduces the temperature and pressure scalings, again with some discrepancies due mainly to the neglect of self-gravity.  Temperature variations are much more significant than pressure variations (note the difference in logarithmic and linear axes).  Since midplane disk conditions depend only on temperature and pressure in our model,\footnote{See \Eq{eq:diskparam}.  When gap opening is considered in models of later growth stages, the orbital frequency and effective viscosity become relevant as well.} the dominant effect of disk location is temperature.  
+\Fig{fig:TPeffects} shows how the runaway accretion time varies with disk temperature, $T\di$, or pressure, $P\di$, holding the other quantity fixed.   The analytic model roughly reproduces the temperature and pressure scalings, again with some discrepancies due mainly to the neglect of self-gravity.  Temperature variations are much more significant than pressure variations (note the difference in logarithmic and linear axes).  Since midplane disk conditions depend only on temperature and pressure in our model,\footnote{See \Eq{1eq:diskparam}.  When gap opening is considered in models of later growth stages, the orbital frequency and effective viscosity become relevant as well.} the dominant effect of disk location is temperature.  
 
 \begin{figure}[H]
 \centering
@@ -658,7 +658,7 @@ I00 give an approximate analytic fit to their models' envelope formation time (t
 \label{eq:tauenv}
 \tau_{\rm env} \sim 3 \times 10^8 \Big(\frac{M\co}{M_{\oplus}}\Big)^{-2.5} \Big(\frac{\kappa}{1 \text{cm$^2$ s$^{-1}$}}\Big) \,\,\, \text{yr}\, .
 \end{equation}
-Our model reproduces the linear opacity dependence (see \S\ref{sec:timeev}), even though we use a temperature dependent opacity, \Eq{eq:opacitylaw}, instead of a constant $\kappa$.  Our growth times at 5 AU,
+Our model reproduces the linear opacity dependence (see \S\ref{sec:timeev}), even though we use a temperature dependent opacity, \Eq{1eq:opacitylaw}, instead of a constant $\kappa$.  Our growth times at 5 AU,
 \begin{equation}
 \label{eq:trun5au}
 t_{\rm run} \sim 5 \times 10^8 \Big(\frac{M\co}{M_{\oplus}}\Big)^{-2.4} \,\,\, \text{yr},
@@ -697,7 +697,7 @@ For this work, we justify a simplified dust opacity by the cool temperatures of 
 \subsection{Equation of State}
 \label{sec:EOS}
  
-Our model uses an ideal gas law and a polytropic EOS, given by \Eq{eq:idealEOS}.  However, non-ideal effects can affect atmospheric structure and evolution.  In the lower atmosphere, H$_2$ can partially dissociate at high temperatures.  In the upper atmosphere, H$_2$ rotational levels can become depopulated at lower temeratures.   Paper II uses the \citet{saumon95} EOS, with extensions to lower pressures and temperatures as needed, to explore these effects.
+Our model uses an ideal gas law and a polytropic EOS, given by \Eq{1eq:idealEOS}.  However, non-ideal effects can affect atmospheric structure and evolution.  In the lower atmosphere, H$_2$ can partially dissociate at high temperatures.  In the upper atmosphere, H$_2$ rotational levels can become depopulated at lower temeratures.   Paper II uses the \citet{saumon95} EOS, with extensions to lower pressures and temperatures as needed, to explore these effects.
 
 \subsection{Core growth}
 \label{sec:placc}
