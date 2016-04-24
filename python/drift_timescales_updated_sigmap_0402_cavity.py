@@ -335,7 +335,7 @@ def Sigmadisk(r, t, alpha, Mdisk, rc, T0 = 120, betaT = 3./7, mu = 2.35, Mstar =
             * np.exp(- rtild**(2 - gammad) / T)
      else:
          return Mdisk / (2 * np.pi * rc**2 * rtild**gammad) * T**(- (2.5 - gammad) / (2 - gammad)) \
-            * np.exp(- rtild**(2 - gammad) / T) / 100
+            * np.exp(- rtild**(2 - gammad) / T) / 1000
                 
 
 def vacc_act(r, t, alpha, mu = 2.35, T0 = 120, betaT = 3./7, rc = 100 * AU, Mstar = Msun, gammadflag = 0):
