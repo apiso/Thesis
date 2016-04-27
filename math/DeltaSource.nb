@@ -1,0 +1,173 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      4674,        163]
+NotebookOptionsPosition[      3915,        130]
+NotebookOutlinePosition[      4272,        146]
+CellTagsIndexPosition[      4229,        143]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"DiracDelta", "[", "X", "]"}]], "Input",
+ CellChangeTimes->{{3.666539748754505*^9, 3.666539753390687*^9}}],
+
+Cell[BoxData[
+ RowBox[{"DiracDelta", "[", "X", "]"}]], "Output",
+ CellChangeTimes->{3.666539754334855*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[Integral]", 
+  RowBox[{
+   RowBox[{"DiracDelta", "[", "x", "]"}], 
+   RowBox[{"\[DifferentialD]", "x"}]}]}]], "Input",
+ CellChangeTimes->{{3.6665397827253227`*^9, 3.666539787835472*^9}}],
+
+Cell[BoxData[
+ RowBox[{"HeavisideTheta", "[", "x", "]"}]], "Output",
+ CellChangeTimes->{3.6665397886327477`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"3", " ", "Sc", " ", 
+        RowBox[{"x", "[", "r", "]"}]}], " ", "+", " ", 
+       RowBox[{"2", " ", "r", " ", 
+        RowBox[{
+         RowBox[{"x", "'"}], "[", "r", "]"}]}]}], "\[Equal]", 
+      RowBox[{"3", "Sc", " ", "xinf", " ", 
+       RowBox[{"HeavisideTheta", "[", 
+        RowBox[{"rsl", "-", "r"}], "]"}]}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"x", "[", "rsl", "]"}], "\[Equal]", "0"}]}], "}"}], ",", " ", 
+   RowBox[{"x", "[", "r", "]"}], ",", " ", "r"}], "]"}]], "Input",
+ CellChangeTimes->{{3.666542122623458*^9, 3.666542255070075*^9}, {
+   3.666542287647047*^9, 3.666542319518619*^9}, {3.666542423657943*^9, 
+   3.666542429878098*^9}, {3.6665429341813917`*^9, 3.666542934259289*^9}, 
+   3.666548814295862*^9, {3.666549205199628*^9, 3.6665492088221292`*^9}, 
+   3.666550888423316*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"x", "[", "r", "]"}], "\[Rule]", 
+    RowBox[{
+     RowBox[{"-", 
+      SuperscriptBox["r", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", "3"}], " ", "Sc"}], "/", "2"}]]}], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["r", 
+        RowBox[{
+         RowBox[{"3", " ", "Sc"}], "/", "2"}]], "-", 
+       SuperscriptBox["rsl", 
+        RowBox[{
+         RowBox[{"3", " ", "Sc"}], "/", "2"}]]}], ")"}], " ", "xinf", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", 
+       RowBox[{"HeavisideTheta", "[", 
+        RowBox[{"r", "-", "rsl"}], "]"}]}], ")"}]}]}], "}"}], "}"}]], "Output",\
+
+ CellChangeTimes->{{3.666542215687973*^9, 3.666542255529172*^9}, 
+   3.666542324917131*^9, 3.666542430324916*^9, 3.666542935250636*^9, 
+   3.666548815182304*^9, 3.666549209864697*^9, 3.666550893265023*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"HeavisideTheta", "[", 
+  RowBox[{"-", "1"}], "]"}]], "Input",
+ CellChangeTimes->{{3.666542592021537*^9, 3.666542601765892*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.66654259636334*^9, 3.666542602065271*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  SubsuperscriptBox["\[Integral]", "0", "Infinity"], 
+  RowBox[{"Mdot", " ", 
+   RowBox[{"xinf", " ", "/", " ", 
+    RowBox[{"(", 
+     RowBox[{"2", " ", "Pi", " ", "r"}], ")"}]}], "DiracDelta", 
+   RowBox[{"(", 
+    RowBox[{"rsl", "-", "r"}], ")"}], "2", " ", "Pi", " ", "r", " ", 
+   RowBox[{"\[DifferentialD]", "r"}]}]}]], "Input",
+ CellChangeTimes->{{3.666551224819434*^9, 3.666551273625389*^9}}],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.666551259775289*^9, 3.666551274602228*^9}}]
+}, Open  ]]
+},
+WindowSize->{740, 606},
+WindowMargins->{{126, Automatic}, {Automatic, 40}},
+FrontEndVersion->"9.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (January 25, \
+2013)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[579, 22, 129, 2, 28, "Input"],
+Cell[711, 26, 106, 2, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[854, 33, 212, 5, 47, "Input"],
+Cell[1069, 40, 112, 2, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1218, 47, 929, 22, 46, "Input"],
+Cell[2150, 71, 907, 27, 35, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3094, 103, 151, 3, 28, "Input"],
+Cell[3248, 108, 93, 1, 28, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3378, 114, 424, 10, 48, "Input"],
+Cell[3805, 126, 94, 1, 62, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
