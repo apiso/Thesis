@@ -1,8 +1,8 @@
-This is BibTeX, Version 0.99d (TeX Live 2013)
+This is BibTeX, Version 0.99d (TeX Live 2011)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: CO_drift.aux
 The style file: apj.bst
-Illegal, another \bibstyle command---line 27 of file CO_drift.aux
+Illegal, another \bibstyle command---line 36 of file CO_drift.aux
  : \bibstyle
  :          {apj}
 I'm skipping whatever remains of this command
