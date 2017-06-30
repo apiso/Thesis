@@ -1,7 +1,7 @@
 %\documentclass[12pt]{amsart}
 \documentclass[12pt, letterpaper]{article}
-\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
-\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+%\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
 %\geometry{landscape}                % Activate for for rotated page geometry
 %\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}
@@ -9,9 +9,10 @@
 \usepackage{epstopdf}
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
-\usepackage[]{natbib}
-\usepackage{amssymb}
+\usepackage[top=1.1in, bottom=1.1in, left=1.4in, right=1.4in]{geometry}
 \usepackage{natbib}
+\usepackage{amssymb}
+%\usepackage{natbib}
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
@@ -84,7 +85,7 @@ One important effect of the existence of snowlines is that disks are expected to
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.6\textwidth]{oberg11.png}
+\includegraphics[width=0.7\textwidth]{oberg11.png}
 %\vspace{-0.5in}
 \caption{The C/O ratio in gas (solid line) and dust (dashed line) as a function of semimajor axis in a static disk. The dotted line shows the stellar value of 0.54. Gas-phase C/O ratios of order unity can be achieved in the outer disk. From [10]. }
 \label{fig:oberg}
@@ -92,13 +93,13 @@ One important effect of the existence of snowlines is that disks are expected to
 
 The pioneering work of [10], as well as the purported detection of a superstellar gas-phase C/O ratio in the atmosphere of WASP 12-b [11], inspired further theoretical investigations into the C/O ratio in disk and planet atmospheres. The model of [11] assumes a static disk, thus ignoring disk chemistry or dynamics. In reality, however, there are many chemical and dynamical processes that occur in disks (see [9] for a review), which will change the chemical molecular and elemental abundances, and therefore C/O ratios. For example, [12] calculate the C/O ratio throughout the disk including dynamical effects such as radial drift, grain coagulation, and the diffusion of volatile vapors. [13] include planetary migration in their C/O ratio calculation, and use the C/O ratio to constrain migration mechanisms. Additional carbon volatile carriers, such as CH$_4$, are considered by [14],  and they find that the gas-phase C/O ratio may be enriched by up to a factor of four compared to the Solar value in the outer disk.  While the C/O ratio is an important signature of disk and planet atmospheric chemistry, many other compounds have been detected in disks [9], which may affect the composition of disks and of nascent planets even when only dynamical processes are included and the chemistry is static, such as in the studies described above. 
 
-From the chemistry perspective, several studies have modeled the chemical evolution of disk volatile abundances using chemical networks with hundreds to thousands of reactions (see., e.g., [15] and references in [9]); however, these works do not consider any dynamical processes.   
+From the chemistry perspective, several studies have modeled the chemical evolution of disk volatile abundances using chemical networks with hundreds to thousands of reactions (see., e.g., [15], [16] and references in [9]); however, most of these works do not consider any dynamical processes.   
 
-In my recent work ([16], [17]), I explored the effect of radial drift of solids and viscous gas accretion onto the central star, as well as different ice compositions, on snowline locations and the C/N/O ratios in disks. Besides C and O carriers, I also considered nitrogen-bearing species, such as N$_2$ and NH$_3$. Figure \ref{fig:CO_ratio} shows that the processes described above can change the location of the CO snowline by up to a factor of $\sim$7, thus introducing a large uncertainty in the position of the CO snowline, and therefore the disk locations where the gas-phase C/O ratio is enhanced compared to the stellar value. The same effect was observed for the N$_2$ snowline location.
+In my recent work ([17], [18]), I explored the effect of radial drift of solids and viscous gas accretion onto the central star, as well as different ice compositions, on snowline locations and the C/N/O ratios in disks. Besides C and O carriers, I also considered nitrogen-bearing species, such as N$_2$ and NH$_3$. Figure \ref{fig:CO_ratio} shows that the processes described above can change the location of the CO snowline by up to a factor of $\sim$7, thus introducing a large uncertainty in the position of the CO snowline, and therefore the disk locations where the gas-phase C/O ratio is enhanced compared to the stellar value. The same effect was observed for the N$_2$ snowline location.
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.6\textwidth]{C_O_water_ice.pdf}
+\includegraphics[width=0.8\textwidth]{C_O_water_ice.pdf}
 %\vspace{-0.5in}
 \caption{C/O ratio estimates in gas (solid lines) and dust (dashed lines) as function of semimajor axis in a viscous disk, for CO as pure ice (top panel) or as water dominated ices (bottom panel). The H$_2$O, CO$_2$ and CO snowlines are shown for particles with initial sizes $\sim0.05$ cm $\lesssim s \lesssim$ 7 m as indicated by the color bar. The C/O ratio in a static disk (black lines) is shown for comparison. Taken together, disk dynamics and ice compositions move the CO snowline inward by a factor of $\sim$7. From [17].} 
 \label{fig:CO_ratio}
@@ -114,19 +115,33 @@ It it thus clear that, in order to better understand and constrain disk and plan
 \subsection{Coupled Chemical and Dynamical Disk Evolution} 
 %\underline{\textbf{1. Coupled Chemical and Dynamical Disk Evolution}}
 
-Chemical and dynamical processes in a protoplanetary disk affect the disk structure and composition, and thus the composition of nascent planets. As shown in Figure \ref{fig:chemical}, the timescales for various disk chemical and dynamical processes may be comparable at least in some parts of the disk. It follows that these two effects cannot be decoupled, and that the chemo-dynamical evolution of the disk has to be studied simultaneously and self-consistently. Through \textbf{analytical and numerical calculations}, I will first explore a \textbf{range of dynamical processes that may affect the distribution of volatiles in disks}, expanding and generalizing the framework I developed during my dissertation research ($[16]$, [17]). Such effects include particle growth and fragmentation, as well as accretion rate and stellar luminosity evolution.   
+Protoplanetary disks experience a multitude of chemical and dynamical processes, as shown schematically in Figure \ref{fig:disk}. These processes affect the disk structure and composition, and thus the composition of nascent planets. As shown in Figure \ref{fig:chemical}, the timescales for various disk chemical and dynamical processes may be comparable at least in some parts of the disk. It follows that these two effects cannot be decoupled, and that the chemo-dynamical evolution of the disk has to be studied simultaneously and self-consistently. Through \textbf{analytical and numerical calculations}, I will first explore a \textbf{range of dynamical processes that may affect the distribution of volatiles in disks}, expanding and generalizing the framework I developed during my dissertation research ($[17]$, [18]). Such effects include particle growth and fragmentation, as well as accretion rate and stellar luminosity evolution.   
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{disk}
+\vspace{-0.1in}
+\caption{Sketch of chemical and dynamical processes in a protoplanetary disk around a Sun-like star (from $[9]$).}
+\label{fig:disk}
+\end{figure}
+
+
+
+From the chemistry perspective, molecular abundances vary significantly across a typical disk, due to steep gradients in temperature, density and radiation. 
+%Figure 1 shows a theoretical example of how both changes in disk temperature, as well as time evolution, decrease the abundance of carbon monoxide (CO) by several orders of magnitude \cite{aikawa96}. 
+The complexity of disk chemistry means that coupling it with dynamical processes, while necessary, is non-trivial.  I will couple the dynamical framework outlined above with \textbf{time-dependent chemical models of increasing complexity}, informed by results from state-of-the-art disk chemistry models (that can only be run on static disks). This will show how the snowline locations of volatiles, as well as the chemical composition of the disk gas and dust evolve, which has \textbf{direct implications on the compositions of young planets}. Moreover, since I am primarily interested in processes that affect the disk mid-plane where planets form, my results could be simplified by the fact that certain chemical processes may not be important in this disk parameter space.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\textwidth]{chemical_timescales}
 \vspace{-0.3in}
-\caption{The distribution of characteristic chemical and dynamical timescales $\tau$ in disks as a function of semi-major axis and height. The numbered curves are $\log_{10} (\tau)$ in years (from $[20]$).}
+\caption{The distribution of characteristic chemical and dynamical timescales $\tau$ in disks as a function of semi-major axis and height. The numbered curves are $\log_{10} (\tau)$ in years (from $[28]$).}
 \label{fig:chemical}
 \end{figure}
 
-From the chemistry perspective, molecular abundances vary significantly across a typical disk, due to steep gradients in temperature, density and radiation. 
-%Figure 1 shows a theoretical example of how both changes in disk temperature, as well as time evolution, decrease the abundance of carbon monoxide (CO) by several orders of magnitude \cite{aikawa96}. 
-The complexity of disk chemistry means that coupling it with dynamical processes, while necessary, is non-trivial.  I will couple the dynamical framework outlined above with \textbf{time-dependent chemical models of increasing complexity}, informed by results from state-of-the-art disk chemistry models (that can only be run on static disks). This will show how the snowline locations of volatiles, as well as the chemical composition of the disk gas and dust evolve, which has \textbf{direct implications on the compositions of young planets}. Moreover, since I am primarily interested in processes that affect the disk mid-plane where planets form, my results could be simplified by the fact that certain chemical processes may not be important in this disk parameter space. This step should be completed within 8 months.
+\textbf{My results from this step will be useful in interpreting JWST observations of volatile abundances and ratios in protoplanetary disk atmospheres.} The JWST \textbf{Mid-Infrared Instrument (MIRI)} (see, e.g., [19] for an overview) will enable abundance measurements of species such as H$_2$O, CO$_2$, C$_2$H$_2$, HCN in the atmospheres of a much broader range of disks that it was possible with the Spitzer Space Telescope (e.g., [20]). \textbf{Varying disk initial conditions, such as the temperature profile and initial species abundances}, and comparing them with the known properties of disks that JWST will observe, will help me in explaining \textbf{volatile ratios from the JWST data.} This step should be completed within 8 months.
+
+
 
 %this dynamical model  develop a (chemical models of increasing complexity) simplified time-dependent chemistry, 
 
@@ -140,12 +155,12 @@ The complex processes outlined in part 1 will directly impact the composition an
 \centering
 \includegraphics[width=0.5\textwidth]{HLTau_nrao}
 %\vspace{-0.5in}
-\caption{ALMA continuum image of the disk around HL Tau, which shows evidence of a gas gap in the disk, most likely created due to planetary migration (from $[18]$).}
+\caption{ALMA continuum image of the disk around HL Tau, which shows evidence of a gas gap in the disk, most likely created due to planetary migration (from $[26]$).}
 \label{fig:HLtau}
 \end{figure}
 The chemical evolution of the gas disk molecular abundances, as well as disk dynamics, determine how a young planet's atmospheric composition changes in time and with the planet's location, and therefore the final chemical structure of mature planets. \textbf{It is thus clear that disks and planets are deeply connected, and that this relation needs to be explored}. %I will add planetary embryos in the code developed in step 1, and 
 
-Giant planets can migrate through the disk while still accumulating gas. Figure \ref{fig:HLtau} shows an exciting ALMA observation of a planetary gap in the disk around HL Tau $[18]$. This will change a planet's atmospheric composition since the disk chemical abundances are different at different disk locations. Additionally, giant planets may still accumulate planetesimals while accreting nebular gas $[10]$. The final composition of a planet's atmosphere will thus depend on how much gas and solids are accreted in this stage. \textbf{I will add planet dynamical effects such as migration and planetesimal accretion in the chemical and dynamical model developed in part 1, and quantify how these processes affect the chemical composition of gas giant envelopes}. This step should be completed within 8 months.
+Giant planets can migrate through the disk while still accumulating gas. Figure \ref{fig:HLtau} shows an exciting ALMA observation of a planetary gap in the disk around HL Tau $[26]$. This will change a planet's atmospheric composition since the disk chemical abundances are different at different disk locations. Additionally, giant planets may still accumulate planetesimals while accreting nebular gas $[10]$. The final composition of a planet's atmosphere will thus depend on how much gas and solids are accreted in this stage. \textbf{I will add planet dynamical effects such as migration and planetesimal accretion in the chemical and dynamical model developed in part 1, and quantify how these processes affect the chemical composition of gas giant envelopes}. This step should be completed within 8 months.
 
 
 %\vspace{0.2in}
@@ -153,7 +168,11 @@ Giant planets can migrate through the disk while still accumulating gas. Figure 
 \subsection{Model Planet Populations} 
 %\underline{\textbf{3. Model Planet Populations}}
 
-The results from parts 3.1 and 3.2 will feed into a \textbf{large planet synthesis model}, in which I will use a grid of different \textbf{initial disk and planetary embryo conditions}. I will develop my own numerical program instead of using already existing codes of planet population synthesis (e.g., $[19]$ and references therein), since the latter involve many complex physical processes, some of which might not be necessary or relevant for my own calculations. To minimize computational expenses, I will build a program from bottom-up that includes select physical and chemical processes based on the local simulations from steps 1 and 2. This will allow me to predict the \textbf{range of planet compositions that can form under reasonable disk conditions}, as well as \textbf{constrain a planet's formation location based on its chemical composition}. %Comparing my results with current observations of atmospheric spectra (e.g., Figure 3 from $[4]$), and more importantly future JWST observations, will lead to great scientific strides in understanding the complex connection between protoplanetary disks and the formation, evolution and composition of exoplanets. 
+The results from parts 3.1 and 3.2 will feed into a \textbf{large planet synthesis model}, in which I will use a grid of different \textbf{initial disk and planetary embryo conditions}. I will develop my own numerical program instead of using already existing codes of planet population synthesis (e.g., $[27]$ and references therein), since the latter involve many complex physical processes, some of which might not be necessary or relevant for my own calculations. To minimize computational expenses, I will build a program from bottom-up that includes select physical and chemical processes based on the local simulations from steps 1 and 2. 
+
+Based on the framework that I developed during my dissertation ([5], [6]), I will use the \textbf{core accretion model} for the formation of gas giants. The growth rate of giant nascent planets before the dispersal of the protoplanetary disk is highly dependent on the opacity of their envelopes. However, disk and atmosphere opacities are highly uncertain. I will therefore explore \textbf{a range of opacity models appropriate for different disk regions and temperatures, considering both dusty and grain-free envelopes}. (e.g., [21], [22], [23]). Since I am interested in the chemical composition of both nascent and mature giant planets, \textbf{I will carry my planet synthesis model forward through the dispersal of the gas disk}. Physical processes to be considered in this evolutionary stage are, for example, \textbf{spontaneous mass loss} due to loss of pressure support from the disk [24], or \textbf{dynamical interactions with forming terrestrial planets.}  Through numerical calculations, I will expand the analytic model of [24] for atmospheric mass loss. This will enable me to obtain \textbf{robust quantitative results} for the physical properties of gas giants that we see today, as well as \textbf{explore a broader range of disk and planet parameter space}. The latter will be particularly relevant for connecting my predictions with JWST detections, which will observe giant planets with a variety of masses, semimajor axes, and compositions.    
+
+To conclude, my proposed planet synthesis model will allow me to predict the \textbf{range of planet compositions that can form under reasonable disk conditions}, as well as \textbf{constrain a planet's formation location based on its chemical composition}. %Comparing my results with current observations of atmospheric spectra (e.g., Figure 3 from $[4]$), and more importantly future JWST observations, will lead to great scientific strides in understanding the complex connection between protoplanetary disks and the formation, evolution and composition of exoplanets. 
 This step should be completed within 8 months.
 
 
@@ -171,7 +190,7 @@ Most studies that explore the effect of disk dynamics on disk/planet composition
 
 \subsection{Planet Synthesis Model}
 
-As discussed in Section 3.3, I will build an \textbf{original and novel planet synthesis code}, which I will tailor to only include the chemical and dynamical processes that I find important for my science problem (see Sections 3.1., 3.2, 4.1., 4.2). In comparison with existing planet population synthesis programs, my model will have the advantage of \textbf{greatly decreasing computational costs}.  
+As discussed in Section 3.3, I will build an \textbf{original and novel planet synthesis code}, which I will tailor to only include the chemical and dynamical processes that I find important for my science problem (see Sections 3.1., 3.2, 4.1., 4.2). In comparison with existing planet population synthesis programs, my model will have the advantage of \textbf{greatly decreasing computational costs}. Moreover, my complex chemo-dynamical planet synthesis model and code will serve as a useful \textbf{input of young model planets for subsequent atmospheric evolution codes}, such as is the case, for example, with the code developed by [25].  
 
 
 \section{EXPECTED RESULTS}
@@ -190,7 +209,7 @@ My expected results can be summarized as follows:
 \begin{figure}[h!]
 \centering
 \vspace{-0.2in}
-\includegraphics[width=0.9\textwidth]{water_spectrum}
+\includegraphics[width=\textwidth]{water_spectrum}
 \vspace{-0.2in}
 \caption{The transmission spectrum of exoplanet WASP-12b measured with the Hubble Space Telescope/Wide Field Camera 3. The white dots are the measured transit depths, the blue squares and dark blue line are the best fit model, while the shaded regions represent 1- and 2 $\sigma$ intervals in the retrieved spectrum. The increase in transit depth around $\sim$1.4 $\mu$m is evidence for a water feature in the atmosphere (from $[4]$).}
 \label{fig:HLTau}
@@ -240,11 +259,19 @@ $[12]$ Ali-Dib, M., Mousis, O., Petit, J.-M., \& Lunine, J. I. 2014, ApJ, 785, 1
 $[13]$ Madhusudhan, N., Amin, M. A., \& Kennedy, G. M. 2014, ApJL, 794, L12 \\
 $[14]$ Thiabaud, A., Marboeuf, U., Alibert, Y., Leya, I., \& Mezger, K. 2015, A\&A, 574, A138 \\
 $[15]$ Visser, R., van Dishoeck, E. F., Doty, S. D., \& Dullemond, C. P. 2009, A\&A, 495, 881 \\
-\textbf{$[16]$ Piso, A.-M. A., \"Oberg, K. I. , Birnstiel, T., \& Murray-Clay, R. A. 2015, ApJ, 815, 109} \\
-\textbf{$[17]$ Piso, A.-M. A,. Pegues, J., \& \"Oberg, K. I.  2016, ApJ, 833, 203} \\
-$[18]$ ALMA Partnership et al., 2015, ApJ, 808, L3 \\
-$[19]$ Ida, S., Lin, D. N. C., \& Nagasawa, M. 2013, ApJ, 775, 42 \\
-$[20]$ Semenov, D., \& Wiebe, D. 2011, ApJS, 196, 25
+$[16]$ Willacy, K., \& Woods, P. M. 2009, ApJ, 703, 479 \\
+\textbf{$[17]$ Piso, A.-M. A., \"Oberg, K. I. , Birnstiel, T., \& Murray-Clay, R. A. 2015, ApJ, 815, 109} \\
+\textbf{$[18]$ Piso, A.-M. A,. Pegues, J., \& \"Oberg, K. I.  2016, ApJ, 833, 203} \\
+$[19]$ Wright, G. S., Wright, D., Goodson, G. B., et al. 2015, PASP, 127, 595 \\
+$[20]$ Carr, J. S., \& Najita, J. R. 2011, ApJ, 733, 102 \\
+$[21]$ D`Alessio, P., Calvet, N., \& Hartmann, L. 2001, ApJ, 553, 321 \\
+$[22]$ Ferguson, J. W., Alexander, D. R., Allard, F., et al. 2005, ApJ, 623, 585 \\
+$[23]$ Freedman, R. S., Marley, M. S., \& Lodders, K. 2008, ApJS, 174, 504 \\
+$[24]$ Ginzburg, S., Schlichting, H. E., \& Sari, R. 2016, ApJ, 825, 29 \\
+$[25]$ Hu, R., Seager, S., \& Bains, W. 2012, ApJ, 761, 166 \\
+$[26]$ ALMA Partnership et al., 2015, ApJ, 808, L3 \\
+$[27]$ Ida, S., Lin, D. N. C., \& Nagasawa, M. 2013, ApJ, 775, 42 \\
+$[28]$ Semenov, D., \& Wiebe, D. 2011, ApJS, 196, 25
 
 
 
